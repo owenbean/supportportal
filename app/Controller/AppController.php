@@ -6,8 +6,8 @@ class AppController extends Controller {
 		'DebugKit.Toolbar',
 		'Session',
 		'Auth' => array(
-			'loginRedirect' => array('controller' => 'posts', 'action' => 'index'),
-			'logoutRedirect' => array('controller' => 'pages', 'action' => 'display', 'home')
+			'loginRedirect' => array('controller' => 'users', 'action' => 'index'),
+			'logoutRedirect' => array('controller' => 'users', 'action' => 'login')
 		)
 	);
 	

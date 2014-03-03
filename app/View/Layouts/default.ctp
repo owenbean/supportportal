@@ -12,7 +12,12 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	<?php
 		echo $this->Html->meta('icon');
 
-		echo $this->Html->css('cake.generic');
+		echo $this->Html->css(array('irbnet_admin'));
+		echo $this->Html->css('http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css');
+		echo $this->Html->script('http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js');
+		echo $this->Html->script('http://code.jquery.com/jquery-1.9.1.js');
+		echo $this->Html->script('http://code.jquery.com/ui/1.10.3/jquery-ui.js');
+		echo $this->Html->script(array('irbnet_admin'));
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -20,24 +25,41 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	?>
 </head>
 <body>
-	<div id="container">
-		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
-		</div>
-		<div id="content">
-
-			<?php echo $this->Session->flash(); ?>
-
-			<?php echo $this->fetch('content'); ?>
-		</div>
-		<div id="footer">
-			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-					'http://www.cakephp.org/',
-					array('target' => '_blank', 'escape' => false)
-				);
+<div id="wrapper">
+	<div id="folio">
+		<div id="site_wrapper">
+			<div id="top_strip">
+				<div class="logo">
+					<?php echo $this->Html->image('irbnet.gif', array('alt' => 'IRBNet', 'url' => array('controller' => 'users', 'action' => 'index'))); ?>
+				</div>
+				<div class="tagline">
+					<h1>Innovative Solutions for <br />Compliance and Research Management </h1><br />
+				</div>
+			</div>
+			
+			<div id="navigation">
+			<?php
+				if ($this->Session->read('Auth.User.first_name')) {
+					echo $this->Element('nav');
+				}
 			?>
+			</div>
+		
+			<div id="main_content">
+				<div id="left_col">
+					<div class="left_content">
+						<?php echo $this->Session->flash(); ?>
+						<?php echo $this->fetch('content'); ?>
+					</div>
+				</div>
+			</div>
+			
+			<div id="footer">
+				<p>Copyright &copy; 2002-2014 Research Dataware, LLC.&nbsp;&nbsp;&nbsp;All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+			</div>
 		</div>
 	</div>
+</div>
+<?php echo $this->Js->writeBuffer(); ?>
 </body>
 </html>
