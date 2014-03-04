@@ -12,8 +12,8 @@
 	<div class="nav_text"><a href="#">Organizations</a>
 		<ul class="sub_nav_menu">
 			<li id="orgSearchLink"><a href="#">Search</li>
-			<li><a href="organization_list.php">Full List</a></li>
-			<li><a href="organization_list_edit.php">Add New</a></li>
+			<li><?php echo $this->Html->link('Full List', array('controller' => 'organizations', 'action' => 'index')); ?></li>
+			<li><?php echo $this->Html->link('Add New', array('controller' => 'organizations', 'action' => 'add')); ?></li>
 		</ul>
 	</div>
 	<div class="nav_division"><?php echo $this->Html->image('nav-div.gif') ?></div>
@@ -48,7 +48,7 @@
 <div id="nav_right_side">
 	<div class="nav_text" id="nav_username_text"><a href="#"><?php echo $this->Session->read('Auth.User.first_name'); ?></a></div>
 	<ul class="sub_nav_menu" id="right_sub_nav_menu">
-		<li><?php echo $this->Html->link('Profile', array('controller' => 'users', 'action' => 'view')); ?></li>
+		<li><?php echo $this->Html->link('Profile', array('controller' => 'users', 'action' => 'view', $this->Session->read('Auth.User.id'))); ?></li>
 		<li><?php echo $this->Html->link('Logout', array('controller' => 'users', 'action' => 'logout')); ?></li>
 	</ul>
 </div>

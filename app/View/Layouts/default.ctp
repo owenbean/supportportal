@@ -30,7 +30,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		<div id="site_wrapper">
 			<div id="top_strip">
 				<div class="logo">
-					<?php echo $this->Html->image('irbnet.gif', array('alt' => 'IRBNet', 'url' => array('controller' => 'users', 'action' => 'index'))); ?>
+					<?php echo $this->Html->image('irbnet.gif', array('alt' => 'IRBNet', 'url' => array('controller' => 'users', 'action' => 'login'))); ?>
 				</div>
 				<div class="tagline">
 					<h1>Innovative Solutions for <br />Compliance and Research Management </h1><br />

@@ -4,7 +4,7 @@ class UsersController extends AppController {
 	
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow('add', 'logout', 'login');
+		$this->Auth->allow('logout', 'login');
 	}
 	
 	public function login() {
@@ -52,7 +52,7 @@ class UsersController extends AppController {
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash(__('This user has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'view', $id));
 			}
 			$this->Session->setFlash(__('This user could not be saved.'));
 		} else {
