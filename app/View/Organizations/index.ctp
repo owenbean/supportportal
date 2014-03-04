@@ -14,7 +14,7 @@
 		<tr>
 			<td><?php echo $this->Html->link($organization['Organization']['full_name'], array('action' => 'view', $organization['Organization']['id'])); ?></td>
 			<td><?php echo $this->Html->link($organization['Organization']['short_name'], array('action' => 'view', $organization['Organization']['id'])); ?></td>
-			<td><?php echo $post['Organization']['op_id']; ?></td>
+			<td><?php echo $organization['Organization']['op_num']; ?></td>
 		</tr>
 		<?php endforeach; ?>
 		<?php unset($organization); 

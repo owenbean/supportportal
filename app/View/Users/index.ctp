@@ -19,7 +19,8 @@
 					</aside>";
 			}
 	*/
-		echo 'Welcome ' . $this->Session->read('Auth.User.first_name') . '!';
+		echo 'Welcome ' . $this->Session->read('Auth.User.first_name') . '!<br />';
+		echo 'User ID - ' . $this->Session->read('Auth.User.id');
 	?>
 	</h2>
 	<p>&nbsp;</p>

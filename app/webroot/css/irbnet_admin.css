@@ -288,10 +288,6 @@ section {
 	background-color: #ffd8d8;
 }
 
-.required {
-	color: red;
-}
-
 .valid_entry {
 	border: 2px solid #41ad49;
 }
@@ -987,10 +983,6 @@ section {
 	font-size: 14px;
 }
 
-#login_table label {
-	color: black;
-}
-
 #login_button {
 	margin-top: 20px;
 }
@@ -1010,10 +1002,6 @@ section {
 
 #form_input_fields {
 	margin: 10px 0 15px 0;
-	color: black;
-}
-
-#form_input_fields label {
 	color: black;
 }
 

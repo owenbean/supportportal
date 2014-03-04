@@ -25,6 +25,10 @@ class UsersController extends AppController {
 		$this->set('users', $this->paginate());
 	}
 	
+	public function all() {
+		$this->set('users', $this->User->find('all'));
+	}
+	
 	public function view($id = null) {
 		$this->User->id = $id;
 		if (!$this->User->exists()) {

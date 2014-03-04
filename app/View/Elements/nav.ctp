@@ -38,7 +38,7 @@
 			echo "<div class='nav_division'>" . $this->Html->image('nav-div.gif') . "</div>
 				<div class='nav_text'><a href='#'>Site Admin</a>
 					<ul class='sub_nav_menu'>
-						<li><a href='system_admin_list.php'>System Admin List</a></li>
+						<li>" . $this->Html->link('System Admin List', array('controller' => 'users', 'action' => 'all')) . "</li>
 						<li><a href='color_scheme.php'>Color Scheme</a></li>
 					</ul>
 				</div>";

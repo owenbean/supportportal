@@ -18,6 +18,9 @@ class OrganizationsController extends AppController {
 	}
 	
 	public function add() {
+		$this->loadModel('User');
+		$specialists = $this->User->find('list', array('fields' => array('User.id', 'User.first_name')));
+		$this->set(compact('specialists'));
 		if ($this->request->is('post')) {
 			$this->Organization->create();
 			if ($this->Organization->save($this->request->data)) {
