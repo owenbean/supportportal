@@ -9,11 +9,11 @@
 		</ul>
 	</div>
 	<div class="nav_division"><?php echo $this->Html->image('nav-div.gif') ?></div>
-	<div class="nav_text"><a href="#">Organizations</a>
+	<div class="nav_text"><a href="#">Members</a>
 		<ul class="sub_nav_menu">
 			<li id="orgSearchLink"><a href="#">Search</li>
-			<li><?php echo $this->Html->link('Full List', array('controller' => 'organizations', 'action' => 'all')); ?></li>
-			<li><?php echo $this->Html->link('Add New', array('controller' => 'organizations', 'action' => 'add')); ?></li>
+			<li><?php echo $this->Html->link('Full List', array('controller' => 'members', 'action' => 'all')); ?></li>
+			<li><?php echo $this->Html->link('Add New', array('controller' => 'members', 'action' => 'add')); ?></li>
 		</ul>
 	</div>
 	<div class="nav_division"><?php echo $this->Html->image('nav-div.gif') ?></div>
@@ -26,8 +26,8 @@
 	<div class="nav_division"><?php echo $this->Html->image('nav-div.gif') ?></div>
 	<div class="nav_text"><a href="#">Lists</a>
 		<ul class="sub_nav_menu">
-			<li><?php echo $this->Html->link('CITI Integration', array('controller' => 'organizations', 'action' => 'all', 'citi_integration')); ?></li>
-			<li><?php echo $this->Html->link('WIRB Integration', array('controller' => 'organizations', 'action' => 'all', 'wirb_integration')); ?></li>
+			<li><?php echo $this->Html->link('CITI Integration', array('controller' => 'members', 'action' => 'all', 'citi_integration')); ?></li>
+			<li><?php echo $this->Html->link('WIRB Integration', array('controller' => 'members', 'action' => 'all', 'wirb_integration')); ?></li>
 			<li><a href="organization_list.php?sso">Single Sign-On</a></li>
 			<li><a href="organization_list.php?file_access">File Access</a></li>
 			<li><a href="organization_list.php?smart_forms">Smart Forms</a></li>
