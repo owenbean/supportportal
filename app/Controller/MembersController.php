@@ -28,7 +28,7 @@ class MembersController extends AppController {
 			$this->Member->create();
 			if ($this->Member->save($this->request->data)) {
 				$this->Session->setFlash(__('Member created'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'all'));
 			}
 			$this->Session->setFlash(__('Unable to save member'));
 		}

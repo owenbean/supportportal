@@ -20,6 +20,7 @@
 	<div class="nav_text"><a href="#">Administrators</a>
 		<ul class="sub_nav_menu">
 			<li id="adminSearchLink"><a href="#">Search</a></li>
+			<li><?php echo $this->Html->link('Full List', array('controller' => 'admins', 'action' => 'all')); ?></li>
 			<li><a href="#" onclick="return notYet()">Add New</a></li>
 		</ul>
 	</div>

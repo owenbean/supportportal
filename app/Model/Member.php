@@ -1,5 +1,7 @@
 <?php
 class Member extends AppModel {
+	public $hasMany = 'Admin';
+	
 	public $validate = array(
 		'op_num' => array(
 			'rule' => 'notEmpty'

@@ -34,7 +34,7 @@
 		</tbody>
 		</table>
 		
-		<p><a href="admin_details_edit.php?org=$org_index">Add new administrator</a>
+		<p><?php echo $this->Html->link('Add new administrator', array('controller' => 'admins', 'action' => 'add', $member['Member']['id'])); ?></p>
 	</div>
 
 </div>
