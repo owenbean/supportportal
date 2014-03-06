@@ -1,7 +1,18 @@
 <?php
 class Admin extends AppModel {
 	public $belongsTo = 'Member';
-	public $validate = array();
+	
+	public $validate = array(
+		'first_name' => array(
+			'rule' => 'notEmpty'
+		),
+		'last_name' => array(
+			'rule' => 'notEmpty'
+		),
+		'email_address' => array(
+			'rule' => 'notEmpty'
+		)
+	);
 	
 	public function beforeSave($options = array()) {
 		$user_id = CakeSession::read('Auth.User.id');

@@ -21,7 +21,7 @@
 		<ul class="sub_nav_menu">
 			<li id="adminSearchLink"><a href="#">Search</a></li>
 			<li><?php echo $this->Html->link('Full List', array('controller' => 'admins', 'action' => 'all')); ?></li>
-			<li><a href="#" onclick="return notYet()">Add New</a></li>
+			<li><?php echo $this->Html->link('Add New', array('controller' => 'admins', 'action' => 'add')); ?></li>
 		</ul>
 	</div>
 	<div class="nav_division"><?php echo $this->Html->image('nav-div.gif') ?></div>
@@ -29,8 +29,8 @@
 		<ul class="sub_nav_menu">
 			<li><?php echo $this->Html->link('CITI Integration', array('controller' => 'members', 'action' => 'all', 'citi_integration')); ?></li>
 			<li><?php echo $this->Html->link('WIRB Integration', array('controller' => 'members', 'action' => 'all', 'wirb_integration')); ?></li>
-			<li><a href="organization_list.php?sso">Single Sign-On</a></li>
-			<li><a href="organization_list.php?file_access">File Access</a></li>
+			<li><?php echo $this->Html->link('Single Sign-On', array('controller' => 'members', 'action' => 'all', 'sso')); ?></li>
+			<li><?php echo $this->Html->link('File Access', array('controller' => 'members', 'action' => 'all', 'file_access')); ?></li>
 			<li><a href="organization_list.php?smart_forms">Smart Forms</a></li>
 		</ul>
 	</div>

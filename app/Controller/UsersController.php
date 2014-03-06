@@ -23,6 +23,8 @@ class UsersController extends AppController {
 	public function index() {
 		$this->User->recursive = 0;
 		$this->set('users', $this->paginate());
+		$user_id = CakeSession::read('Auth.User.id');
+		$this->set('members', $this->User->Member->find('all', array('conditions' => array('Member.specialist' => $user_id))));
 	}
 	
 	public function all() {

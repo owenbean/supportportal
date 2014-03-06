@@ -21,11 +21,17 @@ class AdminsController extends AppController {
 	}
 	
 	public function add($member = null) {
+		if (!$member) {
+			$this->loadModel('Member');
+			$members = $this->Member->find('list', array('fields' => array('Member.id', 'Member.full_name')));
+			$this->set(compact('members'));
+		}
+		
 		if ($this->request->is('post')) {
 			$this->Admin->create();
 			if ($this->Admin->save($this->request->data)) {
 				$this->Session->setFlash(__('Administrator created'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'all'));
 			}
 			$this->Session->setFlash(__('Unable to save administrator'));
 		}

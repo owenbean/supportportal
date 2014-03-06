@@ -28,9 +28,23 @@
 				<th>Support Outreach</th>
 				<th>Billing Coordinator</th>
 			</tr>
+			<?php if (!$admins) { ?>
 			<tr>
-				<td colspan="5" class="message_feedback">No administrators added.</td>
+				<td colspan="5" class="message_feedback">No administrators to display</td>
 			</tr>
+			<?php } else { foreach ($admins as $admin): ?>
+			<tr>
+				<td><?php echo $this->Html->link(h($admin['Admin']['first_name']) . ' ' . h($admin['Admin']['last_name']), array('controller' => 'admins', 'action' => 'view', $admin['Admin']['id'])); ?></td>
+				<td><?php echo ( $admin['Admin']['contract_lead'] ? "&#x2713;" : null ) ?></td>
+				<td><?php echo ( $admin['Admin']['feature_announcement_list'] ? "&#x2713;" : null )  ?></td>
+				<td><?php echo ( $admin['Admin']['support_outreach_list'] ? "&#x2713;" : null )  ?></td>
+				<td><?php echo ( $admin['Admin']['billing_coord'] ? "&#x2713;" : null )  ?></td>
+			</tr>
+			<?php
+				endforeach;
+				unset($admin);
+				}
+			?>
 		</tbody>
 		</table>
 		
