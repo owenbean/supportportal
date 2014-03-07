@@ -21,9 +21,12 @@ class AdminsController extends AppController {
 	}
 	
 	public function add($member = null) {
+		$this->loadModel('Member');
 		if (!$member) {
-			$this->loadModel('Member');
 			$members = $this->Member->find('list', array('fields' => array('Member.id', 'Member.full_name')));
+			$this->set(compact('members'));
+		} else {
+			$members = $this->Member->find('list', array('fields' => array('Member.id', 'Member.full_name'), 'conditions' => array('Member.id' => $member)));
 			$this->set(compact('members'));
 		}
 		
@@ -58,6 +61,17 @@ class AdminsController extends AppController {
 		
 		if (!$this->request->data) {
 			$this->request->data = $admin;
+		}
+	}
+	
+	public function delete($id) {
+		if ($this->request->is('get')) {
+			throw new MethodNotAllowedException();
+		}
+		
+		if ($this->Admin->delete($id)) {
+			$this->Session->setFlash(__('The administrator with the id: %s has been deleted.', h($id)));
+			return $this->redirect(array('action' => 'all'));
 		}
 	}
 }

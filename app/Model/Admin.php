@@ -10,6 +10,10 @@ class Admin extends AppModel {
 			'rule' => 'notEmpty'
 		),
 		'email_address' => array(
+			'rule' => 'email',
+			'message' => 'Please supply a valid email address.'
+		),
+		'member_id' => array(
 			'rule' => 'notEmpty'
 		)
 	);
