@@ -12,19 +12,19 @@
 			<p>Location: <strong><?php echo h($member['Member']['city']) . ', ' . h($member['Member']['state']); ?></strong></p>
 			<p>Pings Email: <?php $pings_email = h($member['Member']['pings_email']); echo (!strlen($pings_email) ? '<em>pending</em>' : "<a href='mailto:$pings_email'>" . $pings_email . "</a>"); ?></p>
 			<p>IRBNet Resources: <?php echo (!strlen($member['Member']['resources_username']) ? '<em>pending</em>' : '<strong>' . h($member['Member']['resources_username']) . ' / ' . h($member['Member']['resources_password']) . '</strong>'); ?></p>
-			<p>Comments: <em><?php echo h($member['Member']['comments']); ?></em></p>
 		</div>
 		
 		<div class="org_profile_details" id="committee_details_section">
 			<h2>Committees:</h2>
 			<?php if (!$committees) { ?>
 				<p><em>None</em></p>
-				<p><a href="#"><span class="add_committee_link">Add a committee.</span></a></p>
+				<!--<p><a href="#"><span class="add_committee_link">Add a committee.</span></a></p>-->
+				<p><?php echo $this->Html->link('Add a committee', array('controller' => 'committees', 'action' => 'add', $member['Member']['id'])); ?></p>
 			<?php } else {
 				foreach ($committees as $committee): ?>
 				<div class="section_details">
 					<div class="section_details_head">
-						<a href="#"><p><span class="arrow"><img src="images/arrow.png" height=10 width=10></span><?php echo ' ' . $committee['Committee']['board_type']; ?>: <span class="<?php echo $committee['Committee']['status']; ?>"><?php echo $committee['Committee']['status']; ?></span></p></a>
+						<a href="#"><p><span class="arrow"><?php echo $this->Html->image('arrow.png', array('height' => '10', 'width' => '10')); ?></span><?php echo ' ' . $committee['Committee']['board_type']; ?>: <span class="<?php echo $committee['Committee']['status']; ?>"><?php echo $committee['Committee']['status']; ?></span></p></a>
 					</div>
 					
 					<div class="hidden_row org_section_details">
@@ -38,10 +38,50 @@
 					</div>
 				</div>
 				<?php endforeach; ?>
-				<?php unset($committee);
-				} ?>
+				<?php unset($committee); ?>
 				
-				<p><a href='#'><span class='add_committee_link'>Add another committee.</span></a></p>
+				<p><a href='#'><span class="add_committee_link">Add another committee.</span></a></p>
+				<?php } ?>
+				
+		</div>
+		
+		<div class="org_profile_details" id="smart_form_details_section">
+			<h2>Smart Forms:</h2>
+			<?php if (!$smartForms) { ?>
+				<p>
+					<em>None</em>
+				</p>
+				<p>
+					<a href="#"><span class="add_smart_form_link">Add a smart form.</span></a>
+				</p>
+			<?php } else { foreach ($smartForms as $smartForm):
+					if ($smartForm['SmartForm']['status'] == "In Development") {
+						$smart_form_status = "development";
+					} else {
+						$smart_form_status = $smartForm['SmartForm']['status'];
+					} ?>
+					<div class="section_details">
+						<div class="section_details_head">
+							<a href="#"><p><span class="arrow"><img src="images/arrow.png" height=10 width=10></span><?php echo $smartForm['SmartForm']['sf_domain'] . ": <span class='$smart_form_status'>$smart_form_status</span>"; ?></p></a>
+						</div>
+						<div class="hidden_row org_section_details">
+							<ul>
+								<li><?php echo 'Name: ' . $smartFroml['SmartForm']['name']; ?></li>
+								<li><?php echo 'Developer: ' . $smartForm['SmartForm']['developer']; ?></li>
+								<li><?php echo 'Launch Date: ' . $smartForm['SmartForm']['launch_date']; ?></li>
+							</ul>
+							<p class="section_details_edit">
+								<a class="smart_form_details_edit_link" href='$smart_form_index'>[edit]</a>&nbsp;<a class='areyousure' href='database_update.php?delete_smart_form=$smart_form_index&org=$org_index' rel='delete' rev='smart form'>[delete]</a>
+							</p>
+						</div>
+					</div>
+					<?php
+						endforeach;
+						unset($smartForm);
+					?>
+					<p><a href="#"><span class="add_smart_form_link">Add another smart form.</span></a></p>
+					
+					<?php }	?>
 		</div>
 
 		<div class="org_profile_details" id="org_add_ons">
@@ -51,7 +91,7 @@
 			
 		<div class="org_profile_details" id="org_comments_section">
 			<h2>Organization Comments:</h2>
-			<p><?php $org_comments = null; echo ($org_comments == null ? "<em>None</em>" : "$org_comments") ?></p>
+			<p><?php $org_comments = h($member['Member']['comments']); echo ($org_comments == null ? "<em>None</em>" : $org_comments) ?></p>
 		</div>
 	</div>
 
@@ -91,24 +131,3 @@
 	</div>
 
 </div>
-
-<!--
-echo "<div class='org_profile_details' id='smart_form_details_section'>
-<h2>Smart Forms:</h2>";
-if (mysqli_num_rows($smart_form_query) == 0) {
-	echo "<p><em>None</em></p><p><a href='#'><span class='add_smart_form_link'>Add a smart form.</span></a></p>";
-} else {
-	while($smart_form_row = mysqli_fetch_assoc($smart_form_query)) {
-		if ($smart_form_row['smart_form_status'] == "In Development") {;
-			$smart_form_status = "development";
-		} else {
-			$smart_form_status = $smart_form_row['smart_form_status'];
-		}
-		$smart_form_index = $smart_form_row['smart_form_index'];
-		echo "<div class='section_details'><div class='section_details_head'><a href='#'><p><span class='arrow'><img src='images/arrow.png' height=10 width=10></span>&nbsp;" . $smart_form_row['smart_form_domain'] . ": <span class='$smart_form_status'>" . $smart_form_row['smart_form_status'] . "</span></p></a></div>
-			<div class='hidden_row org_section_details'><ul><li>Name: " . $smart_form_row['smart_form_name'] . "</li><li>Developer: " . $smart_form_row['smart_form_developer'] . "</li><li>Launch Date: " . $smart_form_row['smart_form_launch_date'] . "</li></ul><p class='section_details_edit'><a class='smart_form_details_edit_link' href='$smart_form_index'>[edit]</a>&nbsp;<a class='areyousure' href='database_update.php?delete_smart_form=$smart_form_index&org=$org_index' rel='delete' rev='smart form'>[delete]</a></p></div></div>";
-	}
-	echo "<p><a href='#'><span class='add_smart_form_link'>Add another smart form.</span></a></p>";
-}
-echo "</div>";
--->

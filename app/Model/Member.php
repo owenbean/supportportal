@@ -1,6 +1,6 @@
 <?php
 class Member extends AppModel {
-	public $hasMany = 'Admin';
+	public $hasMany = array('Admin', 'Committee', 'Letter', 'SmartForm');
 	
 	public $validate = array(
 		'op_num' => array(

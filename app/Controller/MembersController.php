@@ -18,6 +18,8 @@ class MembersController extends AppController {
 			throw new NotFoundException(__('Invalid members'));
 		}
 		$this->set('member', $member);
+		$this->set('committees', $this->Member->Committee->find('all', array('conditions' => array('Committee.member_id' => $id))));
+		$this->set('smartForms', $this->Member->SmartForm->find('all', array('conditions' => array('SmartForm.member_id' => $id))));
 		$this->set('admins', $this->Member->Admin->find('all', array('conditions' => array('Admin.member_id' => $id))));
 	}
 	

@@ -1,7 +1,7 @@
 <?php
 class CommitteesController extends AppController {
 	public function index() {
-		$this->set('committees', $this->Committee->find('all');
+		$this->set('committees', $this->Committee->find('all'));
 	}
 	
 	public function view($id = null) {
@@ -16,7 +16,9 @@ class CommitteesController extends AppController {
 		$this->set('committee', $committee);
 	}
 	
-	public function add() {
+	public function add($member_id) {
+		$members = $member_id;
+		$this->set(compact('members'));
 		if ($this->request->is('post')) {
 			$this->Committee->create();
 			if ($this->Committee->save($this->request->data)) {
