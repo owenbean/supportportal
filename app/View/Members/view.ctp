@@ -40,7 +40,7 @@
 				<?php endforeach; ?>
 				<?php unset($committee); ?>
 				
-				<p><a href='#'><span class="add_committee_link">Add another committee.</span></a></p>
+				<p><?php echo $this->Html->link('Add another committee', array('controller' => 'committees', 'action' => 'add', $member['Member']['id'])); ?></p>
 				<?php } ?>
 				
 		</div>
@@ -51,9 +51,8 @@
 				<p>
 					<em>None</em>
 				</p>
-				<p>
-					<a href="#"><span class="add_smart_form_link">Add a smart form.</span></a>
-				</p>
+				<!--<p><a href="#"><span class="add_smart_form_link">Add a smart form.</span></a></p>-->
+				<p><?php echo $this->Html->link('Add a smart form', array('controller' => 'smartForms', 'action' => 'add', $member['Member']['id'])); ?></p>
 			<?php } else { foreach ($smartForms as $smartForm):
 					if ($smartForm['SmartForm']['status'] == "In Development") {
 						$smart_form_status = "development";
@@ -62,11 +61,11 @@
 					} ?>
 					<div class="section_details">
 						<div class="section_details_head">
-							<a href="#"><p><span class="arrow"><img src="images/arrow.png" height=10 width=10></span><?php echo $smartForm['SmartForm']['sf_domain'] . ": <span class='$smart_form_status'>$smart_form_status</span>"; ?></p></a>
+							<a href="#"><p><span class="arrow"><?php echo $this->Html->image('arrow.png', array('height' => '10', 'width' => '10')); ?></span><?php echo $smartForm['SmartForm']['sf_domain'] . ": <span class='$smart_form_status'>$smart_form_status</span>"; ?></p></a>
 						</div>
 						<div class="hidden_row org_section_details">
 							<ul>
-								<li><?php echo 'Name: ' . $smartFroml['SmartForm']['name']; ?></li>
+								<li><?php echo 'Name: ' . $smartForm['SmartForm']['name']; ?></li>
 								<li><?php echo 'Developer: ' . $smartForm['SmartForm']['developer']; ?></li>
 								<li><?php echo 'Launch Date: ' . $smartForm['SmartForm']['launch_date']; ?></li>
 							</ul>
@@ -79,7 +78,7 @@
 						endforeach;
 						unset($smartForm);
 					?>
-					<p><a href="#"><span class="add_smart_form_link">Add another smart form.</span></a></p>
+					<p><?php echo $this->Html->link('Add another smart form', array('controller' => 'smartForms', 'action' => 'add', $member['Member']['id'])); ?></p>
 					
 					<?php }	?>
 		</div>

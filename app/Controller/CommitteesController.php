@@ -23,7 +23,7 @@ class CommitteesController extends AppController {
 			$this->Committee->create();
 			if ($this->Committee->save($this->request->data)) {
 				$this->Session->setFlash(__('Your committee has been saved'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('controller' => 'members', 'action' => 'view', $member_id));
 			}
 			$this->Session->setFlash(__('Unable to add your committee'));
 		}

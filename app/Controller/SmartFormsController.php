@@ -1,7 +1,7 @@
 <?php
 class SmartFormsController extends AppController {
 	public function index() {
-		$this->set('smartForms', $this->SmartForm->find('all');
+		$this->set('smartForms', $this->SmartForm->find('all'));
 	}
 	
 	public function view($id = null) {
@@ -16,12 +16,14 @@ class SmartFormsController extends AppController {
 		$this->set('smartForm', $smartForm);
 	}
 	
-	public function add() {
+	public function add($member_id) {
+		$members = $member_id;
+		$this->set(compact('members'));
 		if ($this->request->is('post')) {
 			$this->SmartForm->create();
 			if ($this->SmartForm->save($this->request->data)) {
 				$this->Session->setFlash(__('Your Smart Form has been saved'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('controller' => 'members', 'action' => 'view', $member_id));
 			}
 			$this->Session->setFlash(__('Unable to add your Smart Form'));
 		}

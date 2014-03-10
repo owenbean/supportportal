@@ -7,7 +7,7 @@
 		<tbody>
 			<tr><td>
 				<?php 
-				echo $this->Form->input('member_id', array('type' => 'text', 'label' => 'Organization: ', 'default' => $members)); ?>
+				echo $this->Form->input('member_id', array('type' => 'hidden', 'label' => 'Organization: ', 'default' => $members)); ?>
 			</td></tr>
 			
 			<tr><td>
