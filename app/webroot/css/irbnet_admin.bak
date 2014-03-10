@@ -873,6 +873,24 @@ section {
 	font-style: italic;
 }
 
+#add_smart_form {
+	margin-top: 10px;
+	font-size: 15px;
+}
+
+#add_smart_form td {
+	height: 30px;
+}
+
+#add_committee {
+	margin-top: 10px;
+	font-size: 15px;
+}
+
+#add_committee td {
+	height: 30px;
+}
+
 #org_admin_section {
 	clear: both;
 	width: 100%;
@@ -942,13 +960,22 @@ section {
 /******************* SUB PAGES - ORGANIZATION ADD/EDIT PAGE ******************/
 
 
-#form_table td {
+#organization_information_table td {
 	vertical-align: top;
 	padding-bottom: 5px;
 }
 
-#comments_field {
+
+/******************** SUB PAGES - NEW ORG ADMIN ********************/
+
+
+#new_admin_table table {
+	padding-top: 10px;
+}
+
+#new_admin_table td {
 	vertical-align: top;
+	height: 25px;
 }
 
 
@@ -1045,6 +1072,135 @@ section {
 
 #admin_list_table a:hover {
 	text-decoration: none;
+}
+
+
+/************** COLOR SCEME *********************/
+
+
+#mono_base_color_div {
+	background-color: #19315e;
+	height: 100px;
+	width: 100px;
+	display: inline-block;
+}
+
+#mono_second_div{
+	background-color: #00215e;
+	height: 100px;
+	width: 100px;
+	display: inline-block;
+}
+
+#mono_third_div{
+	background-color: #5e5e5e;
+	height: 100px;
+	width: 100px;
+	display: inline-block;
+}
+
+#mono_fourth_div{
+	background-color: #a3adbf;
+	height: 100px;
+	width: 100px;
+	display: inline-block;
+}
+
+#mono_fifth_div {
+	background-color: #0059ff;
+	height: 100px;
+	width: 100px;
+	display: inline-block;
+}
+
+.mono_div_color {
+	text-align: center;
+	width: 100px;
+	display: inline-block;
+}
+
+
+#analogous_base_color_div {
+	background-color: #19315e;
+	height: 100px;
+	width: 100px;
+	display: inline-block;
+}
+
+#analogous_second_div{
+	background-color: #1a807e;
+	height: 100px;
+	width: 100px;
+	display: inline-block;
+}
+
+#analogous_third_div{
+	background-color: #2d88b3;
+	height: 100px;
+	width: 100px;
+	display: inline-block;
+}
+
+#analogous_fourth_div{
+	background-color: #5052b3;
+	height: 100px;
+	width: 100px;
+	display: inline-block;
+}
+
+#analogous_fifth_div {
+	background-color: #6a43bf;
+	height: 100px;
+	width: 100px;
+	display: inline-block;
+}
+
+.analogous_div_color {
+	text-align: center;
+	width: 100px;
+	display: inline-block;
+}
+
+
+#comp_base_color_div {
+	background-color: #19315e;
+	height: 100px;
+	width: 100px;
+	display: inline-block;
+}
+
+#comp_second_div{
+	background-color: #061126;
+	height: 100px;
+	width: 100px;
+	display: inline-block;
+}
+
+#comp_third_div{
+	background-color: #7c94bf;
+	height: 100px;
+	width: 100px;
+	display: inline-block;
+}
+
+#comp_fourth_div{
+	background-color: #cc9329;
+	height: 100px;
+	width: 100px;
+	display: inline-block;
+}
+
+#comp_fifth_div {
+	background-color: #59451f;
+	height: 100px;
+	width: 100px;
+	display: inline-block;
+}
+
+.comp_div_color {
+	text-align: center;
+	width: 100px;
+	display: inline-block;
 }
 
 

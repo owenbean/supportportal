@@ -11,11 +11,7 @@
 	<p>Billing Coordinator: <strong><?php echo h($admin['Admin']['billing_coord']); ?></strong></p>
 	<p>Comments: <em><?php echo h($admin['Admin']['comments']); ?></em></p>
 	<p>&nbsp;</p>
-	<p>
-	<?php
-		echo $this->Html->link('Edit', array('controller' => 'admins', 'action' => 'edit', $admin['Admin']['id']));
-		echo $this->Form->postLink('Delete', array('controller' => 'admins', 'action' => 'delete', $admin['Admin']['id']), array('confirm' => 'Are you sure?'));
-	?>
-	</p>
+	<p><?php echo $this->Html->link('Edit', array('controller' => 'admins', 'action' => 'edit', $admin['Admin']['id'])); ?></p>
+	<p><?php echo $this->Form->postLink('Delete', array('controller' => 'admins', 'action' => 'delete', $admin['Admin']['id']), array('confirm' => 'Are you sure you want to delete this administrator?'));?></p>
 	<p>&nbsp;</p>
 </div>

@@ -1,17 +1,19 @@
-<div id="add_committee" title="Committee Information">
-	<?php echo $this->Form->create('Committee'); ?>
+<h1>New Committee</h1>
+
+<p>&nbsp;</p>
+
+<div id="form_table">
+
+<?php echo $this->Form->create('Committee'); ?>
 	<fieldset>
-		<legend><em>New Committee</em></legend>
+		<legend>New Committee</legend>
 		<p class="errorTip">All information must be entered</p>
 		<table>
 		<tbody>
 			<tr><td>
-				<?php 
-				echo $this->Form->input('member_id', array('type' => 'hidden', 'label' => 'Organization: ', 'default' => $members)); ?>
-			</td></tr>
-			
-			<tr><td>
-				<?php echo $this->Form->input('name', array('label' => 'Committee Name: ')); ?>
+				<?php echo $this->Form->input('name', array('label' => 'Committee Name: '));
+					echo $this->Form->input('member_id', array('type' => 'hidden', 'default' => $members));
+				?>
 			</td></tr>
 			
 			<tr><td>
@@ -29,7 +31,6 @@
 						),
 						'empty' => ''
 					)); ?>
-				<br />
 			</td></tr>
 			
 			<tr><td>
@@ -45,7 +46,6 @@
 						),
 						'empty' => ''
 					)); ?>
-				<br />
 			</td></tr>
 			
 			<tr><td>
@@ -59,7 +59,6 @@
 						),
 						'empty' => ''
 					)); ?>
-				<br />
 			</td></tr>
 			
 			<tr><td>
@@ -68,7 +67,8 @@
 						'id' => 'go_live_date',
 						'class' => 'date_picker',
 						'size' => '20'
-					)); ?>
+					)) . $this->Form->button('TBD', array('id' => 'tbd_button'))
+					; ?>
 			</td></tr>
 			
 			<tr><td>
@@ -83,6 +83,6 @@
 			</td></tr>
 		</tbody>
 		</table>
+		<p><?php echo $this->Form->end('Add Committee'); ?></p>
 	</fieldset>
-	<?php echo $this->Form->end('Add Committee'); ?>
 </div>

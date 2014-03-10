@@ -2,6 +2,24 @@
 class SmartForm extends AppModel {
 	public $belongsTo = 'Member';
 	
+	public $validate = array(
+		'name' => array(
+			'rule' => 'notEmpty',
+		),
+		'sf_domain' => array(
+			'rule' => 'notEmpty'
+		),
+		'status' => array(
+			'rule' => 'notEmpty'
+		),
+		'launch_date' => array(
+			'rule' => 'notEmpty'
+		),
+		'developer' => array(
+			'rule' => 'notEmpty'
+		)
+	);
+	
 	public function beforeSave($options = array()) {
 		$user_id = CakeSession::read('Auth.User.id');
 		if (!strlen($this->id)) {

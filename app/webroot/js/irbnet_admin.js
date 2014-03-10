@@ -1,4 +1,9 @@
 $(document).ready(function() {
+	$("#tbd_button").on("click", function(e) {
+		e.preventDefault();
+		$(".date_picker").val("TBD");
+	});
+	
 	//controll for new nav
 	$(".nav_text").hover(function(e) {
 		e.preventDefault();
@@ -132,6 +137,7 @@ $(document).ready(function() {
 		$(this).parent("td").find("span").remove();;
 	});
 	
+	/*
 	//edit committee popup
 	$(".committee_details_edit_link").on("click", function(e) {
 		e.preventDefault();
@@ -153,6 +159,7 @@ $(document).ready(function() {
 			}
 		);
 	});
+	*/
 	
 	//organization search box
 	$(function() {
@@ -198,7 +205,9 @@ $(document).ready(function() {
 		});
 	});
 
-	$('.date_picker').datepicker();
+	$('.date_picker').datepicker({
+		showButtonPanel: true
+	});
 });
 
 

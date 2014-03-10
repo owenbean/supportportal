@@ -1,17 +1,18 @@
-<div id="add_smart_form" title="Smart Form Information">
-	<?php echo $this->Form->create('SmartForm'); ?>
+<h1>New Smart Form</h1>
+
+<p>&nbsp;</p>
+
+<div id="form_table">
+	
+<?php echo $this->Form->create('SmartForm'); ?>
 	<fieldset>
-		<legend><em>New Smart Form</em></legend>
+		<legend>New Smart Form</legend>
 		<p class="errorTip">All information must be entered</p>
 		<table>
 		<tbody>
 			<tr><td>
-				<?php 
-				echo $this->Form->input('member_id', array('type' => 'hidden', 'label' => 'Organization: ', 'default' => $members)); ?>
-			</td></tr>
-			
-			<tr><td>
 				<?php echo $this->Form->input('name', array('label' => 'Smart Form Name: ')); ?>
+				<?php echo $this->Form->input('member_id', array('type' => 'hidden', 'label' => 'Organization: ', 'default' => $members)); ?>
 			</td></tr>
 			
 			<tr><td>
@@ -27,7 +28,6 @@
 						),
 						'empty' => ''
 					)); ?>
-				<br />
 			</td></tr>
 			
 			<tr><td>
@@ -41,7 +41,6 @@
 						),
 						'empty' => ''
 					)); ?>
-				<br />
 			</td></tr>
 			
 			<tr><td>
@@ -50,7 +49,8 @@
 						'id' => 'go_live_date',
 						'class' => 'date_picker',
 						'size' => '20'
-					)); ?>
+					)) . $this->Form->button('TBD', array('id' => 'tbd_button'))
+					; ?>
 			</td></tr>
 			
 			<tr><td>
@@ -68,6 +68,6 @@
 			</td></tr>
 		</tbody>
 		</table>
+		<p><?php echo $this->Form->end('Add Smart Form'); ?></p>
 	</fieldset>
-	<?php echo $this->Form->end('Add Smart Form'); ?>
 </div>

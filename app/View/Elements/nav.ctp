@@ -31,7 +31,7 @@
 			<li><?php echo $this->Html->link('WIRB Integration', array('controller' => 'members', 'action' => 'all', 'wirb_integration')); ?></li>
 			<li><?php echo $this->Html->link('Single Sign-On', array('controller' => 'members', 'action' => 'all', 'sso')); ?></li>
 			<li><?php echo $this->Html->link('File Access', array('controller' => 'members', 'action' => 'all', 'file_access')); ?></li>
-			<li><a href="organization_list.php?smart_forms">Smart Forms</a></li>
+			<li><?php echo $this->Html->link('Smart Forms', array('controller' => 'smartForms', 'action' => 'index')); ?></li>
 		</ul>
 	</div>
 	<?php

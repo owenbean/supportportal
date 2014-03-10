@@ -29,7 +29,7 @@ class CommitteesController extends AppController {
 		}
 	}
 	
-	public function edit($id = null) {
+	public function edit($member_id, $id = null) {
 		if (!$id) {
 			throw new NotFoundException(__('Invalid committee'));
 		}
@@ -43,24 +43,24 @@ class CommitteesController extends AppController {
 			$this->Committee->id = $id;
 			if ($this->Committee->save($this->request->data)) {
 				$this->Session->setFlash(__('Your committee has been updated'));
-				return $this->redirect(array('action' => 'view', $id));
+				return $this->redirect(array('controller' => 'members', 'action' => 'view', $member_id));
 			}
 			$this->Session->setFlash(__('Unable to save your committee'));
 		}
 		
 		if (!$this->request->data) {
-			$this->request->data = $post;
+			$this->request->data = $committee;
 		}
 	}
 	
-	public function delete($id) {
+	public function delete($member_id, $id) {
 		if ($this->request->is('get')) {
 			throw new MethodNotAllowedException();
 		}
 		
 		if ($this->Committee->delete($id)) {
-			$this->Session->setFlash(__('The committee with id: %s has been deleted.', h($id)));
-			return $this->redirect(array('action' => 'index'));
+			$this->Session->setFlash(__('Committee deleted'));
+			return $this->redirect(array('controller' => 'members', 'action' => 'view', $member_id));
 		}
 	}
 }
