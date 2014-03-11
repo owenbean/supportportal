@@ -14,14 +14,15 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 
 		echo $this->Html->css(array('irbnet_admin'));
 		echo $this->Html->css('http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css');
-		echo $this->Html->script('http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js');
-		echo $this->Html->script('http://code.jquery.com/jquery-1.9.1.js');
+		echo $this->Html->script('jquery');
 		echo $this->Html->script('http://code.jquery.com/ui/1.10.3/jquery-ui.js');
 		echo $this->Html->script(array('irbnet_admin'));
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
+		
+		echo $this->Js->writeBuffer(array('cache' => TRUE));
 	?>
 </head>
 <body>

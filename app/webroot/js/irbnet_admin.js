@@ -34,13 +34,6 @@ $(document).ready(function() {
 		}
 	});
 	
-	//home page menus
-	$(".home_menu_head p").on("click", function(event) {
-		event.preventDefault();
-		$(this).closest(".home_menu").find(".home_sub_menu").slideToggle();
-		$(this).find(".pointer_arrow_click").toggleClass("arrow_clicked");
-	});
-	
 	//org details page slide down for committees and smart forms
 	$(".section_details_head").on("click", function(e) {
 		e.preventDefault();
@@ -55,12 +48,28 @@ $(document).ready(function() {
 			$("#submitter_name").attr("disabled", true);
 			$("#submitter_name").addClass("submitter_inactive");
 		} else {
-			$.post('global_pages/admin_list.php', { org: orgName }, function(result) {
+			$.post('../app/View/Elements/admin_list.php', { org: orgName }, function(result) {
 				$('#submitter_name').html(result);
 				$('#submitter_name').attr("disabled", false);
 				$('#submitter_name').removeClass("submitter_inactive");
 				}
 			);
+		}
+	});
+	
+	$("#org_name_test_2").on("change", function() {
+		var memberId = document.getElementById("org_name_test").value;
+		console.log(memberId);
+		if (memberId == '') {
+			//test
+		} else {
+			$.ajax({
+				url: "<?php echo Router::url(array('controller' => 'admins', 'action' => 'letter_request_list')); ?>",
+				type: "POST",
+				cache: false,
+				data: { member : memberId },
+				success: function(data){ $("#submitter_name").html(data); }
+			});
 		}
 	});
 

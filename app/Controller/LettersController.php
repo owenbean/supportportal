@@ -2,6 +2,8 @@
 App::uses('DboSource', 'Model/DataSource');
 
 class LettersController extends AppController {
+	public $components = array('RequestHandler');
+	
 	public function active() {
 		$this->set('letters', $this->Letter->find('all', array('conditions' => array('Letter.active' => true))));
 	}
@@ -29,6 +31,11 @@ class LettersController extends AppController {
 		$this->loadModel('Member');
 		$members = $this->Member->find('list', array('fields' => array('Member.id', 'Member.full_name')));
 		$this->set(compact('members'));
+		
+		if ($this->RequestHandler->isAjax()) {
+			$this->render('list_admin', 'ajax');
+		}
+		
 		if ($this->request->is('post')) {
 			$this->Letter->create();
 			if ($this->Letter->save($this->request->data)) {
@@ -37,6 +44,12 @@ class LettersController extends AppController {
 			}
 			$this->Session->setFlash(__('Unable to add your letter'));
 		}
+	}
+	
+	public function list_admin($member_id) {
+		$this->loadModel('Admin');
+		$admins = $this->Admin->find('list', array('fields' => array('Admin.id', 'Admin.first_name'), 'conditions' => array('Admin.member_id' => $member_id)));
+		$this->set(compact('admins'));
 	}
 	
 	public function edit($id = null) {

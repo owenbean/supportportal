@@ -1,6 +1,5 @@
 <?php
 class UsersController extends AppController {
-	public $helpers = array('Js' => array('Jquery'));
 	
 	public function beforeFilter() {
 		parent::beforeFilter();

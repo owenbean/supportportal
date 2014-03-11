@@ -10,11 +10,20 @@
 		<table>
 		<tbody>
 			<tr><td>
-				<?php echo $this->Form->input('member_id', array('label' => 'Member Name: ', 'empty' => '')); ?>
+				<?php 
+					echo $this->Form->input('member_id', array('label' => 'Member Name: ', 'empty' => '', 'id' => 'org_name_test')); 
+					$this->Js->submit('Save', array(
+									'data' => '2',
+									'update' => '#submitter_name',
+								)
+							);
+				?>
 			</td></tr>
 			
 			<tr><td>
-				<?php echo $this->Form->input('submitter', array('label' => 'Request Submitted By: ')); ?>
+				<?php
+					echo $this->Form->input('submitter', array('label' => 'Request Submitted By: ', 'id' => 'submitter_name'));
+				?>
 			</td></tr>
 			
 			<tr><td>
