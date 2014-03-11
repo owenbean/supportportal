@@ -13,7 +13,7 @@
 			foreach ($committees as $committee): ?>
 		<tr>
 			<td><?php echo $this->Html->link($committee['Committee']['name'], array('controller' => 'members', 'action' => 'view', $committee['Committee']['member_id'])); ?></td>
-			<td><?php echo $this->Html->link($committee['Committee']['member_id'], array('controller' => 'members', 'action' => 'view', $committee['Committee']['member_id'])); ?></td>
+			<td><?php echo $this->Html->link($committee['Member']['short_name'], array('controller' => 'members', 'action' => 'view', $committee['Member']['id'])); ?></td>
 			<td><?php echo $committee['Committee']['status']; ?></td>
 		</tr>
 		<?php endforeach; ?>

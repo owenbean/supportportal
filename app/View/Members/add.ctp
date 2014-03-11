@@ -25,10 +25,10 @@
 				<?php echo $this->Form->input('class', array(
 						'label' => 'Member Class: ',
 						'options' => array(
-							'university' => 'University',
-							'hospital' => 'Hospital', 
-							'va' => 'VA', 
-							'other' => 'Other'
+							'University' => 'University',
+							'Hospital' => 'Hospital', 
+							'VA' => 'VA', 
+							'Other' => 'Other'
 						),
 						'empty' => '')); 
 				?>

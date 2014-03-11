@@ -206,7 +206,7 @@ $(document).ready(function() {
 	});
 
 	$('.date_picker').datepicker({
-		showButtonPanel: true
+		dateFormat: 'yy-mm-dd'
 	});
 });
 

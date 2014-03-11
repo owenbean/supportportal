@@ -1,13 +1,23 @@
 <?php
 class Member extends AppModel {
 	public $hasMany = array('Admin', 'Committee', 'Letter', 'SmartForm');
+	public $belongsTo = array(
+		'User' => array(
+			'className' => 'User',
+			'foreignKey' => 'specialist'
+		)
+	);
 	
 	public $validate = array(
 		'op_num' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'isUnique',
+			'notEmpty' => true,
+			'message' => 'Please choose a unique ID.'
 		),
 		'short_name' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'isUnique',
+			'notEmpty' => true,
+			'message' => 'Please choose a unique Short Name.'
 		),
 		'full_name' => array(
 			'rule' => 'notEmpty'

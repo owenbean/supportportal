@@ -3,8 +3,8 @@
 	<div class="nav_division"><?php echo $this->Html->image('nav-div.gif') ?></div>
 	<div class="nav_text"><a href="#">Letters</a>
 		<ul class="sub_nav_menu">
-			<li><a href="letters_queue.php">Active</a></li>
-			<li><a href="letter_request_form.php">New</a></li>
+			<li><?php echo $this->Html->link('Active', array('controller' => 'letters', 'action' => 'active')); ?></li>
+			<li><?php echo $this->Html->link('New', array('controller' => 'letters', 'action' => 'add')); ?></li>
 			<li><a href="letter_request_history.php">History</a></li>
 		</ul>
 	</div>

@@ -63,4 +63,15 @@ class MembersController extends AppController {
 			$this->request->data = $member;
 		}
 	}
+	
+	public function delete($id) {
+		if ($this->request->is('get')) {
+			throw new MethodNotAllowedException();
+		}
+		
+		if ($this->Member->delete($id)) {
+			$this->Session->setFlash(__('The member with id: %s was deleted', h($id)));
+			return $this->redirect(array('action' => 'all'));
+		}
+	}
 }

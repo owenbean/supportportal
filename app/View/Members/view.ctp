@@ -1,12 +1,12 @@
 <div id="org_details">
-	<h1><?php echo h($member['Member']['full_name']) . ' ' . $this->Html->link('Edit', array('controller' => 'members', 'action' => 'edit', $member['Member']['id'])); ?></h1>
+	<h1><?php echo h($member['Member']['full_name']) . ' - ' . $this->Html->link('Edit', array('controller' => 'members', 'action' => 'edit', $member['Member']['id'])) . ', ' . $this->Form->postLink('Delete', array('controller' => 'members', 'action' => 'delete', $member['Member']['id'])); ?></h1>
 	
 	<div id="org_details_section">
 		<div class='org_profile_details' id='org_stats_section'>
 			<h2>Member Details:</h2>
 			<p>Short Name: <strong><?php echo h($member['Member']['short_name']); ?></strong></p>
 			<p>Member Class: <strong><?php echo h($member['Member']['class']); ?></strong></p>
-			<p>Member Specialist: <strong><?php echo h($member['Member']['specialist']); ?></strong></p>
+			<p>Member Specialist: <strong><?php echo (!$member['Member']['specialist'] ? 'None' : h($member['User']['first_name'])); ?></strong></p>
 			<p>Enrollment Team: <strong><?php echo h($member['Member']['enrollment_team']); ?></strong></p>
 			<p>ID: <strong><?php echo h($member['Member']['op_num']); ?></strong></p>
 			<p>Location: <strong><?php echo h($member['Member']['city']) . ', ' . h($member['Member']['state']); ?></strong></p>
@@ -63,7 +63,7 @@
 					} ?>
 					<div class="section_details">
 						<div class="section_details_head">
-							<a href="#"><p><span class="arrow"><?php echo $this->Html->image('arrow.png', array('height' => '10', 'width' => '10')); ?></span><?php echo $smartForm['SmartForm']['sf_domain'] . ": <span class='$smart_form_status'>$smart_form_status</span>"; ?></p></a>
+							<a href="#"><p><span class="arrow"><?php echo $this->Html->image('arrow.png', array('height' => '10', 'width' => '10')); ?></span><?php echo $smartForm['SmartForm']['sf_domain'] . ": <span class='$smart_form_status'>" . $smartForm['SmartForm']['status'] . "</span>"; ?></p></a>
 						</div>
 						<div class="hidden_row org_section_details">
 							<ul>
@@ -86,8 +86,24 @@
 		</div>
 
 		<div class="org_profile_details" id="org_add_ons">
+		<?php
+			$citi = ($member['Member']['citi_integration'] == 1 ? 'CITI Integration' : null);
+			$wirb = ($member['Member']['wirb_integration'] == 1 ? 'WIRB Integration' : null);
+			$sso = ($member['Member']['sso'] == 1 ? 'Single Sign-On' : null);
+			$file_access = ($member['Member']['file_access'] == 1 ? 'File Access' : null);
+			$add_ons_array = array($citi, $wirb, $sso, $file_access);
+			$add_ons = '';
+			for ($i = 0; $i < count($add_ons_array); $i++) {
+				if ($add_ons_array[$i]) {
+					if (strlen($add_ons) > 1) {
+						$add_ons .= ', ';
+					}
+					$add_ons .= $add_ons_array[$i];
+				}
+			}
+		?>
 			<h2>Organization Add-Ons:</h2>
-			<p><?php $add_ons = null; echo ($add_ons == null ? '<em>None</em>' : "$add_ons")?></p>
+			<p><?php echo ($add_ons == '' ? '<em>None</em>' : "$add_ons")?></p>
 		</div>
 			
 		<div class="org_profile_details" id="org_comments_section">
