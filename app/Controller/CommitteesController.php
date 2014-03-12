@@ -22,10 +22,10 @@ class CommitteesController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Committee->create();
 			if ($this->Committee->save($this->request->data)) {
-				$this->Session->setFlash(__('Your committee has been saved'));
+				$this->Session->setFlash(__('Committee successfully added'));
 				return $this->redirect(array('controller' => 'members', 'action' => 'view', $member_id));
 			}
-			$this->Session->setFlash(__('Unable to add your committee'));
+			$this->Session->setFlash(__('Unable to add committee'));
 		}
 	}
 	
@@ -42,10 +42,10 @@ class CommitteesController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 			$this->Committee->id = $id;
 			if ($this->Committee->save($this->request->data)) {
-				$this->Session->setFlash(__('Your committee has been updated'));
+				$this->Session->setFlash(__('Committee successfully updated'));
 				return $this->redirect(array('controller' => 'members', 'action' => 'view', $member_id));
 			}
-			$this->Session->setFlash(__('Unable to save your committee'));
+			$this->Session->setFlash(__('Unable to update committee'));
 		}
 		
 		if (!$this->request->data) {
@@ -59,7 +59,7 @@ class CommitteesController extends AppController {
 		}
 		
 		if ($this->Committee->delete($id)) {
-			$this->Session->setFlash(__('Committee deleted'));
+			$this->Session->setFlash(__('Committee successfully deleted'));
 			return $this->redirect(array('controller' => 'members', 'action' => 'view', $member_id));
 		}
 	}

@@ -4,6 +4,5 @@
 <h2><?php echo h($user['User']['first_name']) . ' ' . h($user['User']['last_name']); ?></h2>
 <p>Username: <?php echo h($user['User']['username']); ?></p>
 <p>Email Address: <?php echo $user['User']['email_address']; ?></p>
-<p><small>Created: <?php echo $user['User']['created']; ?></small></p>
 <p><?php echo $this->Html->link('Edit', array('controller' => 'users', 'action' => 'edit', $user['User']['id'])); ?></p>
 <p>&nbsp;</p>

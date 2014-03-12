@@ -1,6 +1,19 @@
 <div id="org_details">
-	<h1><?php echo h($member['Member']['full_name']) . ' - ' . $this->Html->link('Edit', array('controller' => 'members', 'action' => 'edit', $member['Member']['id'])) . ', ' . $this->Form->postLink('Delete', array('controller' => 'members', 'action' => 'delete', $member['Member']['id'])); ?></h1>
+	<h1><?php echo h($member['Member']['full_name']); ?></h1>
 	
+	<p>&nbsp;</p>
+	
+	<div id="actions_table">
+		<table><tbody>
+			<tr><th colspan="3"><h2>Actions:</h2></th></tr>
+			<tr><td>
+					<?php echo $this->Html->link('Edit', array('controller' => 'members', 'action' => 'edit', $member['Member']['id'])); ?>, 
+					<?php echo $this->Form->postLink('Retire', array('controller' => 'members', 'action' => 'retire', $member['Member']['id']), array('confirm' => 'Are you sure you want to retire this member?'));?>, 
+					<?php echo $this->Form->postLink('Delete', array('controller' => 'members', 'action' => 'delete', $member['Member']['id']), array('confirm' => 'Are you sure you want to delete this member?'));?>
+			</td></tr>
+		</tbody></table>
+	</div>
+
 	<div id="org_details_section">
 		<div class='org_profile_details' id='org_stats_section'>
 			<h2>Member Details:</h2>
@@ -10,7 +23,7 @@
 			<p>Enrollment Team: <strong><?php echo h($member['Member']['enrollment_team']); ?></strong></p>
 			<p>ID: <strong><?php echo h($member['Member']['op_num']); ?></strong></p>
 			<p>Location: <strong><?php echo h($member['Member']['city']) . ', ' . h($member['Member']['state']); ?></strong></p>
-			<p>Pings Email: <?php $pings_email = h($member['Member']['pings_email']); echo (!strlen($pings_email) ? '<em>pending</em>' : "<a href='mailto:$pings_email'>" . $pings_email . "</a>"); ?></p>
+			<p>Pings Email: <?php echo (!strlen($member['Member']['pings_email']) ? '<em>pending</em>' : $this->Text->autoLinkEmails($member['Member']['pings_email'])); ?></p>
 			<p>IRBNet Resources: <?php echo (!strlen($member['Member']['resources_username']) ? '<em>pending</em>' : '<strong>' . h($member['Member']['resources_username']) . ' / ' . h($member['Member']['resources_password']) . '</strong>'); ?></p>
 		</div>
 		
@@ -148,3 +161,4 @@
 	</div>
 
 </div>
+<p>&nbsp;</p>

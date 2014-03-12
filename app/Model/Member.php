@@ -32,9 +32,7 @@ class Member extends AppModel {
 			'rule' => 'notEmpty'
 		),
 		'class' => array(
-			'valid' => array(
-				'rule' => array('inList', array('university', 'hospital', 'va', 'other'))
-			)
+			'rule' => 'notEmpty'
 		)
 	);
 	

@@ -22,10 +22,10 @@ class SmartFormsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->SmartForm->create();
 			if ($this->SmartForm->save($this->request->data)) {
-				$this->Session->setFlash(__('Your Smart Form has been saved'));
+				$this->Session->setFlash(__('Smart Form successfully added'));
 				return $this->redirect(array('controller' => 'members', 'action' => 'view', $member_id));
 			}
-			$this->Session->setFlash(__('Unable to add your Smart Form'));
+			$this->Session->setFlash(__('Unable to add Smart Form'));
 		}
 	}
 	
@@ -42,10 +42,10 @@ class SmartFormsController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 			$this->SmartForm->id = $id;
 			if ($this->SmartForm->save($this->request->data)) {
-				$this->Session->setFlash(__('Your Smart Form has been updated'));
+				$this->Session->setFlash(__('Smart Form successfully updated'));
 				return $this->redirect(array('controller' => 'members', 'action' => 'view', $member_id));
 			}
-			$this->Session->setFlash(__('Unable to save your Smart Form'));
+			$this->Session->setFlash(__('Unable to update Smart Form'));
 		}
 		
 		if (!$this->request->data) {

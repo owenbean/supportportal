@@ -15,12 +15,12 @@ class MembersController extends AppController {
 		
 		$member = $this->Member->findById($id);
 		if (!$member) {
-			throw new NotFoundException(__('Invalid members'));
+			throw new NotFoundException(__('Invalid member'));
 		}
 		$this->set('member', $member);
 		$this->set('committees', $this->Member->Committee->find('all', array('conditions' => array('Committee.member_id' => $id))));
 		$this->set('smartForms', $this->Member->SmartForm->find('all', array('conditions' => array('SmartForm.member_id' => $id))));
-		$this->set('admins', $this->Member->Admin->find('all', array('conditions' => array('Admin.member_id' => $id))));
+		$this->set('admins', $this->Member->Admin->find('all', array('conditions' => array('Admin.active' => true, 'Admin.member_id' => $id))));
 	}
 	
 	public function add() {
@@ -30,10 +30,10 @@ class MembersController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Member->create();
 			if ($this->Member->save($this->request->data)) {
-				$this->Session->setFlash(__('Member created'));
+				$this->Session->setFlash(__('Member successfully added'));
 				return $this->redirect(array('action' => 'all'));
 			}
-			$this->Session->setFlash(__('Unable to save member'));
+			$this->Session->setFlash(__('Unable to add new member'));
 		}
 	}
 	
@@ -53,10 +53,10 @@ class MembersController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 			$this->Member->id = $id;
 			if ($this->Member->save($this->request->data)) {
-				$this->Session->setFlash(__('Member saved'));
+				$this->Session->setFlash(__('Member successfully updated'));
 				return $this->redirect(array('action' => 'view', $id));
 			}
-			$this->Session->setFlash(__('Unable to save member'));
+			$this->Session->setFlash(__('Unable to update member'));
 		}
 		
 		if (!$this->request->data) {
@@ -70,7 +70,7 @@ class MembersController extends AppController {
 		}
 		
 		if ($this->Member->delete($id)) {
-			$this->Session->setFlash(__('The member with id: %s was deleted', h($id)));
+			$this->Session->setFlash(__('Member successfully deleted'));
 			return $this->redirect(array('action' => 'all'));
 		}
 	}

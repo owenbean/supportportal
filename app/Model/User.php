@@ -12,12 +12,15 @@ class User extends AppModel {
 		),
 		'username' => array(
 			'required' => array(
-				'rule' => array('notEmpty'),
-				'message' => 'A username is required.'
+				'rule' => array('isUnique'),
+				'notEmpty' => true,
+				'message' => 'Your username must be unique'
 			)
 		),
 		'email_address' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'isUnique',
+			'notEmpty' => true,
+			'message' => 'Your email address must be unique'
 		),
 		'password' => array(
 			'required' => array(
@@ -26,11 +29,7 @@ class User extends AppModel {
 			)
 		),
 		'role' => array(
-			'valid' => array(
-				'rule' => array('inList', array('site_admin', 'admin')),
-				'message' => 'Please enter a valid role.',
-				'allowEmpty' => false
-			)
+			'rule' => 'notEmpty'
 		)
 	);
 	

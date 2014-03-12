@@ -22,14 +22,15 @@
 				<?php echo $this->Form->input('email_address', array('label' => 'Email Address: ')); ?>
 			</td></tr>
 			
+			<?php if (sizeof($members) > 1) { ?>
 			<tr><td>
-				<?php if (sizeof($members) > 1) {
-					echo $this->Form->input('member_id', array('label' => 'Organization: ', 'empty' => 'None'));
+				<?php echo $this->Form->input('member_id', array('label' => 'Organization: ', 'empty' => 'None')); ?>
+			</td></tr>
+				<?php
 				} else {
 					$member = implode(array_flip($members));
 					echo $this->Form->input('member_id', array('label' => 'Organization: ', 'default' => $member, 'type' => 'hidden'));
 				} ?>
-			</td></tr>
 			
 			<tr><td>
 				<?php echo $this->Form->input('contract_lead', array('type' => 'checkbox', 'label' => 'Contract Lead? ', 'format' => array('before', 'label', 'between', 'input', 'after', 'error'))); ?>
@@ -44,7 +45,7 @@
 			</td></tr>
 			
 			<tr><td>
-				<?php echo $this->Form->input('feature_announcement_list', array('type' => 'checkbox', 'label' => 'Feature Announcement List? ', 'format' => array('before', 'label', 'between', 'input', 'after', 'error'))); ?>
+				<?php echo $this->Form->input('support_outreach_list', array('type' => 'checkbox', 'label' => 'Support Outreach List? ', 'format' => array('before', 'label', 'between', 'input', 'after', 'error'))); ?>
 			</td></tr>
 			
 			<tr><td>

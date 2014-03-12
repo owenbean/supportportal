@@ -322,6 +322,22 @@ section {
 	margin: 0 0 0 5px;
 }
 
+#actions_table {
+	padding-left: 0px;
+}
+
+#actions_table table {
+	text-align: left;
+	width: 30%;
+}
+
+#actions_table th {
+	text-align: left;
+}
+
+#actions_table a {
+}	
+
 
 /*************** HOME PAGE *****************/
 
@@ -841,6 +857,7 @@ section {
 #org_stats_section {
 	width: 295px;
 	margin: 0px 25px 10px 0px;
+	padding-left: 0px;
 }
 
 #committee_details_section {
@@ -856,6 +873,7 @@ section {
 #org_add_ons {
 	border-right: 1px solid #a6a6a6;
 	padding-right: 50px;
+	padding-left: 0px;
 	margin: 0px 25px 10px 0px;
 }
 
@@ -1012,7 +1030,7 @@ section {
 	margin-left: auto;
 	margin-right: auto;
 	text-align: left;
-	width: 60%;
+	width: 80%;
 	border-spacing: 0px;
 	border: 2px solid #a1a1a1;
 }
@@ -1031,11 +1049,11 @@ section {
 }
 
 #admin_list_table td:nth-child(2) {
-	width: 40%;
+	width: 35%;
 }
 
 #admin_list_table td:nth-child(3) {
-	width: 30%;
+	width: 35%;
 }
 
 #admin_list_table a {

@@ -46,7 +46,7 @@ class UsersController extends AppController {
 				$this->Session->setFlash(__('New user added.'));
 				return $this->redirect(array('action' => 'index'));
 			}
-			$this->Session->setFlash(__('Unable to save new user.'));
+			$this->Session->setFlash(__('Unable to save new user'));
 		}
 	}
 	
@@ -57,10 +57,10 @@ class UsersController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('This user has been saved.'));
+				$this->Session->setFlash(__('Your profile has been updated'));
 				return $this->redirect(array('action' => 'view', $id));
 			}
-			$this->Session->setFlash(__('This user could not be saved.'));
+			$this->Session->setFlash(__('Your profile could not be updated'));
 		} else {
 			$this->request->data = $this->User->read(null, $id);
 			unset($this->request->data['User']['password']);

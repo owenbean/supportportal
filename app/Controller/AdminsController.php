@@ -2,9 +2,9 @@
 class AdminsController extends AppController {
 	public function all($options = null) {
 		if (!$options) {
-			$this->set('admins', $this->Admin->find('all'));
+			$this->set('admins', $this->Admin->find('all', array('conditions' => array('Admin.active' => true))));
 		} else {
-			$this->set('admins', $this->Admin->find('all', array('conditions' => array("Admin.$options" => true))));
+			$this->set('admins', $this->Admin->find('all', array('conditions' => array('Admin.active' => true, "Admin.$options" => true))));
 		}
 	}
 	
@@ -33,7 +33,7 @@ class AdminsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Admin->create();
 			if ($this->Admin->save($this->request->data)) {
-				$this->Session->setFlash(__('Administrator created'));
+				$this->Session->setFlash(__('Administrator successfully created'));
 				return $this->redirect(array('action' => 'all'));
 			}
 			$this->Session->setFlash(__('Unable to save administrator'));
@@ -64,13 +64,26 @@ class AdminsController extends AppController {
 		}
 	}
 	
+	public function retire($id) {
+		if($this->request->is('get')) {
+			throw new MethodNotAllowedException();
+		}
+		
+		$this->Admin->id = $id;
+		if ($this->Admin->save($this->Admin->set(array('active' => 0)))) {
+			$this->Session->setFlash(__('Administrator retired'));
+			return $this->redirect(array('action' => 'index'));
+		}
+		$this->Session->setFlash(__('Unable to retire administrator'));
+	}
+	
 	public function delete($id) {
 		if ($this->request->is('get')) {
 			throw new MethodNotAllowedException();
 		}
 		
 		if ($this->Admin->delete($id)) {
-			$this->Session->setFlash(__('The administrator with the id: %s has been deleted.', h($id)));
+			$this->Session->setFlash(__('Administrator successfully deleted'));
 			return $this->redirect(array('action' => 'all'));
 		}
 	}

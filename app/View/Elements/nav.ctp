@@ -5,7 +5,7 @@
 		<ul class="sub_nav_menu">
 			<li><?php echo $this->Html->link('Active', array('controller' => 'letters', 'action' => 'active')); ?></li>
 			<li><?php echo $this->Html->link('New', array('controller' => 'letters', 'action' => 'add')); ?></li>
-			<li><a href="letter_request_history.php">History</a></li>
+			<li><?php echo $this->Html->link('History', array('controller' => 'letters', 'action' => 'history')); ?></li>
 		</ul>
 	</div>
 	<div class="nav_division"><?php echo $this->Html->image('nav-div.gif') ?></div>
@@ -40,7 +40,6 @@
 				<div class='nav_text'><a href='#'>Site Admin</a>
 					<ul class='sub_nav_menu'>
 						<li>" . $this->Html->link('System Admin List', array('controller' => 'users', 'action' => 'all')) . "</li>
-						<li><a href='color_scheme.php'>Color Scheme</a></li>
 					</ul>
 				</div>";
 		}
