@@ -10,11 +10,11 @@
 		<table>
 		<tbody>
 			<tr><td>
-				<?php //echo $this->Form->input('members_id', array('label' => 'Member Name: ', 'empty' => '', 'readonly' => 'readonly')); ?>
+				<?php echo $this->Form->input('test', array('label' => 'Member Name: ', 'default' => $letter['Member']['full_name'], 'disabled' => 'disabled')); ?>
 			</td></tr>
 			
 			<tr><td>
-				<?php //echo $this->Form->input('submitter', array('label' => 'Request Submitted By: ', 'readonly' => 'readonly')); ?>
+				<?php echo $this->Form->input('submitter', array('label' => 'Request Submitted By: ', 'disabled' => 'disabled')); ?>
 			</td></tr>
 			
 			<tr><td>

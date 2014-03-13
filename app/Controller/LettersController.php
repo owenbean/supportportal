@@ -8,11 +8,13 @@ class LettersController extends AppController {
 		$this->set('letters', $this->Letter->find('all', array('conditions' => array('Letter.active' => true))));
 	}
 	
-	public function history($id = null) {
-		if (!$id) {
-			throw new NotFoundException(__('Please indicate a member'));
+	public function history($search = null) {
+		if ($search) {
+			$this->set('letters', $this->Letter->find('all'));
+		} else {
+			$this->set('letters', null);
 		}
-		$this->set('letters', $this->Letter->find('all', array('conditions' => array('Letter.member_id' => $id))));
+		//$this->set('letters', $this->Letter->find('all', array('conditions' => array('Letter.member_id' => $id))));
 	}
 	
 	public function view($id = null) {
@@ -73,6 +75,7 @@ class LettersController extends AppController {
 		
 		if (!$this->request->data) {
 			$this->request->data = $letter;
+			$this->set('letter', $letter);
 		}
 	}
 	

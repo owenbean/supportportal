@@ -8,6 +8,11 @@ class AdminsController extends AppController {
 		}
 	}
 	
+	public function search($keyword = null) {
+		$keyword = implode($this->request->data);
+		$this->set('admins', $this->Admin->query("SELECT * FROM admins AS Admin WHERE (first_name LIKE '%$keyword%' OR last_name LIKE '%$keyword%')"));
+	}
+	
 	public function view($id = null) {
 		if (!$id) {
 			throw new NotFoundException(__('Invalid administrator'));

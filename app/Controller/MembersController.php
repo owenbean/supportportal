@@ -2,10 +2,15 @@
 class MembersController extends AppController {
 	public function all($options = null) {
 		if (!$options) {
-			$this->set('members', $this->Member->find('all'));
+			$this->set('members', $this->Member->find('all', array('conditions' => array('Member.active' => true))));
 		} else {
-			$this->set('members', $this->Member->find('all', array('conditions' => array("Member.$options" => true))));
+			$this->set('members', $this->Member->find('all', array('conditions' => array("Member.$options" => true, 'Member.active' => true))));
 		}
+	}
+	
+	public function search($keyword = null) {
+		$keyword = implode($this->request->data);
+		$this->set('members', $this->Member->query("SELECT * FROM members AS Member WHERE (full_name LIKE '%$keyword%' OR short_name LIKE '%$keyword%')"));
 	}
 	
 	public function view($id = null) {
@@ -62,6 +67,19 @@ class MembersController extends AppController {
 		if (!$this->request->data) {
 			$this->request->data = $member;
 		}
+	}
+	
+	public function retire($id) {
+		if ($this->request->is('get')) {
+			throw new MethodNotAllowedException();
+		}
+		
+		$this->Member->id = $id;
+		if ($this->Member->save($this->Member->set(array('active' => 0)))) {
+			$this->Session->setFlash(__('Member retired'));
+			return $this->redirect(array('action' => 'index'));
+		}
+		$this->Session->setFlash(__('Unable to retire member'));		
 	}
 	
 	public function delete($id) {

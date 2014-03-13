@@ -32,6 +32,10 @@ class UsersController extends AppController {
 	}
 	
 	public function view($id = null) {
+		if ($this->request->is('get')) {
+			throw new MethodNotAllowedException;
+		}
+		
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
 			throw new NotFoundException(__('Invalid user.'));

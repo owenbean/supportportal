@@ -48,7 +48,7 @@
 <div id="nav_right_side">
 	<div class="nav_text" id="nav_username_text"><a href="#"><?php echo $this->Session->read('Auth.User.first_name'); ?></a></div>
 	<ul class="sub_nav_menu" id="right_sub_nav_menu">
-		<li><?php echo $this->Html->link('Profile', array('controller' => 'users', 'action' => 'view', $this->Session->read('Auth.User.id'))); ?></li>
+		<li><?php echo $this->Form->postLink('Profile', array('controller' => 'users', 'action' => 'view', $this->Session->read('Auth.User.id'))); ?></li>
 		<li><?php echo $this->Html->link('Logout', array('controller' => 'users', 'action' => 'logout')); ?></li>
 	</ul>
 </div>
@@ -56,7 +56,7 @@
 
 <div id="orgSearchBox" class="searchBox" title="Search for an Organization">
 		<p>Enter short or full name:<p>
-		<form method="post" action="organization_list.php?search=org">
+		<form method="post" action="<?php echo Router::url(array('controller' => 'members', 'action' => 'search')); ?>">
 				<input type="text" id="searchOrgName" name="searchOrgName" size="30">
 				<p id="advancedOrgSearch"><a href="organization_search.php" onclick="return notYet()">Advanced Search</a></p>
 		</form>
@@ -64,7 +64,7 @@
 
 <div id="adminSearchBox" class="searchBox" title="Search for an Organization">
 	<p>Enter first or last name:<p>
-	<form method="post" action="admin_list.php?search=admin">
+	<form method="post" action="<?php echo Router::url(array('controller' => 'admins', 'action' => 'search')); ?>">
 		<input type="text" id="searchAdminName" name="searchAdminName" size="30">
 		<p id="advancedAdminSearch"><a href="admin_search.php" onclick="return notYet()">Advanced Search</a></p>
 	</form>

@@ -84,5 +84,7 @@
 		</tbody>
 		</table>
 	<p><?php echo $this->Form->end('Add Member'); ?></p>
+	<!--<p><?php //echo $this->Form->button('Cancel', array('formaction' => Router::url(array('controller' => 'members', 'action' => 'all')))); ?></p>-->
 	</fieldset>
+	<!--<p><button onclick="window.location.href='<?php //echo Router::url(array('controller'=>'members', 'action'=>'all')); ?>'">Go Back</button></p>-->
 </div>

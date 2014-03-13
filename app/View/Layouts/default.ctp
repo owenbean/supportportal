@@ -1,5 +1,5 @@
 <?php
-$cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
+$cakeDescription = __d('cake_dev', 'IRBNet Support Portal');
 ?>
 <!DOCTYPE html>
 <html>
@@ -10,7 +10,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		<?php echo $title_for_layout; ?>
 	</title>
 	<?php
-		echo $this->Html->meta('icon');
+		echo $this->Html->meta('favicon.ico', '/favicon.ico', array('type' => 'icon'));
 
 		echo $this->Html->css(array('irbnet_admin'));
 		echo $this->Html->css('http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css');
@@ -61,6 +61,5 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		</div>
 	</div>
 </div>
-<?php echo $this->Js->writeBuffer(); ?>
 </body>
 </html>
