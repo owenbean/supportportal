@@ -88,6 +88,7 @@ class LettersController extends AppController {
 		$this->Letter->id = $id;
 		if ($this->Letter->save($this->Letter->set(array('request_owner' => $user_id)))) {
 			$this->Session->setFlash(__('Letter request claimed'));
+			$this->lettersCompleteEmail($id, $user_id);
 			return $this->redirect(array('action' => 'active'));
 		}
 		$this->Session->setFlash(__('Unable to claim letter request'));
@@ -98,6 +99,7 @@ class LettersController extends AppController {
 			throw new MethodNotAllowedException();
 		}
 		
+		$user_id = CakeSession::read('Auth.User.id');
 		$this->Letter->id = $id;
 		if ($this->Letter->save($this->Letter->set(array('active' => 0, 'completed_date' => DboSource::expression('NOW()'))))) {
 			$this->Session->setFlash(__('Letter request completed'));
@@ -115,5 +117,23 @@ class LettersController extends AppController {
 			$this->Session->setFlash(__('Letter request successfully deleted'));
 			return $this->redirect(array('action' => 'active'));
 		}
+	}
+	
+	public function lettersCompleteEmail($letter_id, $user_id) {
+		App::uses('CakeEmail', 'Network/Email');
+		$this->loadModel('User');
+        $user = $this->User->find('all', array('conditions' => array('User.id' => $user_id)));
+        if ($user === false) {
+            debug(__METHOD__." failed to retrieve User data for user.id: {$user_id}");
+            return false;
+        }
+		
+        $user_name = 'Zack';
+
+		$Email = new CakeEmail('gmail');
+		$Email->from(array('zachary@irbnet.org' => 'My Site'));
+		$Email->to('zackmays@gmail.com');
+		$Email->subject('Test 1');
+		$Email->send('My message');
 	}
 }

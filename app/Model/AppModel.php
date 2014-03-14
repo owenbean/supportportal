@@ -20,6 +20,7 @@
  */
 
 App::uses('Model', 'Model');
+App::uses('CakeEmail', 'Network/Email');
 
 /**
  * Application model for Cake.

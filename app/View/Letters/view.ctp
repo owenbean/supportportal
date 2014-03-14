@@ -9,7 +9,7 @@
 <p>Date of Request: <strong><?php echo $letter['Letter']['date_received']; ?></strong></p>
 <p>Target Date: <strong><?php echo $letter['Letter']['target_date']; ?></strong></p>
 <p>Request Owned By: <?php echo (!$letter['Letter']['request_owner'] ? $this->Html->link('[claim]', array('controller' => 'letters', 'action' => 'claim', $letter['Letter']['id'])) : '<strong>' . $letter['User']['first_name'] . '</strong>'); ?></p>
-<p>Request Comments: <strong><?php echo $letter['Letter']['comments']; ?></strong></p>
+<p>Request Comments: <strong><?php echo (!$letter['Letter']['comments'] ? 'None' : $letter['Letter']['comments']); ?></strong></p>
 <p>&nbsp;</p>
 <p><?php echo $this->Html->link('Edit', array('action' => 'edit', $letter['Letter']['id'])) . ' ' . $this->Html->link('Back', array('action' => 'active')); ?></p>
 <p>&nbsp;</p>

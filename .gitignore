@@ -6,6 +6,8 @@
 
 /app/Config/core.php
 
+/app/*.env
+
 /app/tmp
 
 /app/Plugin
