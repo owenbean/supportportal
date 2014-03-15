@@ -70,8 +70,8 @@ Configure::write('Dispatcher.filters', array(
 ));
 
 //set up environment variables
-if(is_file(APP . DS . '.env')) {
-    $vars = json_decode(file_get_contents(APP . DS . '.env'), true);
+if(is_file(APP . DS . 'var.env')) {
+    $vars = json_decode(file_get_contents(APP . DS . 'var.env'), true);
     foreach ($vars as $name => $val) {
         putenv("$name=$val");
     }

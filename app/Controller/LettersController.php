@@ -9,8 +9,14 @@ class LettersController extends AppController {
 	}
 	
 	public function history($search = null) {
-		if ($search) {
-			$this->set('letters', $this->Letter->find('all'));
+		$this->Letter->validate = null;
+		$this->loadModel('Member');
+		$members = $this->Member->find('list', array('fields' => array('Member.id', 'Member.full_name')));
+		$this->set(compact('members'));
+		if (isset($_GET['member_id']) && $_GET['member_id'] == null) {
+			$this->set('letters', $this->Letter->find('all', array('order' => array('Letter.date_received' => 'asc'))));
+		} else if (isset($_GET['member_id'])) {
+			$this->set('letters', $this->Letter->find('all', array('conditions' => array('Letter.member_id' => $_GET['member_id']), 'order' => array('Letter.date_received' => 'asc'))));
 		} else {
 			$this->set('letters', null);
 		}
@@ -87,8 +93,8 @@ class LettersController extends AppController {
 		$user_id = CakeSession::read('Auth.User.id');
 		$this->Letter->id = $id;
 		if ($this->Letter->save($this->Letter->set(array('request_owner' => $user_id)))) {
+			$this->lettersCompleteEmail($id);
 			$this->Session->setFlash(__('Letter request claimed'));
-			$this->lettersCompleteEmail($id, $user_id);
 			return $this->redirect(array('action' => 'active'));
 		}
 		$this->Session->setFlash(__('Unable to claim letter request'));
@@ -99,7 +105,6 @@ class LettersController extends AppController {
 			throw new MethodNotAllowedException();
 		}
 		
-		$user_id = CakeSession::read('Auth.User.id');
 		$this->Letter->id = $id;
 		if ($this->Letter->save($this->Letter->set(array('active' => 0, 'completed_date' => DboSource::expression('NOW()'))))) {
 			$this->Session->setFlash(__('Letter request completed'));
@@ -119,21 +124,27 @@ class LettersController extends AppController {
 		}
 	}
 	
-	public function lettersCompleteEmail($letter_id, $user_id) {
+	public function lettersCompleteEmail($letter_id) {
 		App::uses('CakeEmail', 'Network/Email');
-		$this->loadModel('User');
-        $user = $this->User->find('all', array('conditions' => array('User.id' => $user_id)));
-        if ($user === false) {
+        $letter = $this->Letter->find('first', array('conditions' => array('Letter.id' => $letter_id)));
+        if ($letter === false) {
             debug(__METHOD__." failed to retrieve User data for user.id: {$user_id}");
             return false;
         }
 		
-        $user_name = 'Zack';
+        $user_name = $letter['User']['first_name'];
+		$member_name = $letter['Member']['full_name'];
+		$member_short_name = $letter['Member']['short_name'];
+		$date_received = $letter['Letter']['date_received'];
+		$target_date = $letter['Letter']['target_date'];
 
 		$Email = new CakeEmail('gmail');
-		$Email->from(array('zachary@irbnet.org' => 'My Site'));
+		$Email->from(array('letters@irbnet.org' => 'IRBNet Letter Team'));
 		$Email->to('zackmays@gmail.com');
-		$Email->subject('Test 1');
-		$Email->send('My message');
+		$Email->subject('Test 11: Letter Request Completed - ' . $member_short_name);
+		$Email->template('letters_complete');
+		$Email->emailFormat('html');
+		$Email->viewVars(array('user_name' => $user_name, 'member_name' => $member_name, 'date_received' => $date_received, 'target_date' => $target_date));
+		$Email->send();
 	}
 }

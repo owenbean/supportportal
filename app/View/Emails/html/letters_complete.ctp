@@ -1,1 +1,9 @@
-<?php echo $user_name ?> has completed letter templates.
+<p>Support,</p>
+
+<p><?php echo $user_name; ?> has completed the following letter request:</p>
+
+<p>Organization: <?php echo $member_name; ?></p>
+
+<p>Date Received: <?php echo $date_received; ?></p>
+
+<p>Target Date: <?php echo $target_date; ?></p>

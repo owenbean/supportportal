@@ -1,37 +1,25 @@
 <h1 id="header_text">IRBNet Letter Requests</h1>
 <p>&nbsp;</p>
 <div id="letters_search">
-	<h2>Search for a Letter Request</h2>
+	<h2>Letter Requests by Member Institution:</h2>
 	<div class="letter_history_table">
-		<form method="get" action="letter_request_history.php" name="searchDetailsForm">
+		<?php echo $this->Form->create('Letter', array('type' => 'get', 'action' => 'history')); ?>
 			<div id="letter_search_top_row">
 				<div id="organization_select">
-						<label>Organization:</label>
-						<select id="org_name" name="org_name">
-							<option value="all">All</option>
-							<option value="all">Kansas City University of Medicine and Biosciences</option>
-						</select>
+						<?php echo $this->Form->input('member_id', array('label' => 'Member: ', 'empty' => 'All', 'id' => 'org_name_test')); ?>
 				</div>
 				<div id="owner_table">
-					<label>Request Owner:</label>
-					<input type="text" id="request_owner" name="request_owner" value="<?php echo (isset($_GET['request_owner']) ? $request_owner : "") ?>">
 				</div>
 			</div>
 			<div id="letter_search_bottom_row">
 				<div id="date_received">
-					<h2>Date Received: <span>(blank date = no limit)</span></h2>
 					<div class="from_date_field">
-						<label>From:</label>
-						<input type="text" id="received_from_date" name="received_from_date" class="date_picker" size="20" value="<?php echo (isset($_GET['received_from_date']) ? $received_from_date : "") ?>">
 					</div>
 					<div class="to_date_field">
-						<label>To:</label>
-						<input type="text" id="received_to_date" name="received_to_date" class="date_picker" size="20" value="<?php echo (isset($_GET['received_to_date']) ? $received_to_date : "") ?>">
 					</div>
 				</div>
 			</div>
-			<input type="Submit" value="Search" onclick="return requestHistorySearch()">&nbsp;&nbsp;<input type="button" value="Clear" onclick="window.location='letter_request_history.php'">
-		</form>
+			<?php echo $this->Form->end('Search'); ?>
 	</div>
 </div>
 
@@ -39,7 +27,7 @@
 
 <div id="request_search_results">
 	<?php 
-		if ($letters) { 
+		if ($letters) {
 			$total_new = 0;
 			$total_revised = 0;
 			$total_enrollment = 0;
@@ -48,7 +36,7 @@
 		<tr>
 			<th>Date Received</th>
 			<th>Date Completed</th>
-			<th>Submitter</th>
+			<?php echo ($_GET['member_id'] == null ? '<th>Member</th>' : '<th>Submitter</th>'); ?>
 			<th>New Letters</th>
 			<th>Revised Letters</th>
 			<th>Enrollment?</th>
@@ -57,12 +45,12 @@
 	<?php foreach ($letters as $letter): ?>
 		<tr>
 			<td><?php echo $letter['Letter']['date_received']; ?></td>
-			<td><?php echo $letter['Letter']['completed_date']; ?></td>
-			<td><?php echo $letter['Letter']['submitter']; ?></td>
+			<td><?php echo ($letter['Letter']['completed_date'] ? $letter['Letter']['completed_date'] : '<em>Active</em>'); ?></td>
+			<td><?php echo ($_GET['member_id'] == null ? $letter['Member']['short_name'] : $letter['Letter']['submitter']); ?></td>
 			<td><?php echo $letter['Letter']['new_templates']; ?></td>
 			<td><?php echo $letter['Letter']['revised_templates']; ?></td>
-			<td><?php echo $letter['Letter']['enrollment']; ?></td>
-			<td><?php echo $letter['User']['first_name']; ?></td>
+			<td><?php echo ($letter['Letter']['enrollment'] ? 'Yes' : 'No'); ?></td>
+			<td><?php echo ($letter['Letter']['request_owner'] ? $letter['User']['first_name'] : '<em>None</em>'); ?></td>
 			<td><?php echo $this->Html->link($this->Html->image('btn_color_search.png', array('height' => '16', 'width' => '16')), array('controller' => 'letters', 'action' => 'view', $letter['Letter']['id']), array('escapeTitle' => false)); ?></td>
 			<td><?php echo $this->Form->postLink($this->Html->image('deleteX.gif'), array('controller' => 'letters', 'action' => 'delete', $letter['Letter']['id']), array('escapeTitle' => false, 'confirm' => 'Are you sure?')); ?></td>
 		</tr>
