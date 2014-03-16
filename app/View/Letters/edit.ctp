@@ -10,11 +10,11 @@
 		<table>
 		<tbody>
 			<tr><td>
-				<?php echo $this->Form->input('test', array('label' => 'Member Name: ', 'default' => $letter['Member']['full_name'], 'disabled' => 'disabled')); ?>
+				<?php echo $this->Form->input('member_placeHolder', array('label' => 'Member Name: ', 'default' => $letter['Member']['full_name'], 'disabled' => 'disabled')); ?>
 			</td></tr>
 			
 			<tr><td>
-				<?php echo $this->Form->input('submitter', array('label' => 'Request Submitted By: ', 'disabled' => 'disabled')); ?>
+				<?php echo $this->Form->input('submitter_placeHolder', array('label' => 'Request Submitted By: ', 'default' => (is_numeric($letter['Letter']['submitter']) ? ($letter['Admin']['first_name'] . ' ' . $letter['Admin']['last_name']) : h($letter['Letter']['submitter'])), 'disabled' => 'disabled')); ?>
 			</td></tr>
 			
 			<tr><td>

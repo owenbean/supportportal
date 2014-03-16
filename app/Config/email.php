@@ -24,10 +24,15 @@ class EmailConfig {
 	public $gmail = array(
         'host' => 'ssl://smtp.gmail.com',
         'port' => 465,
-        'username' => getenv('USERNAME'),
-        'password' => getenv('PASSWORD'),
+        'username' => null,
+        'password' => null,
         'transport' => 'Smtp'
     );
+	
+	public function __construct() {
+        $this->gmail['username'] = getenv('USERNAME');
+        $this->gmail['password'] = getenv('PASSWORD');
+    }
 	
 	public $default = array(
 		'transport' => 'Mail',

@@ -20,7 +20,6 @@ class LettersController extends AppController {
 		} else {
 			$this->set('letters', null);
 		}
-		//$this->set('letters', $this->Letter->find('all', array('conditions' => array('Letter.member_id' => $id))));
 	}
 	
 	public function view($id = null) {
@@ -37,12 +36,8 @@ class LettersController extends AppController {
 	
 	public function add() {
 		$this->loadModel('Member');
-		$members = $this->Member->find('list', array('fields' => array('Member.id', 'Member.full_name')));
+		$members = $this->Member->find('list', array('fields' => array('Member.id', 'Member.full_name'), 'conditions' => array('Member.active' => true)));
 		$this->set(compact('members'));
-		
-		if ($this->RequestHandler->isAjax()) {
-			$this->render('list_admin', 'ajax');
-		}
 		
 		if ($this->request->is('post')) {
 			$this->Letter->create();
@@ -54,10 +49,16 @@ class LettersController extends AppController {
 		}
 	}
 	
-	public function list_admin($member_id) {
-		$this->loadModel('Admin');
-		$admins = $this->Admin->find('list', array('fields' => array('Admin.id', 'Admin.first_name'), 'conditions' => array('Admin.member_id' => $member_id)));
-		$this->set(compact('admins'));
+	public function list_admin() {
+		if($this->RequestHandler->isAjax()) {
+			$this->loadModel('Admin');
+			$member_id = $_GET['member_id'];
+			$this->set('member_id', $member_id);
+			$submitters = $this->Admin->find('all', array('conditions' => array('Admin.member_id' => $member_id, 'Admin.active' => true)));
+			$this->set('submitter_names', $submitters);
+		} else {
+			$this->redirect(array('action' => 'add'));
+		}
 	}
 	
 	public function edit($id = null) {
@@ -93,7 +94,6 @@ class LettersController extends AppController {
 		$user_id = CakeSession::read('Auth.User.id');
 		$this->Letter->id = $id;
 		if ($this->Letter->save($this->Letter->set(array('request_owner' => $user_id)))) {
-			$this->lettersCompleteEmail($id);
 			$this->Session->setFlash(__('Letter request claimed'));
 			return $this->redirect(array('action' => 'active'));
 		}
@@ -107,6 +107,7 @@ class LettersController extends AppController {
 		
 		$this->Letter->id = $id;
 		if ($this->Letter->save($this->Letter->set(array('active' => 0, 'completed_date' => DboSource::expression('NOW()'))))) {
+			$this->lettersCompleteEmail($id);
 			$this->Session->setFlash(__('Letter request completed'));
 			return $this->redirect(array('action' => 'active'));
 		}
@@ -141,7 +142,7 @@ class LettersController extends AppController {
 		$Email = new CakeEmail('gmail');
 		$Email->from(array('letters@irbnet.org' => 'IRBNet Letter Team'));
 		$Email->to('zackmays@gmail.com');
-		$Email->subject('Test 11: Letter Request Completed - ' . $member_short_name);
+		$Email->subject('Letter Request Completed - ' . $member_short_name);
 		$Email->template('letters_complete');
 		$Email->emailFormat('html');
 		$Email->viewVars(array('user_name' => $user_name, 'member_name' => $member_name, 'date_received' => $date_received, 'target_date' => $target_date));

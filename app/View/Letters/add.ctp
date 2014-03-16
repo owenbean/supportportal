@@ -2,6 +2,12 @@
 
 <p>&nbsp;</p>
 
+<div id="adminAddPopUp" title="New Administrator">
+	<div id="new_admin_popup">
+		<?php echo $this->Element('add_admin_form'); ?>	
+	</div>
+</div>
+
 <div id="form_table">
 
 <?php echo $this->Form->create('Letter'); ?>
@@ -11,18 +17,13 @@
 		<tbody>
 			<tr><td>
 				<?php 
-					echo $this->Form->input('member_id', array('label' => 'Member Name: ', 'empty' => '', 'id' => 'org_name_test')); 
-					$this->Js->submit('Save', array(
-									'data' => '2',
-									'update' => '#submitter_name',
-								)
-							);
+					echo $this->Form->input('member_id', array('label' => 'Member Name: ', 'empty' => '', 'id' => 'member_name')); 
 				?>
 			</td></tr>
 			
-			<tr><td>
+			<tr><td id="submitter_name">
 				<?php
-					echo $this->Form->input('submitter', array('label' => 'Request Submitted By: ', 'id' => 'submitter_name'));
+					echo $this->Form->input('submitter', array('label' => 'Request Submitted By: ', 'disabled' => 'disabled'));
 				?>
 			</td></tr>
 			
@@ -54,3 +55,4 @@
 	<p><?php echo $this->Form->end('Submit Request'); ?></p>
 	</fieldset>
 </div>
+<p>&nbsp;</p>

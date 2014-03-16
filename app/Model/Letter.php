@@ -7,6 +7,10 @@ class Letter extends AppModel {
 		'User' => array(
 			'className' => 'User',
 			'foreignKey' => 'request_owner'
+		),
+		'Admin' => array(
+			'className' => 'Admin',
+			'foreignKey' => 'submitter'
 		)
 	);
 	

@@ -46,7 +46,7 @@
 		<tr>
 			<td><?php echo $letter['Letter']['date_received']; ?></td>
 			<td><?php echo ($letter['Letter']['completed_date'] ? $letter['Letter']['completed_date'] : '<em>Active</em>'); ?></td>
-			<td><?php echo ($_GET['member_id'] == null ? $letter['Member']['short_name'] : $letter['Letter']['submitter']); ?></td>
+			<td><?php echo ($_GET['member_id'] == null ? $letter['Member']['short_name'] : ((is_numeric($letter['Letter']['submitter']) ? ($letter['Admin']['first_name'] . ' ' . $letter['Admin']['last_name']) : h($letter['Letter']['submitter'])))); ?></td>
 			<td><?php echo $letter['Letter']['new_templates']; ?></td>
 			<td><?php echo $letter['Letter']['revised_templates']; ?></td>
 			<td><?php echo ($letter['Letter']['enrollment'] ? 'Yes' : 'No'); ?></td>
