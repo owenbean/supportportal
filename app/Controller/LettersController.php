@@ -141,7 +141,7 @@ class LettersController extends AppController {
 
 		$Email = new CakeEmail('gmail');
 		$Email->from(array('letters@irbnet.org' => 'IRBNet Letter Team'));
-		$Email->to('zackmays@gmail.com');
+		$Email->to('support@irbnet.org');
 		$Email->subject('Letter Request Completed - ' . $member_short_name);
 		$Email->template('letters_complete');
 		$Email->emailFormat('html');

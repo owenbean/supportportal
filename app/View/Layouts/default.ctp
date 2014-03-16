@@ -31,7 +31,7 @@ $cakeDescription = __d('cake_dev', 'IRBNet Support Portal');
 		<div id="site_wrapper">
 			<div id="top_strip">
 				<div class="logo">
-					<?php echo $this->Html->image('irbnet.gif', array('alt' => 'IRBNet', 'url' => array('controller' => 'users', 'action' => 'login'))); ?>
+					<?php echo $this->Html->image('irbnet.gif', array('alt' => 'IRBNet', 'url' => array('controller' => 'users', 'action' => 'index'))); ?>
 				</div>
 				<div class="tagline">
 					<h1>Innovative Solutions for <br />Compliance and Research Management </h1><br />

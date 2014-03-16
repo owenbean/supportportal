@@ -2,7 +2,7 @@
 
 <p><?php echo $user_name; ?> has completed the following letter request:</p>
 
-<p>Organization: <?php echo $member_name; ?></p>
+<p>Member: <?php echo $member_name; ?></p>
 
 <p>Date Received: <?php echo $date_received; ?></p>
 
