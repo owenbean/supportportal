@@ -235,6 +235,14 @@ function checkDropDown(field) {
 	}
 }	
 
+//not ready yet popup
+function notYet() {
+	alert("Coming soon!");
+	return false;
+}
+
+
+
 //DATA VALIDATION FUNCTIONS
 
 

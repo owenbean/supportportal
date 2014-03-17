@@ -267,7 +267,7 @@
  * Uncomment this line and correct your server timezone to fix
  * any date & time related errors.
  */
-	date_default_timezone_set('EST');
+	//date_default_timezone_set('EST');
 
 /**
  * `Config.timezone` is available in which you can set users' timezone string.
