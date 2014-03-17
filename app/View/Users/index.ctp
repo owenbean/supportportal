@@ -3,13 +3,13 @@
 <section>
 	<h2><?php echo 'Welcome ' . $this->Session->read('Auth.User.first_name') . '!<br />'; ?></h2>
 	<p>&nbsp;</p>
-	<?php if ($members) {
-		echo '<aside id="my_org_section">';
+	<?php if ($members) { ?>
+	<aside id="my_org_section">
+	<?php
 		foreach ($members as $member): 
 			echo '<p>' . $this->Html->link($member['Member']['full_name'], array('controller' => 'members', 'action' => 'view', $member['Member']['id'])) . '</p>';
 		endforeach;
 		unset($user);
-		}
-		echo '</aside>';
-	?>
+		} ?>
+	</aside>
 </section>

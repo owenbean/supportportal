@@ -23,11 +23,13 @@ class Letter extends AppModel {
 		),
 		'new_templates' => array(
 			'rule' => 'numeric',
-			'notEmpty' => true
+			'notEmpty' => true,
+			'message' => 'Please enter a valid number'
 		),
 		'revised_templates' => array(
 			'rule' => 'numeric',
-			'notEmpty' => true
+			'notEmpty' => true,
+			'message' => 'Please enter a valid number'
 		),
 		'date_received' => array(
 			'rule' => array(

@@ -55,4 +55,3 @@
 	<p><?php echo $this->Form->end('Submit Request'); ?></p>
 	</fieldset>
 </div>
-<p>&nbsp;</p>

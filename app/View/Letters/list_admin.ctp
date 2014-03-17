@@ -9,7 +9,7 @@
 			array_push($names, $admin['Admin']['first_name'] . ' ' . $admin['Admin']['last_name']);
 		endforeach;
 		unset($admin);
-		$submitter_full_names = array_combine($ids, $names);
+		$submitter_full_names = (count($names) < 1 ? array() : array_combine($ids, $names));
 		
 		echo $this->Form->input(
 			'Letter.submitter',

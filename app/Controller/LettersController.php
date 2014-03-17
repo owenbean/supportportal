@@ -93,7 +93,7 @@ class LettersController extends AppController {
 		
 		$user_id = CakeSession::read('Auth.User.id');
 		$this->Letter->id = $id;
-		if ($this->Letter->save($this->Letter->set(array('request_owner' => $user_id)))) {
+		if ($this->Letter->save($this->Letter->set(array('request_owner' => $user_id, 'claimed_date' => DboSource::expression('NOW()'))))) {
 			$this->Session->setFlash(__('Letter request claimed'));
 			return $this->redirect(array('action' => 'active'));
 		}
