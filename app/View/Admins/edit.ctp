@@ -23,6 +23,10 @@
 			</td></tr>
 		
 			<tr><td>
+				<?php echo $this->Form->input('member_id', array('label' => 'Organization: ', 'empty' => 'None')); ?>
+			</td></tr>
+			
+			<tr><td>
 				<?php echo $this->Form->input('contract_lead', array('type' => 'checkbox', 'label' => 'Contract Lead? ', 'format' => array('before', 'label', 'between', 'input', 'after', 'error'))); ?>
 			</td></tr>
 		

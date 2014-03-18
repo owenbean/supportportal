@@ -146,7 +146,7 @@ function otherAdmin() {
 	$("#adminAddPopUp").dialog({
 		autoOpen: false,
 		heigh: 600,
-		width: 500,
+		width: 700,
 		modal: true,
 		/*
 		buttons: {

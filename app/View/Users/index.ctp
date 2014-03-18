@@ -1,4 +1,4 @@
-<h1 id="header_text">IRBNet Support Admin Portal</h1>
+<h1 id="header_text">IRBNet Support Portal</h1>
 <p>&nbsp;</p>
 <section>
 	<h2><?php echo 'Welcome ' . $this->Session->read('Auth.User.first_name') . '!<br />'; ?></h2>

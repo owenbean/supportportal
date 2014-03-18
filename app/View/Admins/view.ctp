@@ -24,7 +24,7 @@
 			}
 		}
 	?>
-	<p><?php echo $lists_display; ?></p>
+	<p><?php echo (strlen($lists_display) > 1 ? $lists_display : '<em>None</em>'); ?></p>
 	<p>&nbsp;</p>
 	<div id="actions_table">
 		<table>

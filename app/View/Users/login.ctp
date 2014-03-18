@@ -1,6 +1,6 @@
 <?php echo $this->Session->flash('auth'); ?>
 
-<h1 id="header_text">IRBNet Support Admin Portal</h1>
+<h1 id="header_text">IRBNet Support Portal</h1>
 
 <div id="login_table">
 <?php echo $this->Form->create('User'); ?>

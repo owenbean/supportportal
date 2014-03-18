@@ -46,6 +46,10 @@ class AdminsController extends AppController {
 	}
 	
 	public function edit($id = null) {
+		$this->loadModel('Member');
+		$members = $this->Member->find('list', array('fields' => array('Member.id', 'Member.full_name')));
+		$this->set(compact('members'));
+		
 		if (!$id) {
 			throw new NotFoundException(__('Invalid administrator'));
 		}
