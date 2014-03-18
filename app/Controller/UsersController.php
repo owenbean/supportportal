@@ -89,6 +89,30 @@ class UsersController extends AppController {
 		}
 	}
 	
+	public function password($id = null) {
+		$this->User->id = $id;
+		$user_id = CakeSession::read('Auth.User.id');
+		$user_role = CakeSession::read('Auth.User.role');
+		if (($user_role != 'site_admin') && ($user_id != $id)) {
+			throw new MethodNotAllowedException(__('Unable to access this page'));
+		}
+		
+		if (!$this->User->exists()) {
+			throw new NotFoundException(__('Invalid user.'));
+		}
+		
+		if ($this->request->is('post') || $this->request->is('put')) {
+			if ($this->User->save($this->request->data)) {
+				$this->Session->setFlash(__('Your password has been updated'));
+				return $this->redirect(array('action' => 'view', $id));
+			}
+			$this->Session->setFlash(__('Your password could not be updated'));
+		} else {
+			$this->request->data = $this->User->read(null, $id);
+			unset($this->request->data['User']['password']);
+		}
+	}
+	
 	public function delete($id = null) {
 		$this->request->onlyAllow('post');
 		

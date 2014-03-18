@@ -12,7 +12,7 @@ class User extends AppModel {
 		),
 		'username' => array(
 			'required' => array(
-				'rule' => array('isUnique'),
+				'rule' => 'isUnique',
 				'notEmpty' => true,
 				'message' => 'Your username must be unique'
 			)
@@ -30,8 +30,20 @@ class User extends AppModel {
 		),
 		'role' => array(
 			'rule' => 'notEmpty'
+		),
+		'password_confirm' => array(
+			'identical' => array(
+				'rule' => array('identicalFieldValues', 'password'),
+				'message' => 'Password confirmation does not match password.'
+			)
 		)
 	);
+	
+	function identicalFieldValues($data, $compareField) {
+		$value = array_values($data);
+		$comparewithvalue = $value[0];
+		return ($this->data[$this->name][$compareField] == $comparewithvalue);
+	}
 	
 	public function beforeSave($options = array()) {
 		if (isset($this->data[$this->alias]['password'])) {
