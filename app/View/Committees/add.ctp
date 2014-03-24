@@ -11,7 +11,7 @@
 		<table>
 		<tbody>
 			<tr><td>
-				<?php echo $this->Form->input('name', array('label' => 'Committee Name: '));
+				<?php echo $this->Form->input('name', array('label' => 'Committee Name: ', 'maxLength' => '100'));
 					echo $this->Form->input('member_id', array('type' => 'hidden', 'default' => $members));
 				?>
 			</td></tr>

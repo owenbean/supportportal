@@ -11,7 +11,7 @@ class LettersController extends AppController {
 	public function history($search = null) {
 		$this->Letter->validate = null;
 		$this->loadModel('Member');
-		$members = $this->Member->find('list', array('fields' => array('Member.id', 'Member.full_name')));
+		$members = $this->Member->find('list', array('fields' => array('Member.id', 'Member.full_name'), 'order' => 'Member.full_name'));
 		$this->set(compact('members'));
 		if (isset($_GET['member_id']) && $_GET['member_id'] == null) {
 			$this->set('letters', $this->Letter->find('all', array('order' => array('Letter.date_received' => 'asc'))));
@@ -36,7 +36,7 @@ class LettersController extends AppController {
 	
 	public function add() {
 		$this->loadModel('Member');
-		$members = $this->Member->find('list', array('fields' => array('Member.id', 'Member.full_name'), 'conditions' => array('Member.active' => true)));
+		$members = $this->Member->find('list', array('fields' => array('Member.id', 'Member.full_name'), 'conditions' => array('Member.active' => true), 'order' => 'Member.full_name'));
 		$this->set(compact('members'));
 		
 		if ($this->request->is('post')) {

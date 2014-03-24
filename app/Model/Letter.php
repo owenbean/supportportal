@@ -19,7 +19,7 @@ class Letter extends AppModel {
 			'rule' => 'notEmpty'
 		),
 		'submitter' => array(
-			'rule' => 'notEmpty',
+			'rule' => 'notEmpty'
 		),
 		'new_templates' => array(
 			'rule' => 'numeric',
@@ -32,16 +32,10 @@ class Letter extends AppModel {
 			'message' => 'Please enter a valid number'
 		),
 		'date_received' => array(
-			'rule' => array(
-				'datetime' => 'ymd',
-				'notEmpty' => true
-			)
+			'rule' => 'notEmpty'
 		),
 		'target_date' => array(
-			'rule' => array(
-				'datetime' => 'ymd',
-				'notEmpty' => true
-			)
+			'rule' => 'notEmpty'
 		)
 	);
 	

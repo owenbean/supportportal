@@ -11,7 +11,7 @@
 		<table>
 		<tbody>
 			<tr><td>
-				<?php echo $this->Form->input('name', array('label' => 'Smart Form Name: ')); ?>
+				<?php echo $this->Form->input('name', array('label' => 'Smart Form Name: ', 'maxLength' => '100')); ?>
 				<?php echo $this->Form->input('id', array('type' => 'hidden')); ?>
 			</td></tr>
 			
