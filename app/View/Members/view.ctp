@@ -1,5 +1,5 @@
 <div id="org_details">
-	<h1><?php echo h($member['Member']['full_name']); ?></h1>
+	<h1><?php echo h($member['Member']['full_name']) . ($member['Member']['active'] ? null : ' - <em>RETIRED</em>'); ?></h1>
 	
 	<p>&nbsp;</p>
 	

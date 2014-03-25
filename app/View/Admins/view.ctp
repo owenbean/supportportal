@@ -1,9 +1,9 @@
 <h1>NRN Administrator</h1>
 <p>&nbsp;</p>
-<div id="new_admin_table">
+<div id="display_admin">
 	<h2>Administrator Details:</h2>
-	<p>Name: <strong><?php echo h($admin['Admin']['first_name']) . ' ' . h($admin['Admin']['last_name']) ?></strong></p>
-	<p>Organization: <strong><?php echo $admin['Member']['full_name'] ?></strong></p>
+	<p>Name: <strong><?php echo h($admin['Admin']['first_name']) . ' ' . h($admin['Admin']['last_name']) . ($admin['Admin']['active'] ? null : ' - <em>RETIRED</em>'); ?></strong></p>
+	<p class="no_underline">Organization: <strong><?php echo $this->Html->link($admin['Member']['full_name'], array('controller' => 'members', 'action' => 'view', $admin['Member']['id'])); ?></strong></p>
 	<p>Email Address: <?php echo $this->Text->autoLinkEmails(h($admin['Admin']['email_address'])); ?></p>
 	<p>Comments: <?php echo (!$admin['Admin']['comments'] ? "<em>None</em>" : h($admin['Admin']['comments'])); ?></p>
 	<p>&nbsp;</p>

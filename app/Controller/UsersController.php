@@ -1,4 +1,6 @@
 <?php
+App::uses('DboSource', 'Model/DataSource');
+
 class UsersController extends AppController {
 	
 	public function beforeFilter() {
@@ -9,6 +11,9 @@ class UsersController extends AppController {
 	public function login() {
 		if ($this->request->is('post')) {
 			if ($this->Auth->login()) {
+				$this->loadModel('User');
+				$this->User->id = CakeSession::read('Auth.User.id');
+				$this->User->save($this->User->set(array('last_login' => DboSource::expression('NOW()'), 'modified' => false)));
 				return $this->redirect($this->Auth->redirect());
 			}
 			$this->Session->setFlash(__('Invalid username or password'));

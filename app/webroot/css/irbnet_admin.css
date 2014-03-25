@@ -336,7 +336,12 @@ section {
 }
 
 #actions_table a {
-}	
+}
+
+.no_underline a {
+	text-decoration: none;
+	color: black;
+}
 
 
 /*************** HOME PAGE *****************/
