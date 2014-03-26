@@ -10,7 +10,13 @@ class MembersController extends AppController {
 	
 	public function search($keyword = null) {
 		$keyword = implode($this->request->data);
-		$this->set('members', $this->Member->query("SELECT * FROM members AS Member WHERE (full_name LIKE '%$keyword%' OR short_name LIKE '%$keyword%')"));
+		$members = $this->Member->find('all', array('conditions' => array('OR' => array(array('Member.full_name LIKE' => '%' . $keyword . '%'), array('Member.short_name LIKE' => '%' . $keyword . '%')))));
+		if (count($members) == 1) {
+			$member = $this->Member->find('first', array('conditions' => array('OR' => array(array('Member.full_name LIKE' => '%' . $keyword . '%'), array('Member.short_name LIKE' => '%' . $keyword . '%')))));
+			return $this->redirect(array('action' => 'view', $member['Member']['id']));
+		} else {
+			$this->set('members', $members);
+		}
 	}
 	
 	public function view($id = null) {
@@ -23,6 +29,7 @@ class MembersController extends AppController {
 			throw new NotFoundException(__('Invalid member'));
 		}
 		$this->set('member', $member);
+		$this->set('title_for_layout', $member['Member']['short_name']);
 		$this->set('committees', $this->Member->Committee->find('all', array('conditions' => array('Committee.member_id' => $id))));
 		$this->set('smartForms', $this->Member->SmartForm->find('all', array('conditions' => array('SmartForm.member_id' => $id))));
 		$this->set('admins', $this->Member->Admin->find('all', array('conditions' => array('Admin.active' => true, 'Admin.member_id' => $id))));
@@ -32,6 +39,7 @@ class MembersController extends AppController {
 		$this->loadModel('User');
 		$specialists = $this->User->find('list', array('fields' => array('User.id', 'User.first_name')));
 		$this->set(compact('specialists'));
+		$this->set('title_for_layout', 'Add Member');
 		if ($this->request->is('post')) {
 			$this->Member->create();
 			if ($this->Member->save($this->request->data)) {
@@ -55,6 +63,7 @@ class MembersController extends AppController {
 			throw new NotFoundException(__('Invalid member'));
 		}
 		
+		$this->set('title_for_layout', 'Edit Member');
 		if ($this->request->is(array('post', 'put'))) {
 			$this->Member->id = $id;
 			if ($this->Member->save($this->request->data)) {

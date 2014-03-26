@@ -10,7 +10,13 @@ class AdminsController extends AppController {
 	
 	public function search($keyword = null) {
 		$keyword = implode($this->request->data);
-		$this->set('admins', $this->Admin->query("SELECT * FROM admins AS Admin WHERE (first_name LIKE '%$keyword%' OR last_name LIKE '%$keyword%')"));
+		$admins = $this->Admin->find('all', array('conditions' => array('OR' => array(array('Admin.first_name LIKE' => '%' . $keyword . '%'), array('Admin.last_name LIKE' => '%' . $keyword . '%')))));
+		if (count($admins) == 1) {
+			$admin = $this->Admin->find('first', array('conditions' => array('OR' => array(array('Admin.first_name LIKE' => '%' . $keyword . '%'), array('Admin.last_name LIKE' => '%' . $keyword . '%')))));
+			return $this->redirect(array('action' => 'view', $admin['Admin']['id']));
+		} else {
+			$this->set('admins', $admins);
+		}
 	}
 	
 	public function view($id = null) {

@@ -9,6 +9,7 @@ class UsersController extends AppController {
 	}
 	
 	public function login() {
+		$this->set('title_for_layout', 'Login');
 		if ($this->request->is('post')) {
 			if ($this->Auth->login()) {
 				$this->loadModel('User');
@@ -25,6 +26,7 @@ class UsersController extends AppController {
 	}
 	
 	public function index() {
+		$this->set('title_for_layout', 'Home');
 		$this->User->recursive = 0;
 		$this->set('users', $this->paginate());
 		$this->loadModel('Member');
@@ -43,6 +45,7 @@ class UsersController extends AppController {
 	public function view($id = null) {
 		$user_role = CakeSession::read('Auth.User.role');
 		$user_id = CakeSession::read('Auth.User.id');
+		$this->set('title_for_layout', 'User Profile');
 		if (($user_role != 'site_admin') && ($user_id != $id)) {
 			throw new MethodNotAllowedException(__('Unable to access this page'));
 		}
@@ -74,6 +77,7 @@ class UsersController extends AppController {
 		$this->User->id = $id;
 		$user_id = CakeSession::read('Auth.User.id');
 		$user_role = CakeSession::read('Auth.User.role');
+		$this->set('title_for_layout', 'Edit Profile');
 		if (($user_role != 'site_admin') && ($user_id != $id)) {
 			throw new MethodNotAllowedException(__('Unable to access this page'));
 		}
