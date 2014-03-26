@@ -35,8 +35,8 @@
 			<tr>
 				<td>
 					<?php echo $this->Html->link('Edit', array('controller' => 'admins', 'action' => 'edit', $admin['Admin']['id'])); ?>, 
-					<?php echo $this->Form->postLink('Retire', array('controller' => 'admins', 'action' => 'retire', $admin['Admin']['id']), array('confirm' => 'Are you sure you want to retire this administrator?'));?>, 
-					<?php echo $this->Form->postLink('Delete', array('controller' => 'admins', 'action' => 'delete', $admin['Admin']['id']), array('confirm' => 'Are you sure you want to delete this administrator?'));?>
+					<?php echo $this->Form->postLink('Retire', array('controller' => 'admins', 'action' => 'retire', $admin['Admin']['id']), array('confirm' => 'Are you sure you want to Retire this administrator?'));?>, 
+					<?php echo $this->Form->postLink('Delete', array('controller' => 'admins', 'action' => 'delete', $admin['Admin']['id']), array('confirm' => "Are you sure you want to Delete this administrator?\n\nDoing so will remove them from the system entirely.  If this administrator is no longer with this member, please Retire them instead."));?>
 				</td>
 			</tr>
 		</tbody>

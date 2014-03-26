@@ -8,8 +8,8 @@
 			<tr><th colspan="3"><h2>Actions:</h2></th></tr>
 			<tr><td>
 					<?php echo $this->Html->link('Edit', array('controller' => 'members', 'action' => 'edit', $member['Member']['id'])); ?>, 
-					<?php echo $this->Form->postLink('Retire', array('controller' => 'members', 'action' => 'retire', $member['Member']['id']), array('confirm' => 'Are you sure you want to retire this member?'));?>, 
-					<?php echo $this->Form->postLink('Delete', array('controller' => 'members', 'action' => 'delete', $member['Member']['id']), array('confirm' => 'Are you sure you want to delete this member?'));?>
+					<?php echo $this->Form->postLink('Retire', array('controller' => 'members', 'action' => 'retire', $member['Member']['id']), array('confirm' => 'Are you sure you want to Retire this member?'));?>, 
+					<?php echo $this->Form->postLink('Delete', array('controller' => 'members', 'action' => 'delete', $member['Member']['id']), array('confirm' => "Are you sure you want to Delete this member?\n\nDoing so will remove them from the system entirely.  If this institution is no longer a member of the National Research Network, please Retire them instead."));?>
 			</td></tr>
 		</tbody></table>
 	</div>
@@ -126,7 +126,7 @@
 	</div>
 
 	<div id="org_admin_section">
-		<h2>Organization Administrators:</h2>
+		<h2>Member Administrators:</h2>
 		
 		<table id="org_admin_list">
 		<tbody>

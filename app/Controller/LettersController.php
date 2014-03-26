@@ -5,7 +5,7 @@ class LettersController extends AppController {
 	public $components = array('RequestHandler');
 	
 	public function active() {
-		$this->set('letters', $this->Letter->find('all', array('conditions' => array('Letter.active' => true))));
+		$this->set('letters', $this->Letter->find('all', array('conditions' => array('Letter.active' => true), 'order' => 'Letter.target_date')));
 	}
 	
 	public function history($search = null) {

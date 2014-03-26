@@ -9,6 +9,10 @@ class UsersController extends AppController {
 	}
 	
 	public function login() {
+		if (CakeSession::read('Auth.User.id')) {
+			$this->redirect($this->Auth->redirect());
+		}
+		
 		$this->set('title_for_layout', 'Login');
 		if ($this->request->is('post')) {
 			if ($this->Auth->login()) {

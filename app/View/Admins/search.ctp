@@ -14,7 +14,7 @@
 		<tr>
 			<td><?php echo $this->Html->link($admin['Admin']['first_name'] . ' ' . $admin['Admin']['last_name'], array('action' => 'view', $admin['Admin']['id'])); ?></td>
 			<td><?php echo $admin['Admin']['email_address']; ?></td>
-			<td><?php echo $admin['Admin']['member_id']; ?></td>
+			<td><?php echo $this->Html->link($admin['Member']['full_name'], array('controller' => 'members', 'action' => 'view', $admin['Member']['id'])); ?></td>
 		</tr>
 		<?php endforeach; ?>
 		<?php unset($admin); 
