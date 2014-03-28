@@ -235,6 +235,41 @@
 		</table>
 		
 	</div>
+	
+	<div id="org_interactions_section">
+		<h2>Member Interactions:</h2>
+		
+		<table id="org_interactions_table">
+		<tbody>
+			<tr>
+				<th>Interaction Between</th>
+				<th>Date</th>
+				<th>Type</th>
+				<th>Purpose</th>
+			</tr>
+			<?php if (!$interactions) { ?>
+			<tr>
+				<td colspan="4" class"message_feedback">No interactions to display</td>
+			</tr>
+			<?php } else { foreach ($interactions as $interaction): ?>
+			<tr>
+				<td><?php echo $interaction['User']['first_name'] . ' / ' . $interaction['Admin']['first_name'] . ' ' . $interaction['Admin']['last_name']; ?></td>
+				<td><?php echo $interaction['Interaction']['date']; ?></td>
+				<td><?php echo $interaction['Interaction']['interaction_type']; ?></td>
+				<td><?php echo $interaction['Interaction']['purpose']; ?></td>
+				<td><?php echo $this->Html->link($this->Html->image('editPencil.gif'), array('controller' => 'interactions', 'action' => 'edit', $member['Member']['id'], $interaction['Interaction']['id']), array('escapeTitle' => false)); ?></td>
+				<td><?php echo $this->Html->link($this->Html->image('btn_color_search.png', array('height' => '16', 'width' => '16')), array('controller' => 'interactions', 'action' => 'view', $interaction['Interaction']['id']), array('escapeTitle' => false)); ?></td>
+				<td><?php echo $this->Form->postLink($this->Html->image('deleteX.gif'), array('controller' => 'interactions', 'action' => 'delete', $member['Member']['id'], $interaction['Interaction']['id']), array('escapeTitle' => false, 'confirm' => 'Are you sure you want to Delete this interaction?')); ?></td>
+			</tr>
+			<?php
+				endforeach;
+				unset($interaction);
+				}
+			?>
+		</tbody>
+		</table>
+		<p><?php echo $this->Html->link('Add an interaction', array('controller' => 'interactions', 'action' => 'add', $member['Member']['id'])); ?></p>
+	</div>
 
 </div>
 <p>&nbsp;</p>

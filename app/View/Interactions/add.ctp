@@ -11,7 +11,16 @@
 		<table>
 		<tbody>
 			<tr><td>
-				<?php echo $this->Form->input('admin_id', array('label' => 'Administrator: ', 'empty' => ''));
+				<?php
+					$ids = array();
+					$names = array();
+					foreach ($admins as $admin):
+						array_push($ids, $admin['Admin']['id']);
+						array_push($names, $admin['Admin']['first_name'] . ' ' . $admin['Admin']['last_name']);
+					endforeach;
+					unset($admin);
+					$admin_names = (count($names) < 1 ? array() : array_combine($ids, $names));
+					echo $this->Form->input('admin_id', array('label' => 'Administrator: ', 'options' => $admin_names, 'empty' => ''));
 					echo $this->Form->input('member_id', array('type' => 'hidden', 'default' => $members));
 					echo $this->Form->input('user_id', array('type' => 'hidden', 'default' => $users));
 				?>
