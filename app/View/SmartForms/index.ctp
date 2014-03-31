@@ -17,7 +17,7 @@
 			<td><?php echo $this->Html->link($smartForms['SmartForm']['name'], array('controller' => 'members', 'action' => 'view', $smartForms['Member']['id'])); ?></td>
 			<td><?php echo $smartForms['SmartForm']['sf_domain']; ?></td>
 			<td><?php echo $this->Html->link($smartForms['Member']['short_name'], array('controller' => 'members', 'action' => 'view', $smartForms['Member']['id'])); ?></td>
-			<td><?php echo $smartForms['SmartForm']['developer']; ?></td>
+			<td><?php echo $smartForms['User']['first_name']; ?></td>
 			<td><?php echo $smartForms['SmartForm']['status']; ?></td>
 		</tr>
 		<?php endforeach; ?>

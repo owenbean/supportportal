@@ -19,11 +19,11 @@ body {
 }
 
 aside {
-	background: linear-gradient(#6d91cb, #dde6f3);
+	background: #dde6f3;
 	padding: 10px 10px 20px 10px;
 	margin: 20px 40px 0 0;
 	border-radius: 5px;
-	width: 300px;
+	width: 400px;
 }
 
 section {

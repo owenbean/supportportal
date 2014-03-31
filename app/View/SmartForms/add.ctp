@@ -56,14 +56,8 @@
 			<tr><td>
 				<?php echo $this->Form->input('developer', array(
 					'label' => 'Smart Form Developer: ',
-					'options' => array(
-						'Unknown' => 'Unknown',
-						'Colin' => 'Colin',
-						'Kate' => 'Kate',
-						'Melanie' => 'Melanie',
-						'Toby' => 'Toby'
-					),
-					'empty' => ''
+					'options' => $users,
+					'empty' => 'Unknown'
 				)); ?>
 			</td></tr>
 		</tbody>

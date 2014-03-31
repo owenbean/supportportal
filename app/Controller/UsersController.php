@@ -36,6 +36,10 @@ class UsersController extends AppController {
 		$this->loadModel('Member');
 		$user_id = CakeSession::read('Auth.User.id');
 		$this->set('members', $this->Member->find('all', array('conditions' => array('Member.specialist' => $user_id))));
+		$this->loadModel('SmartForm');
+		$this->set('smartForms', $this->SmartForm->find('all', array('conditions' => array('SmartForm.developer' => $user_id, 'SmartForm.status' => 'In Development'))));
+		$this->loadModel('Committee');
+		$this->set('committees', null);
 	}
 	
 	public function all() {

@@ -2,6 +2,16 @@
 class Committee extends AppModel {
 	public $belongsTo = 'Member';
 	
+	public $hasAndBelongsToMany = array(
+		'User' => array(
+			'className' => 'User',
+            'joinTable' => 'committees_users',
+            'foreignKey' => 'committee_id',
+            'associationForeignKey' => 'user_id',
+            'unique' => true
+		)
+	);
+	
 	public $validate = array(
 		'name' => array(
 			'rule' => 'notEmpty',
@@ -22,6 +32,13 @@ class Committee extends AppModel {
 			'rule' => 'notEmpty'
 		)
 	);
+	
+	public function addUser($cid, $uid) {
+	        $this->data['User']['id'] = $cid;
+	        $this->data['Committee']['id'] = $uid;
+
+	        $this->save($this->data);
+	}
 	
 	public function beforeSave($options = array()) {
 		$user_id = CakeSession::read('Auth.User.id');

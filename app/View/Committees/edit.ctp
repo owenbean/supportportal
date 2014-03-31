@@ -81,6 +81,15 @@
 					'empty' => ''
 				)); ?>
 			</td></tr>
+			
+			<tr><td>
+				<?php echo $this->Form->input('User', array(
+					'label' => 'Enrollment Team: ',
+					'type' => 'select',
+					'multiple' => 'checkbox',
+					'options' => $users
+				)); ?>
+			</td></tr>			
 		</tbody>
 		</table>
 		<p><?php echo $this->Form->end('Update Committee'); ?></p>

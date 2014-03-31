@@ -2,6 +2,22 @@
 App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 
 class User extends AppModel {
+	public $hasMany = array(
+		'SmartForm' => array(
+			'className' => 'SmartForm',
+			'foreignKey' => 'developer'
+		)
+	);
+	
+	public $hasAndBelongsToMany = array(
+		'Committee' => array(
+			'className' => 'Committee',
+            'joinTable' => 'committees_users',
+            'foreignKey' => 'user_id',
+            'associationForeignKey' => 'committee_id',
+            'unique' => true
+		)
+	);
 	
 	public $validate = array(
 		'first_name' => array(

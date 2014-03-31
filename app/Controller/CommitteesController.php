@@ -17,11 +17,15 @@ class CommitteesController extends AppController {
 	}
 	
 	public function add($member_id) {
+		$this->loadModel('User');
+		$users = $this->User->find('list', array('fields' => array('User.id', 'User.first_name'), 'order' => 'User.first_name'));
+		$this->set(compact('users'));
+		
 		$members = $member_id;
 		$this->set(compact('members'));
 		if ($this->request->is('post')) {
 			$this->Committee->create();
-			if ($this->Committee->save($this->request->data)) {
+			if ($this->Committee->saveAll($this->request->data)) {
 				$this->Session->setFlash(__('Committee successfully added'));
 				return $this->redirect(array('controller' => 'members', 'action' => 'view', $member_id));
 			}
@@ -41,7 +45,8 @@ class CommitteesController extends AppController {
 		
 		if ($this->request->is(array('post', 'put'))) {
 			$this->Committee->id = $id;
-			if ($this->Committee->save($this->request->data)) {
+			$user_id = CakeSession::read('Auth.User.id');
+			if ($this->Committee->saveAll($this->request->data)) {
 				$this->Session->setFlash(__('Committee successfully updated'));
 				return $this->redirect(array('controller' => 'members', 'action' => 'view', $member_id));
 			}
@@ -49,6 +54,10 @@ class CommitteesController extends AppController {
 		}
 		
 		if (!$this->request->data) {
+			$this->loadModel('User');
+			$users = $this->User->find('list', array('fields' => array('User.id', 'User.first_name'), 'order' => 'User.first_name'));
+			$this->set(compact('users'));
+			
 			$this->request->data = $committee;
 		}
 	}

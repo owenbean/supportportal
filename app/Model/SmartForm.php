@@ -1,6 +1,14 @@
 <?php
 class SmartForm extends AppModel {
-	public $belongsTo = 'Member';
+	public $belongsTo = array(
+		'Member' => array(
+			'className' => 'Member'
+		),
+		'User' => array(
+			'className' => 'User',
+			'foreignKey' => 'developer'
+		)
+	);
 	
 	public $validate = array(
 		'name' => array(
@@ -13,9 +21,6 @@ class SmartForm extends AppModel {
 			'rule' => 'notEmpty'
 		),
 		'launch_date' => array(
-			'rule' => 'notEmpty'
-		),
-		'developer' => array(
 			'rule' => 'notEmpty'
 		)
 	);
