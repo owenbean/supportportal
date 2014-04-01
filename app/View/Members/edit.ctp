@@ -45,11 +45,7 @@
 			<tr><td>
 				<?php echo $this->Form->input('specialist', array('label' => 'Member Specialist: ', 'empty' => 'None')); ?>
 			</td></tr>
-			
-			<tr><td>
-				<?php echo $this->Form->input('enrollment_team', array('label' => 'Enrollment Team: ')); ?>
-			</td></tr>
-			
+						
 			<tr><td>
 				<?php echo $this->Form->input('pings_email', array('label' => 'Pings Email Address: ')); ?>
 			</td></tr>

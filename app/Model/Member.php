@@ -28,9 +28,6 @@ class Member extends AppModel {
 		'state' => array(
 			'rule' => 'notEmpty'
 		),
-		'enrollment_team' => array(
-			'rule' => 'notEmpty'
-		),
 		'class' => array(
 			'rule' => 'notEmpty'
 		)

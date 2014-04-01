@@ -15,7 +15,9 @@ class User extends AppModel {
             'joinTable' => 'committees_users',
             'foreignKey' => 'user_id',
             'associationForeignKey' => 'committee_id',
-            'unique' => true
+            'unique' => true,
+			'conditions' => array('Committee.status' => 'Enrolling'),
+			'order' => 'Committee.go_live_date'
 		)
 	);
 	

@@ -13,14 +13,13 @@
 		unset($member);
 		} ?>
 	</aside>
-	<?php if($committees): ?>
+	<?php if($user['Committee']): ?>
 	<aside id="my_org_section">	
-	<h2>My Enrolling Members:</h2>
-	<?php foreach($committees as $committee): ?>
-		<p><?php echo 'text...' ?></p>
+	<h2>My Enrolling Committees:</h2>
+	<?php for($i = 0; $i < count($enrolling_committees); $i++): ?>
+		<p><?php echo $this->Html->link($enrolling_committees[$i][0]['Member']['full_name'] . ': ' . $user['Committee'][$i]['board_type'] . ' - Go Live Date: ' . $user['Committee'][$i]['go_live_date'], array('controller' => 'members', 'action' => 'view', $user['Committee'][$i]['member_id'])); ?></p>
 	<?php
-		endforeach;
-		unset($committee);
+		endfor;
 		endif;
 	?>
 	</aside>
@@ -28,7 +27,7 @@
 	<aside id="my_org_section">
 	<h2>My Smart Forms:</h2>
 	<?php foreach($smartForms as $smartForm): ?>
-		<p><?php echo $this->Html->link($smartForm['SmartForm']['sf_domain'] . ', ' . $smartForm['Member']['full_name'], array('controller' => 'members', 'action' => 'view', $smartForm['Member']['id'])) . ' - Launch Date: ' . $smartForm['SmartForm']['launch_date']; ?></p>
+		<p><?php echo $this->Html->link($smartForm['SmartForm']['sf_domain'] . ', ' . $smartForm['Member']['full_name'] . ': Launch Date: ' . $smartForm['SmartForm']['launch_date'], array('controller' => 'members', 'action' => 'view', $smartForm['Member']['id'])); ?></p>
 	<?php
 		endforeach;
 		unset($smartForm);

@@ -31,15 +31,21 @@ class UsersController extends AppController {
 	
 	public function index() {
 		$this->set('title_for_layout', 'Home');
-		$this->User->recursive = 0;
-		$this->set('users', $this->paginate());
-		$this->loadModel('Member');
+		
 		$user_id = CakeSession::read('Auth.User.id');
+		$user = $this->User->findById($user_id);
+		$this->set('user', $user);
+		$this->loadModel('Member');
 		$this->set('members', $this->Member->find('all', array('conditions' => array('Member.specialist' => $user_id))));
 		$this->loadModel('SmartForm');
-		$this->set('smartForms', $this->SmartForm->find('all', array('conditions' => array('SmartForm.developer' => $user_id, 'SmartForm.status' => 'In Development'))));
-		$this->loadModel('Committee');
-		$this->set('committees', null);
+		$this->set('smartForms', $this->SmartForm->find('all', array('conditions' => array('SmartForm.developer' => $user_id, 'SmartForm.status' => 'In Development'), 'order' => 'SmartForm.launch_date')));
+		$enrolling_committees = array();
+		for($i = 0; $i < count($user['Committee']); $i++) {
+			if($user['Committee'][$i]['status'] == 'Enrolling') {
+				array_push($enrolling_committees, $this->Member->find('all', array('conditions' => array('Member.id' => $user['Committee'][$i]['member_id']))));
+			}
+		}
+		$this->set('enrolling_committees', $enrolling_committees);
 	}
 	
 	public function all() {

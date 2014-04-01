@@ -20,7 +20,6 @@
 			<p>Short Name: <strong><?php echo h($member['Member']['short_name']); ?></strong></p>
 			<p>Member Class: <strong><?php echo h($member['Member']['class']); ?></strong></p>
 			<p>Member Specialist: <strong><?php echo (!$member['Member']['specialist'] ? 'None' : h($member['User']['first_name'])); ?></strong></p>
-			<p>Enrollment Team: <strong><?php echo h($member['Member']['enrollment_team']); ?></strong></p>
 			<p>ID: <strong><?php echo h($member['Member']['op_num']); ?></strong></p>
 			<p>Location: <strong><?php echo h($member['Member']['city']) . ', ' . h($member['Member']['state']); ?></strong></p>
 			<p>Pings Email: <?php echo (!strlen($member['Member']['pings_email']) ? '<em>pending</em>' : $this->Text->autoLinkEmails($member['Member']['pings_email'])); ?></p>
@@ -39,15 +38,10 @@
 						<a href="#"><p><span class="arrow"><?php echo $this->Html->image('arrow.png', array('height' => '10', 'width' => '10')); ?></span><?php echo ' ' . $committee['Committee']['board_type']; ?>: <span class="<?php echo $committee['Committee']['status']; ?>"><?php echo $committee['Committee']['status']; ?></span></p></a>
 					</div>
 					<?php
-					/*
-					$enrollment_user = $committee['User']['User']['first_name'];
 					$enrollment_team = array();
-					if($committee['User']) {
-						foreach($committee['User'] as $name) {
-							array_push($enrollment_team, $name[0]['first_name']);
-						}
+					for($i = 0; $i < count($committee['User']); $i++) {
+						array_push($enrollment_team, $committee['User'][$i]['first_name']);
 					}
-					*/
 					?>
 					<div class="hidden_row org_section_details">
 						<ul>
@@ -55,7 +49,7 @@
 							<li><?php echo 'Committee Setup: ' . $committee['Committee']['setup']; ?></li>
 							<li><?php echo 'Go-Live Date: ' . $committee['Committee']['go_live_date']; ?></li>
 							<li><?php echo 'Funding Type: ' . $committee['Committee']['funding_model']; ?></li>
-							<!--<li><?php// echo 'Enrollment Team: '; print_r($committee['User'][0]['first_name']) . print_r($committee['User'][1]['first_name']); ?> -->
+							<?php echo ($enrollment_team ? '<li>Enrollment Team: ' . implode(', ', $enrollment_team) . '</li>' : null); ?>
 						</ul>
 						<p class="section_details_edit">
 							<?php echo $this->Html->link('[edit]', array('controller' => 'committees', 'action' => 'edit', $member['Member']['id'], $committee['Committee']['id']), array('class' => 'committee_details_edit_link')) . ' ' . $this->Form->postLink('[delete]', array('controller' => 'committees', 'action' => 'delete', $member['Member']['id'], $committee['Committee']['id']), array('class' => 'section_details_delete_link', 'confirm' => 'Are you sure you want to delete this committee?')); ?>
