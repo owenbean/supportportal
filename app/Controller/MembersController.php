@@ -37,7 +37,7 @@ class MembersController extends AppController {
 	
 	public function add() {
 		$this->loadModel('User');
-		$specialists = $this->User->find('list', array('fields' => array('User.id', 'User.first_name')));
+		$specialists = $this->User->find('list', array('fields' => array('User.id', 'User.first_name'), 'conditions' => array('User.active' => true, 'User.role' => array('site_admin', 'admin'))));
 		$this->set(compact('specialists'));
 		$this->set('title_for_layout', 'Add Member');
 		if ($this->request->is('post')) {
@@ -52,7 +52,7 @@ class MembersController extends AppController {
 	
 	public function edit($id = null) {
 		$this->loadModel('User');
-		$specialists = $this->User->find('list', array('fields' => array('User.id', 'User.first_name')));
+		$specialists = $this->User->find('list', array('fields' => array('User.id', 'User.first_name'), 'conditions' => array('User.active' => true, 'User.role' => array('site_admin', 'admin'))));
 		$this->set(compact('specialists'));
 		if (!$id) {
 			throw new NotFoundException(__('Invalid member'));

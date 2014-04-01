@@ -18,7 +18,7 @@ class CommitteesController extends AppController {
 	
 	public function add($member_id) {
 		$this->loadModel('User');
-		$users = $this->User->find('list', array('fields' => array('User.id', 'User.first_name'), 'order' => 'User.first_name'));
+		$users = $this->User->find('list', array('fields' => array('User.id', 'User.first_name'), 'order' => 'User.first_name', 'conditions' => array('User.role' => array('site_admin', 'admin'))));
 		$this->set(compact('users'));
 		
 		$members = $member_id;
@@ -55,7 +55,7 @@ class CommitteesController extends AppController {
 		
 		if (!$this->request->data) {
 			$this->loadModel('User');
-			$users = $this->User->find('list', array('fields' => array('User.id', 'User.first_name'), 'order' => 'User.first_name'));
+			$users = $this->User->find('list', array('fields' => array('User.id', 'User.first_name'), 'order' => 'User.first_name', 'conditions' => array('User.role' => array('site_admin', 'admin'))));
 			$this->set(compact('users'));
 			
 			$this->request->data = $committee;

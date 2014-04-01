@@ -16,7 +16,6 @@ class UsersController extends AppController {
 		$this->set('title_for_layout', 'Login');
 		if ($this->request->is('post')) {
 			if ($this->Auth->login()) {
-				$this->loadModel('User');
 				$this->User->id = CakeSession::read('Auth.User.id');
 				$this->User->save($this->User->set(array('last_login' => DboSource::expression('NOW()'), 'modified' => false)));
 				return $this->redirect($this->Auth->redirect());
@@ -31,6 +30,10 @@ class UsersController extends AppController {
 	
 	public function index() {
 		$this->set('title_for_layout', 'Home');
+		if (CakeSession::read('Auth.User.active') == 0) {
+			$this->Session->setFlash(__('Your account is inactive'));
+			$this->redirect(array('action' => 'logout'));
+		}
 		
 		$user_id = CakeSession::read('Auth.User.id');
 		$user = $this->User->findById($user_id);
@@ -134,6 +137,32 @@ class UsersController extends AppController {
 			$this->request->data = $this->User->read(null, $id);
 			unset($this->request->data['User']['password']);
 		}
+	}
+	
+	public function activate($id) {
+		if ($this->request->is('get')) {
+			throw new MethodNotAllowedException();
+		}
+		
+		$this->User->id = $id;
+		if ($this->User->save($this->User->set(array('active' => 1)))) {
+			$this->Session->setFlash(__('User activated'));
+			return $this->redirect(array('action' => 'all'));
+		}
+		$this->Session->setFlash(__('Unable to activate user'));
+	}
+	
+	public function inactivate($id) {
+		if ($this->request->is('get')) {
+			throw new MethodNotAllowedException();
+		}
+		
+		$this->User->id = $id;
+		if ($this->User->save($this->User->set(array('active' => 0)))) {
+			$this->Session->setFlash(__('User inactivated'));
+			return $this->redirect(array('action' => 'all'));
+		}
+		$this->Session->setFlash(__('Unable to inactivate user'));
 	}
 	
 	public function delete($id = null) {

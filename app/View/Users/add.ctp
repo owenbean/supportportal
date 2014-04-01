@@ -30,7 +30,7 @@
 			</td></tr>
 			
 			<tr><td>
-				<?php echo $this->Form->input('role', array('options' => array('site_admin' => 'Site Admin', 'admin' => 'Admin'), 'empty' => '', 'label' => 'Role: ')); ?>
+				<?php echo $this->Form->input('role', array('options' => array('site_admin' => 'Site Admin', 'admin' => 'Admin', 'contractor' => 'Contractor'), 'empty' => '', 'label' => 'Role: ')); ?>
 			</td></tr>
 		</tbody>
 		</table>
