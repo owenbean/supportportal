@@ -52,7 +52,9 @@
 							<?php echo ($enrollment_team ? '<li>Enrollment Team: ' . implode(', ', $enrollment_team) . '</li>' : null); ?>
 						</ul>
 						<p class="section_details_edit">
-							<?php echo $this->Html->link('[edit]', array('controller' => 'committees', 'action' => 'edit', $member['Member']['id'], $committee['Committee']['id']), array('class' => 'committee_details_edit_link')) . ' ' . $this->Form->postLink('[delete]', array('controller' => 'committees', 'action' => 'delete', $member['Member']['id'], $committee['Committee']['id']), array('class' => 'section_details_delete_link', 'confirm' => 'Are you sure you want to delete this committee?')); ?>
+							<table class="edit_delete_table"><tbody><tr><td>
+              <?php echo $this->Html->link('[edit]', array('controller' => 'committees', 'action' => 'edit', $member['Member']['id'], $committee['Committee']['id']), array('class' => 'committee_details_edit_link')) . ' ' . $this->Form->postLink('[delete]', array('controller' => 'committees', 'action' => 'delete', $member['Member']['id'], $committee['Committee']['id']), array('class' => 'section_details_delete_link', 'confirm' => 'Are you sure you want to delete this committee?')); ?>
+              </td></td></tbody></table>
 						</p>
 					</div>
 				</div>
@@ -88,7 +90,9 @@
 								<li>Launch Date: <?php echo $smartForm['SmartForm']['launch_date']; ?></li>
 							</ul>
 							<p class="section_details_edit">
+                <table class="edit_delete_table"><tbody><tr><td>
 								<?php echo $this->Html->link('[edit]', array('controller' => 'smartForms', 'action' => 'edit', $member['Member']['id'], $smartForm['SmartForm']['id']), array('class' => 'smart_form_details_edit_link')) . ' ' . $this->Form->postLink('[delete]', array('controller' => 'smartForms', 'action' => 'delete', $member['Member']['id'], $smartForm['SmartForm']['id']), array('class' => 'section_details_delete_link', 'confirm' => 'Are you sure you want to delete this smart form?')); ?>
+                </td></td></tbody></table>
 							</p>
 						</div>
 					</div>

@@ -1,7 +1,7 @@
 <div id="nav_left_side">
 	<div class="nav_text"><?php echo $this->Html->link('Home', array('controller' => 'users', 'action' => 'index')); ?></div>
 	<div class="nav_division"><?php echo $this->Html->image('nav-div.gif') ?></div>
-	<div class="nav_text"><a href="#">Letters</a>
+	<div class="nav_text"><?php echo $this->Html->link('Letters', array('controller' => 'letters', 'action' => 'active')); ?>
 		<ul class="sub_nav_menu">
 			<li><?php echo $this->Html->link('Active', array('controller' => 'letters', 'action' => 'active')); ?></li>
 			<li><?php echo $this->Html->link('New', array('controller' => 'letters', 'action' => 'add')); ?></li>
@@ -9,7 +9,7 @@
 		</ul>
 	</div>
 	<div class="nav_division"><?php echo $this->Html->image('nav-div.gif') ?></div>
-	<div class="nav_text"><a href="#">Members</a>
+	<div class="nav_text"><?php echo $this->Html->link('Members', array('controller' => 'members', 'action' => 'all')); ?>
 		<ul class="sub_nav_menu">
 			<li id="orgSearchLink"><a href="#">Search</li>
 			<li><?php echo $this->Html->link('Full List', array('controller' => 'members', 'action' => 'all')); ?></li>
@@ -17,7 +17,7 @@
 		</ul>
 	</div>
 	<div class="nav_division"><?php echo $this->Html->image('nav-div.gif') ?></div>
-	<div class="nav_text"><a href="#">Administrators</a>
+	<div class="nav_text"><?php echo $this->Html->link('Administrators', array('controller' => 'admins', 'action' => 'all')); ?>
 		<ul class="sub_nav_menu">
 			<li id="adminSearchLink"><a href="#">Search</a></li>
 			<li><?php echo $this->Html->link('Full List', array('controller' => 'admins', 'action' => 'all')); ?></li>
@@ -37,16 +37,14 @@
 			<li><?php echo $this->Html->link('Smart Forms', array('controller' => 'smartForms', 'action' => 'index')); ?></li>
 		</ul>
 	</div>
-	<?php
-		if ($this->Session->read('Auth.User.role') == 'site_admin') {
-			echo "<div class='nav_division'>" . $this->Html->image('nav-div.gif') . "</div>
-				<div class='nav_text'><a href='#'>Site Admin</a>
-					<ul class='sub_nav_menu'>
-						<li>" . $this->Html->link('System Admin List', array('controller' => 'users', 'action' => 'all')) . "</li>
+	<?php if ($this->Session->read('Auth.User.role') == 'site_admin') { ?>
+			<div class="nav_division"><?php echo $this->Html->image('nav-div.gif'); ?></div>
+				<div class="nav_text"><?php echo $this->Html->link('Site Admin', array('controller' => 'users', 'action' => 'all')); ?>
+					<ul class="sub_nav_menu">
+						<li><?php echo $this->Html->link('System Admin List', array('controller' => 'users', 'action' => 'all')); ?></li>
 					</ul>
-				</div>";
-		}
-	?>
+				</div>
+		<?php } ?>
 </div>
 <div id="nav_right_side">
 	<div class="nav_text" id="nav_username_text"><a href="#"><?php echo $this->Session->read('Auth.User.first_name'); ?></a></div>

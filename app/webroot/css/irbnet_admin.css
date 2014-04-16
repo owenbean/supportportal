@@ -803,7 +803,7 @@ section {
 }
 
 
-/******************* SUB PAGES - ORGANIZATION DETAILS PAGE ******************/
+/******************* SUB PAGES - MEMBER DETAILS PAGE ******************/
 
 
 #org_details_section {
@@ -961,8 +961,11 @@ section {
 	color: red;
 }
 
+.edit_delete_table a {
+  font-size: 10px;
+}
 
-/******************* SUB PAGES - ORGANIZATION ADD/EDIT PAGE ******************/
+/******************* SUB PAGES - MEMBER ADD/EDIT PAGE ******************/
 
 
 #form_table td {
