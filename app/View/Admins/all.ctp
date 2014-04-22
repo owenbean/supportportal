@@ -1,4 +1,4 @@
-<h1 id="header_text">National Research Network Admnistrators</h1>
+<h1 id="header_text">National Research Network Administrators</h1>
 <div id="admin_list_table">
 	<table>
 		<tr>
