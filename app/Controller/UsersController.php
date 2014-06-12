@@ -7,7 +7,7 @@ class UsersController extends AppController {
 		parent::beforeFilter();
 		$this->Auth->allow('logout', 'login');
 	}
-	
+
 	public function login() {
 		if (CakeSession::read('Auth.User.id')) {
 			$this->redirect($this->Auth->redirect());

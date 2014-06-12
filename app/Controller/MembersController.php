@@ -2,15 +2,24 @@
 class MembersController extends AppController {
 	public function all($options = null) {
 		if (!$options) {
-			$this->set('members', $this->Member->find('all', array('conditions' => array('Member.active' => true), 'order' => array('Member.full_name'))));
+			if (isset($_GET['order'])) {
+				$order = $_GET['order'];
+				$this->set('members', $this->Member->find('all', array('conditions' => array('Member.active' => true), 'order' => array("Member.$order"))));
+			} else {
+				$this->set('members', $this->Member->find('all', array('conditions' => array('Member.active' => true), 'order' => array('Member.full_name'))));
+			}
+			$this->set('add_features', false);
 		} else {
 			$this->set('members', $this->Member->find('all', array('conditions' => array("Member.$options" => true, 'Member.active' => true), 'order' => array('Member.full_name'))));
+			//this disables sortable column headers
+			$this->set('add_features', true);
 		}
 	}
 	
 	public function search($keyword = null) {
 		$keyword = implode($this->request->data);
-		$members = $this->Member->find('all', array('conditions' => array('OR' => array(array('Member.full_name LIKE' => '%' . $keyword . '%'), array('Member.short_name LIKE' => '%' . $keyword . '%')))));
+		$members = $this->Member->find('all', array('conditions' => array('OR' => array(array('Member.full_name LIKE' => '%' . $keyword . '%'), array('Member.short_name LIKE' => '%' . $keyword . '%'))), 'order' => array('Member.full_name')));
+		//this redirects the page to the View page for the member returned by the search
 		if (count($members) == 1) {
 			$member = $this->Member->find('first', array('conditions' => array('OR' => array(array('Member.full_name LIKE' => '%' . $keyword . '%'), array('Member.short_name LIKE' => '%' . $keyword . '%')))));
 			return $this->redirect(array('action' => 'view', $member['Member']['id']));
