@@ -1052,18 +1052,6 @@ section {
 	padding-top: 3px;
 }
 
-#admin_list_table td:first-child {
-	width: 30%;
-}
-
-#admin_list_table td:nth-child(2) {
-	width: 35%;
-}
-
-#admin_list_table td:nth-child(3) {
-	width: 35%;
-}
-
 #admin_list_table a {
 	text-decoration: none;
 	color: black;

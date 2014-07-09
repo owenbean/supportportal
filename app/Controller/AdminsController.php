@@ -2,9 +2,9 @@
 class AdminsController extends AppController {
 	public function all($options = null) {
 		if (!$options) {
-			$this->set('admins', $this->Admin->find('all', array('conditions' => array('Admin.active' => true))));
+			$this->set('admins', $this->Admin->find('all', array('conditions' => array('Admin.active' => true), 'order' => array('Member.full_name'))));
 		} else {
-			$this->set('admins', $this->Admin->find('all', array('conditions' => array('Admin.active' => true, "Admin.$options" => true))));
+			$this->set('admins', $this->Admin->find('all', array('conditions' => array('Admin.active' => true, "Admin.$options" => true), 'order' => array('Member.full_name'))));
 		}
 	}
 	
