@@ -34,7 +34,7 @@ class AdminsController extends AppController {
 	public function add($member = null) {
 		$this->loadModel('Member');
 		if (!$member) {
-			$members = $this->Member->find('list', array('fields' => array('Member.id', 'Member.full_name')));
+			$members = $this->Member->find('list', array('fields' => array('Member.id', 'Member.full_name'), 'conditions' => array('Member.active' => 1)));
 			$this->set(compact('members'));
 		} else {
 			$members = $this->Member->find('list', array('fields' => array('Member.id', 'Member.full_name'), 'conditions' => array('Member.id' => $member)));
@@ -45,7 +45,7 @@ class AdminsController extends AppController {
 			$this->Admin->create();
 			if ($this->Admin->save($this->request->data)) {
 				$this->Session->setFlash(__('Administrator successfully created'));
-				return $this->redirect(array('action' => 'all'));
+				return $this->redirect(array('action' => 'view', $this->Admin->id));
 			}
 			$this->Session->setFlash(__('Unable to save administrator'));
 		}

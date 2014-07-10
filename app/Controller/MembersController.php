@@ -49,11 +49,12 @@ class MembersController extends AppController {
 		$specialists = $this->User->find('list', array('fields' => array('User.id', 'User.first_name'), 'conditions' => array('User.active' => true, 'User.role' => array('site_admin', 'admin'))));
 		$this->set(compact('specialists'));
 		$this->set('title_for_layout', 'Add Member');
+		
 		if ($this->request->is('post')) {
 			$this->Member->create();
 			if ($this->Member->save($this->request->data)) {
 				$this->Session->setFlash(__('Member successfully added'));
-				return $this->redirect(array('action' => 'all'));
+				return $this->redirect(array('action' => 'view', $this->Member->id));
 			}
 			$this->Session->setFlash(__('Unable to add new member'));
 		}
