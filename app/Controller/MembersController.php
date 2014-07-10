@@ -94,6 +94,13 @@ class MembersController extends AppController {
 		
 		$this->Member->id = $id;
 		if ($this->Member->save($this->Member->set(array('active' => 0)))) {
+			//$admins = $this->Member->Admin->find('all', array('conditions' => array('Admin.member_id' => $id)));
+			//foreach ($admins as $admin):
+				//$admin['Admin']['active'] = 0;
+			//endforeach;
+			//$this->set('admins', $this->Member->Admin->find('all', array('conditions' => array('Admin.member_id' => $id))));
+			//$this->Member->Admin->save($this->Member->Admin->set(array('active' => 0)));
+			$this->Member->Admin->updateAll(array('Admin.active' => 0), array('Admin.member_id' => $id));
 			$this->Session->setFlash(__('Member retired'));
 			return $this->redirect(array('action' => 'index'));
 		}
