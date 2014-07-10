@@ -896,7 +896,7 @@ section {
 	font-style: italic;
 }
 
-#org_admin_section {
+.org_admin_section {
 	clear: both;
 	width: 100%;
 	padding: 0px 5px 10px;
@@ -904,27 +904,27 @@ section {
 	background: linear-gradient(to bottom, #cccccc, white);
 }
 
-#org_admin_section h2 {
+.org_admin_section h2 {
 	margin-top: 0px;
 	padding-top: 5px;
 	border-bottom: 1px solid #a6a6a6;
 }
 
-#org_admin_list {
+.org_admin_list {
 	border-collapse: collapse;
 	margin-top: 10px;
 }
 
-#org_admin_list a {
+.org_admin_list a {
 	text-decoration: none;
 	color: black;
 }
 
-#org_admin_list td, #org_admin_list th {
+.org_admin_list td, .org_admin_list th {
 	border: 1px solid #a6a6a6;
 }
 
-#org_admin_list th {
+.org_admin_list th {
 	text-align: left;
 	padding: 0 10px;
 	color: #2d2d2d;
@@ -932,18 +932,23 @@ section {
 	font-size: 15px;
 }
 
-#org_admin_list th:nth-child(1) {
+.org_admin_list th:nth-child(1) {
 	padding: 0 10px 0 3px;
 }
 
-#org_admin_list td {
+.org_admin_list td {
 	text-align: center;
 	height: 22px;
 }
 
-#org_admin_list td:nth-child(1) {
+.org_admin_list td:nth-child(1) {
 	text-align: left;
 	padding: 0 10px 0 3px;
+}
+
+#retired_admin_section {
+	display: none;
+	margin-top: 20px;
 }
 
 .Live {

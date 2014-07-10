@@ -103,6 +103,11 @@ $(document).ready(function() {
 	$('.date_picker').datepicker({
 		dateFormat: 'yy-mm-dd'
 	});
+
+	$('#retired_admin_link').on('click', function(e) {
+		e.preventDefault();
+		$('#retired_admin_section').slideToggle('fast');
+	})
 	
 	otherAdmin();
 //	$("#submitted_by").on('click', function() {

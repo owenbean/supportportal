@@ -132,10 +132,10 @@
 		</div>
 	</div>
 
-	<div id="org_admin_section">
+	<div class="org_admin_section">
 		<h2>Member Administrators:</h2>
 		
-		<table id="org_admin_list">
+		<table class="org_admin_list">
 		<tbody>
 			<tr>
 				<th>Name</th>
@@ -144,11 +144,18 @@
 				<th>Support Outreach</th>
 				<th>Billing Coordinator</th>
 			</tr>
-			<?php if (!$admins) { ?>
+			<?php
+				if (!$admins) {
+			?>
 			<tr>
 				<td colspan="5" class="message_feedback">No administrators to display</td>
 			</tr>
-			<?php } else { foreach ($admins as $admin): ?>
+			<?php
+				} else {
+					$num_admin = 0;
+					foreach ($admins as $admin):
+						if ($admin['Admin']['active']) {
+			?>
 			<tr>
 				<td><?php echo $this->Html->link(h($admin['Admin']['first_name']) . ' ' . h($admin['Admin']['last_name']), array('controller' => 'admins', 'action' => 'view', $admin['Admin']['id'])); ?></td>
 				<td><?php echo ( $admin['Admin']['contract_lead'] ? "&#x2713;" : null ) ?></td>
@@ -157,14 +164,76 @@
 				<td><?php echo ( $admin['Admin']['billing_coord'] ? "&#x2713;" : null )  ?></td>
 			</tr>
 			<?php
-				endforeach;
-				unset($admin);
+							$num_admin += 1;
+						}
+					endforeach;
+					if ($num_admin == 0) {
+			?>
+			<tr>
+				<td colspan="5" class="message_feedback">No administrators to display</td>
+			</tr>
+			<?php
+
+					}
+					unset($admin);
 				}
 			?>
 		</tbody>
 		</table>
 		
-		<p><?php echo $this->Html->link('Add new administrator', array('controller' => 'admins', 'action' => 'add', $member['Member']['id'])); ?></p>
+		<p><?php echo $this->Html->link('Add new administrator', array('controller' => 'admins', 'action' => 'add', $member['Member']['id'])); ?> <?php echo $this->Html->link('Show/Hide Retired Administrators', '#', array('id' => 'retired_admin_link')); ?></p>
+		
+	</div>
+	<div class="org_admin_section" id="retired_admin_section">
+
+		<h2>Retired Member Administrators:</h2>
+		
+		<table class="org_admin_list">
+		<tbody>
+			<tr>
+				<th>Name</th>
+				<th>Contract Lead</th>
+				<th>Feature Announcement</th>
+				<th>Support Outreach</th>
+				<th>Billing Coordinator</th>
+			</tr>
+			<?php
+				if (!$admins) {
+			?>
+			<tr>
+				<td colspan="5" class="message_feedback">No administrators to display</td>
+			</tr>
+			<?php
+				} else {
+					$num_retired_admin = 0;
+					foreach ($admins as $admin):
+						if (!$admin['Admin']['active']) {
+			?>
+			<tr>
+				<td><?php echo $this->Html->link(h($admin['Admin']['first_name']) . ' ' . h($admin['Admin']['last_name']), array('controller' => 'admins', 'action' => 'view', $admin['Admin']['id'])); ?></td>
+				<td><?php echo ( $admin['Admin']['contract_lead'] ? "&#x2713;" : null ) ?></td>
+				<td><?php echo ( $admin['Admin']['feature_announcement_list'] ? "&#x2713;" : null )  ?></td>
+				<td><?php echo ( $admin['Admin']['support_outreach_list'] ? "&#x2713;" : null )  ?></td>
+				<td><?php echo ( $admin['Admin']['billing_coord'] ? "&#x2713;" : null )  ?></td>
+			</tr>
+			<?php
+							$num_retired_admin += 1;
+						}
+					endforeach;
+					if ($num_retired_admin == 0) {
+			?>
+			<tr>
+				<td colspan="5" class="message_feedback">No administrators to display</td>
+			</tr>
+			<?php
+
+					}
+					unset($admin);
+				}
+			?>
+		</tbody>
+		</table>
+		
 	</div>
 
 </div>

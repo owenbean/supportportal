@@ -41,7 +41,7 @@ class MembersController extends AppController {
 		$this->set('title_for_layout', $member['Member']['short_name']);
 		$this->set('committees', $this->Member->Committee->find('all', array('conditions' => array('Committee.member_id' => $id))));
 		$this->set('smartForms', $this->Member->SmartForm->find('all', array('conditions' => array('SmartForm.member_id' => $id))));
-		$this->set('admins', $this->Member->Admin->find('all', array('conditions' => array('Admin.active' => true, 'Admin.member_id' => $id))));
+		$this->set('admins', $this->Member->Admin->find('all', array('conditions' => array('Admin.member_id' => $id))));
 	}
 	
 	public function add() {
