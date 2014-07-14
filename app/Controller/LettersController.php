@@ -148,4 +148,28 @@ class LettersController extends AppController {
 		$Email->viewVars(array('user_name' => $user_name, 'member_name' => $member_name, 'date_received' => $date_received, 'target_date' => $target_date));
 		$Email->send();
 	}
+
+	public function lettersDueToday() {
+		App::uses('CakeEmail', 'Network/Email');
+		$letters = $this->Letter->find('all', array('conditions' => array('Letter.target_date' => date('Y-m-d'))));
+		foreach($letters as $letter):
+	        $user_name = $letter['User']['first_name'];
+	    	$user_email = $letter['User']['email_address'];
+			$member_name = $letter['Member']['full_name'];
+			$member_short_name = $letter['Member']['short_name'];
+			$date_received = $letter['Letter']['date_received'];
+			$target_date = $letter['Letter']['target_date'];
+
+			$Email = new CakeEmail('gmail');
+			$Email->from(array('letters@irbnet.org' => 'IRBNet Letter Team'));
+			$Email->to($user_email);
+			$Email->cc('support@irbnet.org');
+			$Email->subject('Letter Request Due - ' . $member_short_name);
+			$Email->template('letters_due');
+			$Email->emailFormat('html');
+			$Email->viewVars(array('user_name' => $user_name, 'member_name' => $member_name, 'date_received' => $date_received, 'target_date' => $target_date));
+			$Email->send();			
+		endforeach;
+		unset($letter);
+	}
 }
