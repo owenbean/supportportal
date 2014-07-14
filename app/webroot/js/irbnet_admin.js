@@ -7,7 +7,7 @@ $(document).ready(function() {
 	//controll for new nav
 	$(".nav_text").hover(function(e) {
 		e.preventDefault();
-		$(this).find(".sub_nav_menu").slideToggle(200);
+		$(this).find(".sub_nav_menu").slideToggle(50);
 	});
 	
 	//same as above but for right side
