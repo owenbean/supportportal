@@ -151,6 +151,11 @@ class LettersController extends AppController {
 
 	public function lettersDueToday() {
 		App::uses('CakeEmail', 'Network/Email');
+		
+		if ($this->request->is('get')) {
+			throw new MethodNotAllowedException();
+		}
+
 		$letters = $this->Letter->find('all', array('conditions' => array('Letter.target_date' => date('Y-m-d'))));
 		foreach($letters as $letter):
 	        $user_name = $letter['User']['first_name'];
@@ -160,15 +165,26 @@ class LettersController extends AppController {
 			$date_received = $letter['Letter']['date_received'];
 			$target_date = $letter['Letter']['target_date'];
 
-			$Email = new CakeEmail('gmail');
-			$Email->from(array('letters@irbnet.org' => 'IRBNet Letter Team'));
-			$Email->to($user_email);
-			$Email->cc('support@irbnet.org');
-			$Email->subject('Letter Request Due - ' . $member_short_name);
-			$Email->template('letters_due');
-			$Email->emailFormat('html');
-			$Email->viewVars(array('user_name' => $user_name, 'member_name' => $member_name, 'date_received' => $date_received, 'target_date' => $target_date));
-			$Email->send();			
+			if($user_name) {
+				$Email = new CakeEmail('gmail');
+				$Email->from(array('letters@irbnet.org' => 'IRBNet Letter Team'));
+				$Email->to($user_email);
+				$Email->cc('support@irbnet.org');
+				$Email->subject('Letter Request Due - ' . $member_short_name);
+				$Email->template('claimed_letters_due');
+				$Email->emailFormat('html');
+				$Email->viewVars(array('user_name' => $user_name, 'member_name' => $member_name, 'date_received' => $date_received, 'target_date' => $target_date));
+				$Email->send();
+			} else {
+				$Email = new CakeEmail('gmail');
+				$Email->from(array('letters@irbnet.org' => 'IRBNet Letter Team'));
+				$Email->to('support@irbnet.org');
+				$Email->subject('Unclaimed Letter Request Due - ' . $member_short_name);
+				$Email->template('unclaimed_letters_due');
+				$Email->emailFormat('html');
+				$Email->viewVars(array('user_name' => 'Support', 'member_name' => $member_name, 'date_received' => $date_received, 'target_date' => $target_date));
+				$Email->send();				
+			}
 		endforeach;
 		unset($letter);
 	}

@@ -1,6 +1,6 @@
 <p><?php echo $user_name; ?>,</p>
 
-<p>This is a reminder that the below letter request is due today. If you are unable to complete the request, please let Support know so they will re-assign it. Thank you!</p>
+<p>The below letter request is due today and is currently unclaimed. Please identify a member of the Letters Team to manage this request. Thank you!</p>
 
 <p>Member: <?php echo $member_name; ?></p>
 
