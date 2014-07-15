@@ -19,7 +19,7 @@ class InteractionsController extends AppController {
 		}
 	}
 	
-	public function edit($member_id, $id = null) {
+	public function edit($id) {
 		if (!$id) {
 			throw new NotFoundException(__('Invalid interaction'));
 		}
@@ -33,7 +33,7 @@ class InteractionsController extends AppController {
 			$this->Interaction->id = $id;
 			if ($this->Interaction->save($this->request->data)) {
 				$this->Session->setFlash(__('Interaction successfully updated'));
-				return $this->redirect(array('controller' => 'members', 'action' => 'view', $member_id));
+				return $this->redirect(array('action' => 'view', $id));
 			}
 			$this->Session->setFlash(__('Unable to update interaction'));
 		}

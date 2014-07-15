@@ -257,7 +257,7 @@
 				<td><?php echo $interaction['Interaction']['date']; ?></td>
 				<td><?php echo $interaction['Interaction']['interaction_type']; ?></td>
 				<td><?php echo $interaction['Interaction']['purpose']; ?></td>
-				<td><?php echo $this->Html->link($this->Html->image('editPencil.gif'), array('controller' => 'interactions', 'action' => 'edit', $member['Member']['id'], $interaction['Interaction']['id']), array('escapeTitle' => false)); ?></td>
+				<td><?php echo $this->Html->link($this->Html->image('editPencil.gif'), array('controller' => 'interactions', 'action' => 'edit', $interaction['Interaction']['id']), array('escapeTitle' => false)); ?></td>
 				<td><?php echo $this->Html->link($this->Html->image('btn_color_search.png', array('height' => '16', 'width' => '16')), array('controller' => 'interactions', 'action' => 'view', $interaction['Interaction']['id']), array('escapeTitle' => false)); ?></td>
 				<td><?php echo $this->Form->postLink($this->Html->image('deleteX.gif'), array('controller' => 'interactions', 'action' => 'delete', $member['Member']['id'], $interaction['Interaction']['id']), array('escapeTitle' => false, 'confirm' => 'Are you sure you want to Delete this interaction?')); ?></td>
 			</tr>
