@@ -10,6 +10,11 @@ a:hover {
 	text-decoration: none;
 }
 
+h1 a {
+	text-decoration: none;
+	color: #FF0000;
+}
+
 body {
 	background: #fff;
 	margin: 0;
@@ -1036,6 +1041,11 @@ section {
 
 #org_interactions_table td:nth-child(7) {
 	border-left: none;
+}
+
+/* links below "All Interactions" table */
+#all_interactions_actions {
+	padding-left: 90px;
 }
 
 /******************* SUB PAGES - MEMBER ADD/EDIT PAGE ******************/

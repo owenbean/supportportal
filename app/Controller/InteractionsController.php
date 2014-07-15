@@ -55,6 +55,15 @@ class InteractionsController extends AppController {
 		}
 		$this->set('interaction', $interaction);
 	}
+
+	public function all($member_id = null) {
+		if(!$member_id) {
+			throw new NotFoundException(__('Invalid member'));
+		}
+		$this->loadModel('Member');
+		$this->set('member', $this->Member->findById($member_id));
+		$this->set('interactions', $this->Interaction->find('all', array('conditions' => array('Interaction.member_id' => $member_id), 'order' => 'Interaction.date')));
+	}
 	
 	public function delete($member_id, $id) {
 		if ($this->request->is('get')) {

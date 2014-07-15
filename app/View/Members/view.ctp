@@ -237,7 +237,7 @@
 	</div>
 	
 	<div id="org_interactions_section">
-		<h2>Member Interactions:</h2>
+		<h2>Last 5 Member Interactions:</h2>
 		
 		<table id="org_interactions_table">
 		<tbody>
@@ -269,7 +269,7 @@
 			?>
 		</tbody>
 		</table>
-		<p><?php echo $this->Html->link('Add an interaction', array('controller' => 'interactions', 'action' => 'add', $member['Member']['id'])); ?></p>
+		<p><?php echo $this->Html->link('Add an interaction', array('controller' => 'interactions', 'action' => 'add', $member['Member']['id'])); ?> <?php echo $this->Html->link('View all interactions', array('controller' => 'interactions', 'action' => 'all', $member['Member']['id'])); ?></p>
 	</div>
 
 </div>
