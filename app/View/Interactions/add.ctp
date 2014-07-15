@@ -52,11 +52,10 @@
 				<?php echo $this->Form->input('purpose', array(
 						'label' => 'Purpose: ',
 						'options' => array(
-							'Support' => 'Support Issue / Request',
-							'Training Session' => 'Training Session',
-							'Support Refresher' => 'Support Refresher',
 							'Checkup' => 'Checkup',
 							'General Check-in' => 'General Check-in',
+							'Re-Training Session' => 'Re-Training Session',
+							'Support Session' => 'Support Session',
 							'Other' => 'Other'
 						),
 						'empty' => ''

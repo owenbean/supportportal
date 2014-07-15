@@ -13,7 +13,7 @@ $(document).ready(function() {
 	//same as above but for right side
 	$("#nav_right_side").hover(function(e) {
 		e.preventDefault();
-		$("#right_sub_nav_menu").slideToggle(200);
+		$("#right_sub_nav_menu").slideToggle(50);
 	});
 	
 	//set width of dropdown menus
