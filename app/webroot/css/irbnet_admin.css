@@ -743,7 +743,7 @@ section {
 }
 
 
-/******************* SUB PAGES - ORGANIZATION LIST PAGE ******************/
+/******************* SUB PAGES - MEMBER LIST PAGE ******************/
 
 
 #org_list_table {
@@ -901,7 +901,8 @@ section {
 	width: 100%;
 	padding: 0px 5px 10px;
 	font-size: 15px;
-	background: linear-gradient(to bottom, #cccccc, white);
+	/* background: linear-gradient(to bottom, #cccccc, white); */
+	background: #e6e6e6;
 }
 
 .org_admin_section h2 {
@@ -976,7 +977,8 @@ section {
 	padding: 0px 5px 10px;
 	margin-top: 20px;
 	font-size: 15px;
-	background: linear-gradient(to bottom, #cccccc, white);
+	/* background: linear-gradient(to bottom, #cccccc, white); */
+	background: #e6e6e6;
 }
 
 #org_interactions_section h2 {
@@ -996,6 +998,7 @@ section {
 }
 
 #org_interactions_table td, #org_interactions_table th {
+	border: 1px solid #a6a6a6;
 }
 
 #org_interactions_table th {
@@ -1021,6 +1024,19 @@ section {
 	padding: 0 10px 0 3px;
 }
 
+/* next the sections remove border between "action" buttons in Interactions table */
+#org_interactions_table td:nth-child(5) {
+	border-right: none;
+}
+
+#org_interactions_table td:nth-child(6) {
+	border-right: none;
+	border-left: none;
+}
+
+#org_interactions_table td:nth-child(7) {
+	border-left: none;
+}
 
 /******************* SUB PAGES - MEMBER ADD/EDIT PAGE ******************/
 

@@ -246,10 +246,11 @@
 				<th>Date</th>
 				<th>Type</th>
 				<th>Purpose</th>
+				<th colspan="3">Action</th>
 			</tr>
 			<?php if (!$interactions) { ?>
 			<tr>
-				<td colspan="4" class"message_feedback">No interactions to display</td>
+				<td colspan="7" class"message_feedback">No interactions to display</td>
 			</tr>
 			<?php } else { foreach ($interactions as $interaction): ?>
 			<tr>
