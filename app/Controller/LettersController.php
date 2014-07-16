@@ -4,6 +4,11 @@ App::uses('DboSource', 'Model/DataSource');
 class LettersController extends AppController {
 	public $components = array('RequestHandler');
 	
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allow('lettersDueToday');
+	}
+
 	public function active() {
 		$this->set('letters', $this->Letter->find('all', array('conditions' => array('Letter.active' => true), 'order' => 'Letter.target_date')));
 	}
@@ -149,39 +154,44 @@ class LettersController extends AppController {
 		$Email->send();
 	}
 
+	//this function runs every day via a Cron Job and send an email for each active letter request due that day
 	public function lettersDueToday() {
 		App::uses('CakeEmail', 'Network/Email');
 		
-		$letters = $this->Letter->find('all', array('conditions' => array('Letter.target_date' => date('Y-m-d'))));
-		foreach($letters as $letter):
-	        $user_name = $letter['User']['first_name'];
-	    	$user_email = $letter['User']['email_address'];
-			$member_name = $letter['Member']['full_name'];
-			$member_short_name = $letter['Member']['short_name'];
-			$date_received = $letter['Letter']['date_received'];
-			$target_date = $letter['Letter']['target_date'];
+		$letters = $this->Letter->find('all', array('conditions' => array('Letter.target_date' => date('Y-m-d'), 'Letter.active' => true)));
+		$this->set('letters', $letters);
 
-			if($user_name) {
-				$Email = new CakeEmail('gmail');
-				$Email->from(array('letters@irbnet.org' => 'IRBNet Letter Team'));
-				$Email->to($user_email);
-				$Email->cc('support@irbnet.org');
-				$Email->subject('Letter Request Due - ' . $member_short_name);
-				$Email->template('claimed_letters_due');
-				$Email->emailFormat('html');
-				$Email->viewVars(array('user_name' => $user_name, 'member_name' => $member_name, 'date_received' => $date_received, 'target_date' => $target_date));
-				$Email->send();
-			} else {
-				$Email = new CakeEmail('gmail');
-				$Email->from(array('letters@irbnet.org' => 'IRBNet Letter Team'));
-				$Email->to('support@irbnet.org');
-				$Email->subject('Unclaimed Letter Request Due - ' . $member_short_name);
-				$Email->template('unclaimed_letters_due');
-				$Email->emailFormat('html');
-				$Email->viewVars(array('user_name' => 'Support', 'member_name' => $member_name, 'date_received' => $date_received, 'target_date' => $target_date));
-				$Email->send();				
-			}
-		endforeach;
-		unset($letter);
+		if($this->request->is('post')) {
+			foreach($letters as $letter):
+		        $user_name = $letter['User']['first_name'];
+		    	$user_email = $letter['User']['email_address'];
+				$member_name = $letter['Member']['full_name'];
+				$member_short_name = $letter['Member']['short_name'];
+				$date_received = $letter['Letter']['date_received'];
+				$target_date = $letter['Letter']['target_date'];
+
+				if($user_name) {
+					$Email = new CakeEmail('gmail');
+					$Email->from(array('letters@irbnet.org' => 'IRBNet Letter Team'));
+					$Email->to($user_email);
+					$Email->cc('support@irbnet.org');
+					$Email->subject('Letter Request Due - ' . $member_short_name);
+					$Email->template('claimed_letters_due');
+					$Email->emailFormat('html');
+					$Email->viewVars(array('user_name' => $user_name, 'member_name' => $member_name, 'date_received' => $date_received, 'target_date' => $target_date));
+					$Email->send();
+				} else {
+					$Email = new CakeEmail('gmail');
+					$Email->from(array('letters@irbnet.org' => 'IRBNet Letter Team'));
+					$Email->to('support@irbnet.org');
+					$Email->subject('Unclaimed Letter Request Due - ' . $member_short_name);
+					$Email->template('unclaimed_letters_due');
+					$Email->emailFormat('html');
+					$Email->viewVars(array('user_name' => 'Support', 'member_name' => $member_name, 'date_received' => $date_received, 'target_date' => $target_date));
+					$Email->send();				
+				}
+			endforeach;
+			unset($letter);
+		}
 	}
 }
