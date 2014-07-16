@@ -152,10 +152,6 @@ class LettersController extends AppController {
 	public function lettersDueToday() {
 		App::uses('CakeEmail', 'Network/Email');
 		
-		if ($this->request->is('get')) {
-			throw new MethodNotAllowedException();
-		}
-
 		$letters = $this->Letter->find('all', array('conditions' => array('Letter.target_date' => date('Y-m-d'))));
 		foreach($letters as $letter):
 	        $user_name = $letter['User']['first_name'];
