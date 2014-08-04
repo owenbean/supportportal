@@ -15,7 +15,7 @@
 	<tr>
 		<td><?php echo $this->Form->postLink(h($user['User']['first_name']) . ' ' . h($user['User']['last_name']), array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?></td>
 		<td><?php echo h($user['User']['role']); ?></td>
-		<td><?php echo ($user['User']['active'] ? $this->Form->postLink('Active', array('action' => 'inactivate', $user['User']['id'])) : $this->Form->postLink('Inactive', array('action' => 'activate', $user['User']['id']))); ?></td>
+		<td><?php echo ($user['User']['active'] ? $this->Form->postLink('Active', array('action' => 'inactivate', $user['User']['id']), array('confirm' => 'Are you sure you want to deactivate this user?')) : $this->Form->postLink('Inactive', array('action' => 'activate', $user['User']['id']), array('confirm' => 'Are you sure you want to activate this user?'))); ?></td>
 		<td><?php echo ($user['User']['last_login'] ? $user['User']['last_login'] : "Never"); ?></td>
 	</tr>
 	<?php
