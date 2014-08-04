@@ -133,12 +133,18 @@ class LettersController extends AppController {
 	public function lettersCompleteEmail($letter_id) {
 		App::uses('CakeEmail', 'Network/Email');
         $letter = $this->Letter->find('first', array('conditions' => array('Letter.id' => $letter_id)));
+
+		//load Users and find Support Desk account, for email purposes
+		$this->loadModel('User');
+        $support = $this->User->find('first', array('conditions' => array('User.username' => 'support')));
+        
         if ($letter === false) {
             debug(__METHOD__." failed to retrieve User data for user.id: {$user_id}");
             return false;
         }
 		
         $user_name = $letter['User']['first_name'];
+        $support_email_address = $support['User']['email_address'];
 		$member_name = $letter['Member']['full_name'];
 		$member_short_name = $letter['Member']['short_name'];
 		$date_received = $letter['Letter']['date_received'];
@@ -146,7 +152,7 @@ class LettersController extends AppController {
 
 		$Email = new CakeEmail('gmail');
 		$Email->from(array('letters@irbnet.org' => 'IRBNet Letter Team'));
-		$Email->to('support@irbnet.org');
+		$Email->to($support_email_address);
 		$Email->subject('Letter Request Completed - ' . $member_short_name);
 		$Email->template('letters_complete');
 		$Email->emailFormat('html');
@@ -159,11 +165,17 @@ class LettersController extends AppController {
 		App::uses('CakeEmail', 'Network/Email');
 		
 		$letters = $this->Letter->find('all', array('conditions' => array('Letter.target_date' => date('Y-m-d'), 'Letter.active' => true)));
+		
+		//load Users and find Support Desk account, for email purposes
+		$this->loadModel('User');
+        $support = $this->User->find('first', array('conditions' => array('User.username' => 'support')));
+		
 		$this->set('letters', $letters);
 
 		if($this->request->is('post')) {
 			foreach($letters as $letter):
 		        $user_name = $letter['User']['first_name'];
+        		$support_email_address = $support['User']['email_address'];
 		    	$user_email = $letter['User']['email_address'];
 				$member_name = $letter['Member']['full_name'];
 				$member_short_name = $letter['Member']['short_name'];
@@ -174,7 +186,7 @@ class LettersController extends AppController {
 					$Email = new CakeEmail('gmail');
 					$Email->from(array('letters@irbnet.org' => 'IRBNet Letter Team'));
 					$Email->to($user_email);
-					$Email->cc('support@irbnet.org');
+					$Email->cc($support_email_address);
 					$Email->subject('Letter Request Due - ' . $member_short_name);
 					$Email->template('claimed_letters_due');
 					$Email->emailFormat('html');
@@ -183,7 +195,7 @@ class LettersController extends AppController {
 				} else {
 					$Email = new CakeEmail('gmail');
 					$Email->from(array('letters@irbnet.org' => 'IRBNet Letter Team'));
-					$Email->to('support@irbnet.org');
+					$Email->to($support_email_address);
 					$Email->subject('Unclaimed Letter Request Due - ' . $member_short_name);
 					$Email->template('unclaimed_letters_due');
 					$Email->emailFormat('html');
