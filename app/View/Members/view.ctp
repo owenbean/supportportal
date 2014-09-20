@@ -128,7 +128,7 @@
 			
 		<div class="org_profile_details" id="org_comments_section">
 			<h2>Organization Comments:</h2>
-			<p><?php $org_comments = h($member['Member']['comments']); echo ($org_comments == null ? "<em>None</em>" : $org_comments) ?></p>
+			<p><?php $org_comments = h($member['Member']['comments']); echo ($org_comments == null ? "<em>None</em>" : nl2br($org_comments)) ?></p>
 		</div>
 	</div>
 
