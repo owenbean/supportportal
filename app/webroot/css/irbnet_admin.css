@@ -641,6 +641,11 @@ section {
 	text-align: center;
 }
 
+.claim_link a {
+	color: blue;
+	text-decoration: none;
+}
+
 
 /******************* SUB PAGES - LETTER REQUEST HISTORY ******************/
 

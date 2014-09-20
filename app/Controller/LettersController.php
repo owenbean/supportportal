@@ -36,6 +36,8 @@ class LettersController extends AppController {
 		if (!$letter) {
 			throw new NotFoundException(__('Invalid letter request'));
 		}
+
+		$this->set('user_id', CakeSession::read('Auth.User.id'));
 		$this->set('letter', $letter);
 	}
 	
@@ -103,6 +105,20 @@ class LettersController extends AppController {
 			return $this->redirect(array('action' => 'active'));
 		}
 		$this->Session->setFlash(__('Unable to claim letter request'));
+	}
+	
+	public function unclaim($id) {
+		if (!$id) {
+			throw new NotFoundException(__('Invalid letter request'));
+		}
+		
+		$user_id = CakeSession::read('Auth.User.id');
+		$this->Letter->id = $id;
+		if ($this->Letter->save($this->Letter->set(array('request_owner' => null, 'claimed_date' => null)))) {
+			$this->Session->setFlash(__('Letter request unclaimed'));
+			return $this->redirect(array('action' => 'view', $id));
+		}
+		$this->Session->setFlash(__('Unable to unclaim letter request'));
 	}
 	
 	public function complete($id) {
