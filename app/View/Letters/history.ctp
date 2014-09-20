@@ -26,6 +26,7 @@
 <p>&nbsp;</p>
 
 <div id="request_search_results">
+	<h2><?php echo ($_GET['member_id'] == null ? 'All Requests' : $member['Member']['full_name']) ?></h2>
 	<?php 
 		if ($letters) {
 			$total_new = 0;
