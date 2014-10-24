@@ -37,6 +37,12 @@
 			<li><?php echo $this->Html->link('Smart Forms', array('controller' => 'smartForms', 'action' => 'index')); ?></li>
 		</ul>
 	</div>
+	<div class="nav_division"><?php echo $this->Html->image('nav-div.gif') ?></div>
+	<div class="nav_text"><a href="#">FAQ</a>
+		<ul class="sub_nav_menu">
+			<li><?php echo $this->Html->link('FAQ Sections', array('controller' => 'faqSections', 'action' => 'index')); ?></li>
+		</ul>
+	</div>
 	<?php if ($this->Session->read('Auth.User.role') == 'site_admin') { ?>
 			<div class="nav_division"><?php echo $this->Html->image('nav-div.gif'); ?></div>
 				<div class="nav_text"><?php echo $this->Html->link('Site Admin', array('controller' => 'users', 'action' => 'all')); ?>
