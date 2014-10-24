@@ -41,6 +41,7 @@
 	<div class="nav_text"><a href="#">FAQ</a>
 		<ul class="sub_nav_menu">
 			<li><?php echo $this->Html->link('FAQ Sections', array('controller' => 'faqSections', 'action' => 'index')); ?></li>
+			<li><?php echo $this->Html->link('FAQ Questions', array('controller' => 'faqQuestions', 'action' => 'index')); ?></li>
 		</ul>
 	</div>
 	<?php if ($this->Session->read('Auth.User.role') == 'site_admin') { ?>
