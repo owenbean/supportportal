@@ -1150,7 +1150,105 @@ section {
 }
 
 
+
+/**************** FAQ Section ******************/
+
+
+
+#faq_section {
+	float: left;
+	width: 900px;
+	height: auto;
+	margin: 12px 0 0 12px;
+	padding: 0;
+	display: inline;
+}
+
+#faq_section h1 {
+	color: #2D2D2D;
+	padding: 0;
+	font-size: 20px;
+	font-weight: bold;
+	margin-top: 10px;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-left: 0;	
+}
+
+#faq_section h2 {
+	color: #2D2D2D;
+	font-size: 16px;
+	font-weight: bold;
+	margin-top: 18px;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-left: 0;
+}
+
+#faq_section h3 {
+	color: #2D2D2D;
+	padding: 0;
+	font-size: 14px;
+	font-weight: bold;
+	margin-top: 18px;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-left: 0;	
+}
+
+#faq_section p {
+	color: #000;
+	margin: 12px 0 0 0;
+	padding: 0 0 0 0;
+	font-size: 13px;	
+}
+
+#faq_navigation {
+	float: left;
+}
+
+#faq_navigation li {
+	margin: 4px 0;
+}
+
+#faq_navigation li a {
+	text-decoration: none;
+}
+
+#faq_main_body {
+	float: right;
+	width: 700px;
+}
+
+#faq_content {
+	margin-top: 20px;
+}
+
+#general_resources {
+	display: none;
+}
+
+.active_faq_menu_item {
+	background-color: #d9d9d9;
+	border-radius: 3px;
+	padding: 3px;
+}
+
+.faq_section_header {
+	padding-top: 20px;
+	border-bottom: 1px solid #d9d9d9;
+}
+
+.faq_top_link {
+	float: right;
+	font-weight: normal;
+	font-size: 12px;
+}
+
+
+
 /************************* Notices and Errors ***********************************/
+
 
 
 .message {
