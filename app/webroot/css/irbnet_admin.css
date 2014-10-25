@@ -1165,6 +1165,7 @@ section {
 }
 
 #faq_section h1 {
+	font-family: Arial, Helvetica, sans-serif;
 	color: #2D2D2D;
 	padding: 0;
 	font-size: 20px;
@@ -1203,6 +1204,10 @@ section {
 	font-size: 13px;	
 }
 
+#faq_section li a {
+	font-size: 13px;
+}
+
 #faq_navigation {
 	float: left;
 }
@@ -1215,17 +1220,12 @@ section {
 	text-decoration: none;
 }
 
-#faq_main_body {
-	float: right;
-	width: 700px;
+#faq_main_body h2 {
+	padding-top: 20px;
 }
 
 #faq_content {
 	margin-top: 20px;
-}
-
-#general_resources {
-	display: none;
 }
 
 .active_faq_menu_item {
@@ -1245,6 +1245,10 @@ section {
 	font-size: 12px;
 }
 
+.faq_action_link {
+	font-weight: normal;
+	font-size: 12px;		
+}
 
 
 /************************* Notices and Errors ***********************************/

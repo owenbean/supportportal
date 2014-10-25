@@ -16,6 +16,9 @@
 				<?php echo $this->Form->input('question', array('label' => 'Question: ')); ?>
 			</td></tr>	
 			<tr><td>
+				<?php echo $this->Form->input('reference_name', array('label' => 'Reference Name: ')); ?>
+			</td></tr>	
+			<tr><td>
 				<?php echo $this->Form->input('answer', array('label' => 'Answer: ')); ?>
 			</td></tr>	
 		</tbody>

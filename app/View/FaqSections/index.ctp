@@ -1,37 +1,39 @@
 <h1 id="header_text">Frequently Asked Questions</h1>
-<div id="faq_content">
-	<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div id="faq_section">
+	<div id="faq_content">
+ 		<h1>General IRBNet FAQs</h1>
+  	<p>&nbsp;</p>
 <?php if ($faqSections == null) { ?>
-	</p>No sections to display</p>
+		</p>No sections to display</p>
 <?php } else { ?>
 	<?php foreach ($faqSections as $faqSection): ?>
-	<h2><?php echo $faqSection['FaqSection']['name']; ?></h2>
-		<ul>
+		<h2><?php echo $faqSection['FaqSection']['name']; ?> <?php echo $this->Html->link('edit', array('action' => 'edit', $faqSection['FaqSection']['id']), array('class' => 'faq_action_link')); ?></h2>
+			<ul>
 		<?php if ($faqSection['FaqQuestion']) { ?>
 			<?php for($i = 0; $i < count($faqSection['FaqQuestion']); $i++){ ?>
-			<li><a <?php echo "href='#question" . $faqSection['FaqQuestion'][$i]['id'] . "'"; ?>><?php echo $faqSection['FaqQuestion'][$i]['question']; ?></a></li>
+				<li><a <?php echo "href='#" . $faqSection['FaqQuestion'][$i]['reference_name'] . "'"; ?>><?php echo $faqSection['FaqQuestion'][$i]['question']; ?></a></li>
 			<?php } ?>
 		<?php } else { ?>
-			<li>No Questions</li>
+				<li><?php echo $this->Html->link('No Questions', array('controller' => 'faqQuestions', 'action' => 'add')); ?></li>
 		<?php } ?>
-		</ul>
+			</ul>
 	<?php endforeach; ?>
 	<?php unset($faqSection); ?>
 <?php } ?>
 
-	<p>&nbsp;</p>
-	<p><?php echo $this->Html->link('Add New Section', array('action' => 'add')); ?></p>
-	<p><?php echo ""; //$this->Html->link('Edit', array('action' => 'edit', $faqSection['FaqSection']['id'])); ?> <?php echo ""; //$this->Form->postLink('Delete', array('action' => 'delete', $faqSection['FaqSection']['id'])); ?></p>
+		<p>&nbsp;</p>
+		<p><?php echo $this->Html->link('Add New Section', array('action' => 'add')); ?> | <?php echo $this->Html->link('Add New Question', array('controller' => 'faqQuestions', 'action' => 'add')); ?></p>
 
-
+		<div id="faq_main_body">
 
 <?php if ($faqSections != null) { ?>
 	<?php foreach ($faqSections as $faqSection): ?>
 		<?php if ($faqSection['FaqQuestion']) { ?>
-	<h2 class="faq_section_header"><?php echo $faqSection['FaqSection']['name']; ?><a class="faq_top_link" href="#">top</a></h2>
+			<h2 class="faq_section_header"><?php echo $faqSection['FaqSection']['name']; ?><a class="faq_top_link" href="#">top</a></h2>
 			<?php for($i = 0; $i < count($faqSection['FaqQuestion']); $i++){ ?>
-	<h3><a <?php echo "name='question" . $faqSection['FaqQuestion'][$i]['id'] . "'"; ?>></a><?php echo $faqSection['FaqQuestion'][$i]['question']; ?></h3>
-	<p><?php echo $faqSection['FaqQuestion'][$i]['answer']; ?></p>
+			<h3><a <?php echo "name='" . $faqSection['FaqQuestion'][$i]['reference_name'] . "'"; ?>></a><?php echo $faqSection['FaqQuestion'][$i]['question']; ?> <?php echo $this->Html->link('edit', array('controller' => 'faqQuestions', 'action' => 'edit', $faqSection['FaqQuestion'][$i]['id']), array('class' => 'faq_action_link')); ?></h3>
+			<p><?php echo $faqSection['FaqQuestion'][$i]['answer']; ?></p>
 			<?php } ?>
 		<?php } ?>
 	<?php endforeach; ?>
@@ -41,36 +43,29 @@
 
 
 </div>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
+</div>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>

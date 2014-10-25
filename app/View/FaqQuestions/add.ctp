@@ -10,10 +10,13 @@
 		<table>
 		<tbody>
 			<tr><td>
-				<?php	echo $this->Form->input('faq_section_id', array('label' => 'Section: ')); ?>
+				<?php	echo $this->Form->input('faq_section_id', array('label' => 'Section: ', 'empty' => '')); ?>
 			</tr></td>
 			<tr><td>
 				<?php echo $this->Form->input('question', array('label' => 'Question: ')); ?>
+			</td></tr>
+			<tr><td>
+				<?php echo $this->Form->input('reference_name', array('label' => 'Reference Name: ', )); ?>
 			</td></tr>	
 			<tr><td>
 				<?php echo $this->Form->input('answer', array('label' => 'Answer: ')); ?>

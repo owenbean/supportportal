@@ -12,7 +12,7 @@ class FaqQuestionsController extends AppController {
 			$this->FaqQuestion->create();
 			if ($this->FaqQuestion->save($this->request->data)) {
 				$this->Session->setFlash(__("Question successfully added"));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('controller' => 'faqSections', 'action' => 'index'));
 			}
 			$this->Session->setFlash(__("Unable to add question"));
 		}
@@ -36,7 +36,7 @@ class FaqQuestionsController extends AppController {
         $this->FaqQuestion->id = $id;
         if ($this->FaqQuestion->save($this->request->data)) {
             $this->Session->setFlash(__('The question has been updated.'));
-            return $this->redirect(array('action' => 'index'));
+            return $this->redirect(array('controller' => 'faqSections', 'action' => 'index'));
         }
         $this->Session->setFlash(__('Unable to update the question.'));
     }
