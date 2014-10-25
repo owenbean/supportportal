@@ -10,16 +10,16 @@
 		<table>
 		<tbody>
 			<tr><td>
-				<?php	echo $this->Form->input('faq_section_id', array('label' => 'Section: ')); ?>
+				<?php	echo $this->Form->input('faq_section_id', array('label' => 'Section: ', 'empty' => '')); ?>
 			</tr></td>
 			<tr><td>
-				<?php echo $this->Form->input('question', array('label' => 'Question: ')); ?>
+				<?php echo $this->Form->input('reference_name', array('label' => 'Reference Name: ', 'size' => '30')); ?>
 			</td></tr>	
 			<tr><td>
-				<?php echo $this->Form->input('reference_name', array('label' => 'Reference Name: ')); ?>
-			</td></tr>	
+				<?php echo $this->Form->input('question', array('label' => 'Question: ', 'type' => 'text', 'size' => '100', 'style' => 'display:block')); ?>
+			</td></tr>
 			<tr><td>
-				<?php echo $this->Form->input('answer', array('label' => 'Answer: ')); ?>
+				<?php echo $this->Form->input('answer', array('label' => 'Answer: ', 'style' => 'display:block', 'rows' => '8', 'cols' => '72')); ?>
 			</td></tr>	
 		</tbody>
 		</table>

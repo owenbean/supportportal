@@ -38,7 +38,7 @@
 		</ul>
 	</div>
 	<div class="nav_division"><?php echo $this->Html->image('nav-div.gif') ?></div>
-	<div class="nav_text"><a href="#">FAQ</a>
+	<div class="nav_text"><?php echo $this->Html->link('FAQ', array('controller' => 'faqSections', 'action' => 'index')); ?>
 		<ul class="sub_nav_menu">
 			<li><?php echo $this->Html->link('Fequently Asked Questions', array('controller' => 'faqSections', 'action' => 'index')); ?></li>
 		</ul>

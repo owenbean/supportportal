@@ -10,7 +10,7 @@
 		<table>
 		<tbody>
 			<tr><td>
-				<?php echo $this->Form->input('name', array('label' => 'Section Name: ')); ?>
+				<?php echo $this->Form->input('name', array('label' => 'Section Name: ', 'style' => 'display:block', 'type' => 'text', 'size' => '50')); ?>
 			</td></tr>	
 		</tbody>
 		</table>
