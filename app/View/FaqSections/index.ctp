@@ -32,7 +32,7 @@
 		<?php if ($faqSection['FaqQuestion']) { ?>
 			<h2 class="faq_section_header"><?php echo $faqSection['FaqSection']['name']; ?><a class="faq_top_link" href="#">top</a></h2>
 			<?php for($i = 0; $i < count($faqSection['FaqQuestion']); $i++){ ?>
-			<h3><a <?php echo "name='" . $faqSection['FaqQuestion'][$i]['reference_name'] . "'"; ?>></a><?php echo $faqSection['FaqQuestion'][$i]['question']; ?> <?php echo $this->Html->link('edit', array('controller' => 'faqQuestions', 'action' => 'edit', $faqSection['FaqQuestion'][$i]['id']), array('class' => 'faq_action_link')); ?></h3>
+			<h3><a <?php echo "name='" . $faqSection['FaqQuestion'][$i]['reference_name'] . "'"; ?>></a><?php echo $faqSection['FaqQuestion'][$i]['question']; ?> <?php echo $this->Html->link('edit', array('controller' => 'faqQuestions', 'action' => 'edit', $faqSection['FaqQuestion'][$i]['id']), array('class' => 'faq_action_link')); ?><span class="faq_action_link"> | </span><?php echo $this->Form->postLink('delete', array('controller' => 'faqQuestions', 'action' => 'delete', $faqSection['FaqQuestion'][$i]['id']), array('class' => 'faq_action_link', 'confirm' => 'Are you sure you want to delete this question?')); ?></h3>
 			<p><?php echo $faqSection['FaqQuestion'][$i]['answer']; ?></p>
 			<?php } ?>
 		<?php } ?>

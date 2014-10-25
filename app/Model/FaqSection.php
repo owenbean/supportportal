@@ -6,6 +6,12 @@ class FaqSection extends AppModel {
 		)
 	);
 
+	public $validate = array(
+		'name' => array(
+			'rule' => 'notEmpty'
+		)
+	);
+
 	public function beforeSave($options = array()) {
 		$user_id = CakeSession::read('Auth.User.id');
 		if (!strlen($this->id)) {

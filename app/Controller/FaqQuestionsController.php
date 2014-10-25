@@ -1,9 +1,5 @@
 <?php
 class FaqQuestionsController extends AppController {
-	public function index() {
-		$this->set('faqQuestions', $this->FaqQuestion->find('all'));
-	}
-
 	public function add() {
 		$this->loadModel('FaqSection');
 		$faqSections = $this->FaqSection->find('list', array('fields' => array('FaqSection.id', 'FaqSection.name')));
@@ -55,7 +51,7 @@ class FaqQuestionsController extends AppController {
         $this->Session->setFlash(
             __('The question has been deleted.')
         );
-        return $this->redirect(array('action' => 'index'));
+        return $this->redirect(array('controller' => 'faqSections', 'action' => 'index'));
     }
 	}
 }
