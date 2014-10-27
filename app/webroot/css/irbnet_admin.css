@@ -1254,6 +1254,36 @@ section {
 	font-size: 13px;
 }
 
+#faq_reference_help_box {
+	position: absolute;
+	display: none;
+	background: #ccc;
+	border: 1px solid;
+}
+
+#faq_reference_help_box p {
+	padding: 5px;
+	margin: 0px;
+	font-size: 10px;
+}
+
+#faq_formatting_help_link {
+	font-size: 10px;
+	color: blue;
+}
+
+#faq_formatting_help_box {
+	position: absolute;
+	display: none;
+	background: #ccc;
+	border: 1px solid;
+}
+
+#faq_formatting_help_box p {
+	padding: 5px;
+	margin: 0px;
+	font-size: 10px;
+}
 
 /************************* Notices and Errors ***********************************/
 

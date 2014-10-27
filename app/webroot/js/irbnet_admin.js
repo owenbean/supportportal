@@ -131,6 +131,18 @@ $(document).ready(function() {
  		document.getElementById("faq_answer_preview").innerHTML = converter.makeHtml(answer_preview);
 	});
 	
+	$("#faq_reference_help_link").hover(function(e) {
+		$($(this).data("tooltip")).css({ left: e.pageX - 160, top: e.pageY + 1 }).stop().show();
+	}, function() {
+		$($(this).data("tooltip")).hide();
+	});
+
+	$("#faq_formatting_help_link").hover(function(e) {
+		$($(this).data("tooltip")).css({ left: e.pageX - 150, top: e.pageY + 1 }).stop().show();
+	}, function() {
+		$($(this).data("tooltip")).hide();
+	});
+
 });
 
 
