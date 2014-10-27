@@ -1,6 +1,8 @@
 <?php
 class FaqSectionsController extends AppController {
-	public function index() {
+    public $helpers = array('Markdown.Markdown');
+	
+    public function index() {
 		$this->set('faqSections', $this->FaqSection->find('all'));
 	}
 

@@ -14,7 +14,7 @@
 			</tr></td>
 			<tr><td>
 				<?php echo $this->Form->input('reference_name', array('label' => 'Reference Name: ', 'size' => '30')); ?>
-			</td></tr>	
+			</td></tr>
 			<tr><td>
 				<?php echo $this->Form->input('question', array('label' => 'Question: ', 'type' => 'text', 'size' => '100', 'style' => 'display:block')); ?>
 			</td></tr>
