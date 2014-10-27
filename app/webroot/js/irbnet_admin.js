@@ -1,3 +1,5 @@
+var converter = new Markdown.Converter();
+
 $(document).ready(function() {
 	$("#tbd_button").on("click", function(e) {
 		e.preventDefault();
@@ -110,21 +112,24 @@ $(document).ready(function() {
 	})
 	
 	otherAdmin();
-//	$("#submitted_by").on('click', function() {
-//		$("#adminAddPopUp").dialog("open");
-//	});
-	
-	/*
-	$('#submitted_by').on('change', function() {
-		switch ($("#submitted_by").value) {
-			case 'Other':
-				$("#adminAddPopUp").dialog("open");
-				break;
-			default:
-				break;
-		}
+
+	//this checks to see if a question / answer is already present
+	if (document.getElementById("FaqQuestionAnswer")) {
+		var answer_preview = document.getElementById("FaqQuestionAnswer").value;
+		document.getElementById("faq_answer_preview").innerHTML = converter.makeHtml(answer_preview);
+		var question_preview = document.getElementById("FaqQuestionQuestion").value;
+		document.getElementById("faq_question_preview").innerHTML = question_preview;		
+	}
+
+	//this updates the preview as the user types
+	$("#FaqQuestionQuestion").on('keyup', function() {
+		var question_preview = document.getElementById("FaqQuestionQuestion").value;
+ 		document.getElementById("faq_question_preview").innerHTML = question_preview;
+	});	
+	$("#FaqQuestionAnswer").on('keyup', function() {
+		var answer_preview = document.getElementById("FaqQuestionAnswer").value;
+ 		document.getElementById("faq_answer_preview").innerHTML = converter.makeHtml(answer_preview);
 	});
-	*/
 	
 });
 

@@ -1,5 +1,7 @@
 <?php
 class FaqQuestionsController extends AppController {
+    public $helpers = array('Markdown.Markdown');
+    
 	public function add() {
 		$this->loadModel('FaqSection');
 		$faqSections = $this->FaqSection->find('list', array('fields' => array('FaqSection.id', 'FaqSection.name')));

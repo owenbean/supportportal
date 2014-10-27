@@ -4,7 +4,7 @@
 
 <div id="form_table">
 	
-<?php echo $this->Form->create('FaqQuestion'); ?>
+<?php echo $this->Form->create('FaqQuestion', array('onsubmit' => 'return confirm("Are you sure you want to update this question?")')); ?>
 	<fieldset>
 		<legend>Update FAQ Question</legend>
 		<table>
@@ -25,6 +25,20 @@
 		</table>
 		<p><?php echo $this->Form->end('Update Question'); ?></p>
 	</fieldset>
+</div>
+
+<p>&nbsp;</p>
+<h2>Preview:</h2>
+
+<div id="faq_section">
+<div id="faq_content">
+<div id="faq_main_body">
+
+<h3 id="faq_question_preview"></h3>
+<?php echo $this->Markdown->transform("<div id='faq_answer_preview' class='faq_answer'></div>"); ?>
+
+</div>
+</div>
 </div>
 
 <p>&nbsp;</p>

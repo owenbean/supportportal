@@ -4,7 +4,7 @@
 
 <div id="form_table">
 	
-<?php echo $this->Form->create('FaqQuestion'); ?>
+<?php echo $this->Form->create('FaqQuestion', array('onsubmit' => 'return confirm("Are you sure you want to add this question?")')); ?>
 	<fieldset>
 		<legend>Add FAQ Question</legend>
 		<table>
@@ -23,8 +23,22 @@
 			</td></tr>	
 		</tbody>
 		</table>
-		<p><?php echo $this->Form->end('Add Question'); ?></p>
+		<p><?php echo $this->Form->end('Add Question', array('confirm' => 'Are you sure?')); ?></p>
 	</fieldset>
+</div>
+
+<p>&nbsp;</p>
+<h2>Preview:</h2>
+
+<div id="faq_section">
+<div id="faq_content">
+<div id="faq_main_body">
+
+<h3 id="faq_question_preview"></h3>
+<?php echo $this->Markdown->transform("<div id='faq_answer_preview' class='faq_answer'></div>"); ?>
+
+</div>
+</div>
 </div>
 
 <p>&nbsp;</p>

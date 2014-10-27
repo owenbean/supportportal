@@ -13,7 +13,7 @@ $cakeDescription = __d('cake_dev', 'IRBNet Support Portal');
 		echo $this->Html->meta('favicon.ico', '/favicon.ico', array('type' => 'icon'));
 
 		echo $this->Html->css(array('irbnet_admin', 'jquery-ui.min.css'));
-		echo $this->Html->script(array('jquery', 'jquery-ui-1.10.4.custom.min.js', 'irbnet_admin'));
+		echo $this->Html->script(array('jquery', 'jquery-ui-1.10.4.custom.min.js', "Markdown_Converter.js", 'irbnet_admin'));
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
