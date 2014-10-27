@@ -13,7 +13,7 @@
 				<?php	echo $this->Form->input('faq_section_id', array('label' => 'Section: ', 'empty' => '')); ?>
 			</tr></td>
 			<tr><td>
-				<?php echo $this->Form->input('reference_name', array('label' => 'Reference Name: <img id="faq_reference_help_link" src="/admin_site_cake/img/question-mini.png" data-tooltip="#faq_reference_help_box" height="14" width="13" > ', 'size' => '30')); ?>
+				<?php echo $this->Form->input('reference_name', array('label' => 'Reference Name: ' . $this->Html->image('question-mini.png', array('id' => 'faq_reference_help_link', 'data-tooltip' => '#faq_reference_help_box', 'height' => '14', 'width' => '13')) . ' ', 'size' => '30')); ?>
 			</td></tr>
 			<tr><td>
 				<?php echo $this->Form->input('question', array('label' => 'Question: ', 'type' => 'text', 'size' => '100', 'style' => 'display:block')); ?>
@@ -28,6 +28,7 @@
 </div>
 
 <p>&nbsp;</p>
+
 <h2>Preview:</h2>
 
 <div id="faq_section">
