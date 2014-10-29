@@ -55,5 +55,6 @@
 	<p>Bold: **bold words**</p>
 	<p>Indent: >indented words</p>
 	<p>Bulleted List Item: * bulleted list words</p>
+	<p>Numbered List Item: 1. numbered list words</p>
 	<p>Link: [link text](link url)</p>
 </div>

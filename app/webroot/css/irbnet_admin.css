@@ -1250,7 +1250,7 @@ section {
 	font-size: 12px;		
 }
 
-.faq_answer ul {
+.faq_answer ul, ol {
 	font-size: 13px;
 }
 
