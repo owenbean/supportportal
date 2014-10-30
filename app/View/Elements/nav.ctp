@@ -38,11 +38,13 @@
 		</ul>
 	</div>
 	<div class="nav_division"><?php echo $this->Html->image('nav-div.gif') ?></div>
+	<?php if ($this->Session->read('Auth.User.faq_editor') == 1) { ?>
 	<div class="nav_text"><?php echo $this->Html->link('FAQ', array('controller' => 'faqSections', 'action' => 'index')); ?>
 		<ul class="sub_nav_menu">
 			<li><?php echo $this->Html->link('Fequently Asked Questions', array('controller' => 'faqSections', 'action' => 'index')); ?></li>
 		</ul>
 	</div>
+	<?php } ?>
 	<?php if ($this->Session->read('Auth.User.role') == 'site_admin') { ?>
 			<div class="nav_division"><?php echo $this->Html->image('nav-div.gif'); ?></div>
 				<div class="nav_text"><?php echo $this->Html->link('Site Admin', array('controller' => 'users', 'action' => 'all')); ?>
@@ -50,7 +52,7 @@
 						<li><?php echo $this->Html->link('System Admin List', array('controller' => 'users', 'action' => 'all')); ?></li>
 					</ul>
 				</div>
-		<?php } ?>
+	<?php } ?>
 </div>
 <div id="nav_right_side">
 	<div class="nav_text" id="nav_username_text"><a href="#"><?php echo $this->Session->read('Auth.User.first_name'); ?></a></div>

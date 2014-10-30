@@ -32,6 +32,10 @@
 			<tr><td>
 				<?php echo $this->Form->input('role', array('options' => array('site_admin' => 'Site Admin', 'admin' => 'Admin', 'contractor' => 'Contractor'), 'empty' => '', 'label' => 'Role: ')); ?>
 			</td></tr>
+
+			<tr><td>
+				<?php echo $this->Form->input('faq_editor', array('type' => 'checkbox', 'label' => 'FAQ Editor: ', 'format' => array('before', 'label', 'between', 'input', 'after', 'error'))); ?>
+			</td></tr>
 		</tbody>
 		</table>
 		<p><?php echo $this->Form->end('Add User'); ?></p>
