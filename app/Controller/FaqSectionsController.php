@@ -1,8 +1,16 @@
 <?php
 class FaqSectionsController extends AppController {
-    public $helpers = array('Markdown.Markdown');
-	
-    public function index() {
+  public $helpers = array('Markdown.Markdown');
+
+  public function beforeFilter(){
+    parent::beforeFilter();
+    $faq_editor = CakeSession::read('Auth.User.faq_editor');
+    if ($faq_editor != 1) {
+      throw new MethodNotAllowedException(__('Unable to access this page'));
+    }
+  }
+
+  public function index() {
 		$this->set('faqSections', $this->FaqSection->find('all'));
 	}
 

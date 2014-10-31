@@ -41,7 +41,7 @@
 	<?php if ($this->Session->read('Auth.User.faq_editor') == 1) { ?>
 	<div class="nav_text"><?php echo $this->Html->link('FAQ', array('controller' => 'faqSections', 'action' => 'index')); ?>
 		<ul class="sub_nav_menu">
-			<li><?php echo $this->Html->link('Fequently Asked Questions', array('controller' => 'faqSections', 'action' => 'index')); ?></li>
+			<li><?php echo $this->Html->link('Frequently Asked Questions', array('controller' => 'faqSections', 'action' => 'index')); ?></li>
 		</ul>
 	</div>
 	<?php } ?>

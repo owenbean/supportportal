@@ -2,6 +2,13 @@
 class FaqQuestionsController extends AppController {
     public $helpers = array('Markdown.Markdown');
     
+    public function beforeFilter(){
+        parent::beforeFilter();
+        $faq_editor = CakeSession::read('Auth.User.faq_editor');
+        if ($faq_editor != 1) {
+          throw new MethodNotAllowedException(__('Unable to access this page'));
+        }
+    }
 	public function add() {
 		$this->loadModel('FaqSection');
 		$faqSections = $this->FaqSection->find('list', array('fields' => array('FaqSection.id', 'FaqSection.name')));
