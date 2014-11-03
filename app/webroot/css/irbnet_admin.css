@@ -1108,6 +1108,58 @@ section {
 }
 
 
+/******************* USER LIST ************************************/
+
+#user_list_table {
+	text-align: center;
+	margin-top: 50px;
+}
+
+#user_list_table h2 {
+	padding-bottom: 20px;
+	font-size: 14pt;
+	color: black;
+}
+
+#user_list_table table {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: left;
+	width: 80%;
+	border-spacing: 0px;
+	border: 2px solid #a1a1a1;
+}
+
+#user_list_table th {
+	padding-right: 10px;
+	border-bottom: 1px solid #a1a1a1;
+	text-align: left;
+	background-color: #cccccc;
+	margin: 0px;
+	padding-top: 3px;
+}
+
+#user_list_table a {
+	text-decoration: none;
+}
+
+#user_list_table a:hover {
+	text-decoration: none;
+}
+
+.user_name_link, .user_name_link:hover {
+	color: black;
+}
+
+.inactivate_user_link, .inactivate_user_link:hover {
+	color: blue;
+}
+
+.activate_user_link, .activate_user_link:hover {
+	color: red;
+}
+
+
 /******************* SUB PAGES - ADMIN LIST PAGE ******************/
 
 
@@ -1150,9 +1202,7 @@ section {
 }
 
 
-
 /**************** FAQ Section ******************/
-
 
 
 #faq_section {
