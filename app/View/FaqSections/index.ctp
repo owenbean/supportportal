@@ -4,6 +4,10 @@
 	<div id="faq_content">
  		<h1>General IRBNet FAQs</h1>
   	<p>&nbsp;</p>
+  	<p><?php
+  		//below line just for testing purposes. Keep commented for any Production pushes
+  		//echo print_r($faqSections)
+  	?></p>
 <?php if ($faqSections == null) { ?>
 		</p>No sections to display</p>
 <?php } else { ?>

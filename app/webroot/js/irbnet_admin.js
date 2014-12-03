@@ -1,6 +1,7 @@
 var converter = new Markdown.Converter();
 
 $(document).ready(function() {
+	//Allows user to input "TBD" for go-live dates
 	$("#tbd_button").on("click", function(e) {
 		e.preventDefault();
 		$(".date_picker").val("TBD");
@@ -113,6 +114,8 @@ $(document).ready(function() {
 	
 	otherAdmin();
 
+	//*****FAQ SECTION*******//
+	
 	//this checks to see if a question / answer is already present
 	if (document.getElementById("FaqQuestionAnswer")) {
 		var answer_preview = document.getElementById("FaqQuestionAnswer").value;
