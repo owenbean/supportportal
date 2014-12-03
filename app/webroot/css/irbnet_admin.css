@@ -1335,6 +1335,12 @@ section {
 	font-size: 10px;
 }
 
+/************************* JQuiry Adjustments ***********************************/
+
+.ui-dialog-titlebar-close {
+	visibility: hidden;
+}
+
 /************************* Notices and Errors ***********************************/
 
 

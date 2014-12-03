@@ -115,7 +115,7 @@ $(document).ready(function() {
 	otherAdmin();
 
 	//*****FAQ SECTION*******//
-	
+
 	//this checks to see if a question / answer is already present
 	if (document.getElementById("FaqQuestionAnswer")) {
 		var answer_preview = document.getElementById("FaqQuestionAnswer").value;
@@ -167,14 +167,14 @@ function otherAdmin() {
 //	var lastName = $("#admin_last_name");
 //	var email = $("#admin_email");
 //	var allFields = $([]).add(firstName).add(lastName).add(email);
-
 	$("#adminAddPopUp").dialog({
 		autoOpen: false,
 		heigh: 600,
 		width: 700,
 		modal: true,
-		/*
+		closeOnEscape: false,
 		buttons: {
+			/*
 			Submit: function() {
 				var bValid = true;
 				allFields.removeClass("fieldError");
@@ -224,11 +224,13 @@ function otherAdmin() {
 					});
 				};
 			},
+			*/
 			Cancel: function() {
 				$(this).dialog("close");
+				var submitter = document.getElementById("LetterSubmitter");
+				submitter.value = "";
 			}
-		},
-		*/
+		}
 	});
 
 }
