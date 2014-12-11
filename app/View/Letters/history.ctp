@@ -26,6 +26,7 @@
 <p>&nbsp;</p>
 
 <div id="request_search_results">
+	<?php if(isset($_GET['member_id'])){ ?>
 	<h2><?php echo ($_GET['member_id'] == null ? 'All Requests' : $member['Member']['full_name']) ?></h2>
 	<?php 
 		if ($letters) {
@@ -73,6 +74,8 @@
 	<p class="message_feedback">No letter requests to display.</p>
 	
 	<?php } ?> 
+	<?php } else { ?>
+	<?php } ?>
 </div>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
