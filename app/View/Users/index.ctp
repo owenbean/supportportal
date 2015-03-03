@@ -3,7 +3,6 @@
 <section>
 	<h2><?php echo 'Welcome ' . $this->Session->read('Auth.User.first_name') . '!<br />'; ?></h2>
 	<p>&nbsp;</p>
-	<p><?php echo $this->Form->Postlink('View our new FAQ section here.', 'http://www.irbnetresources.org/tresources/admin-training.php', array('target' => '_blank')); ?> (username / password = irbnet / demo1)</p>
 	<?php if ($members) { ?>
 	<aside id="my_org_section">
 	<h2>My Member Institutions:</h2>
