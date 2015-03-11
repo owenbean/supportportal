@@ -11,7 +11,7 @@ class FaqSectionsController extends AppController {
   }
 
   public function index() {
-		$this->set('faqSections', $this->FaqSection->find('all'));
+		$this->set('faqSections', $this->FaqSection->find('all', array('order' => 'FaqSection.name')));
 	}
 
 	public function add() {

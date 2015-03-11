@@ -2,7 +2,8 @@
 class FaqSection extends AppModel {
 	public $hasMany = array(
 		'FaqQuestion' => array(
-			'className' => 'FaqQuestion'
+			'className' => 'FaqQuestion',
+			'order' => 'question'
 		)
 	);
 
