@@ -12,7 +12,7 @@ $cakeDescription = __d('cake_dev', 'IRBNet Support Portal');
 	<?php
 		echo $this->Html->meta('favicon.ico', '/favicon.ico', array('type' => 'icon'));
 
-		echo $this->Html->css(array('irbnet_admin', 'jquery-ui.min.css'));
+		echo $this->Html->css(array('irbnet-crm', 'bootstrap', 'jquery-ui.min'));
 		echo $this->Html->script(array('jquery', 'jquery-ui-1.10.4.custom.min.js', "Markdown_Converter.js", 'irbnet_admin'));
 
 		echo $this->fetch('meta');
@@ -23,40 +23,25 @@ $cakeDescription = __d('cake_dev', 'IRBNet Support Portal');
 	?>
 </head>
 <body>
-<div id="wrapper">
-	<div id="folio">
-		<div id="site_wrapper">
-			<div id="top_strip">
-				<div class="logo">
-					<?php echo $this->Html->image('irbnet.gif', array('alt' => 'IRBNet', 'url' => array('controller' => 'users', 'action' => 'login'))); ?>
-				</div>
-				<div class="tagline">
-					<h1>Innovative Solutions for <br />Compliance and Research Management </h1><br />
-				</div>
-			</div>
-			
-			<div id="navigation">
-			<?php
-				if ($this->Session->read('Auth.User.first_name')) {
-					echo $this->Element('nav');
-				}
-			?>
-			</div>
-		
-			<div id="main_content">
-				<div id="left_col">
-					<div class="left_content">
-						<?php echo $this->Session->flash(); ?>
-						<?php echo $this->fetch('content'); ?>
-					</div>
-				</div>
-			</div>
-			<p>&nbsp;</p>
-			<div id="footer">
-				<p>Copyright &copy; 2002-2015 Research Dataware, LLC.&nbsp;&nbsp;&nbsp;All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-			</div>
+	<div class="container navbar navbar-default">
+		<div class="navbar-brand">
+			<?php echo $this->Html->image('irbnet.gif', array('alt' => 'IRBNet', 'url' => array('controller' => 'users', 'action' => 'login'))); ?>
+		</div>
+	
+	<?php
+		if ($this->Session->read('Auth.User.first_name')) {
+			echo $this->Element('nav');
+		}
+	?>
+	</div>
+
+	<div class="container">
+		<?php echo $this->Session->flash(); ?>
+		<?php echo $this->fetch('content'); ?>
+		<p>&nbsp;</p>
+		<div class="footer">
+			<p>Copyright &copy; 2002-2015 Research Dataware, LLC.&nbsp;&nbsp;&nbsp;All Rights Reserved.</p>
 		</div>
 	</div>
-</div>
 </body>
 </html>
