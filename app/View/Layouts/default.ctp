@@ -35,10 +35,12 @@ $cakeDescription = __d('cake_dev', 'IRBNet Support Portal');
 	?>
 	</div>
 
-	<div class="container">
+	<div class="container bottom_buffer">
 		<?php echo $this->Session->flash(); ?>
 		<?php echo $this->fetch('content'); ?>
 		<p>&nbsp;</p>
+	</div>
+	<div class="container">
 		<div class="footer">
 			<p>Copyright &copy; 2002-2015 Research Dataware, LLC.&nbsp;&nbsp;&nbsp;All Rights Reserved.</p>
 		</div>
