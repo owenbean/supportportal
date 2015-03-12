@@ -17,7 +17,7 @@
       Members <span class="caret"></span>
     </a>
     <ul class="dropdown-menu" role="menu">
-			<li id="orgSearchLink"><a href="#">Search</li>
+			<li id="orgSearchLink"><a href="#">Search</a></li>
 			<li><?php echo $this->Html->link('Full List', array('controller' => 'members', 'action' => 'all')); ?></li>
 			<li><?php echo $this->Html->link('Add New', array('controller' => 'members', 'action' => 'add')); ?></li>
     </ul>

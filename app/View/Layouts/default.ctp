@@ -29,7 +29,7 @@ $cakeDescription = __d('cake_dev', 'IRBNet Support Portal');
 		</div>
 	</div>
 	
-	<div class="container navbar col-sm-12">
+	<div class="container navbar">
 		<?php
 			if ($this->Session->read('Auth.User.first_name')) {
 				echo $this->Element('nav');
