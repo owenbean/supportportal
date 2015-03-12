@@ -13,7 +13,7 @@ $cakeDescription = __d('cake_dev', 'IRBNet Support Portal');
 		echo $this->Html->meta('favicon.ico', '/favicon.ico', array('type' => 'icon'));
 
 		echo $this->Html->css(array('irbnet-crm', 'bootstrap', 'jquery-ui.min'));
-		echo $this->Html->script(array('jquery', 'jquery-ui-1.10.4.custom.min.js', "Markdown_Converter.js", 'irbnet_admin'));
+		echo $this->Html->script(array('jquery', 'jquery-ui-1.10.4.custom.min', 'Markdown_Converter', 'irbnet_admin', 'bootstrap'));
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -27,12 +27,14 @@ $cakeDescription = __d('cake_dev', 'IRBNet Support Portal');
 		<div class="navbar-brand">
 			<?php echo $this->Html->image('irbnet.gif', array('alt' => 'IRBNet', 'url' => array('controller' => 'users', 'action' => 'login'))); ?>
 		</div>
+	</div>
 	
-	<?php
-		if ($this->Session->read('Auth.User.first_name')) {
-			echo $this->Element('nav');
-		}
-	?>
+	<div class="container navbar col-sm-12">
+		<?php
+			if ($this->Session->read('Auth.User.first_name')) {
+				echo $this->Element('nav');
+			}
+		?>
 	</div>
 
 	<div class="container bottom_buffer">

@@ -10,5 +10,5 @@
 	<div class="form-group">
 		<?php echo $this->Form->input('password', array('label' => "Password:\n", 'class' => 'form-control', 'placeholder' => 'Password')); ?>
 	</div>
-	<?php echo $this->Form->button('Submit Form', array('type' => 'submit', 'class' => 'btn btn-default')); ?>
+	<?php echo $this->Form->button('Login', array('type' => 'submit', 'class' => 'btn btn-default')); ?>
 </div>
