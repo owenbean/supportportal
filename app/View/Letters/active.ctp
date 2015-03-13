@@ -1,8 +1,9 @@
-<h1 id="header_text">Letter Request Queue</h1>
-<div id="letters_queue_table">
+<h2 class="title">Letter Request Queue</h1>
+
 <p>&nbsp;</p>
-<p>&nbsp;</p>
-	<table>
+
+<div class="col-sm-8 col-sm-offset-2">
+	<table class="table table-striped">
 		<tr>
 			<th>Target Date</th>
 			<th>Member</th>
@@ -10,6 +11,7 @@
 			<th>Revised</th>
 			<th>Enrollment</th>
 			<th>Owner</th>
+			<th colspan="3">Actions</th>
 		</tr>
 		
 		<?php if ($letters == null) { ?>

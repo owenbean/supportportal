@@ -57,10 +57,10 @@ class LettersController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Letter->create();
 			if ($this->Letter->save($this->request->data)) {
-				$this->Session->setFlash(__('Letter request successfully added'));
+				$this->Session->setFlash('Letter request successfully added', 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'active'));
 			}
-			$this->Session->setFlash(__('Unable to add letter request'));
+			$this->Session->setFlash('Unable to add letter request', 'default', array('class' => 'alert alert-danger'));
 		}
 	}
 	
@@ -89,10 +89,10 @@ class LettersController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 			$this->Letter->id = $id;
 			if ($this->Letter->save($this->request->data)) {
-				$this->Session->setFlash(__('Letter request successfully updated'));
+				$this->Session->setFlash('Letter request successfully updated', 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'view', $id));
 			}
-			$this->Session->setFlash(__('Unable to update letter request'));
+			$this->Session->setFlash('Unable to update letter request', 'default', array('class' => 'alert alert-danger'));
 		}
 		
 		if (!$this->request->data) {
@@ -109,10 +109,10 @@ class LettersController extends AppController {
 		$user_id = CakeSession::read('Auth.User.id');
 		$this->Letter->id = $id;
 		if ($this->Letter->save($this->Letter->set(array('request_owner' => $user_id, 'claimed_date' => DboSource::expression('NOW()'))))) {
-			$this->Session->setFlash(__('Letter request claimed'));
+			$this->Session->setFlash('Letter request claimed', 'default', array('class' => 'alert alert-success'));
 			return $this->redirect(array('action' => 'active'));
 		}
-		$this->Session->setFlash(__('Unable to claim letter request'));
+		$this->Session->setFlash('Unable to claim letter request', 'default', array('class' => 'alert alert-danger'));
 	}
 	
 	public function unclaim($id) {
@@ -123,10 +123,10 @@ class LettersController extends AppController {
 		$user_id = CakeSession::read('Auth.User.id');
 		$this->Letter->id = $id;
 		if ($this->Letter->save($this->Letter->set(array('request_owner' => null, 'claimed_date' => null)))) {
-			$this->Session->setFlash(__('Letter request unclaimed'));
+			$this->Session->setFlash('Letter request unclaimed', 'default', array('class' => 'alert alert-success'));
 			return $this->redirect(array('action' => 'view', $id));
 		}
-		$this->Session->setFlash(__('Unable to unclaim letter request'));
+		$this->Session->setFlash('Unable to unclaim letter request', 'default', array('class' => 'alert alert-danger'));
 	}
 	
 	public function complete($id) {
@@ -137,10 +137,10 @@ class LettersController extends AppController {
 		$this->Letter->id = $id;
 		if ($this->Letter->save($this->Letter->set(array('active' => 0, 'completed_date' => DboSource::expression('NOW()'))))) {
 			$this->lettersCompleteEmail($id);
-			$this->Session->setFlash(__('Letter request completed'));
+			$this->Session->setFlash('Letter request completed', 'default', array('class' => 'alert alert-success'));
 			return $this->redirect(array('action' => 'active'));
 		}
-		$this->Session->setFlash(__('Unable to complete letter request'));
+		$this->Session->setFlash('Unable to complete letter request', 'default', array('class' => 'alert alert-danger'));
 	}
 	
 	public function delete($id) {
@@ -149,7 +149,7 @@ class LettersController extends AppController {
 		}
 		
 		if ($this->Letter->delete($id)) {
-			$this->Session->setFlash(__('Letter request successfully deleted'));
+			$this->Session->setFlash('Letter request successfully deleted', 'default', array('class' => 'alert alert-success'));
 			return $this->redirect(array('action' => 'active'));
 		}
 	}

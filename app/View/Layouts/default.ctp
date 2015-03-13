@@ -13,6 +13,9 @@ $cakeDescription = __d('cake_dev', 'IRBNet Support Portal');
 		echo $this->Html->meta('favicon.ico', '/favicon.ico', array('type' => 'icon'));
 
 		echo $this->Html->css(array('bootstrap', 'irbnet-crm', 'jquery-ui.min'));
+		if ($this->params['controller'] == 'faqSections' || $this->params['controller'] == 'faqQuestions') {
+			echo $this->Html->css(array('faq'));
+		}
 		echo $this->Html->script(array('jquery', 'jquery-ui-1.10.4.custom.min', 'Markdown_Converter', 'irbnet_admin', 'bootstrap'));
 
 		echo $this->fetch('meta');
@@ -23,28 +26,35 @@ $cakeDescription = __d('cake_dev', 'IRBNet Support Portal');
 	?>
 </head>
 <body>
-	<div class="container navbar navbar-default">
-		<div class="navbar-brand">
-			<?php echo $this->Html->image('irbnet.gif', array('alt' => 'IRBNet', 'url' => array('controller' => 'users', 'action' => 'login'))); ?>
+	<div id="wrap">
+		<div id="header">
+			<div class="container navbar navbar-default">
+				<div class="navbar-brand">
+					<?php echo $this->Html->image('irbnet.gif', array('alt' => 'IRBNet', 'url' => array('controller' => 'users', 'action' => 'login'))); ?>
+				</div>
+			</div>
+			
+			<div class="container navbar">
+				<?php
+					if ($this->Session->read('Auth.User.first_name')) {
+						echo $this->Element('nav');
+					}
+				?>
+			</div>
 		</div>
-	</div>
-	
-	<div class="container navbar">
-		<?php
-			if ($this->Session->read('Auth.User.first_name')) {
-				echo $this->Element('nav');
-			}
-		?>
-	</div>
 
-	<div class="container bottom_buffer">
-		<?php echo $this->Session->flash(); ?>
-		<?php echo $this->fetch('content'); ?>
-		<p>&nbsp;</p>
-	</div>
-	<div id="footer" class="container">
-		<div>
-			<p>Copyright &copy; 2002-2015 Research Dataware, LLC.&nbsp;&nbsp;&nbsp;All Rights Reserved.</p>
+		<div id="content">
+			<div class="container bottom_buffer">
+				<?php echo $this->Session->flash(); ?>
+				<?php echo $this->fetch('content'); ?>
+				<p>&nbsp;</p>
+			</div>
+		</div>
+		
+		<div id="footer" class="container">
+			<div>
+				<p>Copyright &copy; 2002-2015 Research Dataware, LLC.&nbsp;&nbsp;&nbsp;All Rights Reserved.</p>
+			</div>
 		</div>
 	</div>
 </body>
