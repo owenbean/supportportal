@@ -36,6 +36,14 @@ body {
 	background-color: white;
 }
 
+.list-item a {
+	color: #333;
+}
+
+.list-item a:hover {
+	text-decoration: none;
+}
+
 .bottom_buffer {
 	margin-bottom: 40px;
 }
@@ -43,6 +51,10 @@ body {
 .title {
 	color: red;
 	text-align: center;
+}
+
+.hover {
+	cursor: pointer;
 }
 
 

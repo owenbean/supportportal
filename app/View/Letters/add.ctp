@@ -16,24 +16,28 @@
 				<?php echo $this->Form->input('member_id', array('label' => false, 'empty' => '', 'id' => 'member_name', 'class' => 'form-control')); ?>
 			</div>
 		</div>
+		
 		<div class="form-group" id="submitter_name_holder">
 			<label class="col-sm-4 control-label">Request Submitted By:</label>
 			<div class="col-sm-5" id="submitter_name">
 				<?php echo $this->Form->input('submitter', array('label' => false, 'disabled' => 'disabled', 'class' => 'form-control')); ?>
 			</div>
 		</div>
+		
 		<div class="form-group">
 			<label class="col-sm-4 control-label">Number of New Templates:</label>
 			<div class="col-sm-5">
 				<?php echo $this->Form->input('new_templates', array('label' => false, 'default' => '0', 'class' => 'form-control')); ?>
 			</div>
 		</div>
+		
 		<div class="form-group">
 			<label class="col-sm-4 control-label">Number of Revised Templates:</label>
 			<div class="col-sm-5">
 				<?php echo $this->Form->input('revised_templates', array('label' => false, 'default' => '0', 'class' => 'form-control')); ?>
 			</div>
 		</div>
+		
 		<div class="form-group">
 	    <div class="col-sm-offset-4 col-sm-5">
 				<div class="checkbox">
@@ -41,24 +45,28 @@
 				</div>
 			</div>
 		</div>
+		
 		<div class="form-group">
 			<label class="col-sm-4 control-label">Date of Request:</label>
 			<div class="col-sm-5">
 				<?php echo $this->Form->input('date_received', array('label' => false, 'class' => 'date_picker form-control')); ?>
 			</div>
 		</div>
+		
 		<div class="form-group">
 			<label class="col-sm-4 control-label">Target Date:</label>
 			<div class="col-sm-5">
 				<?php echo $this->Form->input('target_date', array('label' => false, 'class' => 'date_picker form-control')); ?>
 			</div>
 		</div>
+		
 		<div class="form-group">
 			<label class="col-sm-4 control-label">Request Comments:</label>
 			<div class="col-sm-5">
 				<?php echo $this->Form->input('comments', array('label' => false, 'id' => 'comments_field', 'class' => 'form-control')); ?>
 			</div>
 		</div>
+		
 		<div class="form-group">
 			<div class="col-sm-5 col-sm-offset-4">
 				<?php echo $this->Form->button('Submit Request', array('type' => 'submit', 'class' => 'btn btn-default')); ?>

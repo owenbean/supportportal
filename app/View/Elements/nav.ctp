@@ -12,7 +12,27 @@
     </ul>
   </li>
 
-  <li role="presentation" <?php echo ($this->params['controller'] == 'members' && !isset($this->params['pass'][0])) ? "class='active dropdown'" : "class='dropdown'" ?>>
+  <?php
+    //checks if view is displaying sub-lists of members or admins (or smart form) - used mainly to set Lists tab 'active'
+    $make_active = false;
+    $list_params = array('citi_integration', 'wirb_integration', 'sso', 'file_access', 'contract_lead', 'feature_announcement_list', 'support_outreach_list');
+    $list_view = false;
+    if (isset($this->params['pass'][0])) {
+      for ($i = 0; $i < count($list_params); $i++) {
+        if ($this->params['pass'][0] == $list_params[$i]) {
+          $list_view = true;
+        }
+      }
+    }
+
+    $members_lists = $this->params['controller'] == 'members' && $list_view;
+    $admins_lists = $this->params['controller'] == 'admins' && $list_view;
+    if ($members_lists || $admins_lists || $this->params['controller'] == 'smartForms') {
+      $make_active = true;
+    }
+  ?>
+
+  <li role="presentation" <?php echo ($this->params['controller'] == 'members' && !$list_view) ? "class='active dropdown'" : "class='dropdown'" ?>>
     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
       Members <span class="caret"></span>
     </a>
@@ -23,18 +43,7 @@
     </ul>
   </li>
 
-  <?php
-    //checks if view is displaying sub-lists of members or admins (or smart form) - used mainly to set Lists tab 'active'
-    $make_active = false;
-    $add_params_set = isset($this->params['pass'][0]);
-    $members_lists = $this->params['controller'] == 'members' && $add_params_set;
-    $admins_lists = $this->params['controller'] == 'admins' && $add_params_set;
-    if ($members_lists || $admins_lists || $this->params['controller'] == 'smartForms') {
-      $make_active = true;
-    }
-  ?>
-
-  <li role="presentation" <?php echo ($this->params['controller'] == 'admins' && !$add_params_set) ? "class='active dropdown'" : "class='dropdown'" ?>>
+  <li role="presentation" <?php echo ($this->params['controller'] == 'admins' && !$list_view) ? "class='active dropdown'" : "class='dropdown'" ?>>
     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
       Administrators <span class="caret"></span>
     </a>

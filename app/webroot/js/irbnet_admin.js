@@ -1,40 +1,16 @@
 var converter = new Markdown.Converter();
 
 $(document).ready(function() {
+	$('tr.list-item').click( function() {
+	    window.location = $(this).find('a').attr('href');
+	}).hover( function() {
+	    $(this).toggleClass('hover');
+	});
+
 	//Allows user to input "TBD" for go-live dates
 	$("#tbd_button").on("click", function(e) {
 		e.preventDefault();
 		$(".date_picker").val("TBD");
-	});
-	
-	//controll for new nav
-	$(".nav_text").hover(function(e) {
-		e.preventDefault();
-		$(this).find(".sub_nav_menu").slideToggle(50);
-	});
-	
-	//same as above but for right side
-	$("#nav_right_side").hover(function(e) {
-		e.preventDefault();
-		$("#right_sub_nav_menu").slideToggle(50);
-	});
-	
-	//set width of dropdown menus
-	$(".nav_text").on("mouseenter", function() {
-		var parentWidth = $(this).width();
-		var childWidth = $(this).find(".sub_nav_menu").width();
-		if (parentWidth > childWidth) {
-			$(this).find(".sub_nav_menu").css("width", parentWidth);
-		}
-	});
-	
-	//same as above but for right side
-	$("#nav_right_side").on("mouseenter", function() {
-		var parentWidth = $(this).find(".nav_text").width();
-		var childWidth = $(this).find(".sub_nav_menu").width();
-		if (parentWidth > childWidth) {
-			$(this).find(".sub_nav_menu").css("width", parentWidth);
-		}
 	});
 	
 	//org details page slide down for committees and smart forms
