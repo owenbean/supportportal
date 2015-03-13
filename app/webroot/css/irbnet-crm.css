@@ -1,3 +1,12 @@
+html{
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  position: relative;
+}
+
 .navbar-default.navbar {
 	border: none;
 	height: 80px;
@@ -8,10 +17,27 @@
 	margin-bottom: 40px;
 }
 
-.container {
-}
-
 .title {
 	color: red;
 	text-align: center;
+}
+
+#footer {
+	position:absolute;
+	bottom:0;
+	left:0;
+	padding-top: 50px;
+}
+
+/** Bootstrap Override **/
+
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+	cursor: pointer;
+}
+
+/** JQuiry Override **/
+
+.ui-dialog-titlebar-close {
+	visibility: hidden;
 }

@@ -12,7 +12,7 @@ $cakeDescription = __d('cake_dev', 'IRBNet Support Portal');
 	<?php
 		echo $this->Html->meta('favicon.ico', '/favicon.ico', array('type' => 'icon'));
 
-		echo $this->Html->css(array('irbnet-crm', 'bootstrap', 'jquery-ui.min'));
+		echo $this->Html->css(array('bootstrap', 'irbnet-crm', 'jquery-ui.min'));
 		echo $this->Html->script(array('jquery', 'jquery-ui-1.10.4.custom.min', 'Markdown_Converter', 'irbnet_admin', 'bootstrap'));
 
 		echo $this->fetch('meta');
@@ -42,8 +42,8 @@ $cakeDescription = __d('cake_dev', 'IRBNet Support Portal');
 		<?php echo $this->fetch('content'); ?>
 		<p>&nbsp;</p>
 	</div>
-	<div class="container">
-		<div class="footer">
+	<div id="footer" class="container">
+		<div>
 			<p>Copyright &copy; 2002-2015 Research Dataware, LLC.&nbsp;&nbsp;&nbsp;All Rights Reserved.</p>
 		</div>
 	</div>

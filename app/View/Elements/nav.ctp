@@ -1,7 +1,7 @@
 <ul class="nav nav-tabs">
-  <li role="presentation" class="active"><?php echo $this->Html->link('Home', array('controller' => 'users', 'action' => 'index')); ?></li>
+  <li role="presentation" <?php echo ($this->params['controller'] == 'users' && $this->action == 'index') ? "class='active'" : null ?>><?php echo $this->Html->link('Home', array('controller' => 'users', 'action' => 'index')); ?></li>
 
-  <li role="presentation" class="dropdown">
+  <li role="presentation" <?php echo ($this->params['controller'] == 'letters') ? "class='active dropdown'" : "class='dropdown'" ?>>
     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
       Letters <span class="caret"></span>
     </a>
@@ -12,7 +12,7 @@
     </ul>
   </li>
 
-  <li role="presentation" class="dropdown">
+  <li role="presentation" <?php echo ($this->params['controller'] == 'members' && !isset($this->params['pass'][0])) ? "class='active dropdown'" : "class='dropdown'" ?>>
     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
       Members <span class="caret"></span>
     </a>
@@ -23,7 +23,18 @@
     </ul>
   </li>
 
-  <li role="presentation" class="dropdown">
+  <?php
+    //checks if view is displaying sub-lists of members or admins (or smart form) - used mainly to set Lists tab 'active'
+    $make_active = false;
+    $add_params_set = isset($this->params['pass'][0]);
+    $members_lists = $this->params['controller'] == 'members' && $add_params_set;
+    $admins_lists = $this->params['controller'] == 'admins' && $add_params_set;
+    if ($members_lists || $admins_lists || $this->params['controller'] == 'smartForms') {
+      $make_active = true;
+    }
+  ?>
+
+  <li role="presentation" <?php echo ($this->params['controller'] == 'admins' && !$add_params_set) ? "class='active dropdown'" : "class='dropdown'" ?>>
     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
       Administrators <span class="caret"></span>
     </a>
@@ -34,7 +45,7 @@
     </ul>
   </li>
 
-  <li role="presentation" class="dropdown">
+  <li role="presentation" <?php echo ($make_active) ? "class='dropdown active'" : "class='dropdown'" ?>>
     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
       Lists <span class="caret"></span>
     </a>
@@ -51,14 +62,23 @@
   </li>
 
 	<?php if ($this->Session->read('Auth.User.faq_editor') == 1) { ?>
-  <li role="presentation"><?php echo $this->Html->link('FAQ', array('controller' => 'faqSections', 'action' => 'index')); ?></li>
+  <li role="presentation" <?php echo ($this->params['controller'] == 'faqSections' || $this->params['controller'] == 'faqQuestions') ? "class='active'" : null ?>><?php echo $this->Html->link('FAQ', array('controller' => 'faqSections', 'action' => 'index')); ?></li>
 	<?php } ?>
 
+  <?php
+    //sets below variables 'true' if user is viewing their own profile - this allows below nav-tab to be 'active'
+    $viewing_profile = $this->params['controller'] == 'users' && $this->action == 'view';
+    $viewing_this_user_profile = false;
+    if (isset($user)) {
+      $viewing_this_user_profile = $user['User']['id'] == $this->Session->read('Auth.User.id');
+    }
+  ?>
+
 	<?php if ($this->Session->read('Auth.User.role') == 'site_admin') { ?>
-  <li role="presentation"><?php echo $this->Html->link('Site Admin', array('controller' => 'users', 'action' => 'all')); ?></li>
+  <li role="presentation" <?php echo ($this->params['controller'] == 'users' && !$viewing_this_user_profile) ? "class='active'" : null ?>><?php echo $this->Html->link('Site Admin', array('controller' => 'users', 'action' => 'all')); ?></li>
 	<?php } ?>
   
-  <li role="presentation" class="dropdown navbar-right">
+  <li role="presentation" <?php echo ($viewing_profile && $viewing_this_user_profile) ? "class='active dropdown navbar-right'" : "class='dropdown navbar-right'" ?>>
     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
       <?php echo $this->Session->read('Auth.User.first_name'); ?> <span class="caret"></span>
     </a>

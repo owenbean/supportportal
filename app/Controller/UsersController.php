@@ -20,7 +20,7 @@ class UsersController extends AppController {
 				$this->User->save($this->User->set(array('last_login' => DboSource::expression('NOW()'), 'modified' => false)));
 				return $this->redirect($this->Auth->redirect());
 			}
-			$this->Session->setFlash(__('Invalid username or password'));
+			$this->Session->setFlash('Invalid username or password', 'default', array('class' => 'alert alert-danger'));
 		}
 	}
 	
@@ -31,7 +31,7 @@ class UsersController extends AppController {
 	public function index() {
 		$this->set('title_for_layout', 'Home');
 		if (CakeSession::read('Auth.User.active') == 0) {
-			$this->Session->setFlash(__('Your account is inactive'));
+			$this->Session->setFlash('Your account is inactive', 'default', array('class' => 'alert alert-danger'));
 			$this->redirect(array('action' => 'logout'));
 		}
 		
@@ -83,7 +83,7 @@ class UsersController extends AppController {
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('New user added.'));
+				$this->Session->setFlash('New user added.', 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'index'));
 			}
 			$this->Session->setFlash(__('Unable to save new user'));
