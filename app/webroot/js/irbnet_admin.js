@@ -35,6 +35,46 @@ $(document).ready(function() {
 	});
 	
 	
+	//retired admin list for Member View page
+	$(function() {
+		//below function clears autofocus
+		$.ui.dialog.prototype._focusTabbable = function(){};
+		$('#retiredAdminsList').dialog({
+			autoOpen: false,
+			height: 'auto',
+			width: 'auto',
+			modal: true,
+			buttons: {
+				Close: function() {
+					$(this).dialog('close');
+				}
+			}
+		});
+
+		$('#retiredAdminsLink').on('click', function() {
+			$('#retiredAdminsList').dialog('open');
+		});
+	});
+
+	//delete or retire popup on Member View page
+	$(function() {
+		$('#deleteRetireMemberPopup').dialog({
+			autoOpen: false,
+			height: 'auto',
+			width: 400,
+			modal: true,
+			buttons: {
+				Cancel: function() {
+					$(this).dialog('close');
+				}
+			}
+		});
+
+		$('#deleteRetireMemberLink').on('click', function() {
+			$('#deleteRetireMemberPopup').dialog('open');
+		});
+	});
+
 	//organization search box
 	$(function() {
 		$("#orgSearchBox").dialog({
@@ -139,10 +179,6 @@ otherEntry = function(submitter_name) {
 
 //add administrator popup
 function otherAdmin() {
-//	var firstName = $("#admin_first_name");
-//	var lastName = $("#admin_last_name");
-//	var email = $("#admin_email");
-//	var allFields = $([]).add(firstName).add(lastName).add(email);
 	$("#adminAddPopUp").dialog({
 		autoOpen: false,
 		heigh: 600,
@@ -150,57 +186,6 @@ function otherAdmin() {
 		modal: true,
 		closeOnEscape: false,
 		buttons: {
-			/*
-			Submit: function() {
-				var bValid = true;
-				allFields.removeClass("fieldError");
-				var orgName = document.getElementById("org_name").value;
-				if($('#contract_lead').is(':checked')){
-					var contractLead = 1;
-				} else {
-					var contractLead = 0;
-				};
-				if($('#billing_coord').is(':checked')){
-					var billingCoord = 1;
-				} else {
-					var billingCoord = 0;
-				};
-				if($('#feature_announcement_list').is(':checked')){
-					var featureAnnounce = 1;
-				} else {
-					var featureAnnounce = 0;
-				};
-				if($('#support_outreach_list').is(':checked')){
-					var supportOutreach = 1;
-				} else {
-					var supportOutreach = 0;
-				};
-				bValid = bValid && checkLength(firstName, 1);
-				bValid = bValid && checkLength(lastName, 1);
-				bValid = bValid && checkLength(email, 1);
-				if (bValid) {
-					$.ajax({
-						type: "post",
-						url: "../admins/add",
-						data: {admin_org_name: orgName,
-								admin_first_name: firstName.val(),
-								admin_last_name: lastName.val(),
-								admin_email: email.val(),
-								contract_lead: contractLead,
-								billing_coord: billingCoord,
-								feature_announcement_list: featureAnnounce,
-								support_outreach_list: supportOutreach,
-							},
-						error: function() {
-							alert('Failed');
-						},
-						success:function(data) {
-							location.reload();
-						}
-					});
-				};
-			},
-			*/
 			Cancel: function() {
 				$(this).dialog("close");
 				var submitter = document.getElementById("LetterSubmitter");

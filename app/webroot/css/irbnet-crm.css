@@ -61,6 +61,10 @@ body {
 	color: #333;
 }
 
+.postLink-link {
+	color: #428bca;
+}
+
 
 /** Bootstrap Override **/
 
@@ -69,8 +73,13 @@ body {
 	cursor: pointer;
 }
 
+
 /** JQuiry Override **/
 
 .ui-dialog-titlebar-close {
 	visibility: hidden;
+}
+
+.ui-widget-content a {
+	color: #428bca;
 }
