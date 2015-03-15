@@ -110,6 +110,5 @@
 	<p>Enter first or last name:<p>
 	<form method="post" action="<?php echo Router::url(array('controller' => 'admins', 'action' => 'search')); ?>">
 		<input type="text" id="searchAdminName" name="searchAdminName" size="30">
-		<p id="advancedAdminSearch"><a href="admin_search.php" onclick="return notYet()">Advanced Search</a></p>
 	</form>
 </div>

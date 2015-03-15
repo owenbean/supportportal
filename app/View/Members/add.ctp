@@ -1,4 +1,4 @@
-<h2 class="title">NRN Member - Add</h2>
+<h2 class="title">New Member</h2>
 
 <p>&nbsp;</p>
 

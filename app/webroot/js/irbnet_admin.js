@@ -56,9 +56,9 @@ $(document).ready(function() {
 		});
 	});
 
-	//delete or retire popup on Member View page
+	//delete or retire popup on Member or Admin View page
 	$(function() {
-		$('#deleteRetireMemberPopup').dialog({
+		$('#deleteRetirePopup').dialog({
 			autoOpen: false,
 			height: 'auto',
 			width: 400,
@@ -70,8 +70,8 @@ $(document).ready(function() {
 			}
 		});
 
-		$('#deleteRetireMemberLink').on('click', function() {
-			$('#deleteRetireMemberPopup').dialog('open');
+		$('#deleteRetireLink').on('click', function() {
+			$('#deleteRetirePopup').dialog('open');
 		});
 	});
 
@@ -101,7 +101,7 @@ $(document).ready(function() {
 	$(function() {
 		$("#adminSearchBox").dialog({
 			autoOpen: false,
-			height: 300,
+			height: 'auto',
 			width: 400,
 			modal: true,
 			buttons: {

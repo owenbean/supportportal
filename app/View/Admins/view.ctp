@@ -1,13 +1,13 @@
-<h1>NRN Administrator</h1>
+<h2><?php echo h($admin['Admin']['first_name']) . ' ' . h($admin['Admin']['last_name']) . ($admin['Admin']['active'] ? null : ' - RETIRED'); ?></h2>
+<h4><?php echo $this->Html->link("<span class='glyphicon glyphicon-pencil action-image' aria-hidden='true'></span>", array('action' => 'edit', $admin['Admin']['id']), array('escapeTitle' => false)); ?>&nbsp;&nbsp;&nbsp;<a href="#" id="deleteRetireLink"><span class='glyphicon glyphicon-remove action-image' aria-hidden='true'></span></a></h4>
 <p>&nbsp;</p>
-<div id="display_admin">
-	<h2>Administrator Details:</h2>
-	<p>Name: <strong><?php echo h($admin['Admin']['first_name']) . ' ' . h($admin['Admin']['last_name']) . ($admin['Admin']['active'] ? null : ' - <em>RETIRED</em>'); ?></strong></p>
-	<p class="no_underline">Organization: <strong><?php echo $this->Html->link($admin['Member']['full_name'], array('controller' => 'members', 'action' => 'view', $admin['Member']['id'])); ?></strong></p>
+<div>
+	<h4>Details:</h4>
+	<p class="no_underline">Member: <?php echo $this->Html->link($admin['Member']['full_name'], array('controller' => 'members', 'action' => 'view', $admin['Member']['id'])); ?></p>
 	<p>Email Address: <?php echo $this->Text->autoLinkEmails(h($admin['Admin']['email_address'])); ?></p>
 	<p>Comments: <?php echo (!$admin['Admin']['comments'] ? "<em>None</em>" : h($admin['Admin']['comments'])); ?></p>
 	<p>&nbsp;</p>
-	<h2>Lists:</h2>
+	<h4>Lists:</h4>
 	<?php
 		$contract = ($admin['Admin']['contract_lead'] == 1 ? 'Contract Lead' : null);
 		$feature = ($admin['Admin']['feature_announcement_list'] == 1 ? 'Feature Announcement List' : null);
@@ -26,21 +26,12 @@
 	?>
 	<p><?php echo (strlen($lists_display) > 1 ? $lists_display : '<em>None</em>'); ?></p>
 	<p>&nbsp;</p>
-	<div id="actions_table">
-		<table>
-		<tbody>
-			<tr>
-				<th colspan="3"><h2>Actions:</h2></th>
-			</tr>
-			<tr>
-				<td>
-					<?php echo $this->Html->link('Edit', array('controller' => 'admins', 'action' => 'edit', $admin['Admin']['id'])); ?>, 
-					<?php echo $this->Form->postLink('Retire', array('controller' => 'admins', 'action' => 'retire', $admin['Admin']['id']), array('confirm' => 'Are you sure you want to Retire this administrator?'));?>, 
-					<?php echo $this->Form->postLink('Delete', array('controller' => 'admins', 'action' => 'delete', $admin['Admin']['id']), array('confirm' => "Are you sure you want to Delete this administrator?\n\nDoing so will remove them from the system entirely.  If this administrator is no longer with this member, please Retire them instead."));?>
-				</td>
-			</tr>
-		</tbody>
-		</table>
-	</div>
+
+
+<!-- Delete / Retire Member Popup -->
+<div id="deleteRetirePopup" title="Delete / Retire Member">
+	<p>Would you like to retire this administrator (because they have left their organization / role), or delete them altogether?</p>
+	<h6>Please note that deleting an administrator cannot be undone.</h6>
 	<p>&nbsp;</p>
+	<p><?php echo $this->Form->postLink('Retire', array('action' => 'retire', $admin['Admin']['id']));?> | <?php echo $this->Form->postLink('Delete', array('action' => 'delete', $admin['Admin']['id']));?></p>
 </div>
