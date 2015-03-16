@@ -1,6 +1,8 @@
 <?php
 //declare variables for later use.
 $smart_form_count = null;
+//this is used to see if the member has any extras. if not, will display 'none'
+$extras_count = null;
 $citi = ($member['Member']['citi_integration'] == 1 ? 'CITI Integration' : null);
 $wirb = ($member['Member']['wirb_integration'] == 1 ? 'WIRB Integration' : null);
 $sso = ($member['Member']['sso'] == 1 ? 'Single Sign-On' : null);
@@ -9,10 +11,12 @@ $file_access = ($member['Member']['file_access'] == 1 ? 'File Access' : null);
 if($smartForms) {
 	foreach ($smartForms as $smartForm) {
 		$smart_form_count++;
+		$extras_count++;
 	}
 }
 
 $add_ons_array = array($citi, $wirb, $sso, $file_access);
+
 
 //check if any active administrators
 $active_admins = null;
@@ -52,13 +56,17 @@ if($admins) {
 		<h4>Extras:</h4>
 		<?php
 			echo $member['Member']['multi_workspace_setup'] ? "<p>Multi-workspace setup with no master board.</p>" : null;
+			$member['Member']['multi_workspace_setup'] ? $extras_count++ : null;
 			echo $member['Member']['master_board_setup'] ? "<p>Multi-workspace setup with a master board.</p>" : null;
+			$member['Member']['master_board_setup'] ? $extras_count++ : null;
 			echo $smart_form_count ? "<p>$smart_form_count Smart Form(s)</p>" : null;
 			for ($i = 0; $i < count($add_ons_array); $i++) {
 				if ($add_ons_array[$i]) {
 					echo "<p>" . $add_ons_array[$i] . "</p>\n";
+					$extras_count++;
 				}
 			}
+			echo $extras_count ? null : "<p><em>None</em></p>";
 		?>
 	</div>
 

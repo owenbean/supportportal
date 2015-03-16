@@ -30,9 +30,7 @@
 		</div>
 		<div class="form-group">
 	    <div class="col-sm-offset-4 col-sm-5">
-				<div class="checkbox">
-					<?php echo $this->Form->input('enrollment', array('type' => 'checkbox', 'label' => 'Request part of enrollment? ', 'format' => array('before', 'label', 'between', 'input', 'after', 'error'))); ?>
-				</div>
+				<?php echo $this->Form->input('enrollment', array('type' => 'checkbox', 'label' => 'Request part of enrollment? ', 'format' => array('before', 'label', 'between', 'input', 'after', 'error'))); ?>
 			</div>
 		</div>
 		<div class="form-group">

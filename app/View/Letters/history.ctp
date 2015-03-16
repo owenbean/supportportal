@@ -42,8 +42,8 @@
 			<td><?php echo $letter['Letter']['revised_templates']; ?></td>
 			<td><?php echo ($letter['Letter']['enrollment'] ? 'Yes' : 'No'); ?></td>
 			<td><?php echo ($letter['Letter']['request_owner'] ? $letter['User']['first_name'] : '<em>None</em>'); ?></td>
-			<td><?php echo $this->Html->link($this->Html->image('btn_color_search.png', array('height' => '16', 'width' => '16')), array('controller' => 'letters', 'action' => 'view', $letter['Letter']['id']), array('escapeTitle' => false)); ?></td>
-			<td><?php echo $this->Form->postLink($this->Html->image('deleteX.gif'), array('controller' => 'letters', 'action' => 'delete', $letter['Letter']['id']), array('escapeTitle' => false, 'confirm' => 'Are you sure you want to Delete this letter request?  If needed, you can edit it by clicking the View icon.')); ?></td>
+			<td><?php echo $this->Html->link("<span class='glyphicon glyphicon-search action-image' aria-hidden='true'></span>", array('controller' => 'letters', 'action' => 'view', $letter['Letter']['id']), array('escapeTitle' => false)); ?></td>
+			<td><?php echo $this->Form->postLink("<span class='glyphicon glyphicon-remove action-image' aria-hidden='true'></span>", array('controller' => 'letters', 'action' => 'delete', $letter['Letter']['id']), array('escapeTitle' => false, 'confirm' => 'Are you sure you want to Delete this letter request? If needed, you can edit it by clicking the View icon.')); ?></td>
 		</tr>
 		<?php
 			$total_new += $letter['Letter']['new_templates'];

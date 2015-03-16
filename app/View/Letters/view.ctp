@@ -13,5 +13,5 @@
 <p class="claim_link">Request Owned By: <?php echo (!$letter['Letter']['request_owner'] ? $this->Html->link('[claim]', array('controller' => 'letters', 'action' => 'claim', $letter['Letter']['id'])) : '<strong>' . $letter['User']['first_name'] . '</strong>'); ?> <?php echo ($letter['Letter']['request_owner'] == $user_id ? $this->Html->link('[unclaim]', array('action' => 'unclaim', $letter['Letter']['id'])) : null ); ?></p>
 <p>Request Comments: <strong><?php echo (!$letter['Letter']['comments'] ? 'None' : $letter['Letter']['comments']); ?></strong></p>
 <p>&nbsp;</p>
-<p><?php echo $this->Html->link('Edit', array('action' => 'edit', $letter['Letter']['id'])) . ' ' . $this->Html->link('Back', array('action' => 'active')); ?></p>
+<p><?php echo $this->Html->link('Edit', array('action' => 'edit', $letter['Letter']['id'])) . ' | ' . $this->Html->link('Back', array('action' => 'active')); ?></p>
 <p>&nbsp;</p>
