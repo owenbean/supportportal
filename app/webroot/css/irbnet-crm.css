@@ -14,7 +14,7 @@ body {
 }
 
 #content {
-	padding-bottom: 80px; /* Height of the footer element */
+	padding-bottom: 80px;
 }
 
 #footer {
@@ -32,7 +32,6 @@ body {
 
 .navbar-default.navbar {
 	border: none;
-	height: 80px;
 	background-color: white;
 }
 
@@ -64,6 +63,7 @@ body {
 .postLink-link {
 	color: #428bca;
 }
+
 
 
 /** Bootstrap Override **/

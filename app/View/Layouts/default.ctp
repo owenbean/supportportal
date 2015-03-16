@@ -5,6 +5,7 @@ $cakeDescription = __d('cake_dev', 'IRBNet Support Portal');
 <html>
 <head>
 	<?php echo $this->Html->charset(); ?>
+	<meta name="viewport" content="width=device-width, initial-scale=1" >
 	<title>
 		<?php echo $cakeDescription ?>:
 		<?php echo $title_for_layout; ?>
@@ -34,7 +35,7 @@ $cakeDescription = __d('cake_dev', 'IRBNet Support Portal');
 				</div>
 			</div>
 			
-			<div class="container navbar">
+			<div class="container navbar navbar-default">
 				<?php
 					if ($this->Session->read('Auth.User.first_name')) {
 						echo $this->Element('nav');
@@ -48,6 +49,22 @@ $cakeDescription = __d('cake_dev', 'IRBNet Support Portal');
 				<?php echo $this->Session->flash(); ?>
 				<?php echo $this->fetch('content'); ?>
 				<p>&nbsp;</p>
+
+				<div id="orgSearchBox" class="searchBox" title="Search for an Organization">
+					<p>Enter short or full name:<p>
+					<form method="post" action="<?php echo Router::url(array('controller' => 'members', 'action' => 'search')); ?>">
+							<input type="text" id="searchOrgName" name="searchOrgName" size="30">
+							<p id="advancedOrgSearch"><a href="organization_search.php" onclick="return notYet()">Advanced Search</a></p>
+					</form>
+				</div>
+
+				<div id="adminSearchBox" class="searchBox" title="Search for an Organization">
+					<p>Enter first or last name:<p>
+					<form method="post" action="<?php echo Router::url(array('controller' => 'admins', 'action' => 'search')); ?>">
+						<input type="text" id="searchAdminName" name="searchAdminName" size="30">
+					</form>
+				</div>
+
 			</div>
 		</div>
 

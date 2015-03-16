@@ -1,4 +1,13 @@
-<ul class="nav nav-tabs">
+<div class="navbar-header">
+  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+    <span class="sr-only">Toggle Navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+</div>
+
+<ul class="nav nav-tabs collapse navbar-collapse">
   <li role="presentation" <?php echo ($this->params['controller'] == 'users' && $this->action == 'index') ? "class='active'" : null ?>><?php echo $this->Html->link('Home', array('controller' => 'users', 'action' => 'index')); ?></li>
 
   <li role="presentation" <?php echo ($this->params['controller'] == 'letters') ? "class='active dropdown'" : "class='dropdown'" ?>>
@@ -97,18 +106,3 @@
     </ul>
   </li>
 </ul>
-
-<div id="orgSearchBox" class="searchBox" title="Search for an Organization">
-		<p>Enter short or full name:<p>
-		<form method="post" action="<?php echo Router::url(array('controller' => 'members', 'action' => 'search')); ?>">
-				<input type="text" id="searchOrgName" name="searchOrgName" size="30">
-				<p id="advancedOrgSearch"><a href="organization_search.php" onclick="return notYet()">Advanced Search</a></p>
-		</form>
-</div>
-
-<div id="adminSearchBox" class="searchBox" title="Search for an Organization">
-	<p>Enter first or last name:<p>
-	<form method="post" action="<?php echo Router::url(array('controller' => 'admins', 'action' => 'search')); ?>">
-		<input type="text" id="searchAdminName" name="searchAdminName" size="30">
-	</form>
-</div>
