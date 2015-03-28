@@ -4,6 +4,7 @@ class FaqSectionsController extends AppController {
 
   public function beforeFilter(){
     parent::beforeFilter();
+    $this->layout = 'faq_layout';
     $faq_editor = CakeSession::read('Auth.User.faq_editor');
     if ($faq_editor != 1) {
       throw new MethodNotAllowedException(__('Unable to access this page'));

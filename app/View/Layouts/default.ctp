@@ -14,9 +14,6 @@ $cakeDescription = __d('cake_dev', 'IRBNet Support Portal');
 		echo $this->Html->meta('favicon.ico', '/favicon.ico', array('type' => 'icon'));
 
 		echo $this->Html->css(array('jquery-ui.min', 'bootstrap', 'irbnet-crm'));
-		if ($this->params['controller'] == 'faqSections' || $this->params['controller'] == 'faqQuestions') {
-			echo $this->Html->css(array('faq'));
-		}
 		echo $this->Html->script(array('jquery', 'jquery-ui-1.10.4.custom.min', 'Markdown_Converter', 'irbnet_admin', 'bootstrap'));
 
 		echo $this->fetch('meta');
