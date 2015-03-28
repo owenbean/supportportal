@@ -68,6 +68,19 @@ body {
 	color: #428bca;
 }
 
+.inline-divs {
+	display: inline;
+}
+
+
+/** Classes for Testing **/
+
+.test-border { /* wraps a red border around any element you need to visually define */
+	border: 1px solid red;
+}
+
+.test-class { /* change code to apply any test formatting to a given element. Do not leave class on element after testing is complete */
+}
 
 
 /** Bootstrap Override **/

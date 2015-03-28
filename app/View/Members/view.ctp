@@ -132,7 +132,15 @@ if($admins) {
                 <p>Status: <strong><?php echo $smartForm['SmartForm']['status']; ?></strong></p>
                 <p>Developer: <strong><?php echo ($smartForm['User']['id'] ? $smartForm['User']['first_name'] : 'Unknown'); ?></strong></p>
                 <p>Launch Date: <strong><?php echo $smartForm['SmartForm']['launch_date']; ?></strong></p>
-                <p><?php echo $this->Html->link("<span class='glyphicon glyphicon-pencil action-image' aria-hidden='true'></span>", array('controller' => 'smartForms', 'action' => 'edit', $member['Member']['id'], $smartForm['SmartForm']['id']), array('escapeTitle' => false)); ?>&nbsp;&nbsp;&nbsp;<?php echo $this->Html->link("<span class='glyphicon glyphicon-remove action-image' aria-hidden='true'></span>", array('controller' => 'smartForms', 'action' => 'delete', $member['Member']['id'], $smartForm['SmartForm']['id']), array('escapeTitle' => false, 'confirm' => 'Are you sure you want to delete this smart form?')); ?></p>
+                <div>
+                    <div class='inline-divs'>
+                        <?php echo $this->Html->link("<span class='glyphicon glyphicon-pencil action-image' aria-hidden='true'></span>", array('controller' => 'smartForms', 'action' => 'edit', $member['Member']['id'], $smartForm['SmartForm']['id']), array('escapeTitle' => false)); ?>
+                    </div>
+                    &nbsp;&nbsp;
+                    <div class='inline-divs'>
+                        <?php echo $this->Form->postLink("<span class='glyphicon glyphicon-remove action-image' aria-hidden='true'></span>", array('controller' => 'smartForms', 'action' => 'delete', $member['Member']['id'], $smartForm['SmartForm']['id']), array('escapeTitle' => false, 'confirm' => 'Are you sure you want to delete this smart form?')); ?>
+                    </div>
+                </div>
                 <p>&nbsp;</p>
             </div>
             <?php endforeach; ?>
