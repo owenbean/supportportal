@@ -6,11 +6,10 @@
 	<table class="table table-condensed table-bordered table-hover">
 		<thead>
 			<tr>
-				<th>Smart Form Name</th>
 				<th>Type</th>
 				<th>Member Name</th>
 				<th>Developer</th>
-				<th>Smart Form Status</th>
+				<th>Status</th>
 			</tr>
 		</thead>
 
@@ -20,9 +19,8 @@
 			<?php } else {
 				foreach ($smartForms as $smartForms): ?>
 			<tr class="list-item">
-				<td><?php echo $this->Html->link($smartForms['SmartForm']['name'], array('controller' => 'members', 'action' => 'view', $smartForms['Member']['id'])); ?></td>
-				<td><?php echo $smartForms['SmartForm']['sf_domain']; ?></td>
-				<td><?php echo $smartForms['Member']['short_name']; ?></td>
+				<td><?php echo $this->Html->link($smartForms['SmartForm']['sf_domain'], array('controller' => 'members', 'action' => 'view', $smartForms['Member']['id'])); ?></td>
+				<td><?php echo $smartForms['Member']['full_name']; ?></td>
 				<td><?php echo $smartForms['User']['first_name']; ?></td>
 				<td><?php echo $smartForms['SmartForm']['status']; ?></td>
 			</tr>

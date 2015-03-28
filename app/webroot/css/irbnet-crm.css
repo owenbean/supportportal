@@ -43,8 +43,12 @@ body {
 	text-decoration: none;
 }
 
-.bottom_buffer {
+.bottom-buffer-40 {
 	margin-bottom: 40px;
+}
+
+.bottom-buffer-10 {
+	margin-bottom: 10px;
 }
 
 .title {

@@ -32,6 +32,8 @@ $cakeDescription = __d('cake_dev', 'IRBNet Support Portal');
 				</div>
 			</div>
 			
+			<div class='bottom-buffer-10'>&nbsp;</div>
+
 			<div class="container navbar navbar-default">
 				<?php
 					if ($this->Session->read('Auth.User.first_name')) {
@@ -42,7 +44,7 @@ $cakeDescription = __d('cake_dev', 'IRBNet Support Portal');
 		</div>
 
 		<div id="content">
-			<div class="container bottom_buffer">
+			<div class="container bottom-buffer-40">
 				<?php echo $this->Session->flash(); ?>
 				<?php echo $this->fetch('content'); ?>
 				<p>&nbsp;</p>

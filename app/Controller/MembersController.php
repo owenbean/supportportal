@@ -57,7 +57,7 @@ class MembersController extends AppController {
 				$this->Session->setFlash('Member successfully added', 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'view', $this->Member->id));
 			}
-			$this->Session->setFlash(__('Unable to add new member'));
+			$this->Session->setFlash('Unable to add new member', 'default', array('class' => 'alert alert-danger'));
 		}
 	}
 	

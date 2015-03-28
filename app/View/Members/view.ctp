@@ -116,6 +116,30 @@ if($admins) {
 		<p><?php $org_comments = h($member['Member']['comments']); echo ($org_comments == null ? "<em>None</em>" : nl2br($org_comments)) ?></p>
 	</div>
 
+    <!-- buffer div -->
+    <div class="col-sm-12">
+        <p>&nbsp;</p>
+    </div>
+
+    <!-- smart forms section -->
+    <div class='col-sm-12'>
+        <h4>Smart Form(s):</h4>
+        <?php if ($smartForms): ?>
+            <?php foreach ($smartForms as $smartForm): ?>
+            <p><strong><?php echo $smartForm['SmartForm']['name']; ?></strong></p>
+            <div class='container'>
+                <p>Type: <strong><?php echo $smartForm['SmartForm']['sf_domain']; ?></strong></p>
+                <p>Status: <strong><?php echo $smartForm['SmartForm']['status']; ?></strong></p>
+                <p>Developer: <strong><?php echo ($smartForm['User']['id'] ? $smartForm['User']['first_name'] : 'Unknown'); ?></strong></p>
+                <p>Launch Date: <strong><?php echo $smartForm['SmartForm']['launch_date']; ?></strong></p>
+                <p><?php echo $this->Html->link("<span class='glyphicon glyphicon-pencil action-image' aria-hidden='true'></span>", array('controller' => 'smartForms', 'action' => 'edit', $member['Member']['id'], $smartForm['SmartForm']['id']), array('escapeTitle' => false)); ?>&nbsp;&nbsp;&nbsp;<?php echo $this->Html->link("<span class='glyphicon glyphicon-remove action-image' aria-hidden='true'></span>", array('controller' => 'smartForms', 'action' => 'delete', $member['Member']['id'], $smartForm['SmartForm']['id']), array('escapeTitle' => false, 'confirm' => 'Are you sure you want to delete this smart form?')); ?></p>
+                <p>&nbsp;</p>
+            </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
+        <p><?php echo $this->Html->link('Add Smart Form', array('controller' => 'smartForms', 'action' => 'add', $member['Member']['id'])); ?></p>
+    </div>
+
 	<!-- Member interaction -->
 	<div class="collapse">
 		<h2>Last 5 Member Interactions:</h2>
