@@ -2,7 +2,7 @@
 
 <p>&nbsp;</p>
 
-<div id="adminAddPopUp" title="New Administrator">
+<div id="adminAddPopUp">
 	<div id="new_admin_popup">
 		<?php echo $this->Element('add_admin_form'); ?>	
 	</div>
@@ -71,4 +71,6 @@
 			</div>
 		</div>
 </div>
+
+
 

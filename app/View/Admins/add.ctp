@@ -25,19 +25,21 @@
 			</div>
 		</div>
 
+		<?php if(count($members) > 1): ?>
 		<div class="form-group">
 			<label class="col-sm-4 control-label">Organization:</label>
 			<div class="col-sm-5">
-				<?php 
-					if (sizeof($members) > 1) {
-						echo $this->Form->input('member_id', array('label' => false, 'empty' => 'None', 'class' => 'form-control'));
-					} else {
-						$member = implode(array_flip($members));
-						echo $this->Form->input('member_id', array('label' => false, 'default' => $member, 'type' => 'hidden', 'class' => 'form-control'));
-					} 
-				?>
+				<?php echo $this->Form->input('member_id', array('label' => false, 'empty' => 'None', 'class' => 'form-control')); ?>
 			</div>
 		</div>
+        <?php else: ?>
+        <div class='form-group collapse'>
+            <?php 
+                $member = implode(array_flip($members));
+                echo $this->Form->input('member_id', array('label' => false, 'default' => $member, 'type' => 'hidden', 'class' => 'form-control'));
+            ?>
+        </div>
+        <?php endif; ?>
 
 		<div class="form-group">
 	    <div class="col-sm-offset-4 col-sm-5">

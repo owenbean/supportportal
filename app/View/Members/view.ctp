@@ -73,9 +73,9 @@ if($admins) {
 	<!-- active admin section -->
 	<div class="col-sm-4">
 		<h4>Administrators:</h4>
-		<?php if (!$admins || !$active_admins) { ?>
+		<?php if (!$admins || !$active_admins): ?>
 			<p>No administrators.</p>
-		<?php } else { ?>
+		<?php else: ?>
 			<table class="table table-condensed table-bordered table-hover">
 				<thead>
 					<th>Name</th>
@@ -85,14 +85,14 @@ if($admins) {
 				<tbody>
 					<?php
 						foreach ($admins as $admin):
-							if ($admin['Admin']['active']) {
+							if ($admin['Admin']['active']):
 					?>
 					<tr class="list-item">
 						<td><?php echo $this->Html->link(h($admin['Admin']['first_name']) . ' ' . h($admin['Admin']['last_name']), array('controller' => 'admins', 'action' => 'view', $admin['Admin']['id'])); ?></td>
 						<td><?php echo $admin['Admin']['email_address']; ?></td>
 					</tr>
 				<?php
-							}
+							endif;
 						endforeach;
 				?>
 				</tbody>
@@ -100,9 +100,10 @@ if($admins) {
 			<p>Retired administrators: <?php echo $retired_admins ?>
 			<?php echo ($retired_admins > 0) ? "<p><a href='#' id='retiredAdminsLink'>Click here</a> to see the list.</p>" : null; ?></p>
 			<?php
-					}
 					unset($admin);
-				?>
+				endif;
+			?>
+			<p><?php echo $this->Html->link('Add Administrator', array('controller' => 'admins', 'action' => 'add', $member['Member']['id'])); ?></p>
 	</div>
 
 	<!-- buffer div -->
