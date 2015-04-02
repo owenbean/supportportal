@@ -36,6 +36,11 @@
                         </div>
                     </div>
                     <div id="navigation">
+                        <div id="nav_left_side">
+                            <div class="nav_text">
+                                <?php echo $this->Html->link('Home', array('controller' => 'users', 'action' => 'index')); ?>
+                            </div>
+                        </div>
                     </div>
                     <div id="main_content">
                         <div id="left_col">
