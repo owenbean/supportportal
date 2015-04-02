@@ -20,8 +20,12 @@ $(document).ready(function() {
 			$.ajax({
 				url: 'list_admin',
 				type: 'GET',
-				data: { member_id : memberId },
-				error: function(){ alert('Did not work'); },
+				data: {
+					member_id : memberId
+				},
+				error: function(){
+					alert('Did not work');
+				},
 				success: function(data){
 					$("#submitter_name").html(data);
 				}
@@ -73,12 +77,20 @@ $(document).ready(function() {
 	$(function() {
 		$("#orgSearchBox").dialog({
 			autoOpen: false,
-			height: 300,
 			width: 400,
 			modal: true,
+			open: function() {
+				$('#searchOrgName').focus();
+			},
 			buttons: {
 				Search: function() {
-					$(this).find("form").submit();
+					var searchTerm = $('#searchOrgName').value;
+					if(searchTerm == '' || searchTerm == null) {
+						alert('Please enter a name.');
+						return false;
+					} else {
+						$(this).find("form").submit();						
+					}
 				},
 				Cancel: function() {
 					$(this).dialog("close");
@@ -98,9 +110,18 @@ $(document).ready(function() {
 			height: 'auto',
 			width: 400,
 			modal: true,
+			open: function() {
+				$('#searchAdminName').focus();
+			},
 			buttons: {
 				Search: function() {
-					$(this).find("form").submit();
+					var searchTerm = $('#searchAdminName').value;
+					if(searchTerm == '' || searchTerm == null) {
+						alert('Please enter a name.');
+						return false;
+					} else {
+						$(this).find("form").submit();						
+					}
 				},
 				Cancel: function() {
 					$(this).dialog("close");

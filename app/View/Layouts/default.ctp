@@ -53,7 +53,6 @@ $cakeDescription = __d('cake_dev', 'IRBNet Support Portal');
 					<p>Enter short or full name:<p>
 					<form method="post" action="<?php echo Router::url(array('controller' => 'members', 'action' => 'search')); ?>">
 							<input type="text" id="searchOrgName" name="searchOrgName" size="30">
-							<p id="advancedOrgSearch"><a href="organization_search.php" onclick="return notYet()">Advanced Search</a></p>
 					</form>
 				</div>
 
