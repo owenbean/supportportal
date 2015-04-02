@@ -1,6 +1,7 @@
 var converter = new Markdown.Converter();
 
 $(document).ready(function() {
+	//this function allows entire table rows in list tables to be clickable
 	$('tr.list-item').click( function() {
 	    window.location = $(this).find('a').attr('href');
 	}).hover( function() {
@@ -11,13 +12,6 @@ $(document).ready(function() {
 	$("#tbd_button").on("click", function(e) {
 		e.preventDefault();
 		$(".date_picker").val("TBD");
-	});
-	
-	//org details page slide down for committees and smart forms
-	$(".section_details_head").on("click", function(e) {
-		e.preventDefault();
-		$(this).closest(".section_details").find(".hidden_row").slideToggle();
-		$(this).find(".arrow").toggleClass("arrow_clicked");
 	});
 	
 	//populates the "Submitted By" dropdown with a list of org admins
@@ -150,6 +144,7 @@ $(document).ready(function() {
  		document.getElementById("faq_answer_preview").innerHTML = converter.makeHtml(answer_preview);
 	});
 	
+	//these two functions initiate the helper popups on the faq add/edit page.
 	$("#faq_reference_help_link").hover(function(e) {
 		$($(this).data("tooltip")).css({ left: e.pageX - 160, top: e.pageY + 1 }).stop().show();
 	}, function() {
@@ -165,9 +160,8 @@ $(document).ready(function() {
 });
 
 
-//trigger for add administrator popup
-var otherEntry;
-otherEntry = function(submitter_name) {
+//trigger for add administrator popup on letter add page
+function otherEntry(submitter_name) {
 	switch (submitter_name.value) {
 		case 'Other':
 			$("#adminAddPopUp").dialog("open");
@@ -193,66 +187,10 @@ function otherAdmin() {
 			}
 		}
 	});
-
 }
-
-//data validation for modal popups
-function checkLength(field, min) {
-	if (field.val().length < min || field.val() == 'empty') {
-		$(".errorTip").show();
-		field.addClass("fieldError");
-		setTimeout(function() {
-			$(".errorTip").fadeOut(1500)
-		}, 1000);
-		return false;
-	} else {
-		return true;
-	}
-}
-
-function checkDropDown(field) {
-	if (field.val() == 'empty') {
-		$(".errorTip").show();
-		field.addClass("fieldError");
-		setTimeout(function() {
-			$(".errorTip").fadeOut(1500)
-		}, 1000);
-		return false;
-	} else {
-		return true;
-	}
-}	
 
 //not ready yet popup
 function notYet() {
 	alert("Coming soon!");
 	return false;
-}
-
-
-
-//DATA VALIDATION FUNCTIONS
-
-
-//checks that username is unique before leaving page
-function userProfileValidate() {
-	var userUsername = document.forms["userProfileEdit"]["system_admin_username"].value;
-	var userPassword = document.forms["userProfileEdit"]["system_admin_password"].value;
-	var userEmail = document.forms["userProfileEdit"]["system_admin_email"].value;
-	var dupUsername = $("#system_admin_username").hasClass("invalid_entry");
-	if (userUsername == '') {
-		alert('Please enter a username.');
-		return false;
-	} else if (userPassword == '') {
-		alert('Please enter a password.');
-		return false;
-	} else if (userEmail == '') {
-		alert('Please enter an email address.');
-		return false;
-	} else if (dupUsername) {
-		alert('Please choose an available username.');
-		return false;
-	} else {
-		return true;
-	}
 }
