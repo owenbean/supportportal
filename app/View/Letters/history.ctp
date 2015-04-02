@@ -1,40 +1,28 @@
-<h1 id="header_text">IRBNet Letter Requests</h1>
+<h2 class="title">IRBNet Letter Requests</h2>
 <p>&nbsp;</p>
-<div id="letters_search">
-	<h2>Letter Requests by Member Institution:</h2>
-	<div class="letter_history_table">
+<div class="col-sm-4 col-sm-offset-4 text-center">
+	<h4>Requests by Member:</h4>
+	<div>
 		<?php echo $this->Form->create('Letter', array('type' => 'get', 'action' => 'history')); ?>
-			<div id="letter_search_top_row">
-				<div id="organization_select">
-						<?php echo $this->Form->input('member_id', array('label' => 'Member: ', 'empty' => 'All', 'id' => 'org_name_test')); ?>
-				</div>
-				<div id="owner_table">
-				</div>
-			</div>
-			<div id="letter_search_bottom_row">
-				<div id="date_received">
-					<div class="from_date_field">
-					</div>
-					<div class="to_date_field">
-					</div>
-				</div>
-			</div>
-			<?php echo $this->Form->end('Search'); ?>
+		<div class="form-group">
+			<?php echo $this->Form->input('member_id', array('label' => false, 'empty' => 'All', 'class' => 'form-control')); ?>
+		</div>
+		<?php echo $this->Form->button('Search', array('type' => 'submit', 'class' => 'btn btn-default')); ?>
 	</div>
 </div>
 
 <p>&nbsp;</p>
 
-<div id="request_search_results">
+<div class="col-sm-10 col-sm-offset-1">
 	<?php if(isset($_GET['member_id'])){ ?>
-	<h2><?php echo ($_GET['member_id'] == null ? 'All Requests' : $member['Member']['full_name']) ?></h2>
+	<h4><?php echo ($_GET['member_id'] == null ? 'All Requests' : $member['Member']['full_name']) ?></h4>
 	<?php 
 		if ($letters) {
 			$total_new = 0;
 			$total_revised = 0;
 			$total_enrollment = 0;
 	?>
-	<table>
+	<table class="table table-striped">
 		<tr>
 			<th>Date Received</th>
 			<th>Date Completed</th>
@@ -43,6 +31,7 @@
 			<th>Revised Letters</th>
 			<th>Enrollment?</th>
 			<th>Owner</th>
+			<th colspan="2">Actions</th>
 		</tr>
 	<?php foreach ($letters as $letter): ?>
 		<tr>
@@ -53,8 +42,8 @@
 			<td><?php echo $letter['Letter']['revised_templates']; ?></td>
 			<td><?php echo ($letter['Letter']['enrollment'] ? 'Yes' : 'No'); ?></td>
 			<td><?php echo ($letter['Letter']['request_owner'] ? $letter['User']['first_name'] : '<em>None</em>'); ?></td>
-			<td><?php echo $this->Html->link($this->Html->image('btn_color_search.png', array('height' => '16', 'width' => '16')), array('controller' => 'letters', 'action' => 'view', $letter['Letter']['id']), array('escapeTitle' => false)); ?></td>
-			<td><?php echo $this->Form->postLink($this->Html->image('deleteX.gif'), array('controller' => 'letters', 'action' => 'delete', $letter['Letter']['id']), array('escapeTitle' => false, 'confirm' => 'Are you sure you want to Delete this letter request?  If needed, you can edit it by clicking the View icon.')); ?></td>
+			<td><?php echo $this->Html->link("<span class='glyphicon glyphicon-search action-image' aria-hidden='true'></span>", array('controller' => 'letters', 'action' => 'view', $letter['Letter']['id']), array('escapeTitle' => false)); ?></td>
+			<td><?php echo $this->Form->postLink("<span class='glyphicon glyphicon-remove action-image' aria-hidden='true'></span>", array('controller' => 'letters', 'action' => 'delete', $letter['Letter']['id']), array('escapeTitle' => false, 'confirm' => 'Are you sure you want to Delete this letter request? If needed, you can edit it by clicking the View icon.')); ?></td>
 		</tr>
 		<?php
 			$total_new += $letter['Letter']['new_templates'];
@@ -71,7 +60,7 @@
 	
 	<?php } else { ?>
 	
-	<p class="message_feedback">No letter requests to display.</p>
+	<p>No letter requests to display.</p>
 	
 	<?php } ?> 
 	<?php } else { ?>

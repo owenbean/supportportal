@@ -5,6 +5,7 @@ $cakeDescription = __d('cake_dev', 'IRBNet Support Portal');
 <html>
 <head>
 	<?php echo $this->Html->charset(); ?>
+	<meta name="viewport" content="width=device-width, initial-scale=1" >
 	<title>
 		<?php echo $cakeDescription ?>:
 		<?php echo $title_for_layout; ?>
@@ -12,8 +13,8 @@ $cakeDescription = __d('cake_dev', 'IRBNet Support Portal');
 	<?php
 		echo $this->Html->meta('favicon.ico', '/favicon.ico', array('type' => 'icon'));
 
-		echo $this->Html->css(array('irbnet_admin', 'jquery-ui.min.css'));
-		echo $this->Html->script(array('jquery', 'jquery-ui-1.10.4.custom.min.js', "Markdown_Converter.js", 'irbnet_admin'));
+		echo $this->Html->css(array('jquery-ui.min', 'bootstrap', 'irbnet-crm'));
+		echo $this->Html->script(array('jquery', 'jquery-ui-1.10.4.custom.min', 'Markdown_Converter', 'irbnet_admin', 'bootstrap'));
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -23,40 +24,53 @@ $cakeDescription = __d('cake_dev', 'IRBNet Support Portal');
 	?>
 </head>
 <body>
-<div id="wrapper">
-	<div id="folio">
-		<div id="site_wrapper">
-			<div id="top_strip">
-				<div class="logo">
+	<div id="wrap">
+		<div id="header">
+			<div class="container navbar navbar-default">
+				<div class="navbar-brand">
 					<?php echo $this->Html->image('irbnet.gif', array('alt' => 'IRBNet', 'url' => array('controller' => 'users', 'action' => 'login'))); ?>
-				</div>
-				<div class="tagline">
-					<h1>Innovative Solutions for <br />Compliance and Research Management </h1><br />
 				</div>
 			</div>
 			
-			<div id="navigation">
-			<?php
-				if ($this->Session->read('Auth.User.first_name')) {
-					echo $this->Element('nav');
-				}
-			?>
+			<div class='bottom-buffer-10'>&nbsp;</div>
+
+			<div class="container navbar navbar-default">
+				<?php
+					if ($this->Session->read('Auth.User.first_name')) {
+						echo $this->Element('nav');
+					}
+				?>
 			</div>
-		
-			<div id="main_content">
-				<div id="left_col">
-					<div class="left_content">
-						<?php echo $this->Session->flash(); ?>
-						<?php echo $this->fetch('content'); ?>
-					</div>
+		</div>
+
+		<div id="content">
+			<div class="container bottom-buffer-40">
+				<?php echo $this->Session->flash(); ?>
+				<?php echo $this->fetch('content'); ?>
+				<p>&nbsp;</p>
+
+				<div id="orgSearchBox" class="searchBox" title="Search for an Organization">
+					<p>Enter short or full name:<p>
+					<form method="post" action="<?php echo Router::url(array('controller' => 'members', 'action' => 'search')); ?>">
+							<input type="text" id="searchOrgName" name="searchOrgName" size="30">
+					</form>
 				</div>
+
+				<div id="adminSearchBox" class="searchBox" title="Search for an Organization">
+					<p>Enter first or last name:<p>
+					<form method="post" action="<?php echo Router::url(array('controller' => 'admins', 'action' => 'search')); ?>">
+						<input type="text" id="searchAdminName" name="searchAdminName" size="30">
+					</form>
+				</div>
+
 			</div>
-			<p>&nbsp;</p>
-			<div id="footer">
-				<p>Copyright &copy; 2002-2015 Research Dataware, LLC.&nbsp;&nbsp;&nbsp;All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+		</div>
+
+		<div id="footer" class="container">
+			<div>
+				<p>Copyright &copy; 2002-2015 Research Dataware, LLC.&nbsp;&nbsp;&nbsp;All Rights Reserved.</p>
 			</div>
 		</div>
 	</div>
-</div>
 </body>
 </html>

@@ -14,8 +14,9 @@
 		echo $this->Form->input(
 			'Letter.submitter',
 			array(
-				'label' => 'Request Submitted By: ',
+				'label' => false,
 				'empty' => '',
+				'class' => 'form-control',
 				'options' => array(
 					$submitter_full_names, 'Other' => 'Other'
 				),

@@ -1,0 +1,106 @@
+html{
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#wrap {
+	min-height: 100%;
+	position: relative;
+}
+
+#content {
+	padding-bottom: 80px;
+}
+
+#footer {
+	width: 100%;
+	height: 80px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+#footer div {
+	left: 5;
+	bottom: 0;
+	position: absolute;
+}
+
+.navbar-default.navbar {
+	border: none;
+	background-color: white;
+}
+
+.table .list-item a {
+	color: #333;
+}
+
+.list-item a:hover {
+	text-decoration: none;
+}
+
+.bottom-buffer-40 {
+	margin-bottom: 40px;
+}
+
+.bottom-buffer-10 {
+	margin-bottom: 10px;
+}
+
+.title {
+	color: red;
+	text-align: center;
+}
+
+.sub-title {
+	text-align: center;
+}
+
+.hover {
+	cursor: pointer;
+}
+
+.action-image {
+	color: #333;
+}
+
+.postLink-link {
+	color: #428bca;
+}
+
+.inline-divs {
+	display: inline;
+}
+
+
+/** Classes for Testing **/
+
+.test-border { /* wraps a red border around any element you need to visually define */
+	border: 1px solid red;
+}
+
+.test-class { /* change code to apply any test formatting to a given element. Do not leave class on element after testing is complete */
+}
+
+
+/** Bootstrap Override **/
+
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+	cursor: pointer;
+}
+
+
+/** JQuiry Override **/
+
+.ui-dialog-titlebar-close {
+	visibility: hidden;
+}
+
+.ui-widget-content a {
+	color: #428bca;
+}

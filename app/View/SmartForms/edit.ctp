@@ -1,67 +1,87 @@
-<h1>Edit Smart Form</h1>
+<h2 class='title'>Edit Smart Form</h2>
 
 <p>&nbsp;</p>
 
-<div id="form_table">
-
-<?php echo $this->Form->create('SmartForm'); ?>
-	<fieldset>
-		<legend>Update Smart Form</legend>
-		<p class="errorTip">All information must be entered</p>
-		<table>
-		<tbody>
-			<tr><td>
-				<?php echo $this->Form->input('name', array('label' => 'Smart Form Name: ', 'maxLength' => '100')); ?>
+<div class="col-sm-10 col-sm-offset-1">	
+<?php echo $this->Form->create('SmartForm', array('class' => 'form-horizontal')); ?>
+        <div class="form-group">
+            <label class="col-sm-4 control-label">Smart Form Name:</label>
+            <div class="col-sm-5">
+                <?php echo $this->Form->input('name', array('label' => false, 'maxLength' => '100', 'class' => 'form-control')); ?>
 				<?php echo $this->Form->input('id', array('type' => 'hidden')); ?>
-			</td></tr>
-			
-			<tr><td>
-				<?php echo $this->Form->input('sf_domain', array(
-						'label' => 'Domain: ',
-						'options' => array(
-							'Administrator' => 'Administrator',
-							'COI - General' => 'COI - General',
-							'COI - Project' => 'COI - Project',
-							'Researcher' => 'Researcher',
-							'Reviewer' => 'Reviewer',
-							'Other' => 'Other'
-						),
-						'empty' => ''
-					)); ?>
-			</td></tr>
-			
-			<tr><td>
-				<?php echo $this->Form->input('status', array(
-						'label' => 'Smart Form Status: ',
-						'options' => array(
-							'Contracted' => 'Contracted',
-							'In Development' => 'In Development',
-							'Live' => 'Live',
-							'Retired' => 'Retired'
-						),
-						'empty' => ''
-					)); ?>
-			</td></tr>
-			
-			<tr><td>
-				<?php echo $this->Form->input('launch_date', array(
-						'label' => 'Launch Date: ',
-						'id' => 'go_live_date',
-						'class' => 'date_picker',
-						'size' => '20'
-					)) . $this->Form->button('TBD', array('id' => 'tbd_button'))
-					; ?>
-			</td></tr>
-			
-			<tr><td>
-				<?php echo $this->Form->input('developer', array(
-					'label' => 'Smart Form Developer: ',
-					'options' => $users,
-					'empty' => 'Unknown'
-				)); ?>
-			</td></tr>
-		</tbody>
-		</table>
-		<p><?php echo $this->Form->end('Update Smart Form'); ?></p>
-	</fieldset>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="col-sm-4 control-label">Domain:</label>
+            <div class="col-sm-5">
+                <?php echo $this->Form->input('sf_domain', array(
+                        'label' => false,
+                        'class' => 'form-control',
+                        'options' => array(
+                            'Administrator' => 'Administrator',
+                            'COI - General' => 'COI - General',
+                            'COI - Project' => 'COI - Project',
+                            'Researcher' => 'Researcher',
+                            'Reviewer' => 'Reviewer',
+                            'Other' => 'Other'
+                        ),
+                        'empty' => ''
+                    )); ?>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-4 control-label">Smart Form Status:</label>
+            <div class="col-sm-5">
+                <?php echo $this->Form->input('status', array(
+                        'label' => false,
+                        'class' => 'form-control',
+                        'options' => array(
+                            'Contracted' => 'Contracted',
+                            'In Development' => 'In Development',
+                            'Live' => 'Live',
+                            'Retired' => 'Retired'
+                        ),
+                        'empty' => ''
+                    )); ?>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-4 control-label">Launch Date:</label>
+            <div class="col-sm-5">
+                <?php echo $this->Form->input('launch_date', array(
+                        'label' => false,
+                        'id' => 'go_live_date',
+                        'class' => 'date_picker form-control',
+                        'size' => '20'
+                    )) . $this->Form->button('TBD', array('id' => 'tbd_button', 'class' => 'btn btn-default'))
+                    ; ?>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-4 control-label">Smart Form Developer:</label>
+            <div class="col-sm-5">
+                <?php echo $this->Form->input('developer', array(
+                    'label' => false,
+                    'class' => 'form-control',
+                    'options' => $users,
+                    'empty' => 'Unknown'
+                )); ?>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-5 col-sm-offset-4">
+                <?php echo $this->Form->button('Add Smart Form', array('type' => 'submit', 'class' => 'btn btn-default')); ?>
+            </div>
+        </div>
 </div>
+
+
+
+
+
+
+

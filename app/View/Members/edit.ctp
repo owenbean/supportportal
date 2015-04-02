@@ -1,29 +1,36 @@
-<h1>NRN Member - Edit</h1>
+<h2 class="title">NRN Member - Edit</h2>
 
 <p>&nbsp;</p>
 
-<div id="form_table">
+<div class="col-sm-10 col-sm-offset-1">
+<?php echo $this->Form->create('Member', array('class' => 'form-horizontal')); ?>
+		<div class="form-group">
+			<label class="col-sm-4 control-label">Member Name:</label>
+			<div class="col-sm-5">
+				<?php echo $this->Form->input('full_name', array('label' => false, 'class' => 'form-control')); ?>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="col-sm-4 control-label">Member Short Name:</label>
+			<div class="col-sm-5">
+				<?php echo $this->Form->input('short_name', array('label' => false, 'class' => 'form-control')); ?>
+			</div>
+		</div>
 
-<?php echo $this->Form->create('Member'); ?>
-	<fieldset>
-		<legend><?php echo __('Update Member'); ?></legend>
-		<table>
-		<tbody>
-			<tr><td>
-				<?php echo $this->Form->input('full_name', array('label' => 'Member Name: ')); ?>
-			</td></tr>
-			
-			<tr><td>
-				<?php echo $this->Form->input('short_name', array('label' => 'Member Short Name: ')); ?>
-			</td></tr>
-			
-			<tr><td>
-				<?php echo $this->Form->input('op_num', array('label' => 'Member ID: ')); ?>
-			</td></tr>
-			
-			<tr><td>
+		<div class="form-group">
+			<label class="col-sm-4 control-label">Member ID:</label>
+			<div class="col-sm-5">
+				<?php echo $this->Form->input('op_num', array('label' => false, 'class' => 'form-control')); ?>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-4 control-label">Member Class:</label>
+			<div class="col-sm-5">
 				<?php echo $this->Form->input('class', array(
-						'label' => 'Member Class: ',
+						'label' => false,
+						'class' => 'form-control',
 						'options' => array(
 							'University' => 'University',
 							'Hospital' => 'Hospital', 
@@ -32,54 +39,81 @@
 						),
 						'empty' => '')); 
 				?>
-			</td></tr>
-			
-			<tr><td>
-				<?php echo $this->Form->input('city', array('label' => 'Member City: ')); ?>
-			</td></tr>
-			
-			<tr><td>
-				<?php echo $this->Form->input('state', array('label' => 'Member State: ')); ?>
-			</td></tr>
-			
-			<tr><td>
-				<?php echo $this->Form->input('specialist', array('label' => 'Member Specialist: ', 'empty' => 'None')); ?>
-			</td></tr>
-						
-			<tr><td>
-				<?php echo $this->Form->input('pings_email', array('label' => 'Pings Email Address: ')); ?>
-			</td></tr>
-			
-			<tr><td>
-				<?php echo $this->Form->input('resources_username', array('label' => 'IRBNet Resources Username: ')); ?>
-			</td></tr>
+			</div>
+		</div>
 
-			<tr><td>
-				<?php echo $this->Form->input('resources_password', array('label' => 'IRBNet Resources Password: ')); ?>
-			</td></tr>
+		<div class="form-group">
+			<label class="col-sm-4 control-label">Member City:</label>
+			<div class="col-sm-5">
+				<?php echo $this->Form->input('city', array('label' => false, 'class' => 'form-control')); ?>
+			</div>
+		</div>
 
-			<tr><td>
+		<div class="form-group">
+			<label class="col-sm-4 control-label">Member State:</label>
+			<div class="col-sm-5">
+				<?php echo $this->Form->input('state', array('label' => false, 'class' => 'form-control')); ?>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-4 control-label">Member Specialist:</label>
+			<div class="col-sm-5">
+				<?php echo $this->Form->input('specialist', array('label' => false, 'empty' => 'None', 'class' => 'form-control')); ?>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-4 control-label">Pings Email Address:</label>
+			<div class="col-sm-5">
+				<?php echo $this->Form->input('pings_email', array('label' => false, 'class' => 'form-control')); ?>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-4 control-label">IRBNet Resources Username:</label>
+			<div class="col-sm-5">
+				<?php echo $this->Form->input('resources_username', array('label' => false, 'class' => 'form-control')); ?>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-4 control-label">IRBNet Resources Password:</label>
+			<div class="col-sm-5">
+				<?php echo $this->Form->input('resources_password', array('label' => false, 'class' => 'form-control')); ?>
+			</div>
+		</div>
+
+		<div class="form-group">
+	    <div class="col-sm-offset-4 col-sm-5">
 				<?php echo $this->Form->input('citi_integration', array('type' => 'checkbox', 'label' => 'CITI Integration? ', 'format' => array('before', 'label', 'between', 'input', 'after', 'error'))); ?>
-			</td></tr>
-
-			<tr><td>
 				<?php echo $this->Form->input('wirb_integration', array('type' => 'checkbox', 'label' => 'WIRB Integration? ', 'format' => array('before', 'label', 'between', 'input', 'after', 'error'))); ?>
-			</td></tr>
-
-			<tr><td>
 				<?php echo $this->Form->input('sso', array('type' => 'checkbox', 'label' => 'Single Sign-On? ', 'format' => array('before', 'label', 'between', 'input', 'after', 'error'))); ?>
-			</td></tr>
-
-			<tr><td>
 				<?php echo $this->Form->input('file_access', array('type' => 'checkbox', 'label' => 'File Access? ', 'format' => array('before', 'label', 'between', 'input', 'after', 'error'))); ?>
-			</td></tr>
+				<?php echo $this->Form->input('multi_workspace_setup', array('type' => 'checkbox', 'label' => 'Any multi-workspace setups (no master board)? ', 'format' => array('before', 'label', 'between', 'input', 'after', 'error'))); ?>
+				<?php echo $this->Form->input('master_board_setup', array('type' => 'checkbox', 'label' => 'Any multi-workspace setups with a master board? ', 'format' => array('before', 'label', 'between', 'input', 'after', 'error'))); ?>
+			</div>
+		</div>
 
-			<tr><td>
-				<?php echo $this->Form->input('comments', array('label' => 'Comments: ', 'rows' => '5', 'cols' => '50', 'id' => 'comments_field')); ?>
-			</td></tr>
-		</tbody>
-		</table>
-		<?php echo $this->Form->input('id', array('type' => 'hidden')); ?>
-		<p><?php echo $this->Form->end('Update Member'); ?></p>
-	</fieldset>
+		<div class="form-group">
+			<label class="col-sm-4 control-label">Comments:</label>
+			<div class="col-sm-5">
+				<?php echo $this->Form->input('comments', array('label' => false, 'id' => 'comments_field', 'class' => 'form-control')); ?>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-5 col-sm-offset-4">
+				<?php echo $this->Form->input('id', array('type' => 'hidden')); ?>
+				<?php echo $this->Form->button('Update Member', array('type' => 'submit', 'class' => 'btn btn-default')); ?>
+			</div>
+		</div>
+</div>
+
+
+
+
+
+<div id="form_table">
+<?php echo $this->Form->create('Member'); ?>
+				
 </div>

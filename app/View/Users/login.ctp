@@ -1,14 +1,20 @@
 <?php echo $this->Session->flash('auth'); ?>
 
-<h1 id="header_text">IRBNet Support Portal</h1>
+<h2 class="title">IRBNet Support Portal</h2>
 
-<div id="login_table">
+<p>&nbsp;</p>
+
+<div class="col-sm-4 col-sm-offset-4">
 <?php echo $this->Form->create('User'); ?>
-	<div class="login_line">
-		<?php echo $this->Form->input('username', array('label' => 'Username: ')); ?>
+	<div class="form-group">
+		<?php echo $this->Form->input('username', array('label' => "Username: ", 'class' => 'form-control', 'placeholder' => 'Username')); ?>
 	</div>
-	<div class="login_line">
-		<?php echo $this->Form->input('password', array('label' => 'Password: ')); ?>
+	<div class="form-group">
+		<?php echo $this->Form->input('password', array('label' => "Password: ", 'class' => 'form-control', 'placeholder' => 'Password')); ?>
 	</div>
-	<div id="login_button"><?php echo $this->Form->end('Login'); ?></div>
+	<?php echo $this->Form->button('Sign in', array('type' => 'submit', 'class' => 'btn btn-default')); ?>
+</div>
+
+<div class="col-sm-12">
+	<p>&nbsp;</p>
 </div>

@@ -26,10 +26,10 @@ class SmartFormsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->SmartForm->create();
 			if ($this->SmartForm->save($this->request->data)) {
-				$this->Session->setFlash(__('Smart Form successfully added'));
+				$this->Session->setFlash('Smart Form successfully added', 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('controller' => 'members', 'action' => 'view', $member_id));
 			}
-			$this->Session->setFlash(__('Unable to add Smart Form'));
+			$this->Session->setFlash('Unable to add Smart Form', 'default', array('class' => 'alert alert-danger'));
 		}
 	}
 	
@@ -46,10 +46,10 @@ class SmartFormsController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 			$this->SmartForm->id = $id;
 			if ($this->SmartForm->save($this->request->data)) {
-				$this->Session->setFlash(__('Smart Form successfully updated'));
+                $this->Session->setFlash('Smart Form successfully updated', 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('controller' => 'members', 'action' => 'view', $member_id));
 			}
-			$this->Session->setFlash(__('Unable to update Smart Form'));
+            $this->Session->setFlash('Unable to update Smart Form', 'default', array('class' => 'alert alert-danger'));
 		}
 		
 		if (!$this->request->data) {
@@ -67,7 +67,7 @@ class SmartFormsController extends AppController {
 		}
 		
 		if ($this->SmartForm->delete($id)) {
-			$this->Session->setFlash(__('Smart Form deleted'));
+            $this->Session->setFlash('Smart Form deleted', 'default', array('class' => 'alert alert-success'));
 			return $this->redirect(array('controller' => 'members', 'action' => 'view', $member_id));
 		}
 	}

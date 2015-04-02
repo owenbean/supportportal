@@ -8,11 +8,12 @@ class MembersController extends AppController {
 			} else {
 				$this->set('members', $this->Member->find('all', array('conditions' => array('Member.active' => true), 'order' => array('Member.full_name'))));
 			}
-			$this->set('add_features', false);
+			$this->set('filter_added', false);
 		} else {
 			$this->set('members', $this->Member->find('all', array('conditions' => array("Member.$options" => true, 'Member.active' => true), 'order' => array('Member.full_name'))));
 			//this disables sortable column headers
-			$this->set('add_features', true);
+			$this->set('filter_added', true);
+			$this->set('filter', $options);
 		}
 	}
 	
@@ -54,10 +55,10 @@ class MembersController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Member->create();
 			if ($this->Member->save($this->request->data)) {
-				$this->Session->setFlash(__('Member successfully added'));
+				$this->Session->setFlash('Member successfully added', 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'view', $this->Member->id));
 			}
-			$this->Session->setFlash(__('Unable to add new member'));
+			$this->Session->setFlash('Unable to add new member', 'default', array('class' => 'alert alert-danger'));
 		}
 	}
 	
@@ -78,10 +79,10 @@ class MembersController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 			$this->Member->id = $id;
 			if ($this->Member->save($this->request->data)) {
-				$this->Session->setFlash(__('Member successfully updated'));
+				$this->Session->setFlash('Member successfully updated', 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'view', $id));
 			}
-			$this->Session->setFlash(__('Unable to update member'));
+			$this->Session->setFlash('Unable to update member', 'default', array('class' => 'alert alert-danger'));
 		}
 		
 		if (!$this->request->data) {
@@ -97,10 +98,10 @@ class MembersController extends AppController {
 		$this->Member->id = $id;
 		if ($this->Member->save($this->Member->set(array('active' => 0)))) {
 			$this->Member->Admin->updateAll(array('Admin.active' => 0), array('Admin.member_id' => $id));
-			$this->Session->setFlash(__('Member retired'));
+			$this->Session->setFlash('Member retired', 'default', array('class' => 'alert alert-success'));
 			return $this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Unable to retire member'));		
+		$this->Session->setFlash('Unable to retire member', 'default', array('class' => 'alert alert-danger'));
 	}
 	
 	public function delete($id) {
@@ -109,7 +110,7 @@ class MembersController extends AppController {
 		}
 		
 		if ($this->Member->delete($id)) {
-			$this->Session->setFlash(__('Member successfully deleted'));
+			$this->Session->setFlash('Member successfully deleted', 'default', array('class' => 'alert alert-danger'));
 			return $this->redirect(array('action' => 'all'));
 		}
 	}

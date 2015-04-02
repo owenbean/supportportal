@@ -3,8 +3,11 @@ class AdminsController extends AppController {
 	public function all($options = null) {
 		if (!$options) {
 			$this->set('admins', $this->Admin->find('all', array('conditions' => array('Admin.active' => true), 'order' => array('Member.full_name'))));
+			$this->set('filter_added', false);
 		} else {
 			$this->set('admins', $this->Admin->find('all', array('conditions' => array('Admin.active' => true, "Admin.$options" => true), 'order' => array('Member.full_name'))));
+			$this->set('filter_added', true);
+			$this->set('filter', $options);
 		}
 	}
 	
@@ -44,10 +47,10 @@ class AdminsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Admin->create();
 			if ($this->Admin->save($this->request->data)) {
-				$this->Session->setFlash(__('Administrator successfully created'));
+				$this->Session->setFlash('Administrator successfully created', 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'view', $this->Admin->id));
 			}
-			$this->Session->setFlash(__('Unable to save administrator'));
+			$this->Session->setFlash('Unable to save administrator', 'default', array('class' => 'alert alert-danger'));
 		}
 	}
 	
@@ -68,10 +71,10 @@ class AdminsController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 			$this->Admin->id = $id;
 			if ($this->Admin->save($this->request->data)) {
-				$this->Session->setFlash(__('Administrator saved'));
+				$this->Session->setFlash('Administrator saved', 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'view', $id));
 			}
-			$this->Session->setFlash(__('Unable to save administrator'));
+			$this->Session->setFlash('Unable to save administrator', 'default', array('class' => 'alert alert-danger'));
 		}
 		
 		if (!$this->request->data) {
@@ -86,10 +89,10 @@ class AdminsController extends AppController {
 		
 		$this->Admin->id = $id;
 		if ($this->Admin->save($this->Admin->set(array('active' => 0)))) {
-			$this->Session->setFlash(__('Administrator retired'));
+			$this->Session->setFlash('Administrator retired', 'default', array('class' => 'alert alert-success'));
 			return $this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Unable to retire administrator'));
+		$this->Session->setFlash('Unable to retire administrator', 'default', array('class' => 'alert alert-danger'));
 	}
 	
 	public function delete($id) {
@@ -98,7 +101,7 @@ class AdminsController extends AppController {
 		}
 		
 		if ($this->Admin->delete($id)) {
-			$this->Session->setFlash(__('Administrator successfully deleted'));
+			$this->Session->setFlash('Administrator successfully deleted', 'default', array('class' => 'alert alert-success'));
 			return $this->redirect(array('action' => 'all'));
 		}
 	}

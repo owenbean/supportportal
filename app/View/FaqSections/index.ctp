@@ -1,4 +1,3 @@
-<h1 id="header_text">Frequently Asked Questions</h1>
 <p>&nbsp;</p>
 <div id="faq_section">
 	<div id="faq_content">

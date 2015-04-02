@@ -20,7 +20,7 @@ class UsersController extends AppController {
 				$this->User->save($this->User->set(array('last_login' => DboSource::expression('NOW()'), 'modified' => false)));
 				return $this->redirect($this->Auth->redirect());
 			}
-			$this->Session->setFlash(__('Invalid username or password'));
+			$this->Session->setFlash('Invalid username or password', 'default', array('class' => 'alert alert-danger'));
 		}
 	}
 	
@@ -31,7 +31,7 @@ class UsersController extends AppController {
 	public function index() {
 		$this->set('title_for_layout', 'Home');
 		if (CakeSession::read('Auth.User.active') == 0) {
-			$this->Session->setFlash(__('Your account is inactive'));
+			$this->Session->setFlash('Your account is inactive', 'default', array('class' => 'alert alert-danger'));
 			$this->redirect(array('action' => 'logout'));
 		}
 		
@@ -83,10 +83,10 @@ class UsersController extends AppController {
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('New user added.'));
+				$this->Session->setFlash('New user added', 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'index'));
 			}
-			$this->Session->setFlash(__('Unable to save new user'));
+			$this->Session->setFlash('Unable to save new user', 'default', array('class' => 'alert alert-danger'));
 		}
 	}
 	
@@ -105,10 +105,10 @@ class UsersController extends AppController {
 		
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('Your profile has been updated'));
+				$this->Session->setFlash('Your profile has been updated', 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'view', $id));
 			}
-			$this->Session->setFlash(__('Your profile could not be updated'));
+			$this->Session->setFlash('Your profile could not be updated', 'default', array('class' => 'alert alert-danger'));
 		} else {
 			$this->request->data = $this->User->read(null, $id);
 			unset($this->request->data['User']['password']);
@@ -129,10 +129,10 @@ class UsersController extends AppController {
 		
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('Your password has been updated'));
+				$this->Session->setFlash('Your password has been updated', 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'view', $id));
 			}
-			$this->Session->setFlash(__('Your password could not be updated'));
+			$this->Session->setFlash('Your password could not be updated', 'default', array('class' => 'alert alert-danger'));
 		} else {
 			$this->request->data = $this->User->read(null, $id);
 			unset($this->request->data['User']['password']);
@@ -146,10 +146,11 @@ class UsersController extends AppController {
 		
 		$this->User->id = $id;
 		if ($this->User->save($this->User->set(array('active' => 1)))) {
-			$this->Session->setFlash(__('User activated'));
+			$this->Session->setFlash('User activated', 'default', array('class' => 'alert alert-success'));
 			return $this->redirect(array('action' => 'all'));
 		}
 		$this->Session->setFlash(__('Unable to activate user'));
+		$this->Session->setFlash('Invalid username or password', 'default', array('class' => 'alert alert-danger'));
 	}
 	
 	public function inactivate($id) {
@@ -159,10 +160,10 @@ class UsersController extends AppController {
 		
 		$this->User->id = $id;
 		if ($this->User->save($this->User->set(array('active' => 0)))) {
-			$this->Session->setFlash(__('User inactivated'));
+			$this->Session->setFlash('User inactivated', 'default', array('class' => 'alert alert-success'));
 			return $this->redirect(array('action' => 'all'));
 		}
-		$this->Session->setFlash(__('Unable to inactivate user'));
+		$this->Session->setFlash('Unable to inactivate user', 'default', array('class' => 'alert alert-danger'));
 	}
 	
 	public function delete($id = null) {
@@ -173,10 +174,10 @@ class UsersController extends AppController {
 			throw new NotFoundException(__('Invalid user'));
 		}
 		if ($this->User->delete()) {
-			$this->Session->setFlash(__('User deleted'));
+			$this->Session->setFlash('User deleted', 'default', array('class' => 'alert alert-success'));
 			return $this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('User was not deleted'));
+		$this->Session->setFlash('User was not deleted', 'default', array('class' => 'alert alert-danger'));
 		return $this->redirect(array('action' => 'index'));
 	}
 }
