@@ -1,4 +1,25 @@
 <h2 class="title">National Research Network Administrators</h2>
+<h4 class='sub-title'>
+	<?php
+		if($filter_added) {
+			switch($filter) {
+				case 'contract_lead':
+					echo 'Contract Leads';
+					break;
+				case 'feature_announcement_list':
+					echo 'Feature Announcement List';
+					break;
+				case 'support_outreach_list':
+					echo 'Support Outreach List';
+					break;
+				default:
+					echo 'All Administrators';
+			}
+		} else {
+			echo 'All Administrators';
+		}
+	?>
+</h4>
 
 <p>&nbsp;</p>
 

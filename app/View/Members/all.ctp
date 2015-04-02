@@ -1,4 +1,28 @@
 <h2 class="title">National Research Network Members</h2>
+<h4 class="sub-title">
+	<?php
+		if($filter_added) {
+			switch($filter) {
+				case 'citi_integration':
+					echo 'CITI Integration';
+					break;
+				case 'sso':
+					echo 'Single Sign-On';
+					break;
+				case 'wirb_integration':
+					echo 'WIRB Integration';
+					break;
+				case 'file_access':
+					echo 'File Access';
+					break;
+				default:
+					echo 'All Members';
+			}
+		} else {
+			echo 'All Members';
+		}
+	?>
+</h4>
 
 <p>&nbsp;</p>
 
@@ -6,7 +30,7 @@
 	<table class="table table-condensed table-bordered table-hover">
 		<thead>
 			<tr>
-			<?php if($add_features) { ?>
+			<?php if($filter_added) { ?>
 				<th>Member Name</th>
 				<th>Short Name</th>
 				<th>ID</th>

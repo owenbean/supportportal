@@ -56,6 +56,10 @@ body {
 	text-align: center;
 }
 
+.sub-title {
+	text-align: center;
+}
+
 .hover {
 	cursor: pointer;
 }

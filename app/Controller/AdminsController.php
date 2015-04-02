@@ -3,8 +3,11 @@ class AdminsController extends AppController {
 	public function all($options = null) {
 		if (!$options) {
 			$this->set('admins', $this->Admin->find('all', array('conditions' => array('Admin.active' => true), 'order' => array('Member.full_name'))));
+			$this->set('filter_added', false);
 		} else {
 			$this->set('admins', $this->Admin->find('all', array('conditions' => array('Admin.active' => true, "Admin.$options" => true), 'order' => array('Member.full_name'))));
+			$this->set('filter_added', true);
+			$this->set('filter', $options);
 		}
 	}
 	

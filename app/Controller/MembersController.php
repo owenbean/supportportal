@@ -8,11 +8,12 @@ class MembersController extends AppController {
 			} else {
 				$this->set('members', $this->Member->find('all', array('conditions' => array('Member.active' => true), 'order' => array('Member.full_name'))));
 			}
-			$this->set('add_features', false);
+			$this->set('filter_added', false);
 		} else {
 			$this->set('members', $this->Member->find('all', array('conditions' => array("Member.$options" => true, 'Member.active' => true), 'order' => array('Member.full_name'))));
 			//this disables sortable column headers
-			$this->set('add_features', true);
+			$this->set('filter_added', true);
+			$this->set('filter', $options);
 		}
 	}
 	
