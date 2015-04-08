@@ -1,5 +1,7 @@
 <?php
 class MembersController extends AppController {
+  public $helpers = array('Markdown.Markdown');
+  
 	public function all($options = null) {
 		if (!$options) {
 			if (isset($_GET['order'])) {

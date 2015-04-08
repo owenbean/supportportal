@@ -96,7 +96,7 @@
 		</div>
 
 		<div class="form-group">
-			<label class="col-sm-4 control-label">Comments:</label>
+			<label class="col-sm-4 control-label">Comments:<br /><span id="markdown_formatting_help_link" data-tooltip="#markdown_formatting_help_box">[formatting help]</span></label>
 			<div class="col-sm-5">
 				<?php echo $this->Form->input('comments', array('label' => false, 'id' => 'comments_field', 'class' => 'form-control')); ?>
 			</div>
@@ -111,9 +111,12 @@
 
 
 
-
-
-<div id="form_table">
-<?php echo $this->Form->create('Member'); ?>
-				
+<div id="markdown_formatting_help_box">
+	<p>Basic Markdown Formatting:</p>
+	<p>Italics: *italic words*</p>
+	<p>Bold: **bold words**</p>
+	<p>Indent: >indented words</p>
+	<p>Bulleted List Item: * bulleted list words</p>
+	<p>Numbered List Item: 1. numbered list words</p>
+	<p>Link: [link text](link url)</p>
 </div>

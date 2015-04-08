@@ -114,7 +114,7 @@ if($admins) {
 	<!-- comments section -->
 	<div class="col-sm-12">
 		<h4>Comments:</h4>
-		<p><?php $org_comments = h($member['Member']['comments']); echo ($org_comments == null ? "<em>None</em>" : nl2br($org_comments)) ?></p>
+		<p><?php $org_comments = h($member['Member']['comments']); echo ($org_comments == null ? "<em>None</em>" : $this->Markdown->transform(nl2br($org_comments))) ?></p>
 	</div>
 
     <!-- buffer div -->
@@ -225,4 +225,5 @@ if($admins) {
 	<p>&nbsp;</p>
 	<p><?php echo $this->Form->postLink('Retire', array('controller' => 'members', 'action' => 'retire', $member['Member']['id']), array('class' => 'postLink-link'));?> | <?php echo $this->Form->postLink('Delete', array('controller' => 'members', 'action' => 'delete', $member['Member']['id']));?></p>
 </div>
+
 

@@ -178,6 +178,13 @@ $(document).ready(function() {
 		$($(this).data("tooltip")).hide();
 	});
 
+	//this function is the same as above, but for Member pages
+	$("#markdown_formatting_help_link").hover(function(e) {
+		$($(this).data("tooltip")).css({ left: e.pageX - 150, top: e.pageY + 1 }).stop().show();
+	}, function() {
+		$($(this).data("tooltip")).hide();
+	});
+
 });
 
 

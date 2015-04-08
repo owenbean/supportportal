@@ -77,6 +77,26 @@ body {
 }
 
 
+#markdown_formatting_help_link {
+	font-size: 10px;
+	color: blue;
+}
+
+#markdown_formatting_help_box {
+	position: absolute;
+	display: none;
+	background: #ccc;
+	border: 1px solid;
+}
+
+#markdown_formatting_help_box p {
+	padding: 5px;
+	margin: 0px;
+	font-size: 10px;
+}
+
+
+
 /** Classes for Testing **/
 
 .test-border { /* wraps a red border around any element you need to visually define */
