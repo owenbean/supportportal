@@ -1,5 +1,7 @@
 <?php
 class AdminsController extends AppController {
+  	public $helpers = array('Markdown.Markdown');
+  
 	public function all($options = null) {
 		if (!$options) {
 			$this->set('admins', $this->Admin->find('all', array('conditions' => array('Admin.active' => true), 'order' => array('Member.full_name'))));

@@ -80,6 +80,7 @@ body {
 #markdown_formatting_help_link {
 	font-size: 10px;
 	color: blue;
+	font-weight: normal;
 }
 
 #markdown_formatting_help_box {

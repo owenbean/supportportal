@@ -5,7 +5,7 @@
 	<h4>Details:</h4>
 	<p class="no_underline">Member: <?php echo $this->Html->link($admin['Member']['full_name'], array('controller' => 'members', 'action' => 'view', $admin['Member']['id'])); ?></p>
 	<p>Email Address: <?php echo $this->Text->autoLinkEmails(h($admin['Admin']['email_address'])); ?></p>
-	<p>Comments: <?php echo (!$admin['Admin']['comments'] ? "<em>None</em>" : h($admin['Admin']['comments'])); ?></p>
+	<p>Comments: <?php $admin_comments = h($admin['Admin']['comments']); echo (!$admin_comments ? "<em>None</em>" : $this->Markdown->transform(nl2br($admin_comments))); ?></p>
 	<p>&nbsp;</p>
 	<h4>Lists:</h4>
 	<?php
