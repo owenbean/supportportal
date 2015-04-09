@@ -23,7 +23,7 @@
 
 <p>&nbsp;</p>
 
-<div class="col-sm-8 col-sm-offset-2">
+<div class="col-sm-10 col-sm-offset-1">
 	<table class="table table-condensed table-bordered table-hover">
 		<thead>
 			<tr>
