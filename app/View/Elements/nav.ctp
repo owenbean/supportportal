@@ -83,6 +83,17 @@
   <li role="presentation" <?php echo ($this->params['controller'] == 'faqSections' || $this->params['controller'] == 'faqQuestions') ? "class='active'" : null ?>><?php echo $this->Html->link('FAQ', array('controller' => 'faqSections', 'action' => 'index')); ?></li>
 	<?php } ?>
 
+  <li role="presentation" <?php echo ($this->params['controller'] == 'smartFormProjects') ? "class='active dropdown'" : "class='dropdown'" ?>>
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+      Smart Form Projects <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu" role="menu">
+			<li><?php echo $this->Html->link('Active', array('controller' => 'smartFormProjects', 'action' => 'active')); ?></li>
+			<li><?php echo $this->Html->link('New', array('controller' => 'smartFormProjects', 'action' => 'add')); ?></li>
+			<li><?php echo $this->Html->link('History', array('controller' => 'smartFormProjects', 'action' => 'history')); ?></li>
+    </ul>
+  </li>
+  
   <?php
     //sets below variables 'true' if user is viewing their own profile - this allows below nav-tab to be 'active'
     $viewing_profile = $this->params['controller'] == 'users' && $this->action == 'view';
