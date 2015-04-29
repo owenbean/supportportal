@@ -88,9 +88,10 @@
       Smart Form Projects <span class="caret"></span>
     </a>
     <ul class="dropdown-menu" role="menu">
-			<li><?php echo $this->Html->link('Active', array('controller' => 'smartFormProjects', 'action' => 'active')); ?></li>
+			<li><?php echo $this->Html->link('All', array('controller' => 'smartFormProjects', 'action' => 'index')); ?></li>
+			<li><?php echo $this->Html->link('View', array('controller' => 'smartFormProjects', 'action' => 'view')); ?></li>
 			<li><?php echo $this->Html->link('New', array('controller' => 'smartFormProjects', 'action' => 'add')); ?></li>
-			<li><?php echo $this->Html->link('History', array('controller' => 'smartFormProjects', 'action' => 'history')); ?></li>
+			<li><?php echo $this->Html->link('Edit', array('controller' => 'smartFormProjects', 'action' => 'edit')); ?></li>
     </ul>
   </li>
   
