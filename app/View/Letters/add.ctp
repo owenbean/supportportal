@@ -13,7 +13,7 @@
 		<div class="form-group">
 			<label class="col-sm-4 control-label">Member Name:</label>
 			<div class="col-sm-5">
-				<?php echo $this->Form->input('member_id', array('label' => false, 'empty' => '', 'id' => 'member_name', 'class' => 'form-control')); ?>
+				<?php echo $this->Form->input('member_id', array('label' => false, 'empty' => '', 'id' => 'member_name', 'class' => 'form-control', 'onchange' => 'activateSubmittedByDropdown()')); ?>
 			</div>
 		</div>
 		

@@ -10,7 +10,6 @@
 				<th>Member</th>
 				<th>Smart Form</th>
 				<th>Type</th>
-				<th>Status</th>
 			</tr>
 		</thead>
 
@@ -21,9 +20,8 @@
 				foreach ($smartFormProjects as $smartFormProject): ?>
 			<tr class="list-item">
 				<td><?php echo $this->Html->link($smartFormProject['Member']['full_name'], array('controller' => 'members', 'action' => 'view', $smartFormProject['Member']['id'])); ?></td>
-				<td><?php echo $smartForms['SmartForm']['name']; ?></td>
-				<td><?php echo $smartForms['SmartForm']['sf_domain']; ?></td>
-				<td><?php echo $smartForms['SmartFormProject']['status']; ?></td>
+				<td><?php echo $smartFormProject['SmartForm']['name']; ?></td>
+				<td><?php echo $smartFormProject['SmartForm']['sf_domain']; ?></td>
 			</tr>
 			<?php endforeach; ?>
 			<?php unset($smartForms); 
