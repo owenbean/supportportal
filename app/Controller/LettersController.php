@@ -4,16 +4,20 @@ App::uses('DboSource', 'Model/DataSource');
 class LettersController extends AppController {
 	public $components = array('RequestHandler');
 	
-	public function beforeFilter() {
+	public function beforeFilter()
+	{
 		parent::beforeFilter();
 		$this->Auth->allow('lettersDueToday');
 	}
 
-	public function active() {
+	public function active()
+	{
 		$this->set('letters', $this->Letter->find('all', array('conditions' => array('Letter.active' => true), 'order' => 'Letter.target_date')));
 	}
 	
-	public function history($search = null) {
+	public function history($search = null)
+	{
+    	//all form to be submitted with no member specified
 		$this->Letter->validate = null;
 		$this->loadModel('Member');
 
@@ -35,7 +39,8 @@ class LettersController extends AppController {
 		}
 	}
 	
-	public function view($id = null) {
+	public function view($id = null)
+	{
 		if (!$id) {
 			throw new NotFoundException(__('Invalid letter request'));
 		}
@@ -49,7 +54,8 @@ class LettersController extends AppController {
 		$this->set('letter', $letter);
 	}
 	
-	public function add() {
+	public function add()
+	{
 		$this->loadModel('Member');
 		$members = $this->Member->find('list', array('fields' => array('Member.id', 'Member.full_name'), 'conditions' => array('Member.active' => true), 'order' => 'Member.full_name'));
 		$this->set(compact('members'));
@@ -64,7 +70,8 @@ class LettersController extends AppController {
 		}
 	}
 	
-	public function list_admin() {
+	public function list_admin()
+	{
 		if($this->RequestHandler->isAjax()) {
 			$this->loadModel('Admin');
 			$member_id = $_GET['member_id'];
@@ -76,7 +83,8 @@ class LettersController extends AppController {
 		}
 	}
 	
-	public function edit($id = null) {
+	public function edit($id = null)
+	{
 		if (!$id) {
 			throw new NotFoundException(__('Invalid letter request'));
 		}
@@ -101,7 +109,8 @@ class LettersController extends AppController {
 		}
 	}
 	
-	public function claim($id) {
+	public function claim($id)
+	{
 		if (!$id) {
 			throw new NotFoundException(__('Invalid letter request'));
 		}
@@ -115,7 +124,8 @@ class LettersController extends AppController {
 		$this->Session->setFlash('Unable to claim letter request', 'default', array('class' => 'alert alert-danger'));
 	}
 	
-	public function unclaim($id) {
+	public function unclaim($id)
+	{
 		if (!$id) {
 			throw new NotFoundException(__('Invalid letter request'));
 		}
@@ -129,7 +139,8 @@ class LettersController extends AppController {
 		$this->Session->setFlash('Unable to unclaim letter request', 'default', array('class' => 'alert alert-danger'));
 	}
 	
-	public function complete($id) {
+	public function complete($id)
+	{
 		if ($this->request->is('get')) {
 			throw new MethodNotAllowedException();
 		}
@@ -143,7 +154,8 @@ class LettersController extends AppController {
 		$this->Session->setFlash('Unable to complete letter request', 'default', array('class' => 'alert alert-danger'));
 	}
 	
-	public function delete($id) {
+	public function delete($id)
+	{
 		if ($this->request->is('get')) {
 			throw new MethodNotAllowedException();
 		}
@@ -154,7 +166,8 @@ class LettersController extends AppController {
 		}
 	}
 	
-	public function lettersCompleteEmail($letter_id) {
+	public function lettersCompleteEmail($letter_id)
+	{
 		App::uses('CakeEmail', 'Network/Email');
         $letter = $this->Letter->find('first', array('conditions' => array('Letter.id' => $letter_id)));
 
@@ -185,7 +198,8 @@ class LettersController extends AppController {
 	}
 
 	//this function runs every day via a Cron Job and send an email for each active letter request due that day
-	public function lettersDueToday() {
+	public function lettersDueToday()
+	{
 		App::uses('CakeEmail', 'Network/Email');
 		
 		$letters = $this->Letter->find('all', array('conditions' => array('Letter.target_date' => date('Y-m-d'), 'Letter.active' => true)));

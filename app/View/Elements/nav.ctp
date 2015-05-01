@@ -10,7 +10,7 @@
 <ul class="nav nav-tabs collapse navbar-collapse">
   <li role="presentation" <?php echo ($this->params['controller'] == 'users' && $this->action == 'index') ? "class='active'" : null ?>><?php echo $this->Html->link('Home', array('controller' => 'users', 'action' => 'index')); ?></li>
 
-  <li role="presentation" <?php echo ($this->params['controller'] == 'letters') ? "class='active dropdown'" : "class='dropdown'" ?>>
+  <li role="presentation" <?php echo ($this->params['controller'] == 'letters' || $this->params['controller'] == 'smartFormProjects') ? "class='active dropdown'" : "class='dropdown'" ?>>
     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
       Wizards <span class="caret"></span>
     </a>
