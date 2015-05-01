@@ -7,7 +7,6 @@
 <p>Project Type: <strong><?php echo $smartFormProject['SmartFormProject']['type'] . ' request'; ?></strong></p>
 <p>Project Scope: <strong><?php echo $smartFormProject['SmartFormProject']['scope']; ?></strong></p>
 <p>Output Change? <strong><?php echo ($smartFormProject['SmartFormProject']['output_change'] ? 'Yes' : 'No'); ?></strong></p>
-<p>Enrollment? <strong><?php echo ($smartFormProject['SmartFormProject']['enrollment'] ? 'Yes' : 'No'); ?></strong></p>
 <p>Date of Request: <strong><?php echo $smartFormProject['SmartFormProject']['date_received']; ?></strong></p>
 <p>Target Date: <strong><?php echo $smartFormProject['SmartFormProject']['target_date']; ?></strong></p>
 <p>Date Completed: <strong><?php echo ($smartFormProject['SmartFormProject']['completed_date'] ? date("Y-m-d", strtotime($smartFormProject['SmartFormProject']['completed_date'])) : '<em>Active</em>'); ?></strong></p>

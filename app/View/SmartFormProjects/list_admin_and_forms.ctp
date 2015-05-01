@@ -79,7 +79,7 @@
                     				'empty' => '',
                     				'class' => 'form-control',
                     				'options' => array(
-                    					$smart_forms_dropdown_text, 'Other' => 'Other'
+                    					$smart_forms_dropdown_text
                     				),
                     				'onchange' => 'otherEntry(this);'
                     			)

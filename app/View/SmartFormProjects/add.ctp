@@ -100,12 +100,6 @@
         </div>
         
         <div class="form-group">
-        <div class="col-sm-offset-4 col-sm-5">
-                <?php echo $this->Form->input('enrollment', array('type' => 'checkbox', 'label' => 'Request part of enrollment? ', 'format' => array('before', 'label', 'between', 'input', 'after', 'error'))); ?>
-            </div>
-        </div>
-        
-        <div class="form-group">
             <label class="col-sm-4 control-label">Request Comments:</label>
             <div class="col-sm-5">
                 <?php echo $this->Form->input('comments', array('label' => false, 'id' => 'comments_field', 'class' => 'form-control')); ?>

@@ -9,7 +9,7 @@
 			<th>Member</th>
 			<th>Scope</th>
 			<th>Target Date</th>
-			<th>Enrollment</th>
+			<th>Output Change</th>
 			<th>Owner</th>
 			<th colspan="3">Actions</th>
 		</tr>
@@ -23,7 +23,7 @@
 			<td><?php echo $smartFormProject['Member']['short_name']; ?></td>
 			<td><?php echo $smartFormProject['SmartFormProject']['scope']; ?></td>
 			<td><?php echo $smartFormProject['SmartFormProject']['target_date']; ?></td>
-			<td><?php echo ($smartFormProject['SmartFormProject']['enrollment'] == 1 ? 'Yes' : 'No'); ?></td>
+			<td><?php echo ($smartFormProject['SmartFormProject']['output_change'] == 1 ? 'Yes' : 'No'); ?></td>
 			<td><?php echo (!$smartFormProject['SmartFormProject']['user_id'] ? $this->Html->link('[claim]', array('action' => 'claim', $smartFormProject['SmartFormProject']['id']), array('confirm' => 'Are you sure you want to claim this project?')) : $smartFormProject['User']['first_name']); ?></td>
 			<td><?php echo $this->Form->postLink("<span class='glyphicon glyphicon-ok action-image' aria-hidden='true'></span>", array('action' => 'complete', $smartFormProject['SmartFormProject']['id']), array('escapeTitle' => false, 'confirm' => 'Are you sure you want to complete this project?')); ?></td>
 			<td><?php echo $this->Html->link("<span class='glyphicon glyphicon-search action-image' aria-hidden='true'></span>", array('action' => 'view', $smartFormProject['SmartFormProject']['id']), array('escapeTitle' => false)); ?></td>

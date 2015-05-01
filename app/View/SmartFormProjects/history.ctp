@@ -30,7 +30,6 @@
 			<th>Project Type</th>
 			<th>Project Scope</th>
 			<th>Output Change?</th>
-			<th>Enrollment?</th>
 			<th>Owner</th>
 			<th colspan="2">Actions</th>
 		</tr>
@@ -44,7 +43,6 @@
 			<td><?php echo $smartFormProject['SmartFormProject']['type']; ?></td>
 			<td><?php echo $smartFormProject['SmartFormProject']['scope']; ?></td>
 			<td><?php echo ($smartFormProject['SmartFormProject']['output_change'] ? 'Yes' : 'No'); ?></td>
-			<td><?php echo ($smartFormProject['SmartFormProject']['enrollment'] ? 'Yes' : 'No'); ?></td>
 			<td><?php echo ($smartFormProject['SmartFormProject']['user_id'] ? $smartFormProject['User']['first_name'] : '<em>None</em>'); ?></td>
 			<td><?php echo $this->Html->link("<span class='glyphicon glyphicon-search action-image' aria-hidden='true'></span>", array('action' => 'view', $smartFormProject['SmartFormProject']['id']), array('escapeTitle' => false)); ?></td>
 			<td><?php echo $this->Form->postLink("<span class='glyphicon glyphicon-remove action-image' aria-hidden='true'></span>", array('action' => 'delete', $smartFormProject['SmartFormProject']['id']), array('escapeTitle' => false, 'confirm' => 'Are you sure you want to Delete this project? If needed, you can edit it by clicking the View icon.')); ?></td>
