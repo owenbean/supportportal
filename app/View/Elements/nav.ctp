@@ -20,9 +20,9 @@
       <li><?php echo $this->Html->link('New Letter Request', array('controller' => 'letters', 'action' => 'add')); ?></li>
       <li><?php echo $this->Html->link('Letter Request History', array('controller' => 'letters', 'action' => 'history')); ?></li>
       <li role="presentation" class="dropdown-header">Smart Forms</li>
-      <li><?php echo $this->Html->link('Smart Form Queue', array('controller' => 'smartFormProjects', 'action' => 'active')); ?></li>
-      <li><?php echo $this->Html->link('New Smart Form Request', array('controller' => 'smartFormProjects', 'action' => 'add')); ?></li>
-      <li><?php echo $this->Html->link('Smart Form Request History', array('controller' => 'smartFormProjects', 'action' => 'history')); ?></li>
+      <li><?php echo $this->Html->link('Active Smart Form Projects', array('controller' => 'smartFormProjects', 'action' => 'active')); ?></li>
+      <li><?php echo $this->Html->link('New Smart Form Project', array('controller' => 'smartFormProjects', 'action' => 'add')); ?></li>
+      <li><?php echo $this->Html->link('Smart Form Project History', array('controller' => 'smartFormProjects', 'action' => 'history')); ?></li>
     </ul>
   </li>
 

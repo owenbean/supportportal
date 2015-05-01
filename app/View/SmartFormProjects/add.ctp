@@ -30,7 +30,7 @@
             <label class="col-sm-4 control-label">Member Name:</label>
             <div class="col-sm-5">
                 <select class="form-control" id="member-placeholder" disabled="disabled"></select>
-                <?php echo $this->Form->input('member_id', array('label' => false, 'empty' => '', 'id' => 'member_name', 'class' => 'collapse form-control', 'onchange' => 'activateSubmittedByAndSmartFormsDropdowns()')); ?>
+                <?php echo $this->Form->input('member_id', array('label' => false, 'empty' => '', 'id' => 'member_name', 'class' => 'collapse form-control', 'onchange' => 'submittedByAndSmartFormsDropdowns()')); ?>
             </div>
         </div>
         
@@ -51,7 +51,7 @@
         </div>
         
         <div class="form-group">
-            <label class="col-sm-4 control-label">Smart Form Developer:</label>
+            <label class="col-sm-4 control-label">Request Owner:</label>
             <div class="col-sm-5">
                 <?php echo $this->Form->input('user_id', array(
                     'label' => false,

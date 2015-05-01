@@ -17,6 +17,8 @@ class SmartFormProjectsController extends AppController {
         if (!$smartFormProject) {
             throw new NotFoundException(__('Invalid Smart Form Project'));
         }
+
+		$this->set('user_id', CakeSession::read('Auth.User.id'));
         $this->set('smartFormProject', $smartFormProject);
     }
     
@@ -45,7 +47,7 @@ class SmartFormProjectsController extends AppController {
         }
     }
     
-    public function edit($member_id, $id = null)
+    public function edit($id = null)
     {
         if (!$id) {
             throw new NotFoundException(__('Invalid Smart Form Project'));
@@ -60,7 +62,7 @@ class SmartFormProjectsController extends AppController {
             $this->SmartFormProject->id = $id;
             if ($this->SmartFormProject->save($this->request->data)) {
                 $this->Session->setFlash('Smart Form Project successfully updated', 'default', array('class' => 'alert alert-success'));
-                return $this->redirect(array('controller' => 'members', 'action' => 'view', $member_id));
+                return $this->redirect(array('action' => 'active'));
             }
             $this->Session->setFlash('Unable to update Smart Form Project', 'default', array('class' => 'alert alert-danger'));
         }
@@ -82,6 +84,9 @@ class SmartFormProjectsController extends AppController {
             
             $member_id = $_GET['member_id'];
             $this->set('member_id', $member_id);
+            
+            $request_type = $_GET['request_type'];
+            $this->set('request_type', $request_type);
 
             $submitters = $this->Admin->find('all', array('conditions' => array('Admin.member_id' => $member_id, 'Admin.active' => true)));
             $this->set('submitter_names', $submitters);

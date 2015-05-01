@@ -12,7 +12,7 @@ $(document).ready(function()
 	//Allows user to input "TBD" for go-live dates
 	$("#tbd_button").on("click", function(e) {
 		e.preventDefault();
-		$(".date_picker").val("TBD");
+		$(this).closest("div").find("input").val("TBD");
 	});
 		
 	//retired admin list for Member View page
@@ -214,20 +214,36 @@ function notYet()
 
 function activateMemberDropdown()
 {
-    var smartFormType = document.getElementById('SmartFormProjectType').value;
+    var smartFormType = $('#SmartFormProjectType').val();
     var memberPlaceHolder = $('#member-placeholder');
     var memberName = $('#member_name');
-    var submitterHolder = $('#submitter_name');
-    var submitterHolderHtml = "<div class='input text'><input name='data[SmartFormProject][submitter]' disabled='disabled' class='form-control' type='text' id='SmartFormProjectSubmitter'></div>";
+    var dropdownHtml = "<div class='form-group' id='smart_form_holder'> \
+                        <label class='col-sm-4 control-label'>Smart Form:</label> \
+                        <div class='col-sm-5' id='smart_form_name'> \
+                            <div class='input select'> \
+                                <select name='data[SmartFormProject][smart_form_id]' disabled='disabled' class='form-control' id='SmartFormProjectSmartFormId'></select> \
+                            </div> \
+                        </div> \
+                    </div> \
+                    <div class='form-group' id='submitter_name_holder'> \
+                        <label class='col-sm-4 control-label'>Request Submitted By:</label> \
+                        <div class='col-sm-5' id='submitter_name'> \
+                            <div class='input select'> \
+                                <select name='data[SmartFormProject][admin_id]' disabled='disabled' class='form-control' id='SmartFormProjectAdminId'></select> \
+                            </div> \
+                        </div> \
+                    </div>";
     
+    $('#ajax-dropdown-container').html(dropdownHtml);
+
     if (smartFormType != '') {
         memberPlaceHolder.addClass('collapse');
         memberName.removeClass('collapse');
     } else {
         memberName.addClass('collapse');
         memberPlaceHolder.removeClass('collapse');
-        submitterHolder.html(submitterHolderHtml);
     }
+    memberName.val(0);
 }
 
 //populates the "Submitted By" dropdown with a list of org admins
@@ -251,15 +267,17 @@ function activateSubmittedByDropdown()
 }
 
 //populates the "Submitted By" dropdown with a list of org admins
-function activateSubmittedByAndSmartFormsDropdowns()
+function submittedByAndSmartFormsDropdowns()
 {
 	var memberId = document.getElementById("member_name").value;
+	var requestType = document.getElementById("SmartFormProjectType").value;
 	
 	$.ajax({
 		url: 'list_admin_and_forms',
 		type: 'GET',
 		data: {
-			member_id : memberId
+			member_id : memberId,
+			request_type : requestType
 		},
 		error: function(){
 			alert('Did not work');
