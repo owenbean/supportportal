@@ -15,7 +15,7 @@
 		</tr>
 		
 		<?php if ($smartFormProjects == null) { ?>
-		<tr><td colspan="3">No active projects</td></tr>
+		<tr><td colspan="9">No active projects</td></tr>
 		<?php } else {
 			foreach ($smartFormProjects as $smartFormProject): ?>
 		<tr>

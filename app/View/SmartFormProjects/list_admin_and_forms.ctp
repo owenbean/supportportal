@@ -54,7 +54,7 @@
                             <label class='col-sm-4 control-label'>Request Submitted By:</label>
                             <div class='col-sm-5' id='submitter_name'>".
                     		$this->Form->input(
-                    			'SmartFormProject.submitter',
+                    			'SmartFormProject.admin_id',
                     			array(
                     				'label' => false,
                     				'empty' => '',
@@ -90,7 +90,7 @@
                             <label class='col-sm-4 control-label'>Request Submitted By:</label>
                             <div class='col-sm-5' id='submitter_name'>".
                     		$this->Form->input(
-                    			'SmartFormProject.submitter',
+                    			'SmartFormProject.admin_id',
                     			array(
                     				'label' => false,
                     				'empty' => '',

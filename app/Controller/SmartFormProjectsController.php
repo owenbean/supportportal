@@ -4,6 +4,7 @@ class SmartFormProjectsController extends AppController {
     
     public function active()
     {
+        $this->log('logging data from active controller: ' . print_r($this->request->data, 1));
         $this->set('smartFormProjects', $this->SmartFormProject->find('all', array('conditions' => array('SmartFormProject.active' => true))));
     }
     
@@ -38,6 +39,7 @@ class SmartFormProjectsController extends AppController {
         }
         
         if ($this->request->is('post')) {
+            $this->log($this->request->data);
             $this->SmartFormProject->create();
             if ($this->SmartFormProject->save($this->request->data)) {
                 $this->Session->setFlash('Smart Form Project successfully added', 'default', array('class' => 'alert alert-success'));
@@ -73,6 +75,7 @@ class SmartFormProjectsController extends AppController {
             $this->set(compact('users'));
     
             $this->request->data = $smartFormProject;
+            $this->set('smartFormProject', $smartFormProject);
         }
     }
 
@@ -98,4 +101,16 @@ class SmartFormProjectsController extends AppController {
         }
     }
     
+	public function delete($id)
+	{
+		if ($this->request->is('get')) {
+			throw new MethodNotAllowedException();
+		}
+		
+		if ($this->SmartFormProject->delete($id)) {
+			$this->Session->setFlash('Project successfully deleted', 'default', array('class' => 'alert alert-success'));
+			return $this->redirect(array('action' => 'active'));
+		}
+	}
+	
 }
