@@ -28,7 +28,7 @@
             <div class="form-group" id="smart_form_holder">
                 <label class="col-sm-4 control-label">Smart Form:</label>
                 <div class="col-sm-5" id="smart_form_name">
-                    <?php echo $this->Form->input('smart_form_placeHolder', array('label' => false, 'default' => $smartFormProject['SmartForm']['name'] . ' (' . $smartFormProject['SmartForm']['sf_domain'] . ')', 'disabled' => 'disabled', 'class' => 'form-control')); ?>
+                    <?php echo $this->Form->input('smart_form_placeHolder', array('label' => false, 'default' => ($smartFormProject['SmartForm']['id'] ? $smartFormProject['SmartForm']['name'] . ' (' . $smartFormProject['SmartForm']['sf_domain'] . ')' : null), 'disabled' => 'disabled', 'class' => 'form-control')); ?>
                 </div>
             </div>
             
