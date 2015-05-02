@@ -1,22 +1,12 @@
 <?php
 class SmartFormsController extends AppController {
-	public function index() {
+	public function index()
+	{
 		$this->set('smartForms', $this->SmartForm->find('all'));
 	}
 	
-	public function view($id = null) {
-		if (!$id) {
-			throw new NotFoundException(__('Invalid Smart Form'));
-		}
-		
-		$smartForm = $this->SmartForm->findById($id);
-		if (!$smartForm) {
-			throw new NotFoundException(__('Invalid Smart Form'));
-		}
-		$this->set('smartForm', $smartForm);
-	}
-	
-	public function add($member_id) {
+	public function add($member_id)
+	{
 		$this->loadModel('User');
 		$users = $this->User->find('list', array('fields' => array('User.id', 'User.first_name'), 'order' => 'User.first_name', 'conditions' => array('User.role' => array('site_admin', 'admin'))));
 		$this->set(compact('users'));
@@ -33,7 +23,8 @@ class SmartFormsController extends AppController {
 		}
 	}
 	
-	public function edit($member_id, $id = null) {
+	public function edit($id = null)
+	{
 		if (!$id) {
 			throw new NotFoundException(__('Invalid Smart Form'));
 		}
@@ -47,7 +38,7 @@ class SmartFormsController extends AppController {
 			$this->SmartForm->id = $id;
 			if ($this->SmartForm->save($this->request->data)) {
                 $this->Session->setFlash('Smart Form successfully updated', 'default', array('class' => 'alert alert-success'));
-				return $this->redirect(array('controller' => 'members', 'action' => 'view', $member_id));
+				return $this->redirect(array('action' => 'view', $id));
 			}
             $this->Session->setFlash('Unable to update Smart Form', 'default', array('class' => 'alert alert-danger'));
 		}
@@ -61,7 +52,23 @@ class SmartFormsController extends AppController {
 		}
 	}
 	
-	public function delete($member_id, $id) {
+	public function view($id = null)
+	{
+		if (!$id) {
+			throw new NotFoundException(__('Invalid smart form'));
+		}
+		
+		$smartForm = $this->SmartForm->findById($id);
+		if (!$smartForm) {
+			throw new NotFoundException(__('Invalid smart form'));
+		}
+		$this->set('smartForm', $smartForm);
+		$this->set('title_for_layout', $smartForm['SmartForm']['name']);
+		$this->set('smartFormProjects', $this->SmartForm->SmartFormProject->find('all', array('conditions' => array('SmartFormProject.smart_form_id' => $id))));
+	}
+	
+	public function delete($member_id, $id)
+	{
 		if ($this->request->is('get')) {
 			throw new MethodNotAllowedException();
 		}

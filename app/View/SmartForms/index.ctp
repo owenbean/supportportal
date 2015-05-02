@@ -20,7 +20,7 @@
 			<?php } else {
 				foreach ($smartForms as $smartForms): ?>
 			<tr class="list-item">
-				<td><?php echo $this->Html->link($smartForms['SmartForm']['sf_domain'], array('controller' => 'members', 'action' => 'view', $smartForms['Member']['id'])); ?></td>
+				<td><?php echo $this->Html->link($smartForms['SmartForm']['sf_domain'], array('controller' => 'smartForms', 'action' => 'view', $smartForms['SmartForm']['id'])); ?></td>
 				<td><?php echo $smartForms['Member']['full_name']; ?></td>
 				<td><?php echo $smartForms['User']['first_name']; ?></td>
 				<td><?php echo $smartForms['SmartForm']['status']; ?></td>

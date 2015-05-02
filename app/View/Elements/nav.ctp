@@ -10,7 +10,7 @@
 <ul class="nav nav-tabs collapse navbar-collapse">
   <li role="presentation" <?php echo ($this->params['controller'] == 'users' && $this->action == 'index') ? "class='active'" : null ?>><?php echo $this->Html->link('Home', array('controller' => 'users', 'action' => 'index')); ?></li>
 
-  <li role="presentation" <?php echo ($this->params['controller'] == 'letters' || $this->params['controller'] == 'smartFormProjects') ? "class='active dropdown'" : "class='dropdown'" ?>>
+  <li role="presentation" <?php echo ($this->params['controller'] == 'letters' || $this->params['controller'] == 'smartFormProjects' || $this->params['controller'] == 'smartForms') ? "class='active dropdown'" : "class='dropdown'" ?>>
     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
       Wizards <span class="caret"></span>
     </a>
@@ -20,6 +20,7 @@
       <li><?php echo $this->Html->link('New Letter Request', array('controller' => 'letters', 'action' => 'add')); ?></li>
       <li><?php echo $this->Html->link('Letter Request History', array('controller' => 'letters', 'action' => 'history')); ?></li>
       <li role="presentation" class="dropdown-header">Smart Forms</li>
+      <li><?php echo $this->Html->link('All Smart Forms', array('controller' => 'smartForms', 'action' => 'index')); ?></li>
       <li><?php echo $this->Html->link('Active Smart Form Projects', array('controller' => 'smartFormProjects', 'action' => 'active')); ?></li>
       <li><?php echo $this->Html->link('New Smart Form Project', array('controller' => 'smartFormProjects', 'action' => 'add')); ?></li>
       <li><?php echo $this->Html->link('Smart Form Project History', array('controller' => 'smartFormProjects', 'action' => 'history')); ?></li>
@@ -41,7 +42,7 @@
 
     $members_lists = $this->params['controller'] == 'members' && $list_view;
     $admins_lists = $this->params['controller'] == 'admins' && $list_view;
-    if ($members_lists || $admins_lists || $this->params['controller'] == 'smartForms') {
+    if ($members_lists || $admins_lists) {
       $make_active = true;
     }
   ?>
@@ -80,7 +81,6 @@
 			<li><?php echo $this->Html->link('Contract Leads', array('controller' => 'admins', 'action' => 'all', 'contract_lead')); ?></li>
 			<li><?php echo $this->Html->link('Feature Announcements', array('controller' => 'admins', 'action' => 'all', 'feature_announcement_list')); ?></li>
 			<li><?php echo $this->Html->link('Support Outreach', array('controller' => 'admins', 'action' => 'all', 'support_outreach_list')); ?></li>
-			<li><?php echo $this->Html->link('Smart Forms', array('controller' => 'smartForms', 'action' => 'index')); ?></li>
     </ul>
   </li>
 

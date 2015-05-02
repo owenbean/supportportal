@@ -6,6 +6,10 @@ class User extends AppModel {
 		'SmartForm' => array(
 			'className' => 'SmartForm',
 			'foreignKey' => 'developer'
+		),
+		'SmartFormProject' => array(
+    		'className' => 'SmartFormProject',
+    		'foreignKey' => 'user_id'
 		)
 	);
 	

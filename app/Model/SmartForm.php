@@ -1,5 +1,7 @@
 <?php
 class SmartForm extends AppModel {
+    public $hasMany = array('SmartFormProject');
+    
 	public $belongsTo = array(
 		'Member' => array(
 			'className' => 'Member'
