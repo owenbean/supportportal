@@ -78,4 +78,31 @@ class SmartFormsController extends AppController {
 			return $this->redirect(array('controller' => 'members', 'action' => 'view', $member_id));
 		}
 	}
+	
+	public function auto_add($member_id, $project_id)
+	{
+    	$this->loadModel('SmartFormProject');
+    	$smartFormProjectData = $this->SmartFormProject->findById($project_id);
+    	
+    	$smartFormData = array(
+        	'SmartForm' => array(
+            	'member_id' => $smartFormProjectData['SmartFormProject']['member_id'],
+            	'name' => 'TBD',
+            	'sf_domain' => 'Unknown',
+            	'status' => 'In Development',
+            	'developer' => ($smartFormProjectData['SmartFormProject']['user_id'] ? $smartFormProjectData['SmartFormProject']['user_id'] : 'Unknown'),
+            	'launch_date' => $smartFormProjectData['SmartFormProject']['target_date']
+        	)
+    	);
+    	
+		$this->SmartForm->create();
+		if ($this->SmartForm->save($smartFormData)) {
+    		$this->SmartFormProject->id = $project_id;
+    		$this->SmartFormProject->save($this->SmartFormProject->set(array('smart_form_id' => $this->SmartForm->getLastInsertID())));
+			$this->Session->setFlash('Smart Form successfully added. Please confirm details and update as needed.', 'default', array('class' => 'alert alert-success'));
+			return $this->redirect(array('action' => 'view', $this->SmartForm->getLastInsertID()));
+		}
+		$this->Session->setFlash('Unable to add Smart Form', 'default', array('class' => 'alert alert-danger'));
+    	
+	}
 }

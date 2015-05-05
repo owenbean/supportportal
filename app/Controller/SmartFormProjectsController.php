@@ -41,11 +41,14 @@ class SmartFormProjectsController extends AppController {
         }
         
         if ($this->request->is('post')) {
-            $this->log($this->request->data);
             $this->SmartFormProject->create();
             if ($this->SmartFormProject->save($this->request->data)) {
                 $this->Session->setFlash('Smart Form Project successfully added', 'default', array('class' => 'alert alert-success'));
-                return $this->redirect(array('action' => 'active'));
+                if ($this->request->data['SmartFormProject']['type'] == 'New') {
+                    return $this->redirect(array('controller' => 'smartForms', 'action' => 'auto_add', $this->request->data['SmartFormProject']['member_id'], $this->SmartFormProject->getLastInsertID()));
+                } else {
+                    return $this->redirect(array('action' => 'active'));
+                }
             }
             $this->Session->setFlash('Unable to add Smart Form Project', 'default', array('class' => 'alert alert-danger'));
         }
