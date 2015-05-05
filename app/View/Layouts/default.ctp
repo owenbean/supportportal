@@ -28,7 +28,7 @@ $cakeDescription = __d('cake_dev', 'IRBNet Support Portal');
 		<div id="header">
 			<div class="container navbar navbar-default">
 				<div class="navbar-brand">
-					<?php echo $this->Html->image('irbnet.gif', array('alt' => 'IRBNet', 'url' => array('controller' => 'users', 'action' => 'login'))); ?>
+					<?php echo $this->Html->image('irbnet.gif', array('alt' => 'IRBNet', 'url' => array('controller' => 'users', 'action' => 'login'))); ?> <?php echo substr($_SERVER['PHP_SELF'], 0, 22) === '/supportportal_staging' ? "<span style='color:red'>STAGING</span>" : null; ?>
 				</div>
 			</div>
 			
