@@ -24,11 +24,11 @@
 	?>
 	<table class="table table-striped">
 		<tr>
+			<th>Project Type</th>
+			<th>Scope</th>
 			<th>Date Received</th>
 			<th>Date Completed</th>
 			<?php echo ($_GET['member_id'] == null ? '<th>Member</th>' : '<th>Submitter</th>'); ?>
-			<th>Project Type</th>
-			<th>Project Scope</th>
 			<th>Output Change?</th>
 			<th>Owner</th>
 			<th colspan="2">Actions</th>
@@ -37,11 +37,11 @@
             foreach ($smartFormProjects as $smartFormProject):
         ?>
 		<tr>
+			<td><?php echo $smartFormProject['SmartFormProject']['type']; ?></td>
+			<td><?php echo $smartFormProject['SmartFormProject']['scope']; ?></td>
 			<td><?php echo $smartFormProject['SmartFormProject']['date_received']; ?></td>
 			<td><?php echo ($smartFormProject['SmartFormProject']['completed_date'] ? date("Y-m-d", strtotime($smartFormProject['SmartFormProject']['completed_date'])) : '<em>Active</em>'); ?></td>
 			<td><?php echo ($_GET['member_id'] == null ? $smartFormProject['Member']['short_name'] : $smartFormProject['Admin']['first_name'] . ' ' . $smartFormProject['Admin']['last_name']); ?></td>
-			<td><?php echo $smartFormProject['SmartFormProject']['type']; ?></td>
-			<td><?php echo $smartFormProject['SmartFormProject']['scope']; ?></td>
 			<td><?php echo ($smartFormProject['SmartFormProject']['output_change'] ? 'Yes' : 'No'); ?></td>
 			<td><?php echo ($smartFormProject['SmartFormProject']['user_id'] ? $smartFormProject['User']['first_name'] : '<em>None</em>'); ?></td>
 			<td><?php echo $this->Html->link("<span class='glyphicon glyphicon-search action-image' aria-hidden='true'></span>", array('action' => 'view', $smartFormProject['SmartFormProject']['id']), array('escapeTitle' => false)); ?></td>
@@ -61,7 +61,7 @@
 	
 	<?php else: ?>
 	
-	<p>No smart form projects to display.</p>
+	<p><i>No smart form projects to display.</i></p>
 	
 	<?php endif; ?> 
 	<?php else: ?>

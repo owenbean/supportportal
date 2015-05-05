@@ -6,8 +6,8 @@
 	<table class="table table-striped">
 		<tr>
 			<th>Project Type</th>
-			<th>Member</th>
 			<th>Scope</th>
+			<th>Member</th>
 			<th>Target Date</th>
 			<th>Output Change</th>
 			<th>Owner</th>
@@ -15,13 +15,13 @@
 		</tr>
 		
 		<?php if ($smartFormProjects == null) { ?>
-		<tr><td colspan="9">No active projects</td></tr>
+		<tr><td colspan="9"><i>No active projects</i></td></tr>
 		<?php } else {
 			foreach ($smartFormProjects as $smartFormProject): ?>
 		<tr>
 			<td><?php echo $smartFormProject['SmartFormProject']['type']; ?></td>
-			<td><?php echo $smartFormProject['Member']['short_name']; ?></td>
 			<td><?php echo $smartFormProject['SmartFormProject']['scope']; ?></td>
+			<td><?php echo $smartFormProject['Member']['short_name']; ?></td>
 			<td><?php echo $smartFormProject['SmartFormProject']['target_date']; ?></td>
 			<td><?php echo ($smartFormProject['SmartFormProject']['output_change'] == 1 ? 'Yes' : 'No'); ?></td>
 			<td><?php echo (!$smartFormProject['SmartFormProject']['user_id'] ? $this->Html->link('[claim]', array('action' => 'claim', $smartFormProject['SmartFormProject']['id']), array('confirm' => 'Are you sure you want to claim this project?')) : $smartFormProject['User']['first_name']); ?></td>
