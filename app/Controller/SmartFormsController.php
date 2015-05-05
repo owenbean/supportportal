@@ -79,6 +79,7 @@ class SmartFormsController extends AppController {
 		}
 	}
 	
+	//this function is triggered when a smart form project of type=new is created
 	public function auto_add($member_id, $project_id)
 	{
     	$this->loadModel('SmartFormProject');
