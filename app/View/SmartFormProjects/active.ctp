@@ -2,12 +2,13 @@
 
 <p></span>&nbsp;</p>
 
-<div class="col-sm-8 col-sm-offset-2">
+<div class="col-sm-10 col-sm-offset-1">
 	<table class="table table-striped">
 		<tr>
 			<th>Project Type</th>
 			<th>Scope</th>
 			<th>Member</th>
+			<th>Form Name</th>
 			<th>Target Date</th>
 			<th>Output Change</th>
 			<th>Owner</th>
@@ -22,6 +23,7 @@
 			<td><?php echo $smartFormProject['SmartFormProject']['type']; ?></td>
 			<td><?php echo $smartFormProject['SmartFormProject']['scope']; ?></td>
 			<td><?php echo $smartFormProject['Member']['short_name']; ?></td>
+			<td><?php echo $smartFormProject['SmartForm']['name']; ?></td>
 			<td><?php echo $smartFormProject['SmartFormProject']['target_date']; ?></td>
 			<td><?php echo ($smartFormProject['SmartFormProject']['output_change'] == 1 ? 'Yes' : 'No'); ?></td>
 			<td><?php echo (!$smartFormProject['SmartFormProject']['user_id'] ? $this->Html->link('[claim]', array('action' => 'claim', $smartFormProject['SmartFormProject']['id']), array('confirm' => 'Are you sure you want to claim this project?')) : $smartFormProject['User']['first_name']); ?></td>

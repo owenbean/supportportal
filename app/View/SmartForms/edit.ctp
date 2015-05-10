@@ -20,6 +20,7 @@
                         'class' => 'form-control',
                         'options' => array(
                             'Administrator' => 'Administrator',
+                            'DRC' => 'DRC',
                             'COI - General' => 'COI - General',
                             'COI - Project' => 'COI - Project',
                             'Researcher' => 'Researcher',

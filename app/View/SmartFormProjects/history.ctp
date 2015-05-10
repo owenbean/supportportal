@@ -13,7 +13,7 @@
 
 <p>&nbsp;</p>
 
-<div class="col-sm-10 col-sm-offset-1">
+<div class="col-sm-12">
 	<?php if (isset($_GET['member_id'])): ?>
 	<h4><?php echo ($_GET['member_id'] == null ? 'All Requests' : $member['Member']['full_name']) ?></h4>
 	<?php 
@@ -28,6 +28,7 @@
 			<th>Scope</th>
 			<th>Date Received</th>
 			<th>Date Completed</th>
+			<th>Form Name</th>
 			<?php echo ($_GET['member_id'] == null ? '<th>Member</th>' : '<th>Submitter</th>'); ?>
 			<th>Output Change?</th>
 			<th>Owner</th>
@@ -41,6 +42,7 @@
 			<td><?php echo $smartFormProject['SmartFormProject']['scope']; ?></td>
 			<td><?php echo $smartFormProject['SmartFormProject']['date_received']; ?></td>
 			<td><?php echo ($smartFormProject['SmartFormProject']['completed_date'] ? date("Y-m-d", strtotime($smartFormProject['SmartFormProject']['completed_date'])) : '<em>Active</em>'); ?></td>
+			<td><?php echo $smartFormProject['SmartForm']['name']; ?></td>
 			<td><?php echo ($_GET['member_id'] == null ? $smartFormProject['Member']['short_name'] : $smartFormProject['Admin']['first_name'] . ' ' . $smartFormProject['Admin']['last_name']); ?></td>
 			<td><?php echo ($smartFormProject['SmartFormProject']['output_change'] ? 'Yes' : 'No'); ?></td>
 			<td><?php echo ($smartFormProject['SmartFormProject']['user_id'] ? $smartFormProject['User']['first_name'] : '<em>None</em>'); ?></td>
