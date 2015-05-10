@@ -17,7 +17,7 @@ class LettersController extends AppController {
 	
 	public function history($search = null)
 	{
-    	//all form to be submitted with no member specified
+    	//allows form to be submitted with no member specified
 		$this->Letter->validate = null;
 		$this->loadModel('Member');
 

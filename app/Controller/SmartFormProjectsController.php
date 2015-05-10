@@ -28,7 +28,7 @@ class SmartFormProjectsController extends AppController {
     public function add($member_id = null)
     {
         $this->loadModel('User');
-        $users = $this->User->find('list', array('fields' => array('User.id', 'User.first_name'), 'order' => 'User.first_name', 'conditions' => array('User.role' => array('site_admin', 'admin'))));
+        $users = $this->User->find('list', array('fields' => array('User.id', 'User.first_name'), 'order' => 'User.first_name', 'conditions' => array('User.role' => array('site_admin', 'admin'), 'User.active' => true)));
         $this->set(compact('users'));
                 
         if ($member_id) {
@@ -44,11 +44,7 @@ class SmartFormProjectsController extends AppController {
             $this->SmartFormProject->create();
             if ($this->SmartFormProject->save($this->request->data)) {
                 $this->Session->setFlash('Smart Form Project successfully added', 'default', array('class' => 'alert alert-success'));
-                if ($this->request->data['SmartFormProject']['type'] == 'New') {
-                    return $this->redirect(array('controller' => 'smartForms', 'action' => 'auto_add', $this->request->data['SmartFormProject']['member_id'], $this->SmartFormProject->getLastInsertID()));
-                } else {
-                    return $this->redirect(array('action' => 'active'));
-                }
+                return $this->redirect(array('action' => 'active'));
             }
             $this->Session->setFlash('Unable to add Smart Form Project', 'default', array('class' => 'alert alert-danger'));
         }
@@ -120,6 +116,9 @@ class SmartFormProjectsController extends AppController {
 	
 	public function history($search = null)
 	{
+    	//allows form to be submitted with no member specified
+		$this->SmartFormProject->validate = null;
+		
 		$this->loadModel('Member');
 
 		//this loads member list into dropdown menu
@@ -184,4 +183,5 @@ class SmartFormProjectsController extends AppController {
 		}
 		$this->Session->setFlash('Unable to complete smart form project', 'default', array('class' => 'alert alert-danger'));
 	}
+	
 }

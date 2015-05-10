@@ -9,6 +9,9 @@ class SmartFormProject extends AppModel {
 		'member_id' => array(
 			'rule' => 'notEmpty'
 		),
+		'smart_form_id' => array(
+    		'rule' => 'notEmpty'
+		),
 		'admin_id' => array(
 			'rule' => 'notEmpty'
 		),
