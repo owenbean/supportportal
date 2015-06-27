@@ -1,5 +1,6 @@
 <?php
 class Admin extends AppModel {
+    public $hasMany = array('SmartFormProject');
 	public $belongsTo = 'Member';
 	
 	public $validate = array(

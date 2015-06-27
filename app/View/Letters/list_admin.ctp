@@ -1,6 +1,6 @@
 <?php
 	if($member_id == null) {
-		echo $this->Form->input('submitter', array('label' => 'Request Submitted By: ', 'disabled' => 'disabled'));
+		echo $this->Form->input('submitter', array('label' => false, 'disabled' => 'disabled', 'class' => 'form-control'));
 	} else {
 		$ids = array();
 		$names = array();

@@ -2,7 +2,8 @@
 class MembersController extends AppController {
   public $helpers = array('Markdown.Markdown');
   
-	public function all($options = null) {
+	public function all($options = null)
+	{
 		if (!$options) {
 			if (isset($_GET['order'])) {
 				$order = $_GET['order'];
@@ -19,7 +20,8 @@ class MembersController extends AppController {
 		}
 	}
 	
-	public function search($keyword = null) {
+	public function search($keyword = null)
+	{
 		$keyword = implode($this->request->data);
 		$members = $this->Member->find('all', array('conditions' => array('OR' => array(array('Member.full_name LIKE' => '%' . $keyword . '%'), array('Member.short_name LIKE' => '%' . $keyword . '%'))), 'order' => array('Member.full_name')));
 		//this redirects the page to the View page for the member returned by the search
@@ -31,7 +33,8 @@ class MembersController extends AppController {
 		}
 	}
 	
-	public function view($id = null) {
+	public function view($id = null)
+	{
 		if (!$id) {
 			throw new NotFoundException(__('Invalid member'));
 		}
@@ -48,7 +51,8 @@ class MembersController extends AppController {
 		$this->set('interactions', $this->Member->Interaction->find('all', array('conditions' => array('Interaction.member_id' => $id), 'order' => array('Interaction.date DESC'), 'limit' => '5')));
 	}
 	
-	public function add() {
+	public function add()
+	{
 		$this->loadModel('User');
 		$specialists = $this->User->find('list', array('fields' => array('User.id', 'User.first_name'), 'conditions' => array('User.active' => true, 'User.role' => array('site_admin', 'admin'))));
 		$this->set(compact('specialists'));
@@ -64,7 +68,8 @@ class MembersController extends AppController {
 		}
 	}
 	
-	public function edit($id = null) {
+	public function edit($id = null)
+	{
 		$this->loadModel('User');
 		$specialists = $this->User->find('list', array('fields' => array('User.id', 'User.first_name'), 'conditions' => array('User.active' => true, 'User.role' => array('site_admin', 'admin'))));
 		$this->set(compact('specialists'));
@@ -92,7 +97,8 @@ class MembersController extends AppController {
 		}
 	}
 	
-	public function retire($id) {
+	public function retire($id)
+	{
 		if ($this->request->is('get')) {
 			throw new MethodNotAllowedException();
 		}
@@ -106,7 +112,8 @@ class MembersController extends AppController {
 		$this->Session->setFlash('Unable to retire member', 'default', array('class' => 'alert alert-danger'));
 	}
 	
-	public function delete($id) {
+	public function delete($id)
+	{
 		if ($this->request->is('get')) {
 			throw new MethodNotAllowedException();
 		}
@@ -116,4 +123,5 @@ class MembersController extends AppController {
 			return $this->redirect(array('action' => 'all'));
 		}
 	}
+	
 }

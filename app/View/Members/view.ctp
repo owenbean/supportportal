@@ -134,8 +134,12 @@ if($admins) {
                 <p>Developer: <strong><?php echo ($smartForm['User']['id'] ? $smartForm['User']['first_name'] : 'Unknown'); ?></strong></p>
                 <p>Launch Date: <strong><?php echo $smartForm['SmartForm']['launch_date']; ?></strong></p>
                 <div>
+                    <div class="inline-divs">
+                        <?php echo $this->Html->link("<span class='glyphicon glyphicon-search action-image' aria-hidden='true'></span>", array('controller' => 'smartForms', 'action' => 'view', $smartForm['SmartForm']['id']), array('escapeTitle' => false)); ?>
+                    </div>
+                    &nbsp;&nbsp;
                     <div class='inline-divs'>
-                        <?php echo $this->Html->link("<span class='glyphicon glyphicon-pencil action-image' aria-hidden='true'></span>", array('controller' => 'smartForms', 'action' => 'edit', $member['Member']['id'], $smartForm['SmartForm']['id']), array('escapeTitle' => false)); ?>
+                        <?php echo $this->Html->link("<span class='glyphicon glyphicon-pencil action-image' aria-hidden='true'></span>", array('controller' => 'smartForms', 'action' => 'edit', $smartForm['SmartForm']['id']), array('escapeTitle' => false)); ?>
                     </div>
                     &nbsp;&nbsp;
                     <div class='inline-divs'>

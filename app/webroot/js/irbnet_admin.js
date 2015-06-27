@@ -1,6 +1,7 @@
 var converter = new Markdown.Converter();
 
-$(document).ready(function() {
+$(document).ready(function()
+{
 	//this function allows entire table rows in list tables to be clickable
 	$('tr.list-item').click( function() {
 	    window.location = $(this).find('a').attr('href');
@@ -11,28 +12,9 @@ $(document).ready(function() {
 	//Allows user to input "TBD" for go-live dates
 	$("#tbd_button").on("click", function(e) {
 		e.preventDefault();
-		$(".date_picker").val("TBD");
+		$(this).closest("div").find("input").val("TBD");
 	});
-	
-	//populates the "Submitted By" dropdown with a list of org admins
-	$("#member_name").on("change", function() {
-		var memberId = document.getElementById("member_name").value;
-			$.ajax({
-				url: 'list_admin',
-				type: 'GET',
-				data: {
-					member_id : memberId
-				},
-				error: function(){
-					alert('Did not work');
-				},
-				success: function(data){
-					$("#submitter_name").html(data);
-				}
-			});
-	});
-	
-	
+		
 	//retired admin list for Member View page
 	$(function() {
 		//below function clears autofocus
@@ -189,7 +171,8 @@ $(document).ready(function() {
 
 
 //trigger for add administrator popup on letter add page
-function otherEntry(submitter_name) {
+function otherEntry(submitter_name)
+{
 	switch (submitter_name.value) {
 		case 'Other':
 			$("#adminAddPopUp").dialog("open");
@@ -200,7 +183,8 @@ function otherEntry(submitter_name) {
 };
 
 //add administrator popup
-function otherAdmin() {
+function otherAdmin()
+{
 	$("#adminAddPopUp").dialog({
 		autoOpen: false,
 		heigh: 600,
@@ -210,7 +194,11 @@ function otherAdmin() {
 		buttons: {
 			Cancel: function() {
 				$(this).dialog("close");
-				var submitter = document.getElementById("LetterSubmitter");
+				if (document.getElementById("LetterSubmitter")) {
+    				var submitter = document.getElementById("LetterSubmitter");
+				} else {
+    				var submitter = document.getElementById("SmartFormProjectAdminId");    				
+				}
 				submitter.value = "";
 			}
 		}
@@ -218,7 +206,84 @@ function otherAdmin() {
 }
 
 //not ready yet popup
-function notYet() {
+function notYet()
+{
 	alert("Coming soon!");
 	return false;
+}
+
+function activateMemberDropdown()
+{
+    var smartFormType = $('#SmartFormProjectType').val();
+    var memberPlaceHolder = $('#member-placeholder');
+    var memberName = $('#member_name');
+    var dropdownHtml = "<div class='form-group' id='smart_form_holder'> \
+                        <label class='col-sm-4 control-label'>Smart Form:</label> \
+                        <div class='col-sm-5' id='smart_form_name'> \
+                            <div class='input select'> \
+                                <select name='data[SmartFormProject][smart_form_id]' disabled='disabled' class='form-control' id='SmartFormProjectSmartFormId'></select> \
+                            </div> \
+                        </div> \
+                    </div> \
+                    <div class='form-group' id='submitter_name_holder'> \
+                        <label class='col-sm-4 control-label'>Request Submitted By:</label> \
+                        <div class='col-sm-5' id='submitter_name'> \
+                            <div class='input select'> \
+                                <select name='data[SmartFormProject][admin_id]' disabled='disabled' class='form-control' id='SmartFormProjectAdminId'></select> \
+                            </div> \
+                        </div> \
+                    </div>";
+    
+    $('#ajax-dropdown-container').html(dropdownHtml);
+
+    if (smartFormType != '') {
+        memberPlaceHolder.addClass('collapse');
+        memberName.removeClass('collapse');
+    } else {
+        memberName.addClass('collapse');
+        memberPlaceHolder.removeClass('collapse');
+    }
+    memberName.val(0);
+}
+
+//populates the "Submitted By" dropdown with a list of org admins
+function activateSubmittedByDropdown()
+{
+	var memberId = document.getElementById("member_name").value;
+	
+	$.ajax({
+		url: 'list_admin',
+		type: 'GET',
+		data: {
+			member_id : memberId
+		},
+		error: function(){
+			alert('Did not work');
+		},
+		success: function(data){
+			$("#submitter_name").html(data);
+		}
+	});
+}
+
+//populates the "Submitted By" dropdown with a list of org admins
+function submittedByAndSmartFormsDropdowns()
+{
+	var memberId = document.getElementById("member_name").value;
+	var requestType = document.getElementById("SmartFormProjectType").value;
+	
+	$.ajax({
+		url: 'list_admin_and_forms',
+		type: 'GET',
+		data: {
+			member_id : memberId,
+			request_type : requestType
+		},
+		error: function(){
+			alert('Did not work');
+		},
+		success: function(data){
+			$("#ajax-dropdown-container").html(data);
+		}
+	});
 }

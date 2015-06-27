@@ -20,6 +20,7 @@
                         'class' => 'form-control',
                         'options' => array(
                             'Administrator' => 'Administrator',
+                            'DRC' => 'DRC',
                             'COI - General' => 'COI - General',
                             'COI - Project' => 'COI - Project',
                             'Researcher' => 'Researcher',
@@ -74,7 +75,7 @@
         </div>
         <div class="form-group">
             <div class="col-sm-5 col-sm-offset-4">
-                <?php echo $this->Form->button('Add Smart Form', array('type' => 'submit', 'class' => 'btn btn-default')); ?>
+                <?php echo $this->Form->button('Update Smart Form', array('type' => 'submit', 'class' => 'btn btn-default')); ?>
             </div>
         </div>
 </div>
