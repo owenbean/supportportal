@@ -197,7 +197,7 @@ function otherAdmin()
 				if (document.getElementById("LetterSubmitter")) {
     				var submitter = document.getElementById("LetterSubmitter");
 				} else {
-    				var submitter = document.getElementById("SmartFormProjectSubmitter");    				
+    				var submitter = document.getElementById("SmartFormProjectAdminId");    				
 				}
 				submitter.value = "";
 			}
