@@ -24,14 +24,24 @@
 	?>
 	<table class="table table-striped">
 		<tr>
-			<th>Project Type</th>
-			<th>Scope</th>
-			<th>Date Received</th>
-			<th>Date Completed</th>
+			<th><?php echo $this->Html->link('Project Type', array('action' => 'history', '?' => array('member_id' => $_GET['member_id'], 's' => 'type'))); ?></th>
+			<th><?php echo $this->Html->link('Scope', array('action' => 'history', '?' => array('member_id' => $_GET['member_id'], 's' => 'scope'))); ?></th>
+			<th><?php echo $this->Html->link('Date Received', array('action' => 'history', '?' => array('member_id' => $_GET['member_id'], 's' => 'date_received'))); ?></th>
+			<th><?php echo $this->Html->link('Date Completed', array('action' => 'history', '?' => array('member_id' => $_GET['member_id'], 's' => 'completed_date'))); ?></th>
 			<th>Form Name</th>
-			<?php echo ($_GET['member_id'] == null ? '<th>Member</th>' : '<th>Submitter</th>'); ?>
-			<th>Output Change?</th>
-			<th>Owner</th>
+			<th>
+			<?php
+				if ( $_GET['member_id'] == null )
+				{
+					echo 'Member';
+				}
+				else
+				{
+					echo $this->Html->link('Submitter', array('action' => 'history', '?' => array('member_id' => $_GET['member_id'], 's' => 'admin_id')));
+				}
+			?>
+			<th><?php echo $this->Html->link('Output Change?', array('action' => 'history', '?' => array('member_id' => $_GET['member_id'], 's' => 'output_change'))); ?></th>
+			<th><?php echo $this->Html->link('Owner', array('action' => 'history', '?' => array('member_id' => $_GET['member_id'], 's' => 'user_id'))); ?></th>
 			<th colspan="2">Actions</th>
 		</tr>
         <?php

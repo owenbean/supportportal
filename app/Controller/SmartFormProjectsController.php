@@ -114,27 +114,37 @@ class SmartFormProjectsController extends AppController {
 		}
 	}
 	
-	public function history($search = null)
+	public function history()
 	{
     	//allows form to be submitted with no member specified
 		$this->SmartFormProject->validate = null;
-		
+
 		$this->loadModel('Member');
 
 		//this loads member list into dropdown menu
 		$members = $this->Member->find('list', array('fields' => array('Member.id', 'Member.full_name'), 'order' => 'Member.full_name'));
 		$this->set(compact('members'));
 		
-		//if member_id not set at all, user hasn't searched. is member_id is null, user searched for all requests
-		if (isset($_GET['member_id']) && $_GET['member_id'] == null) {
-			$this->set('smartFormProjects', $this->SmartFormProject->find('all', array('order' => array('SmartFormProject.date_received' => 'asc'))));
-		} else if (isset($_GET['member_id'])) {
-			//this sets the member for calling at top of list
-			$member = $this->Member->findById($_GET['member_id']);
-			$this->set('member', $member);
-			
-			$this->set('smartFormProjects', $this->SmartFormProject->find('all', array('conditions' => array('SmartFormProject.member_id' => $_GET['member_id']), 'order' => array('SmartFormProject.date_received' => 'asc'))));
-		} else {
+		//if member_id not set at all, user hasn't searched.
+		if ( isset($_GET['member_id']) )
+        {
+            $sort = ( isset($_GET['s']) ? $_GET['s'] : 'date_received' );
+            //if member_id is null, user searched for all requests
+            if ( $_GET['member_id'] == null )
+            {
+                $this->set('smartFormProjects', $this->SmartFormProject->find('all', array('order' => array("SmartFormProject.$sort" => 'asc'))));
+            }
+            else
+            {
+                //this grabs memeber name to display on page
+                $member = $this->Member->findById($_GET['member_id']);
+                $this->set('member', $member);
+                
+                $this->set('smartFormProjects', $this->SmartFormProject->find('all', array('conditions' => array('SmartFormProject.member_id' => $_GET['member_id']), 'order' => array("SmartFormProject.$sort" => 'asc'))));
+            }
+		}
+        else
+        {
 			$this->set('smartFormProjects', null);
 		}    	
 	}
