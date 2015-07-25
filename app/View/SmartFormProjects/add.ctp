@@ -19,7 +19,8 @@
                         'onchange' => 'activateMemberDropdown()',
                         'options' => array(
                             'New' => 'New',
-                            'Change' => 'Change'
+                            'Change' => 'Change',
+                            'Repair' => 'Repair'
                         ),
                         'empty' => ''
                     )); ?>
