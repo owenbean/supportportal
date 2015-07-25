@@ -40,7 +40,7 @@
 					echo $this->Html->link('Submitter', array('action' => 'history', '?' => array('member_id' => $_GET['member_id'], 's' => 'admin_id')));
 				}
 			?>
-			<th><?php echo $this->Html->link('Output Change?', array('action' => 'history', '?' => array('member_id' => $_GET['member_id'], 's' => 'output_change'))); ?></th>
+			<th>Output Change?</th>
 			<th><?php echo $this->Html->link('Owner', array('action' => 'history', '?' => array('member_id' => $_GET['member_id'], 's' => 'user_id'))); ?></th>
 			<th colspan="2">Actions</th>
 		</tr>
