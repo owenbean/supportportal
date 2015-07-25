@@ -15,7 +15,7 @@ class LettersController extends AppController {
 		$this->set('letters', $this->Letter->find('all', array('conditions' => array('Letter.active' => true), 'order' => 'Letter.target_date')));
 	}
 	
-	public function history($search = null)
+	public function history()
 	{
     	//allows form to be submitted with no member specified
 		$this->Letter->validate = null;
@@ -25,16 +25,27 @@ class LettersController extends AppController {
 		$members = $this->Member->find('list', array('fields' => array('Member.id', 'Member.full_name'), 'order' => 'Member.full_name'));
 		$this->set(compact('members'));
 		
-		//if member_id not set at all, user hasn't searched. is member_id is null, user searched for all requests
-		if (isset($_GET['member_id']) && $_GET['member_id'] == null) {
-			$this->set('letters', $this->Letter->find('all', array('order' => array('Letter.date_received' => 'asc'))));
-		} else if (isset($_GET['member_id'])) {
-			//this sets the member for calling at top of list
-			$member = $this->Member->findById($_GET['member_id']);
-			$this->set('member', $member);
-			
-			$this->set('letters', $this->Letter->find('all', array('conditions' => array('Letter.member_id' => $_GET['member_id']), 'order' => array('Letter.date_received' => 'asc'))));
-		} else {
+		//if member_id not set at all, user hasn't searched.
+		if ( isset($_GET['member_id']) )
+		{
+			$sort = ( isset($_GET['s']) ? $_GET['s'] : 'date_received' );
+			$order = ( isset($_GET['o']) ? $_GET['o'] : 'asc' );
+			//if member_id is null, user searched for all requests
+			if ( $_GET['member_id'] == null )
+			{
+				$this->set('letters', $this->Letter->find('all', array('order' => array("Letter.$sort" => "$order"))));
+			}
+			else
+			{
+				//this sets the member for calling at top of list
+				$member = $this->Member->findById($_GET['member_id']);
+				$this->set('member', $member);
+				
+				$this->set('letters', $this->Letter->find('all', array('conditions' => array('Letter.member_id' => $_GET['member_id']), 'order' => array("Letter.$sort" => "$order"))));
+			}
+		}
+		else
+		{
 			$this->set('letters', null);
 		}
 	}

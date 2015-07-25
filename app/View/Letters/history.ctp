@@ -24,13 +24,13 @@
 	?>
 	<table class="table table-striped">
 		<tr>
-			<th>Date Received</th>
-			<th>Date Completed</th>
+			<th><?php echo $this->Html->link('Date Received', array('action' => 'history', '?' => array('member_id' => $_GET['member_id'], 's' => 'date_received'))); ?></th>
+			<th><?php echo $this->Html->link('Date Completed', array('action' => 'history', '?' => array('member_id' => $_GET['member_id'], 's' => 'completed_date'))); ?></th>
 			<?php echo ($_GET['member_id'] == null ? '<th>Member</th>' : '<th>Submitter</th>'); ?>
-			<th>New Letters</th>
-			<th>Revised Letters</th>
+			<th><?php echo $this->Html->link('New Letters', array('action' => 'history', '?' => array('member_id' => $_GET['member_id'], 's' => 'new_templates', 'o' => 'desc'))); ?></th>
+			<th><?php echo $this->Html->link('Revised Letters', array('action' => 'history', '?' => array('member_id' => $_GET['member_id'], 's' => 'revised_templates', 'o' => 'desc'))); ?></th>
 			<th>Enrollment?</th>
-			<th>Owner</th>
+			<th><?php echo $this->Html->link('Owner', array('action' => 'history', '?' => array('member_id' => $_GET['member_id'], 's' => 'request_owner'))); ?></th>
 			<th colspan="2">Actions</th>
 		</tr>
 	<?php foreach ($letters as $letter): ?>
