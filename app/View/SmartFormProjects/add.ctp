@@ -31,10 +31,14 @@
             <label class="col-sm-4 control-label">Member Name:</label>
             <div class="col-sm-5">
                 <select class="form-control" id="member-placeholder" disabled="disabled"></select>
-                <?php echo $this->Form->input('member_id', array('label' => false, 'empty' => '', 'id' => 'member_name', 'class' => 'collapse form-control', 'onchange' => 'submittedByAndSmartFormsDropdowns()')); ?>
+                <?php
+				// This function references a function "submittedByAndSmartFormsDropdowns" that is located in irbnet_admin.js in app\webroot\js.
+				// In this line, function checks if any smart forms exist for this member. If no, then it returns an error message. If yes,
+				// then the function populates "smart_form_name" and "submitter_name" with the names of each smart form and the admin.
+				echo $this->Form->input('member_id', array('label' => false, 'empty' => '', 'id' => 'member_name', 'class' => 'collapse form-control', 'onchange' => 'submittedByAndSmartFormsDropdowns()')); ?>
             </div>
         </div>
-        
+
         <div id="ajax-dropdown-container">
             <div class="form-group" id="smart_form_holder">
                 <label class="col-sm-4 control-label">Smart Form:</label>
