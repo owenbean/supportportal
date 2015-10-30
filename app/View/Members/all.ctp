@@ -34,11 +34,11 @@
 				<th>Member Name</th>
 				<th>Short Name</th>
 				<th>ID</th>
-			<? } else { ?>
+			<?php } else { ?>
 				<th><?php echo $this->Html->link('Member Name', array('action' => 'all', '?' => array('order' => 'full_name'))); ?></th>
 				<th><?php echo $this->Html->link('Short Name', array('action' => 'all', '?' => array('order' => 'short_name'))); ?></th>
 				<th><?php echo $this->Html->link('ID', array('action' => 'all', '?' => array('order' => 'op_num'))) ?></th>
-			<? } ?>
+			<?php } ?>
 			</tr>
 		</thead>
 		
