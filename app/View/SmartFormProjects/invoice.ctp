@@ -7,7 +7,7 @@
 <h4>Instructions</h4>
 
 <p>
-<?php echo $this->Session->read('Auth.User.first_name'); ?>, please copy this template into the Wizards inbox and complete as needed. Thanks!
+<?php echo $this->Session->read('Auth.User.first_name'); ?>, please copy this template into the Wizards inbox, edit it, and send it to Andy if necessary. Thanks!
 </p>
 
 <p>
@@ -65,6 +65,39 @@ Please contact me directly with any questions.
 * Due on anniversary of this date:</strong> [<em>TO DO</em>]<br />
    ** Data maintenance fee:</strong> [<em>TO DO</em>]<br />
 </p>
+
+<p>
+<strong>Previous Requests:</strong><br />
+<?php echo $currentYear; ?>
+	<ul>
+        <?php 
+		if (!$currentYearProjects) { ?>
+			<li>There were no previous projects requested in <?php echo $currentYear; ?></li>
+		<?php } ?>
+		<?php foreach($currentYearProjects as $currentYearProject): ?>
+						<li><?php echo $currentYearProject['SmartFormProject']['scope'] . ' request submitted by ' . $currentYearProject['Admin']['first_name'] . ' ' . $currentYearProject['Admin']['last_name'] . ' on ' . $currentYearProject['SmartFormProject']['date_received'] ?></li>
+		<?php
+			endforeach;
+			unset($currentYearProject);
+		?>
+	</ul>
+
+
+<?php echo $previousYear; ?>
+	<ul>
+        <?php 
+		if (!$previousYearProjects) { ?>
+			<li>There were no projects requested in <?php echo $previousYear; ?></li>
+		<?php } ?>
+		<?php foreach($previousYearProjects as $previousYearProject): ?>
+						<li><?php echo $previousYearProject['SmartFormProject']['scope'] . ' request submitted by ' . $previousYearProject['Admin']['first_name'] . ' ' . $previousYearProject['Admin']['last_name'] . ' on ' . $previousYearProject['SmartFormProject']['date_received'] ?></li>
+		<?php
+			endforeach;
+			unset($previousYearProject);
+		?>
+	</ul>
+</p>
+
 
 <p>&nbsp;</p>
 <p><?php echo $this->Html->link('Back', array('action' => 'view', $smartFormProject['SmartFormProject']['id'])); ?></p>

@@ -176,7 +176,7 @@ class SmartFormProjectsController extends AppController {
             }
             else
             {
-                //this grabs memeber name to display on page
+                //this grabs member name to display on page
                 $member = $this->Member->findById($_GET['member_id']);
                 $this->set('member', $member);
                 
@@ -273,7 +273,32 @@ class SmartFormProjectsController extends AppController {
             throw new NotFoundException(__('Invalid Smart Form Project'));
         }
 
+		// Get current year from the smartFormProject's date received field, then previous year
+		$currentYear = date('Y', strtotime($smartFormProject['SmartFormProject']['date_received']));
+		$previousYear = ($currentYear - 1);
+		
 		$this->set('user_id', CakeSession::read('Auth.User.id'));
         $this->set('smartFormProject', $smartFormProject);
+        $this->set('currentYear', $currentYear);
+		$this->set('previousYear', $previousYear);
+		
+		// Pass in the number of projects that were requested by member in the current year BEFORE this project
+		// 'Current year' is defined as the year in which this request was received
+		$this->set('currentYearProjects', $this->SmartFormProject->find('all', array(
+			'conditions' => array(
+				array('SmartFormProject.member_id' => $smartFormProject['SmartFormProject']['member_id']),
+				array("NOT" => array('SmartFormProject.id' => $id)),
+				array('SmartFormProject.date_received >=' => "$currentYear-01-01", 'SmartFormProject.date_received <=' => $smartFormProject['SmartFormProject']['date_received'])
+			),
+			'order' => array('date_received' => 'asc')
+		)));
+		// Pass in number of projects that were requested in previous year by member
+		$this->set('previousYearProjects', $this->SmartFormProject->find('all', array(
+			'conditions' => array(
+				array('SmartFormProject.member_id' => $smartFormProject['SmartFormProject']['member_id']),
+				array('SmartFormProject.date_received >=' => "$previousYear-01-01", 'SmartFormProject.date_received <=' => "$previousYear-12-31")
+			),
+			'order' => array('date_received' => 'asc')
+		)));
     }
 }
