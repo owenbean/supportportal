@@ -13,5 +13,5 @@
 <p class="claim_link">Project Owned By: <?php echo (!$smartFormProject['SmartFormProject']['user_id'] ? $this->Html->link('[claim]', array('action' => 'claim', $smartFormProject['SmartFormProject']['id'])) : '<strong>' . $smartFormProject['User']['first_name'] . '</strong>'); ?> <?php echo ($smartFormProject['SmartFormProject']['user_id'] == $user_id ? $this->Html->link('[unclaim]', array('action' => 'unclaim', $smartFormProject['SmartFormProject']['id'])) : null ); ?></p>
 <p>Project Comments: <strong><?php echo (!$smartFormProject['SmartFormProject']['comments'] ? 'None' : $smartFormProject['SmartFormProject']['comments']); ?></strong></p>
 <p>&nbsp;</p>
-<p><?php echo $this->Html->link('Edit', array('action' => 'edit', $smartFormProject['SmartFormProject']['id'])) . ' | ' . $this->Html->link('Back', array('action' => 'active')); ?></p>
+<p><?php echo $this->Html->link('Edit', array('action' => 'edit', $smartFormProject['SmartFormProject']['id'])) . ' | ' . $this->Html->link('Invoice', array('action' => 'invoice', $smartFormProject['SmartFormProject']['id'])) . ' | ' . $this->Html->link('Back', array('action' => 'active')); ?></p>
 <p>&nbsp;</p>

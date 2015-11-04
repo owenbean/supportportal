@@ -231,7 +231,7 @@ class SmartFormProjectsController extends AppController {
 		$this->Session->setFlash('Unable to unclaim smart form project', 'default', array('class' => 'alert alert-danger'));
 	}
 /****************************************************************************
- * COMPLETE A SMART FORM
+ * COMPLETE A SMART FORM PROJECT
  * Allows user to mark the Smart Form Project as complete.
  ****************************************************************************
  */ 
@@ -256,4 +256,24 @@ class SmartFormProjectsController extends AppController {
 		// Didn't work, show error message.
 		$this->Session->setFlash('Unable to complete smart form project', 'default', array('class' => 'alert alert-danger'));
 	}
+/****************************************************************************
+ * PROJECT INVOICE
+ * Allows user to create a project invoice based on the information entered
+ * for that request.
+ ****************************************************************************
+ */ 
+    public function invoice($id = null)
+    {
+        if (!$id) {
+            throw new NotFoundException(__('Invalid Smart Form Project'));
+        }
+        
+        $smartFormProject = $this->SmartFormProject->findById($id);
+        if (!$smartFormProject) {
+            throw new NotFoundException(__('Invalid Smart Form Project'));
+        }
+
+		$this->set('user_id', CakeSession::read('Auth.User.id'));
+        $this->set('smartFormProject', $smartFormProject);
+    }
 }
