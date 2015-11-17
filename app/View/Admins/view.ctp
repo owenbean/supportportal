@@ -1,5 +1,9 @@
 <h2><?php echo h($admin['Admin']['first_name']) . ' ' . h($admin['Admin']['last_name']) . ($admin['Admin']['active'] ? null : ' - RETIRED'); ?></h2>
-<h4><?php echo $this->Html->link("<span class='glyphicon glyphicon-pencil action-image' aria-hidden='true'></span>", array('action' => 'edit', $admin['Admin']['id']), array('escapeTitle' => false)); ?>&nbsp;&nbsp;&nbsp;<a href="#" id="deleteRetireLink"><span class='glyphicon glyphicon-remove action-image' aria-hidden='true'></span></a></h4>
+<h4>
+	<?php echo $this->Html->link("<span class='glyphicon glyphicon-pencil action-image' aria-hidden='true'></span>", array('action' => 'edit', $admin['Admin']['id']), array('escapeTitle' => false)); ?>
+	&nbsp;&nbsp;&nbsp;
+	<?php echo ($admin['Admin']['active'] ? "<a href='#' id='deleteRetireLink'><span class='glyphicon glyphicon-remove action-image' aria-hidden='true'></span></a>" : "<a href='#' id='unRetireLink'><span class='glyphicon glyphicon-repeat action-image' aria-hidden='true'></span></a>"); ?>
+</h4>
 <p>&nbsp;</p>
 <div>
 	<h4>Details:</h4>
@@ -28,10 +32,18 @@
 	<p>&nbsp;</p>
 
 
-<!-- Delete / Retire Member Popup -->
-<div id="deleteRetirePopup" title="Delete / Retire Member">
+<!-- Delete / Retire Administrator Popup -->
+<div id="deleteRetirePopup" title="Retire / Delete Administrator">
 	<p>Would you like to retire this administrator (because they have left their organization / role), or delete them altogether?</p>
 	<h6>Please note that deleting an administrator cannot be undone.</h6>
 	<p>&nbsp;</p>
 	<p><?php echo $this->Form->postLink('Retire', array('action' => 'retire', $admin['Admin']['id']));?> | <?php echo $this->Form->postLink('Delete', array('action' => 'delete', $admin['Admin']['id']));?></p>
+</div>
+
+<!-- Un-Retire Administrator Popup -->
+<div id="unRetirePopup" title="Reactivate Administrator">
+	<p>Would you like to reactivate this administrator and return them to active status?</p>
+	<p>This will place them back in the pool of active administrators for <?php echo $admin['Member']['full_name']; ?>.</p>
+	<p>&nbsp;</p>
+	<p><?php echo $this->Form->postLink('Reactivate', array('action' => 'unretire', $admin['Admin']['id']));?></p>
 </div>

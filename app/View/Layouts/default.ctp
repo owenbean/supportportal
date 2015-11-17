@@ -56,7 +56,7 @@ $cakeDescription = __d('cake_dev', 'IRBNet Support Portal');
 					</form>
 				</div>
 
-				<div id="adminSearchBox" class="searchBox" title="Search for an Organization">
+				<div id="adminSearchBox" class="searchBox" title="Search for an Administrator">
 					<p>Enter first or last name:<p>
 					<form method="post" action="<?php echo Router::url(array('controller' => 'admins', 'action' => 'search')); ?>">
 						<input type="text" id="searchAdminName" name="searchAdminName" size="30">

@@ -96,7 +96,24 @@ class MembersController extends AppController {
 			$this->request->data = $member;
 		}
 	}
-	
+/****************************************************************************
+ * RETIRE OR DELETE MEMBER
+ * When a user clicks the retire or delete button on the "view" page for a
+ * specific member, then that triggers the deleteRetire function in
+ * irbnet_admin.js. The javascript opens a div box that asks "are you sure?"
+ * with option to delete or retire the member.
+ *
+ * The HTML for the div box is described on the "view" View.
+ *
+ * Retiring a member will also retire the member's administrators and
+ * smart forms.
+ *
+ * Depending on the link clicked in that div, one of the below functions is
+ * performed.
+ ****************************************************************************
+ */ 
+
+// RETIRE MEMBER - marks as inactive
 	public function retire($id)
 	{
 		if ($this->request->is('get')) {
@@ -105,13 +122,17 @@ class MembersController extends AppController {
 		
 		$this->Member->id = $id;
 		if ($this->Member->save($this->Member->set(array('active' => 0)))) {
+			// Retire all administrators for this member id
 			$this->Member->Admin->updateAll(array('Admin.active' => 0), array('Admin.member_id' => $id));
+			// Retire all smart forms for this member id
+			$this->Member->SmartForm->updateAll(array('SmartForm.status' => "'Retired'"), array('SmartForm.member_id' => $id));
+			// Display success message
 			$this->Session->setFlash('Member retired', 'default', array('class' => 'alert alert-success'));
-			return $this->redirect(array('action' => 'index'));
+			return $this->redirect(array('action' => 'view', $id));
 		}
 		$this->Session->setFlash('Unable to retire member', 'default', array('class' => 'alert alert-danger'));
 	}
-	
+// DELETE MEMBER - drops from database
 	public function delete($id)
 	{
 		if ($this->request->is('get')) {
@@ -123,5 +144,28 @@ class MembersController extends AppController {
 			return $this->redirect(array('action' => 'all'));
 		}
 	}
-	
+/****************************************************************************
+ * UN-RETIRE MEMBER
+ * When a user clicks the retire or delete button on the "view" page for a
+ * specific member, then that triggers the unRetire function in
+ * irbnet_admin.js. The javascript opens a div box that asks "are you sure?"
+ *
+ * The HTML for the div box is described on the "view" View.
+ ****************************************************************************
+ */ 
+
+// UN-MEMBER - marks as active
+	public function unretire($id)
+	{
+		if($this->request->is('get')) {
+			throw new MethodNotAllowedException();
+		}
+		
+		$this->Member->id = $id;
+		if ($this->Member->save($this->Member->set(array('active' => 1)))) {
+			$this->Session->setFlash('Member reactivated', 'default', array('class' => 'alert alert-success'));
+			return $this->redirect(array('action' => 'view', $id));
+		}
+		$this->Session->setFlash('Unable to reactivate member', 'default', array('class' => 'alert alert-danger'));
+	}
 }

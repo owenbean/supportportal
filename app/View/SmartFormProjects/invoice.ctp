@@ -7,7 +7,11 @@
 <h4>Instructions</h4>
 
 <p>
-<?php echo $this->Session->read('Auth.User.first_name'); ?>, please copy this template into the Wizards inbox, edit it, and send it to Andy if necessary. Thanks!
+This page is intended to help you quickly create a template letter that you can send off to Andy for authorization. When you need to send an invoice to Andy, please copy this template into your message.
+</p>
+
+<p>
+Please note: when this page describes "previous requests," it is looking for requests in which the "Date Requested" field is the same as or earlier than the "Date Requested" field for this request.
 </p>
 
 <p>
@@ -52,7 +56,6 @@ Please contact me directly with any questions.
 <p>
 <strong>Project Scope:</strong> <?php echo $smartFormProject['SmartFormProject']['scope']; ?><br />
 <strong>Output Change:</strong> <?php echo ($smartFormProject['SmartFormProject']['output_change'] ? 'Yes' : 'No'); ?>
-<!-- For future release, include list of previous projects submitted for this form in previous two years -->
 </p>
 
 

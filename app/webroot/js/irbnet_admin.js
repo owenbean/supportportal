@@ -35,9 +35,15 @@ $(document).ready(function()
 			$('#retiredAdminsList').dialog('open');
 		});
 	});
-
+/****************************************************************************
+ * RETIRE AN ADMIN OR MEMBER
+ * When a user clicks the delete or retire button on a "view" View,
+ * then it triggers this function. On click, the function opens a dialog box 
+ * described in the View (e.g., View/Admins/view.
+ ****************************************************************************
+ */ 
 	//delete or retire popup on Member or Admin View page
-	$(function() {
+	$(function(deleteRetire) {
 		$('#deleteRetirePopup').dialog({
 			autoOpen: false,
 			height: 'auto',
@@ -54,9 +60,39 @@ $(document).ready(function()
 			$('#deleteRetirePopup').dialog('open');
 		});
 	});
+/****************************************************************************
+ * UN-RETIRE AN ADMIN OR MEMBER
+ * 
+ ****************************************************************************
+ */ 
+	//delete or retire popup on Member or Admin View page
+	$(function(unRetire) {
+		$('#unRetirePopup').dialog({
+			autoOpen: false,
+			height: 'auto',
+			width: 400,
+			modal: true,
+			buttons: {
+				Cancel: function() {
+					$(this).dialog('close');
+				}
+			}
+		});
 
-	//organization search box
-	$(function() {
+		$('#unRetireLink').on('click', function() {
+			$('#unRetirePopup').dialog('open');
+		});
+	});
+/****************************************************************************
+ * ORGANIZATION SEARCH
+ * When a user clicks the Members > Search button in the navbar
+ * (view/elements/nav.ctp), then that triggers this function. 
+ *
+ * The javascript opens a search console with a plain-text field and submits
+ * the result to the MembersController.
+ ****************************************************************************
+ */ 
+	$(function(orgSearch) {
 		$("#orgSearchBox").dialog({
 			autoOpen: false,
 			width: 400,
@@ -85,8 +121,16 @@ $(document).ready(function()
 		});
 	});
 
-	//admin search box
-	$(function() {
+/****************************************************************************
+ * ADMINISTRATOR SEARCH
+ * When a user clicks the Administrators > Search button in the navbar
+ * (view/elements/nav.ctp), then that triggers this function. 
+ *
+ * The javascript opens a search console with a plain-text field and submits
+ * the result to the AdminsController.
+ ****************************************************************************
+ */ 
+	$(function(adminSearch) {
 		$("#adminSearchBox").dialog({
 			autoOpen: false,
 			height: 'auto',
