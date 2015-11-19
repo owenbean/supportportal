@@ -43,7 +43,7 @@ $(document).ready(function()
  ****************************************************************************
  */ 
 	//delete or retire popup on Member and Admin View page
-	$(function(deleteRetirePopup) {
+	$(function deleteRetirePopup() {
 		$('#deleteRetirePopup').dialog({
 			autoOpen: false,
 			height: 'auto',
@@ -62,7 +62,7 @@ $(document).ready(function()
 	});
 	
 	//delete popup on Member View page
-	$(function(deletePopup) {
+	$(function deletePopup() {
 		$('#deletePopup').dialog({
 			autoOpen: false,
 			height: 'auto',
@@ -85,7 +85,7 @@ $(document).ready(function()
  ****************************************************************************
  */ 
 	//delete or retire popup on Member or Admin View page
-	$(function(unRetirePopup) {
+	$(function unRetirePopup() {
 		$('#unRetirePopup').dialog({
 			autoOpen: false,
 			height: 'auto',
@@ -111,7 +111,7 @@ $(document).ready(function()
  * the result to the MembersController.
  ****************************************************************************
  */ 
-	$(function(orgSearch) {
+	$(function orgSearch() {
 		$("#orgSearchBox").dialog({
 			autoOpen: false,
 			width: 400,
@@ -149,7 +149,7 @@ $(document).ready(function()
  * the result to the AdminsController.
  ****************************************************************************
  */ 
-	$(function(adminSearch) {
+	$(function adminSearch() {
 		$("#adminSearchBox").dialog({
 			autoOpen: false,
 			height: 'auto',
