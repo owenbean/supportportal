@@ -42,8 +42,8 @@ $(document).ready(function()
  * described in the View (e.g., View/Admins/view.
  ****************************************************************************
  */ 
-	//delete or retire popup on Member or Admin View page
-	$(function(deleteRetire) {
+	//delete or retire popup on Member and Admin View page
+	$(function(deleteRetirePopup) {
 		$('#deleteRetirePopup').dialog({
 			autoOpen: false,
 			height: 'auto',
@@ -60,13 +60,32 @@ $(document).ready(function()
 			$('#deleteRetirePopup').dialog('open');
 		});
 	});
+	
+	//delete popup on Member View page
+	$(function(deletePopup) {
+		$('#deletePopup').dialog({
+			autoOpen: false,
+			height: 'auto',
+			width: 400,
+			modal: true,
+			buttons: {
+				Cancel: function() {
+					$(this).dialog('close');
+				}
+			}
+		});
+
+		$('#deleteLink').on('click', function() {
+			$('#deletePopup').dialog('open');
+		});
+	});
 /****************************************************************************
  * UN-RETIRE AN ADMIN OR MEMBER
  * 
  ****************************************************************************
  */ 
 	//delete or retire popup on Member or Admin View page
-	$(function(unRetire) {
+	$(function(unRetirePopup) {
 		$('#unRetirePopup').dialog({
 			autoOpen: false,
 			height: 'auto',

@@ -1,6 +1,25 @@
 <?php
 class Member extends AppModel {
-	public $hasMany = array('Admin', 'Committee', 'Letter', 'SmartForm', 'Interaction', 'SmartFormProject');
+	public $hasMany = array(
+		'Admin' => array(
+			'dependent'=>true
+		), 
+		'Committee' => array(
+			'dependent'=>true
+		),
+		'Letter' => array(
+			'dependent'=>true
+		), 
+		'SmartForm' => array(
+			'dependent'=>true
+		),
+		'Interaction' => array(
+			'dependent'=>true
+		),
+		'SmartFormProject' => array(
+			'dependent'=>true
+		)
+	);
 	public $belongsTo = array(
 		'User' => array(
 			'className' => 'User',
