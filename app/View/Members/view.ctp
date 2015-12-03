@@ -105,13 +105,16 @@ if($admins) {
 				?>
 				</tbody>
 			</table>
+		<?php endif; ?>
+			<p><?php echo $this->Html->link('Add Administrator', array('controller' => 'admins', 'action' => 'add', $member['Member']['id'])); ?></p>
+		<?php if ($retired_admins): ?>
+			<p>&nbsp;</p>
 			<p>Retired administrators: <?php echo $retired_admins ?>
 			<?php echo ($retired_admins > 0) ? "<p><a href='#' id='retiredAdminsLink'>Click here</a> to see the list.</p>" : null; ?></p>
 			<?php
 					unset($admin);
-				endif;
 			?>
-			<p><?php echo $this->Html->link('Add Administrator', array('controller' => 'admins', 'action' => 'add', $member['Member']['id'])); ?></p>
+		<?php endif; ?>
 	</div>
 
 	<!-- buffer div -->

@@ -1,4 +1,4 @@
-<h3>Smart Form Invoice</h3>
+<h3>Smart Form Scope</h3>
 
 <p>
 &nbsp;
@@ -7,7 +7,7 @@
 <h4>Instructions</h4>
 
 <p>
-This page is intended to help you quickly create a template letter that you can send off to Andy for authorization. When you need to send an invoice to Andy, please copy this template into your message.
+This page is intended to help you quickly create a template letter that you can send off to Andy for authorization. When you need to send a scope to Andy, please copy this template into your message and edit the message to include the tallies of new steps, revised steps, new fillins, and revised fillins.
 </p>
 
 <p>
@@ -18,7 +18,7 @@ Please note: when this page describes "previous requests," it is looking for req
 &nbsp;
 </p>
 
-<h4>Invoice Template</h4>
+<h4>Scope Template</h4>
 
 <p>
 In response to the recent <?php echo $smartFormProject['SmartFormProject']['type']; ?> Request to <?php echo $smartFormProject['Member']['full_name'] ?>'s <strong><?php echo $smartFormProject['SmartForm']['name']; ?></strong>, please note the enclosed scope and revised fee schedule.
@@ -58,15 +58,20 @@ Please contact me directly with any questions.
 <strong>Output Change:</strong> <?php echo ($smartFormProject['SmartFormProject']['output_change'] ? 'Yes' : 'No'); ?>
 </p>
 
+<p>
+Number of New Steps: [<em><?php echo strtoupper($thisUser_first_name) ?>: TO DO</em>]<br />
+Number of Revised Steps: [<em><?php echo strtoupper($thisUser_first_name) ?>: TO DO</em>]<br />
+Number of New Fillins: [<em><?php echo strtoupper($thisUser_first_name) ?>: TO DO</em>]<br />
+Number of Revised Fillins: [<em><?php echo strtoupper($thisUser_first_name) ?>: TO DO</em>]<br />
 
 <p>
-<strong>Total Cost of Requested Changes:</strong> [<em>TO DO</em>]<br />
-* Due at time of acceptance:</strong> [<em>TO DO</em>]
+<strong>Total Cost of Requested Changes:</strong> [<em>ANDY: TO DO</em>]<br />
+* Due at time of acceptance:</strong> [<em>ANDY: TO DO</em>]
 </p>
 
 <p>
-* Due on anniversary of this date:</strong> [<em>TO DO</em>]<br />
-   ** Data maintenance fee:</strong> [<em>TO DO</em>]<br />
+* Due on anniversary of this date:</strong> [<em>ANDY: TO DO</em>]<br />
+   ** Data maintenance fee:</strong> [<em>ANDY: TO DO</em>]<br />
 </p>
 
 <p>

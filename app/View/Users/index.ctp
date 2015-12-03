@@ -46,7 +46,7 @@
 				unset($letter);
 			?>
 		</ul>
-		<p><?php echo $this->Html->link("**(See All Letters in Queue)**",array('controller' => 'Letters', 'action' => 'active')); ?></p>
+		<p><?php echo $this->Html->link("(See All Letters in Queue)",array('controller' => 'Letters', 'action' => 'active')); ?></p>
 	<?php
 		endif;
 	?>
@@ -62,7 +62,7 @@
 				unset($smartFormProject);
 			?>
 		</ul>
-		<p><?php echo $this->Html->link("**(See All Projects in Queue)**",array('controller' => 'SmartFormProjects', 'action' => 'active')); ?></p>
+		<p><?php echo $this->Html->link("(See All Projects in Queue)",array('controller' => 'SmartFormProjects', 'action' => 'active')); ?></p>
 	<?php
 		endif;
 	?>

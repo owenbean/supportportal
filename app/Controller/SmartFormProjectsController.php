@@ -257,12 +257,12 @@ class SmartFormProjectsController extends AppController {
 		$this->Session->setFlash('Unable to complete smart form project', 'default', array('class' => 'alert alert-danger'));
 	}
 /****************************************************************************
- * PROJECT INVOICE
- * Allows user to create a project invoice based on the information entered
+ * PROJECT SCOPE TEMPLATE
+ * Allows user to create a project scope template based on the information entered
  * for that request.
  ****************************************************************************
  */ 
-    public function invoice($id = null)
+    public function scope($id = null)
     {
         if (!$id) {
             throw new NotFoundException(__('Invalid Smart Form Project'));
@@ -277,7 +277,7 @@ class SmartFormProjectsController extends AppController {
 		$currentYear = date('Y', strtotime($smartFormProject['SmartFormProject']['date_received']));
 		$previousYear = ($currentYear - 1);
 		
-		$this->set('user_id', CakeSession::read('Auth.User.id'));
+		$this->set('thisUser_first_name', CakeSession::read('Auth.User.first_name'));
         $this->set('smartFormProject', $smartFormProject);
         $this->set('currentYear', $currentYear);
 		$this->set('previousYear', $previousYear);

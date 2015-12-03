@@ -97,7 +97,7 @@ class MembersController extends AppController {
 		}
 	}
 /****************************************************************************
- * RETIRE OR DELETE MEMBER
+ * RETIRE MEMBER
  * When a user clicks the retire button on the "view" page for a
  * specific member, then that triggers the deleteRetirePopup function in
  * irbnet_admin.js. The javascript opens a div box that asks "are you sure?"
@@ -138,16 +138,16 @@ class MembersController extends AppController {
 		//load Users and find Support Desk account, for email purposes
 		$this->loadModel('User');
         $support = $this->User->find('first', array('conditions' => array('User.username' => 'support')));
-        
+		
         if ($member === false) {
             debug(__METHOD__." failed to retrieve User data for user.id: {$user_id}");
             return false;
         }
-		
-        $thisUser = $this->Session->read('Auth.User.first_name');
+		// Retrieve important variables
+        $thisUser_first_name = $this->Session->read('Auth.User.first_name');
         $support_email_address = $support['User']['email_address'];
 		$member_name = $member['Member']['full_name'];
-
+		// Assemble email and send to Support
 		$Email = new CakeEmail('gmail');
 		$Email->from(array('letters@irbnet.org' => 'IRBNet Letter Team'));
 		$Email->to($support_email_address);

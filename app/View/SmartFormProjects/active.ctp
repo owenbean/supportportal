@@ -47,7 +47,7 @@
 			<td><?php echo (!$smartFormProject['SmartFormProject']['user_id'] ? $this->Html->link('[claim]', array('action' => 'claim', $smartFormProject['SmartFormProject']['id']), array('confirm' => 'Are you sure you want to claim this project?')) : $smartFormProject['User']['first_name']); ?></td>
 			<td><?php echo $this->Form->postLink("<span class='glyphicon glyphicon-ok action-image' aria-hidden='true'></span>", array('action' => 'complete', $smartFormProject['SmartFormProject']['id']), array('escapeTitle' => false, 'confirm' => 'Are you sure you want to complete this project?')); ?></td>
 			<td><?php echo $this->Html->link("<span class='glyphicon glyphicon-search action-image' aria-hidden='true'></span>", array('action' => 'view', $smartFormProject['SmartFormProject']['id']), array('escapeTitle' => false)); ?></td>
-			<td><?php echo $this->Html->link("<span class='glyphicon glyphicon-envelope action-image' aria-hidden='true'></span>", array('action' => 'invoice', $smartFormProject['SmartFormProject']['id']), array('escapeTitle' => false)); ?></td>
+			<td><?php echo $this->Html->link("<span class='glyphicon glyphicon-envelope action-image' aria-hidden='true'></span>", array('action' => 'scope', $smartFormProject['SmartFormProject']['id']), array('escapeTitle' => false)); ?></td>
 			<td><?php echo $this->Form->postLink("<span class='glyphicon glyphicon-remove action-image' aria-hidden='true'></span>", array('action' => 'delete', $smartFormProject['SmartFormProject']['id']), array('escapeTitle' => false, 'confirm' => 'Are you sure you want to Delete this project? If needed, you can edit it by clicking the View icon.')); ?></td>
 		</tr>
 		<?php
