@@ -46,7 +46,22 @@
 				unset($letter);
 			?>
 		</ul>
-		<p><?php echo $this->Html->link("(See All Letters in Queue)",array('controller' => 'Letters', 'action' => 'active')); ?></p>
+		<p><?php echo $this->Html->link("(See All Letters in Queue)",array('controller' => 'Letters', 'action' => 'active', 'letter')); ?></p>
+	<?php
+		endif;
+	?>
+	<?php
+	if($stamps): ?>
+		<h3>My Active Stamp Requests:</h3>
+		<ul>
+			<?php foreach($stamps as $stamp): ?>
+				<li><?php echo $this->Html->link($stamp['Member']['full_name'] . ' (New: ' . $stamp['Letter']['new_templates'] . ', Revised: ' . $stamp['Letter']['revised_templates'] . '), Target Date: ' . $stamp['Letter']['target_date'], array('controller' => 'Letters', 'action' => 'view', $stamp['Letter']['id'])); ?></li>
+			<?php
+				endforeach;
+				unset($stamp);
+			?>
+		</ul>
+		<p><?php echo $this->Html->link("(See All Stamps in Queue)",array('controller' => 'Letters', 'action' => 'active', 'stamp')); ?></p>
 	<?php
 		endif;
 	?>

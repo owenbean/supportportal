@@ -60,7 +60,8 @@ class UsersController extends AppController {
 		$this->set('user', $user);
 		// Create a list of active letter requests that this user is working on.
 		$this->loadModel('Letter');
-		$this->set('letters', $this->Letter->find('all', array('conditions' => array('Letter.request_owner'=> $user_id, 'Letter.active' => true))));
+		$this->set('letters', $this->Letter->find('all', array('conditions' => array('Letter.request_owner'=> $user_id, 'Letter.active' => true, 'Letter.type' => 'Letter'))));
+		$this->set('stamps', $this->Letter->find('all', array('conditions' => array('Letter.request_owner'=> $user_id, 'Letter.active' => true, 'Letter.type' => 'Stamp'))));
 		// Create a list of active smart form projects that this user is working on.
 		$this->loadModel('SmartFormProject');
 		$this->set('smartFormProjects',$this->SmartFormProject->find('all',array('conditions' => array('SmartFormProject.user_id'=> $user_id, 'SmartFormProject.active' => true))));

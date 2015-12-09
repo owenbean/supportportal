@@ -21,6 +21,9 @@ class Letter extends AppModel {
 		'submitter' => array(
 			'rule' => 'notEmpty'
 		),
+		'type' => array(
+    		'rule' => 'notEmpty'
+		),
 		'new_templates' => array(
 			'rule' => 'numeric',
 			'notEmpty' => true,

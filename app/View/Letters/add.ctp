@@ -1,4 +1,4 @@
-<h2 class="title">New Letter Request</h2>
+<h2 class="title">New Letter or Stamp Request</h2>
 
 <p>&nbsp;</p>
 
@@ -21,6 +21,21 @@
 			<label class="col-sm-4 control-label">Request Submitted By:</label>
 			<div class="col-sm-5" id="submitter_name">
 				<?php echo $this->Form->input('submitter', array('label' => false, 'disabled' => 'disabled', 'class' => 'form-control')); ?>
+			</div>
+		</div>
+		
+		<div class="form-group" id="submitter_name_holder">
+			<label class="col-sm-4 control-label">Request Type:</label>
+			<div class="col-sm-5" id="submitter_name">
+				<?php echo $this->Form->input('type', array(
+					'label' => false,
+					'class' => 'form-control',
+					'options' => array(
+						'Letter' => 'Letter',
+						'Stamp' => 'Stamp',
+					),
+					'empty' => ''
+				)); ?>
 			</div>
 		</div>
 		

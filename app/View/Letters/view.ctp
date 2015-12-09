@@ -1,9 +1,10 @@
-<h3>Letter Request</h3>
+<h3>Letter or Stamp Request</h3>
 
 <p>&nbsp;</p>
 
 <h4><?php echo h($letter['Member']['full_name']); ?></h4>
 <p>Submitted By: <strong><?php echo (is_numeric($letter['Letter']['submitter']) ? ($letter['Admin']['first_name'] . ' ' . $letter['Admin']['last_name']) : h($letter['Letter']['submitter'])); ?></strong></p>
+<p>Type: <strong><?php echo $letter['Letter']['type']; ?></strong></p>
 <p>New Templates: <strong><?php echo $letter['Letter']['new_templates']; ?></strong></p>
 <p>Revised Templates: <strong><?php echo $letter['Letter']['revised_templates']; ?></strong></p>
 <p>Enrollment? <strong><?php echo ($letter['Letter']['enrollment'] ? 'Yes' : 'No'); ?></strong></p>

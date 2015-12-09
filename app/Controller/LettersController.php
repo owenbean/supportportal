@@ -10,9 +10,19 @@ class LettersController extends AppController {
 		$this->Auth->allow('lettersDueToday');
 	}
 
-	public function active()
+	public function active($options = null)
 	{
-		$this->set('letters', $this->Letter->find('all', array('conditions' => array('Letter.active' => true), 'order' => 'Letter.target_date')));
+		if (!$options) {
+			$this->set('letters', $this->Letter->find('all', array('conditions' => array('Letter.active' => true), 'order' => 'Letter.target_date')));
+			$this->set('filter_added', false);
+		} else {
+			$this->set('letters', $this->Letter->find('all', array('conditions' => array('Letter.type' => $options, 'Letter.active' => true), 'order' => array('Letter.target_date'))));
+			//this disables sortable column headers
+			$this->set('filter_added', true);
+			$this->set('filter', $options);
+		}
+		
+		// $this->set('letters', $this->Letter->find('all', array('conditions' => array('Letter.active' => true), 'order' => 'Letter.target_date')));
 	}
 	
 	public function history()
@@ -254,5 +264,13 @@ class LettersController extends AppController {
 			endforeach;
 			unset($letter);
 		}
+	}
+	public function all()
+	{
+			$this->set('letters', $this->Letter->find('all', array(
+				'conditions' => array('Letter.type' => 'Stamp'), 
+				'group' => 'Letter.member_id',
+				'order' => 'Member.full_name')
+			));
 	}
 }

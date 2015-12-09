@@ -15,15 +15,15 @@
       Wizards <span class="caret"></span>
     </a>
     <ul class="dropdown-menu" role="menu">
-      <li role="presentation" class="dropdown-header">Letters</li>
-			<li><?php echo $this->Html->link('Letter Queue', array('controller' => 'letters', 'action' => 'active')); ?></li>
-      <li><?php echo $this->Html->link('New Letter Request', array('controller' => 'letters', 'action' => 'add')); ?></li>
-      <li><?php echo $this->Html->link('Letter Request History', array('controller' => 'letters', 'action' => 'history')); ?></li>
+      <li role="presentation" class="dropdown-header">Letters and Stamps</li>
+		  <li><?php echo $this->Html->link('Letter and Stamp Queue', array('controller' => 'letters', 'action' => 'active')); ?></li>
+		  <li><?php echo $this->Html->link('New Letter or Stamp Request', array('controller' => 'letters', 'action' => 'add')); ?></li>
+		  <li><?php echo $this->Html->link('Letter and Stamp Request History', array('controller' => 'letters', 'action' => 'history')); ?></li>
       <li role="presentation" class="dropdown-header">Smart Forms</li>
-      <li><?php echo $this->Html->link('All Smart Forms', array('controller' => 'smartForms', 'action' => 'index')); ?></li>
-      <li><?php echo $this->Html->link('Active Smart Form Projects', array('controller' => 'smartFormProjects', 'action' => 'active')); ?></li>
-      <li><?php echo $this->Html->link('New Smart Form Project', array('controller' => 'smartFormProjects', 'action' => 'add')); ?></li>
-      <li><?php echo $this->Html->link('Smart Form Project History', array('controller' => 'smartFormProjects', 'action' => 'history')); ?></li>
+		  <li><?php echo $this->Html->link('All Smart Forms', array('controller' => 'smartForms', 'action' => 'index')); ?></li>
+		  <li><?php echo $this->Html->link('Active Smart Form Projects', array('controller' => 'smartFormProjects', 'action' => 'active')); ?></li>
+		  <li><?php echo $this->Html->link('New Smart Form Project', array('controller' => 'smartFormProjects', 'action' => 'add')); ?></li>
+		  <li><?php echo $this->Html->link('Smart Form Project History', array('controller' => 'smartFormProjects', 'action' => 'history')); ?></li>
     </ul>
   </li>
 
@@ -76,6 +76,7 @@
     <ul class="dropdown-menu" role="menu">
 			<li><?php echo $this->Html->link('CITI Integration', array('controller' => 'members', 'action' => 'all', 'citi_integration')); ?></li>
 			<li><?php echo $this->Html->link('WIRB Integration', array('controller' => 'members', 'action' => 'all', 'wirb_integration')); ?></li>
+			<li><?php echo $this->Html->link('Stamping Tools', array('controller' => 'letters', 'action' => 'all')); ?></li>			
 			<li><?php echo $this->Html->link('Single Sign-On', array('controller' => 'members', 'action' => 'all', 'sso')); ?></li>
 			<li><?php echo $this->Html->link('File Access', array('controller' => 'members', 'action' => 'all', 'file_access')); ?></li>
 			<li><?php echo $this->Html->link('Contract Leads', array('controller' => 'admins', 'action' => 'all', 'contract_lead')); ?></li>

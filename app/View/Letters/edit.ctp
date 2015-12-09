@@ -1,4 +1,4 @@
-<h2 class="title">Edit Letter Request</h2>
+<h2 class="title">Edit Letter or Stamp Request</h2>
 
 <p>&nbsp;</p>
 
@@ -14,6 +14,21 @@
 			<label class="col-sm-4 control-label">Request Submitted By:</label>
 			<div class="col-sm-5" id="submitter_name">
 				<?php echo $this->Form->input('submitter_placeHolder', array('label' => false, 'default' => (is_numeric($letter['Letter']['submitter']) ? ($letter['Admin']['first_name'] . ' ' . $letter['Admin']['last_name']) : h($letter['Letter']['submitter'])), 'disabled' => 'disabled', 'class' => 'form-control')); ?>
+			</div>
+		</div>
+		<div class="form-group" id="submitter_name_holder">
+			<label class="col-sm-4 control-label">Request Type:</label>
+			<div class="col-sm-5" id="submitter_name">
+				<?php echo $this->Form->input('type', array(
+					'default' => $letter['Letter']['type'],
+					'label' => false,
+					'class' => 'form-control',
+					'options' => array(
+						'Letter' => 'Letter',
+						'Stamp' => 'Stamp',
+					),
+					'empty' => ''
+				)); ?>
 			</div>
 		</div>
 		<div class="form-group">

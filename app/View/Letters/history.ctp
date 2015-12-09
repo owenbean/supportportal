@@ -1,4 +1,4 @@
-<h2 class="title">IRBNet Letter Requests</h2>
+<h2 class="title">IRBNet Letter and Stamp Requests</h2>
 <p>&nbsp;</p>
 <div class="col-sm-4 col-sm-offset-4 text-center">
 	<h4>Requests by Member:</h4>
@@ -27,8 +27,9 @@
 			<th><?php echo $this->Html->link('Date Received', array('action' => 'history', '?' => array('member_id' => $_GET['member_id'], 's' => 'date_received'))); ?></th>
 			<th><?php echo $this->Html->link('Date Completed', array('action' => 'history', '?' => array('member_id' => $_GET['member_id'], 's' => 'completed_date'))); ?></th>
 			<?php echo ($_GET['member_id'] == null ? '<th>Member</th>' : '<th>Submitter</th>'); ?>
-			<th><?php echo $this->Html->link('New Letters', array('action' => 'history', '?' => array('member_id' => $_GET['member_id'], 's' => 'new_templates', 'o' => 'desc'))); ?></th>
-			<th><?php echo $this->Html->link('Revised Letters', array('action' => 'history', '?' => array('member_id' => $_GET['member_id'], 's' => 'revised_templates', 'o' => 'desc'))); ?></th>
+			<th>Type</th>
+			<th><?php echo $this->Html->link('New Templates', array('action' => 'history', '?' => array('member_id' => $_GET['member_id'], 's' => 'new_templates', 'o' => 'desc'))); ?></th>
+			<th><?php echo $this->Html->link('Revised Templates', array('action' => 'history', '?' => array('member_id' => $_GET['member_id'], 's' => 'revised_templates', 'o' => 'desc'))); ?></th>
 			<th>Enrollment?</th>
 			<th><?php echo $this->Html->link('Owner', array('action' => 'history', '?' => array('member_id' => $_GET['member_id'], 's' => 'request_owner'))); ?></th>
 			<th colspan="2">Actions</th>
@@ -38,6 +39,7 @@
 			<td><?php echo $letter['Letter']['date_received']; ?></td>
 			<td><?php echo ($letter['Letter']['completed_date'] ? date("Y-m-d", strtotime($letter['Letter']['completed_date'])) : '<em>Active</em>'); ?></td>
 			<td><?php echo ($_GET['member_id'] == null ? $letter['Member']['short_name'] : ((is_numeric($letter['Letter']['submitter']) ? ($letter['Admin']['first_name'] . ' ' . $letter['Admin']['last_name']) : h($letter['Letter']['submitter'])))); ?></td>
+			<td><?php echo $letter['Letter']['type']; ?></td>
 			<td><?php echo $letter['Letter']['new_templates']; ?></td>
 			<td><?php echo $letter['Letter']['revised_templates']; ?></td>
 			<td><?php echo ($letter['Letter']['enrollment'] ? 'Yes' : 'No'); ?></td>
