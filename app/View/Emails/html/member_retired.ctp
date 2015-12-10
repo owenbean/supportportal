@@ -1,6 +1,6 @@
 <p>Support,</p>
 
-<p><?php echo $thisUser_first_name; ?> has retired the following Member from the Support Portal:</p>
+<p><?php echo $thisUser; ?> has retired the following Member from the Support Portal:</p>
 
 <p>Member: <?php echo $member_name; ?></p>
 

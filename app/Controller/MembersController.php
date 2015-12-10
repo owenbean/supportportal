@@ -144,12 +144,12 @@ class MembersController extends AppController {
             return false;
         }
 		// Retrieve important variables
-        $thisUser_first_name = $this->Session->read('Auth.User.first_name');
+        $thisUser = $this->Session->read('Auth.User.first_name');
         $support_email_address = $support['User']['email_address'];
 		$member_name = $member['Member']['full_name'];
 		// Assemble email and send to Support
 		$Email = new CakeEmail('gmail');
-		$Email->from(array('letters@irbnet.org' => 'IRBNet Letter Team'));
+		$Email->from(array('supportportal@irbnet.org' => 'IRBNet Support Portal'));
 		$Email->to($support_email_address);
 		$Email->subject('Member Retired from Support Portal - ' . $member_name);
 		$Email->template('member_retired');

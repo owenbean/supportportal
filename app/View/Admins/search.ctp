@@ -1,4 +1,4 @@
-<h2 class='title'>National Research Network Admnistrators</h2>
+<h2 class='title'>National Research Network Administrators</h2>
 <h4 class='sub-title'>Search</h4>
 
 <p>&nbsp;</p>
