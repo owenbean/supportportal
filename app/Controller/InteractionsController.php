@@ -1,5 +1,11 @@
 <?php
 class InteractionsController extends AppController {
+/**
+ * 2016-01-25 OB: this controller contains functions that were once used to track interactions with a staff at a local IRB.
+ * This was largely in response to the discovery that some institutions wouldn't contact Support for months/years. 
+ * Interactions, however, were never updated by Support staff, and was a failed experiment in CRM-style interaction tracking and ticketing.
+ * Zack and I decided to remove committees from the system altogether.
+ */ 
 	public function add($member_id) {
 		$members = $member_id;
 		$this->set(compact('members'));

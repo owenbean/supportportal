@@ -2,10 +2,9 @@
 class AdminsController extends AppController {
   	public $helpers = array('Markdown.Markdown');
 
-/****************************************************************************
+/**
  * ALL ADMINISTRATORS LIST
  * This creates a list of all NRN admins to be listed in /admins
- ****************************************************************************
  */ 
 	public function all($options = null) {
 		if (!$options) {
@@ -17,7 +16,7 @@ class AdminsController extends AppController {
 			$this->set('filter', $options);
 		}
 	}
-/****************************************************************************
+/**
  * SEARCH ADMINISTRATOR
  * When a user clicks the Administrators > Search button in the navbar
  * (view/elements/nav.ctp), then that triggers the adminSearch function in
@@ -26,7 +25,6 @@ class AdminsController extends AppController {
  *
  * This controller function retrieves the content of that search console and
  * queries the db for first names and last names like that keyword.
- ****************************************************************************
  */ 
 	public function search($keyword = null) {
 		// uses implode to return string from array elements
@@ -41,10 +39,9 @@ class AdminsController extends AppController {
 			$this->set('admins', $admins);
 		}
 	}
-/****************************************************************************
+/**
  * VIEW ADMINISTRATOR
  * Allows user to view the admin based on the admin's ID.
- ****************************************************************************
  */ 
 	public function view($id = null) {
 		if (!$id) {
@@ -57,14 +54,13 @@ class AdminsController extends AppController {
 		}
 		$this->set('admin', $admin);
 	}
-/****************************************************************************
+/**
  * ADD ADMINISTRATOR
  * Produces a "New Administrator" form that allows user to add a new
  * administrator.
  * 
  * When the form is submitted, then it passes submission into the database
  * and brings the user to the view page for that created admin.
- ****************************************************************************
  */ 
 	public function add($member = null) {
 		// Uses Member model so that we can populate the Organization dropdown menu
@@ -86,12 +82,11 @@ class AdminsController extends AppController {
 			$this->Session->setFlash('Unable to save administrator', 'default', array('class' => 'alert alert-danger'));
 		}
 	}
-/****************************************************************************
+/**
  * EDIT ADMINISTRATOR
  * Produces a "New Administrator" form that allows user to add a new
  * administrator. This form functions in similar fashion to "add,"
  * except that it pre-populates and submits based on the admin's id.
- ****************************************************************************
  */ 
 	public function edit($id = null) {
 		$this->loadModel('Member');
@@ -120,7 +115,7 @@ class AdminsController extends AppController {
 			$this->request->data = $admin;
 		}
 	}
-/****************************************************************************
+/**
  * RETIRE OR DELETE ADMINISTRATOR
  * When a user clicks the retire or delete button on the "view" page for a
  * specific admin, then that triggers the deleteRetire function in
@@ -131,7 +126,6 @@ class AdminsController extends AppController {
  *
  * Depending on the link clicked in that div, one of the below functions is
  * performed.
- ****************************************************************************
  */ 
  
  // RETIRE ADMINISTRATOR - marks as inactive
@@ -158,14 +152,13 @@ class AdminsController extends AppController {
 			return $this->redirect(array('action' => 'all'));
 		}
 	}
-/****************************************************************************
+/**
  * UN-RETIRE ADMINISTRATOR
  * When a user clicks the retire or delete button on the "view" page for a
  * specific admin, then that triggers the unRetire function in
  * irbnet_admin.js. The javascript opens a div box that asks "are you sure?"
  *
  * The HTML for the div box is described on the "view" View.
- ****************************************************************************
  */ 
  
   // RETIRE ADMINISTRATOR - marks as active

@@ -4,20 +4,18 @@ App::uses('DboSource', 'Model/DataSource');
 class SmartFormProjectsController extends AppController {
     public $components = array('RequestHandler');
 
-/****************************************************************************
+/**
  * ACTIVE PROJECTS
  * Creates a list of active smart form projects, used in Wizards tracking.
- ****************************************************************************
  */ 
     public function active()
     {
         $this->log('logging data from active controller: ' . print_r($this->request->data, 1));
         $this->set('smartFormProjects', $this->SmartFormProject->find('all', array('conditions' => array('SmartFormProject.active' => true))));
     }
-/****************************************************************************
+/**
  * VIEW PROJECT
  * Allows user to view the project based on the project's ID.
- ****************************************************************************
  */ 
     public function view($id = null)
     {
@@ -33,11 +31,10 @@ class SmartFormProjectsController extends AppController {
 		$this->set('user_id', CakeSession::read('Auth.User.id'));
         $this->set('smartFormProject', $smartFormProject);
     }
-/****************************************************************************
+/**
  * ADD PROJECT
  * Produces a "New Smart Form Request" form that allows user to add a new
  * smart form project.
- ****************************************************************************
  */ 
     public function add($member_id = null)
     {
@@ -65,13 +62,12 @@ class SmartFormProjectsController extends AppController {
             $this->Session->setFlash('Unable to add Smart Form Project', 'default', array('class' => 'alert alert-danger'));
         }
     }
-/****************************************************************************
+/**
  * EDIT PROJECT
  * Produces a "New Smart Form Request" form that allows user to add a new
  * smart form project. This form functions in similar fashion to "add,"
  * except that the view restricts edits on Request Type, Member Name, SF,
  * and Submitted By.
- ****************************************************************************
  */ 
     public function edit($id = null)
     {
@@ -102,13 +98,12 @@ class SmartFormProjectsController extends AppController {
             $this->set('smartFormProject', $smartFormProject);
         }
     }
-/****************************************************************************
+/**
  * AJAX JSCRIPT DATA RETRIEVAL
  * The "Add New Smart Form Project" page uses a javascript function to 
  * validate data without submitting to the database. To do this, it uses 
  * irbnet_admin.js "submittedByAndSmartFormsDropdowns()" That js function 
  * uses the data that is being called here.
- ****************************************************************************
  */ 
     public function list_admin_and_forms()
     {
@@ -131,10 +126,9 @@ class SmartFormProjectsController extends AppController {
             $this->redirect(array('action' => 'add'));
         }
     }
-/****************************************************************************
+/**
  * DELETE SMART FORM PROJECT
  * Allows user to delete a smart form project.
- ****************************************************************************
  */ 
 	public function delete($id)
 	{
@@ -148,11 +142,10 @@ class SmartFormProjectsController extends AppController {
 			return $this->redirect(array('action' => 'active'));
 		}
 	}
-/****************************************************************************
+/**
  * SMART FORM PROJECT HISTORY
  * Displays all of the smart form projects that have ever been created.
  * Includes search function.
- ****************************************************************************
  */ 
 	public function history()
 	{
@@ -188,10 +181,9 @@ class SmartFormProjectsController extends AppController {
 			$this->set('smartFormProjects', null);
 		}    	
 	}
-/****************************************************************************
+/**
  * CLAIM A SMART FORM PROJECT
  * Allows user to associate Smart Form Project with his/her user id.
- ****************************************************************************
  */ 
 	public function claim($id)
 	{
@@ -211,10 +203,9 @@ class SmartFormProjectsController extends AppController {
 		// Didn't work, show error message.
 		$this->Session->setFlash('Unable to claim project', 'default', array('class' => 'alert alert-danger'));
 	}
-/****************************************************************************
+/**
  * UNCLAIM A SMART FORM PROJECT
  * Allows user to disassociate Smart Form Project with his/her user id.
- ****************************************************************************
  */ 
 	public function unclaim($id)
 	{
@@ -230,10 +221,9 @@ class SmartFormProjectsController extends AppController {
 		}
 		$this->Session->setFlash('Unable to unclaim smart form project', 'default', array('class' => 'alert alert-danger'));
 	}
-/****************************************************************************
+/**
  * COMPLETE A SMART FORM PROJECT
  * Allows user to mark the Smart Form Project as complete.
- ****************************************************************************
  */ 
 	public function complete($id)
 	{
@@ -241,12 +231,12 @@ class SmartFormProjectsController extends AppController {
 		if ($this->request->is('get')) {
 			throw new MethodNotAllowedException();
 		}
-		// Retrieve Smart Form ID from argument
+		// Retrieve Smart Form id from argument
 		$this->SmartFormProject->id = $id;
 		// Retrieve timestamp, save to DB along with user id of user.
 		if ($this->SmartFormProject->save($this->SmartFormProject->set(array('active' => 0, 'completed_date' => DboSource::expression('NOW()'))))) {
 			
-			// Leftover from when Zack converted this from Letters requests. Leaving in place in case we want to send a completion email.
+			// 2016019 OB: Leftover from when Zack converted this from Letters requests. Leaving in place in case we want to send a completion email.
 			// $this->lettersCompleteEmail($id);
 			
 			// Show success message
@@ -256,11 +246,10 @@ class SmartFormProjectsController extends AppController {
 		// Didn't work, show error message.
 		$this->Session->setFlash('Unable to complete smart form project', 'default', array('class' => 'alert alert-danger'));
 	}
-/****************************************************************************
+/**
  * PROJECT SCOPE TEMPLATE
  * Allows user to create a project scope template based on the information entered
  * for that request.
- ****************************************************************************
  */ 
     public function scope($id = null)
     {

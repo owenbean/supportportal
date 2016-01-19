@@ -1,9 +1,12 @@
 <?php
 class CommitteesController extends AppController {
+/**
+ * 2016-01-25 OB: this controller contains functions that were once used to track committees within a member. 
+ * Committees, however, were not frequently updated, and Zack and I decided to remove committees from the system altogether.
+ */ 
 	public function index() {
 		$this->set('committees', $this->Committee->find('all'));
 	}
-	
 	public function view($id = null) {
 		if (!$id) {
 			throw new NotFoundException(__('Invalid committee'));
