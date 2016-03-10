@@ -1,6 +1,6 @@
 <p>Support,</p>
 
-<p><?php echo $user_name; ?> has completed the following letter request:</p>
+<p><?php echo $user_name; ?> has completed the following <?php echo $type; ?> request:</p>
 
 <p>Member: <?php echo $member_name; ?></p>
 

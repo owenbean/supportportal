@@ -68,7 +68,7 @@ $cakeDescription = __d('cake_dev', 'IRBNet Support Portal');
 
 		<div id="footer" class="container">
 			<div>
-				<p>Copyright &copy; 2002-2015 Research Dataware, LLC.&nbsp;&nbsp;&nbsp;All Rights Reserved.</p>
+				<p>Copyright &copy; 2002-<?php echo date("Y"); ?> Research Dataware, LLC.&nbsp;&nbsp;&nbsp;All Rights Reserved.</p>
 			</div>
 		</div>
 	</div>

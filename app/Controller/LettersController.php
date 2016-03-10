@@ -268,14 +268,15 @@ class LettersController extends AppController {
 		$member_short_name = $letter['Member']['short_name'];
 		$date_received = $letter['Letter']['date_received'];
 		$target_date = $letter['Letter']['target_date'];
+		$type = $letter['Letter']['type'];
 
 		$Email = new CakeEmail('gmail');
 		$Email->from(array('letters@irbnet.org' => 'IRBNet Letter Team'));
 		$Email->to($support_email_address);
-		$Email->subject('Letter Request Completed - ' . $member_short_name);
+		$Email->subject($type . ' Request Completed - ' . $member_short_name);
 		$Email->template('letters_complete');
 		$Email->emailFormat('html');
-		$Email->viewVars(array('user_name' => $user_name, 'member_name' => $member_name, 'date_received' => $date_received, 'target_date' => $target_date));
+		$Email->viewVars(array('user_name' => $user_name, 'member_name' => $member_name, 'date_received' => $date_received, 'target_date' => $target_date, 'type' => $type));
 		$Email->send();
 	}
 
