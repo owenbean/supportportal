@@ -1,3 +1,9 @@
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+
 <h2 class="title">Letter and Stamp Request Queue</h1>
 
 <p></span>&nbsp;</p>
@@ -28,7 +34,7 @@
 			<td><?php echo ($letter['Letter']['enrollment'] == 1 ? 'Yes' : 'No'); ?></td>
 			<td><?php echo (!$letter['Letter']['request_owner'] ? $this->Html->link('[claim]', array('controller' => 'letters', 'action' => 'claim', $letter['Letter']['id']), array('confirm' => 'Are you sure you want to claim this letter request?')) : $letter['User']['first_name']); ?></td>
 			<td><?php echo $this->Form->postLink("<span class='glyphicon glyphicon-ok action-image' aria-hidden='true'></span>", array('controller' => 'letters', 'action' => 'complete', $letter['Letter']['id']), array('escapeTitle' => false, 'confirm' => 'Are you sure you want to complete this letter or stamp request?')); ?></td>
-			<td><?php echo $this->Html->link("<span class='glyphicon glyphicon-search action-image' aria-hidden='true'></span>", array('controller' => 'letters', 'action' => 'view', $letter['Letter']['id']), array('escapeTitle' => false)); ?></td>
+			<td><?php echo $this->Html->link("<span class='glyphicon glyphicon-search action-image' aria-hidden='true'></span>", array('controller' => 'letters', 'action' => 'view', $letter['Letter']['id']), array('escapeTitle' => false, 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => $letter['Letter']['comments'])); ?></td>
 			<td><?php echo $this->Form->postLink("<span class='glyphicon glyphicon-remove action-image' aria-hidden='true'></span>", array('controller' => 'letters', 'action' => 'delete', $letter['Letter']['id']), array('escapeTitle' => false, 'confirm' => 'Are you sure you want to delete this letter or stamp request? If needed, you can edit it by clicking the View icon.')); ?></td>
 		</tr>
 		<?php endforeach; ?>
