@@ -8,9 +8,10 @@ $(document).ready(function(){
 
 <p></span>&nbsp;</p>
 
-<div class="col-sm-8 col-sm-offset-2">
+<div class="col-sm-9 col-sm-offset-1">
 	<table class="table table-striped">
 		<tr>
+			<th>Date Received</th>
 			<th>Target Date</th>
 			<th>Member</th>
 			<th>Type</th>
@@ -21,11 +22,20 @@ $(document).ready(function(){
 			<th colspan="3">Actions</th>
 		</tr>
 		
+		<?php
+			$total_new = 0;
+			$total_revised = 0;
+			$total_enrollment = 0;
+		?>
+		
 		<?php if ($letters == null) { ?>
 		<tr><td colspan="3">No active letters</td></tr>
 		<?php } else {
+			
+			
 			foreach ($letters as $letter): ?>
 		<tr>
+			<td><?php echo $letter['Letter']['date_received']; ?></td>
 			<td><?php echo $letter['Letter']['target_date']; ?></td>
 			<td><?php echo $letter['Member']['short_name']; ?></td>
 			<td><?php echo $letter['Letter']['type']; ?></td>
@@ -37,9 +47,22 @@ $(document).ready(function(){
 			<td><?php echo $this->Html->link("<span class='glyphicon glyphicon-search action-image' aria-hidden='true'></span>", array('controller' => 'letters', 'action' => 'view', $letter['Letter']['id']), array('escapeTitle' => false, 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => $letter['Letter']['comments'])); ?></td>
 			<td><?php echo $this->Form->postLink("<span class='glyphicon glyphicon-remove action-image' aria-hidden='true'></span>", array('controller' => 'letters', 'action' => 'delete', $letter['Letter']['id']), array('escapeTitle' => false, 'confirm' => 'Are you sure you want to delete this letter or stamp request? If needed, you can edit it by clicking the View icon.')); ?></td>
 		</tr>
+		<?php
+			$total_new += $letter['Letter']['new_templates'];
+			$total_revised += $letter['Letter']['revised_templates'];
+			$total_enrollment += ($letter['Letter']['enrollment'] ? $letter['Letter']['new_templates'] : 0);
+		?>	
+		
+		
+		
+		
 		<?php endforeach; ?>
 		<?php unset($letter); 
 		} ?>
 	</table>
+	<p>Total Letter Requests:</p>
+	<p>New Letters: <?php echo $total_new . ' (' . $total_enrollment; ?> enrollment)</p>
+	<p>Revised Letters: <?php echo $total_revised; ?></p>
+	
 </div>
 <p>&nbsp;</p>

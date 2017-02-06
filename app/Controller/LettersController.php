@@ -18,7 +18,7 @@ class LettersController extends AppController {
 		// checks if user is filtering by stamp or letter (type is set as options variable)
 		if (!$options) {
 			// finds all letters where letter is active, order by target date
-			$this->set('letters', $this->Letter->find('all', array('conditions' => array('Letter.active' => true), 'order' => 'Letter.target_date')));
+			$this->set('letters', $this->Letter->find('all', array('conditions' => array('Letter.active' => true), 'order' => 'Letter.target_date')));			
 			// enables sortable column headers
 			$this->set('filter_added', false);
 		} else {

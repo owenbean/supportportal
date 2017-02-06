@@ -20,7 +20,7 @@
 			<?php } else {
 				foreach ($letters as $letter): ?>
 			<tr class="list-item">
-				<td><?php echo $this->Html->link($letter['Member']['full_name'], array('action' => 'view', $letter['Member']['id'])); ?></td>
+				<td><?php echo $this->Html->link($letter['Member']['full_name'], array('controller' => 'members', 'action' => 'view', $letter['Member']['id'])); ?></td>
 				<td><?php echo $letter['Member']['short_name']; ?></td>
 				<td><?php echo $letter['Member']['op_num']; ?></td>
 			</tr>
