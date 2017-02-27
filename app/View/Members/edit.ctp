@@ -90,6 +90,7 @@
 				<?php echo $this->Form->input('wirb_integration', array('type' => 'checkbox', 'label' => 'WIRB Integration? ', 'format' => array('before', 'label', 'between', 'input', 'after', 'error'))); ?>
 				<?php echo $this->Form->input('sso', array('type' => 'checkbox', 'label' => 'Single Sign-On? ', 'format' => array('before', 'label', 'between', 'input', 'after', 'error'))); ?>
 				<?php echo $this->Form->input('file_access', array('type' => 'checkbox', 'label' => 'File Access? ', 'format' => array('before', 'label', 'between', 'input', 'after', 'error'))); ?>
+				<?php echo $this->Form->input('board_rosters', array('type' => 'checkbox', 'label' => 'Board Rosters? ', 'format' => array('before', 'label', 'between', 'input', 'after', 'error'))); ?>
 				<?php echo $this->Form->input('multi_workspace_setup', array('type' => 'checkbox', 'label' => 'Any multi-workspace setups (no master board)? ', 'format' => array('before', 'label', 'between', 'input', 'after', 'error'))); ?>
 				<?php echo $this->Form->input('master_board_setup', array('type' => 'checkbox', 'label' => 'Any multi-workspace setups with a master board? ', 'format' => array('before', 'label', 'between', 'input', 'after', 'error'))); ?>
 			</div>
