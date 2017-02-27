@@ -329,10 +329,8 @@ class LettersController extends AppController {
 	}
 	public function all()
 	{
-			$this->set('letters', $this->Letter->find('all', array(
-				'conditions' => array('Letter.type' => 'Stamp'), 
-				'group' => 'Letter.member_id',
-				'order' => 'Member.full_name')
-			));
+		$this->loadModel('Member');
+
+		$this->set('letters', $this->Letter->find('all', array('conditions' => array('Letter.type' => 'Stamp'), 'group' => 'Letter.member_id', 'order' => 'Member.full_name')));
 	}
 }
