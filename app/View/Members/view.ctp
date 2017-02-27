@@ -7,6 +7,7 @@ $citi = ($member['Member']['citi_integration'] == 1 ? 'CITI Integration' : null)
 $wirb = ($member['Member']['wirb_integration'] == 1 ? 'WIRB Integration' : null);
 $sso = ($member['Member']['sso'] == 1 ? 'Single Sign-On' : null);
 $file_access = ($member['Member']['file_access'] == 1 ? 'File Access' : null);
+$board_rosters = ($member['Member']['board_rosters'] == 1 ? 'Board Rosters' : null);
 
 if($smartForms) {
 	foreach ($smartForms as $smartForm) {
@@ -15,7 +16,7 @@ if($smartForms) {
 	}
 }
 
-$add_ons_array = array($citi, $wirb, $sso, $file_access);
+$add_ons_array = array($citi, $wirb, $sso, $file_access, $board_rosters);
 
 
 //check if any active administrators
