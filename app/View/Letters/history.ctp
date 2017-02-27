@@ -5,7 +5,7 @@
 	<div>
 		<?php echo $this->Form->create('Letter', array('type' => 'get', 'action' => 'history')); ?>
 		<div class="form-group">
-			<?php echo $this->Form->input('member_id', array('label' => false, 'empty' => 'All', 'class' => 'form-control')); ?>
+			<?php echo $this->Form->input('member_id', array('label' => false, 'empty' => 'All', 'default' => isset($member) ? $_GET['member_id'] : 'All', 'class' => 'form-control')); ?>
 		</div>
 		<?php echo $this->Form->button('Search', array('type' => 'submit', 'class' => 'btn btn-default')); ?>
 	</div>

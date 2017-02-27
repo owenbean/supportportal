@@ -149,38 +149,59 @@ class SmartFormProjectsController extends AppController {
  */ 
 	public function history()
 	{
-    	//allows form to be submitted with no member specified
+    	//allows form to be submitted with no member or user specified
 		$this->SmartFormProject->validate = null;
 
 		$this->loadModel('Member');
+		$this->loadModel('User');
 
-		//this loads member list into dropdown menu
+		//this loads member and user lists into dropdown menu
 		$members = $this->Member->find('list', array('fields' => array('Member.id', 'Member.full_name'), 'order' => 'Member.full_name'));
 		$this->set(compact('members'));
 		
+		$users = $this->User->find('list', array('fields' => array('User.id', 'User.first_name'), 'order' => 'User.first_name'));
+		$this->set(compact('users'));
+		
 		//if member_id not set at all, user hasn't searched.
-		if ( isset($_GET['member_id']) )
+		if ( (isset($_GET['member_id'])) && (isset($_GET['user_id'])) ) 
         {
             $sort = ( isset($_GET['s']) ? $_GET['s'] : 'date_received' );
-            //if member_id is null, user searched for all requests
-            if ( $_GET['member_id'] == null )
-            {
-                $this->set('smartFormProjects', $this->SmartFormProject->find('all', array('order' => array("SmartFormProject.$sort" => 'asc'))));
-            }
-            else
-            {
-                //this grabs member name to display on page
-                $member = $this->Member->findById($_GET['member_id']);
-                $this->set('member', $member);
-                
-                $this->set('smartFormProjects', $this->SmartFormProject->find('all', array('conditions' => array('SmartFormProject.member_id' => $_GET['member_id']), 'order' => array("SmartFormProject.$sort" => 'asc'))));
-            }
+            //if member_id is null and user_id is null, user searched for all requests by all users.
+			if ( $_GET['member_id'] == null && $_GET['user_id'] == null )
+			{
+				$this->set('smartFormProjects', $this->SmartFormProject->find('all', array('order' => array("SmartFormProject.$sort" => 'asc'))));
+			}
+			//if member_id is not null and user_id is null, user searched for requests for a member by all users.
+			elseif ( $_GET['member_id'] != null && $_GET['user_id'] == null )
+			{
+				$member = $this->Member->findById($_GET['member_id']);
+				$this->set('member', $member);
+				$this->set('smartFormProjects', $this->SmartFormProject->find('all', array('conditions' => array('SmartFormProject.member_id' => $_GET['member_id']), 'order' => array("SmartFormProject.$sort" => 'asc'))));
+			}
+			//if member_id is not null and user_id is not null, user searched for request for a member by a specific user.
+			elseif ( $_GET['member_id'] != null && $_GET['user_id'] != null )
+			{
+				$member = $this->Member->findById($_GET['member_id']);
+				$user = $this->User->findById($_GET['user_id']);
+				$this->set('user', $user);
+				$this->set('member', $member);
+				$this->set('smartFormProjects', $this->SmartFormProject->find('all', array('conditions' => array('SmartFormProject.member_id' => $_GET['member_id'], 'SmartFormProject.user_id' => $_GET['user_id']), 'order' => array("SmartFormProject.$sort" => 'asc'))));
+			}
+			//if member_id is null and user_id is not null, user searched for all member request by a specific user.
+			else
+			{
+				$user = $this->User->findById($_GET['user_id']);
+				$this->set('user', $user);
+				$this->set('smartFormProjects', $this->SmartFormProject->find('all', array('conditions' => array('SmartFormProject.user_id' => $_GET['user_id']), 'order' => array("SmartFormProject.$sort" => 'asc'))));
+			}
 		}
         else
         {
 			$this->set('smartFormProjects', null);
-		}    	
+		} 
 	}
+	
+
 /**
  * CLAIM A SMART FORM PROJECT
  * Allows user to associate Smart Form Project with his/her user id.
