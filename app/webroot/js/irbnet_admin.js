@@ -118,7 +118,7 @@ $(document).ready(function()
 			},
 			buttons: {
 				Search: function() {
-					var searchTerm = $('#searchOrgName').value;
+					var searchTerm = $('#searchOrgName').val();
 					if(searchTerm == '' || searchTerm == null) {
 						alert('Please enter a name.');
 						return false;
@@ -156,7 +156,7 @@ $(document).ready(function()
 			},
 			buttons: {
 				Search: function() {
-					var searchTerm = $('#searchAdminName').value;
+					var searchTerm = $('#searchAdminName').val();
 					if(searchTerm == '' || searchTerm == null) {
 						alert('Please enter a name.');
 						return false;
