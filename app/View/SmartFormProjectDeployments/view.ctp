@@ -14,43 +14,4 @@
 <p>Project Comments: <strong><?php echo (!$smartFormProject['SmartFormProject']['comments'] ? 'None' : $smartFormProject['SmartFormProject']['comments']); ?></strong></p>
 <p>&nbsp;</p>
 <p><?php echo $this->Html->link('Edit', array('action' => 'edit', $smartFormProject['SmartFormProject']['id'])) . ' | ' . $this->Html->link('Invoice', array('action' => 'invoice', $smartFormProject['SmartFormProject']['id'])) . ' | ' . $this->Html->link('Back', array('action' => 'active')); ?></p>
-
-<!-- SMART FORM PROJECT DEPLOYMENTS -->
-
-<div class="col-sm-10">
-    <h4>Smart Form Project Activity:</h4>
-    <table class="table table-striped">
-    	<tr>
-    		<th>Date Received</th>
-			<th>Target Date</th>
-    		<th>Date Completed</th>
-    		<th colspan="2">Actions</th>
-    	</tr>
-    	<?php
-        	if (!$smartFormProjectDeployments):
-        ?>
-        <tr>
-            <td colspan="9"><i>No smart form deployment activity.</i></td>
-        </tr>
-        <?php
-            else:
-                foreach ($smartFormProjectDeployments as $smartFormProjectDeployment):
-        ?>
-    	<tr>
-    		<td><?php echo $smartFormProjectDeployment['date_received']; ?></td>
-			<td><?php echo $smartFormProjectDeployment['date_received']; ?></td>
-    		<td><?php echo ($smartFormProjectDeployment['completed_date'] ? date("Y-m-d", strtotime($smartFormProjectDeployment['completed_date'])) : '<em>Active</em>'); ?></td>
-    		<td><?php echo $this->Html->link("<span class='glyphicon glyphicon-search action-image' aria-hidden='true'></span>", array('controller' => 'smartFormProjectDeployments', 'action' => 'view', $smartFormProjectDeployment['id']), array('escapeTitle' => false)); ?></td>
-    		<td><?php echo $this->Form->postLink("<span class='glyphicon glyphicon-remove action-image' aria-hidden='true'></span>", array('controller' => 'smartFormProjectDeployments', 'action' => 'delete', $smartFormProjectDeployment['id']), array('escapeTitle' => false, 'confirm' => 'Are you sure you want to Delete this deployment? If needed, you can edit it by clicking the View icon.')); ?></td>
-    	</tr>
-    	<?php
-        		endforeach;
-        		unset($smartFormProjectDeployment);
-            endif;
-    	?>	
-    </table>
-</div>
-
-
-<p><?php echo $this->Html->link('Add New Deployment', array('controller' => 'smartFormProjectDeployments', 'action' => 'add', $smartFormProject['SmartFormProject']['id'])) . ' | ' ?></p>
 <p>&nbsp;</p>

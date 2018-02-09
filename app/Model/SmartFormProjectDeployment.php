@@ -1,30 +1,13 @@
 <?php
-class SmartFormProject extends AppModel {
-    public $hasMany = array('SmartFormProjectDeployment');
-	
-	public $belongsTo = array('Member', 'Admin', 'User', 'SmartForm');
+class SmartFormProjectDeployment extends AppModel {
+    public $belongsTo = array('SmartFormProject');
     
 	public $validate = array(
-		'type' => array(
-    		'rule' => 'notEmpty'
-		),
-		'member_id' => array(
-			'rule' => 'notEmpty'
-		),
-		'smart_form_id' => array(
-    		'rule' => 'notEmpty'
-		),
-		'admin_id' => array(
-			'rule' => 'notEmpty'
-		),
 		'date_received' => array(
-			'rule' => 'notEmpty'
+    		'rule' => 'notEmpty'
 		),
 		'target_date' => array(
 			'rule' => 'notEmpty'
-		),
-		'scope' => array(
-    		'rule' => 'notEmpty'
 		)
 	);
 	

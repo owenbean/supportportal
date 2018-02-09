@@ -30,6 +30,7 @@ class SmartFormProjectsController extends AppController {
 
 		$this->set('user_id', CakeSession::read('Auth.User.id'));
         $this->set('smartFormProject', $smartFormProject);
+		$this->set('smartFormProjectDeployments', $smartFormProject['SmartFormProjectDeployment']);
     }
 /**
  * ADD PROJECT
