@@ -30,7 +30,7 @@
         	if (!$smartFormProjectDeployments):
         ?>
         <tr>
-            <td colspan="9"><i>No smart form deployment activity.</i></td>
+            <td colspan="9"><i>No smart form project activity. The member may have not confirmed the changes yet.</i></td>
         </tr>
         <?php
             else:

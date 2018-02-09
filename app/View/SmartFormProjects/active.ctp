@@ -50,6 +50,34 @@
 			<td><?php echo $this->Html->link("<span class='glyphicon glyphicon-envelope action-image' aria-hidden='true'></span>", array('action' => 'scope', $smartFormProject['SmartFormProject']['id']), array('escapeTitle' => false)); ?></td>
 			<td><?php echo $this->Form->postLink("<span class='glyphicon glyphicon-remove action-image' aria-hidden='true'></span>", array('action' => 'delete', $smartFormProject['SmartFormProject']['id']), array('escapeTitle' => false, 'confirm' => 'Are you sure you want to Delete this project? If needed, you can edit it by clicking the View icon.')); ?></td>
 		</tr>
+		
+				<?php
+					// If the smart form project has any activity, list it here
+					$smartFormProjectDeployments = $smartFormProject['SmartFormProjectDeployment'];
+					if ($smartFormProjectDeployments != null):
+				?>
+				
+				<tr>
+					<td colspan="2"><strong>Date Received</strong></td>
+					<td colspan="7"><strong>Target Date</strong></td>
+				</tr>
+				
+				<?php
+						foreach ($smartFormProjectDeployments as $smartFormProjectDeployment):
+				?>
+
+				<tr>
+					<td colspan="2"><?php echo $smartFormProjectDeployment['date_received']; ?></td>
+					<td colspan="7"><?php echo $smartFormProjectDeployment['target_date']; ?></td>
+				</tr>
+				
+				<?php
+					endforeach;
+					unset($smartFormProjectDeployment);
+					endif;
+				?>
+		
+		
 		<?php
 				endforeach;
 				unset($smartFormProject); 
