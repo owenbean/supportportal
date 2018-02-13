@@ -3,12 +3,27 @@ App::uses('DboSource', 'Model/DataSource');
 
 class LettersController extends AppController {
 	public $components = array('RequestHandler');
+// new stuff
+	public $paginate = [
+        'limit' => 30,
+        'order' => ['Letter.date_received' => 'asc' ]
+          
+        
+    ];
+
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadComponent('Paginator');
+    } 
 	
 	public function beforeFilter()
 	{
 		parent::beforeFilter();
 		$this->Auth->allow('lettersDueToday');
 	}
+
+
 /**
  * ACTIVE LETTERS AND STAMPS
  * Creates a list of active letter and stamp requests.
@@ -18,17 +33,40 @@ class LettersController extends AppController {
 		// checks if user is filtering by stamp or letter (type is set as options variable)
 		if (!$options) {
 			// finds all letters where letter is active, order by target date
-			$this->set('letters', $this->Letter->find('all', array('conditions' => array('Letter.active' => true), 'order' => 'Letter.target_date')));			
+			//$this->set('letters', $this->Letter->find('all', array('conditions' => array('Letter.active' => true), 'order' => 'Letter.target_date')));			
 			// enables sortable column headers
-			$this->set('filter_added', false);
-		} else {
+			//$this->set('filter_added', false);
+			$table =  ( isset($_GET['t']) ? $_GET['t'] : 'Letter' );
+			$sort = ( isset($_GET['s']) ? $_GET['s'] : 'date_received' );
+			$order = ( isset($_GET['o']) ? $_GET['o'] : 'asc' );
+			
+			//$this->set('letters', $this->Letter->find('all', array('conditions' => array('Letter.active'), 'order' => array("Letter.$sort" => "$order"))));
+			$letters = $this->paginate('Letter');
+			$this->set(compact('letters'));
+			//$isAsc = isset($_GET['order'])? (bool) $_GET['order']: 1;
+			//old version 
+			//$this->set('letters', $this->Letter->find('all', array('conditions' => array('Letter.active'), 'order' => array("Letter.$sort" => "$order"))));
+			//$this->paginate = $this->Letter->find('all', array('conditions' => array('Letter.active'), 'order' => array("Letter.$sort" => "$order")));
+			//$letters = $this->paginate();
+			//$this->set(compact('letters'));
+
+			//if ($isAsc) {
+			//$this->set('letters', $this->Letter->find('all', array('conditions' => array('Letter.active'), 'order' => array("$table.$sort" => "$order"))));
+			//} else {
+			//	$order = 'desc';
+			//	$this->set('letters', $this->Letter->find('all', array('conditions' => array('Letter.active'), 'order' => array("$table.$sort" => "$order"))));
+			//}
+		//}
+			//$this->set('letters', $this->paginate($table));
+			//new stuff
+		//else {
 			// finds all letters where letter is active AND type matches filter, orders by target date
-			$this->set('letters', $this->Letter->find('all', array('conditions' => array('Letter.type' => $options, 'Letter.active' => true), 'order' => array('Letter.target_date'))));
+			//$this->set('letters', $this->Letter->find('all', array('conditions' => array('Letter.type' => $options, 'Letter.active' => true), 'order' => array('Letter.target_date'))));
 			// disables sortable column headers
-			$this->set('filter_added', true);
-			$this->set('filter', $options);
-		}
-	}
+			//$this->set('filter_added', true);
+			//$this->set('filter', $options);
+		//}
+	} }
 /**
  * LETTER AND STAMP REQUEST HISTORY
  * Displays all of the letter and stamp requests that have ever been created.
