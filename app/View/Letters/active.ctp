@@ -6,19 +6,21 @@ $(document).ready(function(){
 
 <h2 class="title">Letter and Stamp Request Queue</h1>
 
-<p></span>&nbsp;</p>
+<p>&nbsp;</p>
 
 <div class="col-sm-9 col-sm-offset-1">
+	
+
 	<table class="table table-striped">
 		<tr>
-			<th>Date Received</th>
-			<th>Target Date</th>
-			<th>Member</th>
-			<th>Type</th>
+			<th><?php echo $this->Paginator->sort('date_received', 'Date Received', array('class' => 'button')); ?></th>
+			<th><?php echo $this->Paginator->sort('target_date', 'Target Date', array('class' => 'button')); ?></th>
+			<th><?php echo $this->Paginator->sort('Member.short_name', 'Member', array('class' => 'button')); ?></th>
+			<th><?php echo $this->Paginator->sort('type', 'Type', array('class' => 'button')); ?></th>
 			<th>New</th>
 			<th>Revised</th>
-			<th>Enrollment</th>
-			<th>Owner</th>
+			<th><?php echo $this->Paginator->sort('enrollment', 'Enrollment', array('class' => 'button')); ?></th>
+			<th><?php echo $this->Paginator->sort('User.first_name', 'Owner', array('class' => 'button')); ?></th>
 			<th colspan="3">Actions</th>
 		</tr>
 		
@@ -26,13 +28,12 @@ $(document).ready(function(){
 			$total_new = 0;
 			$total_revised = 0;
 			$total_enrollment = 0;
-		?>
+		?>	
 		
 		<?php if ($letters == null) { ?>
 		<tr><td colspan="3">No active letters</td></tr>
 		<?php } else {
-			
-			
+
 			foreach ($letters as $letter): ?>
 		<tr>
 			<td><?php echo $letter['Letter']['date_received']; ?></td>
@@ -48,21 +49,18 @@ $(document).ready(function(){
 			<td><?php echo $this->Form->postLink("<span class='glyphicon glyphicon-remove action-image' aria-hidden='true'></span>", array('controller' => 'letters', 'action' => 'delete', $letter['Letter']['id']), array('escapeTitle' => false, 'confirm' => 'Are you sure you want to delete this letter or stamp request? If needed, you can edit it by clicking the View icon.')); ?></td>
 		</tr>
 		<?php
-			$total_new += $letter['Letter']['new_templates'];
-			$total_revised += $letter['Letter']['revised_templates'];
-			$total_enrollment += ($letter['Letter']['enrollment'] ? $letter['Letter']['new_templates'] : 0);
-		?>	
-		
-		
-		
-		
-		<?php endforeach; ?>
-		<?php unset($letter); 
+				$total_new += $letter['Letter']['new_templates'];
+				$total_revised += $letter['Letter']['revised_templates'];
+				$total_enrollment += ($letter['Letter']['enrollment'] ? $letter['Letter']['new_templates'] : 0);
+			endforeach;
+			unset($letter); 
 		} ?>
 	</table>
 	<p>Total Letter Requests:</p>
 	<p>New Letters: <?php echo $total_new . ' (' . $total_enrollment; ?> enrollment)</p>
 	<p>Revised Letters: <?php echo $total_revised; ?></p>
 	
+
+
 </div>
 <p>&nbsp;</p>

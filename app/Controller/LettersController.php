@@ -2,32 +2,46 @@
 App::uses('DboSource', 'Model/DataSource');
 
 class LettersController extends AppController {
-	public $components = array('RequestHandler');
+	public $components = array('RequestHandler', 'Paginator');
+
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadComponent('Paginator');
+    } 
 	
 	public function beforeFilter()
 	{
 		parent::beforeFilter();
 		$this->Auth->allow('lettersDueToday');
 	}
+
+
 /**
  * ACTIVE LETTERS AND STAMPS
- * Creates a list of active letter and stamp requests.
+ * Creates a list of active letter and stamp requests. Uses Paginator
+ * to sort column headers. Paginator always must have a limit in the
+ * number of results, so the active function looks up the number of 
+ * records first.
  */ 
-	public function active($options = null)
+	public function active()
 	{
-		// checks if user is filtering by stamp or letter (type is set as options variable)
-		if (!$options) {
-			// finds all letters where letter is active, order by target date
-			$this->set('letters', $this->Letter->find('all', array('conditions' => array('Letter.active' => true), 'order' => 'Letter.target_date')));			
-			// enables sortable column headers
-			$this->set('filter_added', false);
-		} else {
-			// finds all letters where letter is active AND type matches filter, orders by target date
-			$this->set('letters', $this->Letter->find('all', array('conditions' => array('Letter.type' => $options, 'Letter.active' => true), 'order' => array('Letter.target_date'))));
-			// disables sortable column headers
-			$this->set('filter_added', true);
-			$this->set('filter', $options);
-		}
+		// Look up number of active letter requests
+		$limit = $this->Letter->find('count', array('conditions' => array('Letter.active' => true)));
+		
+		// Use paginator to allow sorting of column headers
+		$this->Paginator->settings = array(
+			// Use GET paramaters
+			'paramType' => 'querystring',
+			// Only retrieve active letter requests
+			'conditions' => array('Letter.active' => true),
+			'limit' => $limit,
+			// Order by date received by default
+			'order' => array('Letter.date_received' => 'asc')
+		);
+		$letters = $this->paginate('Letter');
+		// Pass in the results
+		$this->set(compact('letters'));
 	}
 /**
  * LETTER AND STAMP REQUEST HISTORY
