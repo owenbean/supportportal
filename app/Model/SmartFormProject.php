@@ -4,25 +4,25 @@ class SmartFormProject extends AppModel {
     
 	public $validate = array(
 		'type' => array(
-    		'rule' => 'notEmpty'
+    		'rule' => 'notBlank'
 		),
 		'member_id' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'notBlank'
 		),
 		'smart_form_id' => array(
-    		'rule' => 'notEmpty'
+    		'rule' => 'notBlank'
 		),
 		'admin_id' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'notBlank'
 		),
 		'date_received' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'notBlank'
 		),
 		'target_date' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'notBlank'
 		),
 		'scope' => array(
-    		'rule' => 'notEmpty'
+    		'rule' => 'notBlank'
 		)
 	);
 	
