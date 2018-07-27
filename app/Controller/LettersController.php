@@ -36,7 +36,7 @@ class LettersController extends AppController {
 			// Only retrieve active letter requests
 			'conditions' => array('Letter.active' => true),
 			'limit' => $limit,
-			// Order by date received by default
+			// Order by target date by default
 			'order' => array('Letter.target_date' => 'asc')
 		);
 		$letters = $this->paginate('Letter');
