@@ -21,63 +21,69 @@ Please note: when this page describes "previous requests," it is looking for req
 <h4>Scope Template</h4>
 
 <p>
-In response to the recent <?php echo $smartFormProject['SmartFormProject']['type']; ?> Request to <?php echo $smartFormProject['Member']['full_name'] ?>'s <strong><?php echo $smartFormProject['SmartForm']['name']; ?></strong>, please note the enclosed scope and revised fee schedule.
-</p>
-
-<p>
-To approve this <?php echo $smartFormProject['SmartFormProject']['type']; ?> Request, please request that <?php echo $smartFormProject['Admin']['first_name']; ?> respond to this email with confirmation and any invoicing instructions for our team. Wizards are scheduled and processed in the order they are received. [(<em>Delete this section as needed</em>) Please note that fees have been waived for this request.]
-</p>
-
-<p>
-Please contact me directly with any questions.
+<em>The following text should be copied/pasted into your email to Andy</em>
 </p>
 
 <p>
 &#42;&#42;&#42;&#42;&#42;&#42;&#42;
 </p>
 
-<p>
-<strong>Date Requested:</strong> <?php echo $smartFormProject['SmartFormProject']['date_received']; ?>
+<p style="font-size: 10pt">
+In response to the recent <?php echo $smartFormProject['SmartFormProject']['type']; ?> Request to <?php echo $smartFormProject['Member']['full_name'] ?>'s <strong><?php echo $smartFormProject['SmartForm']['name']; ?></strong>, please note the enclosed scope and revised fee schedule.
 </p>
 
-<p>
-<strong>Institution:</strong> <?php echo $smartFormProject['Member']['full_name'] ?>
+<p style="font-size: 10pt">
+To approve this <?php echo $smartFormProject['SmartFormProject']['type']; ?> Request, please request that <?php echo $smartFormProject['Admin']['first_name']; ?> respond to this email with confirmation and any invoicing instructions for our team. Wizards are scheduled and processed in the order they are received. [(<em>Delete this section as needed</em>) Please note that fees have been waived for this request.]
 </p>
 
-<p>
+<p style="font-size: 10pt">
+Please contact me directly with any questions.
+</p>
+
+<p style="font-size: 10pt">
+&#42;&#42;&#42;&#42;&#42;&#42;&#42;
+</p>
+
+<p style="font-size: 10pt">
+<strong>Date Requested:</strong> <?php echo $smartFormProject['SmartFormProject']['date_received']; ?> <br />
+<strong>Institution:</strong> <?php echo $smartFormProject['Member']['full_name'] ?> <br />
 <strong>Requested By:</strong> <?php echo $smartFormProject['Admin']['first_name']; ?> <?php echo $smartFormProject['Admin']['last_name']; ?> (email: <a href="mailto:<?php echo $smartFormProject['Admin']['email_address']; ?>"><?php echo $smartFormProject['Admin']['email_address']; ?></a>)
 </p>
 
-<p>
+<p style="font-size: 10pt">
 <strong>Summary of Requested Changes:</strong><br />
 <?php echo $smartFormProject['SmartFormProject']['comments']; ?>
 </p>
 
-<p>
+<p style="font-size: 10pt">
 <strong>Project Scope:</strong> <?php echo $smartFormProject['SmartFormProject']['scope']; ?><br />
+</p>
+
+<p style="font-size: 10pt">
 <strong>Output Change:</strong> <?php echo ($smartFormProject['SmartFormProject']['output_change'] ? 'Yes' : 'No'); ?>
 </p>
 
-<p>
+<p style="font-size: 10pt">
 Number of New Steps: [<em><?php echo strtoupper($thisUser_first_name) ?>: TO DO</em>]<br />
 Number of Revised Steps: [<em><?php echo strtoupper($thisUser_first_name) ?>: TO DO</em>]<br />
 Number of New Fillins: [<em><?php echo strtoupper($thisUser_first_name) ?>: TO DO</em>]<br />
 Number of Revised Fillins: [<em><?php echo strtoupper($thisUser_first_name) ?>: TO DO</em>]<br />
-
-<p>
-<strong>Total Cost of Requested Changes:</strong> [<em>ANDY: TO DO</em>]<br />
-* Due at time of acceptance:</strong> [<em>ANDY: TO DO</em>]
 </p>
 
-<p>
-* Due on anniversary of this date:</strong> [<em>ANDY: TO DO</em>]<br />
-   ** Data maintenance fee:</strong> [<em>ANDY: TO DO</em>]<br />
+<p style="font-size: 10pt">
+<strong>Total Cost of Requested Changes:</strong> [<em>ANDY: TO DO</em>]
 </p>
 
-<p>
+<p style="font-size: 10pt">
+* Due at time of acceptance: [<em>ANDY: TO DO</em>] <br />
+* Due on anniversary of this date:[<em>ANDY: TO DO</em>]<br />
+   ** Data maintenance fee:[<em>ANDY: TO DO</em>]
+</p>
+
+<p style="font-size: 10pt">
 <strong>Previous Requests:</strong><br />
 <?php echo $currentYear; ?>
-	<ul>
+	<ul style="font-size: 10pt">
         <?php 
 		if (!$currentYearProjects) { ?>
 			<li>There were no previous projects requested in <?php echo $currentYear; ?></li>
@@ -88,11 +94,12 @@ Number of Revised Fillins: [<em><?php echo strtoupper($thisUser_first_name) ?>: 
 			endforeach;
 			unset($currentYearProject);
 		?>
-	</ul>
-
-
+	</ul>	
+</p>
+	
+<p style="font-size: 10pt">
 <?php echo $previousYear; ?>
-	<ul>
+	<ul style="font-size: 10pt">
         <?php 
 		if (!$previousYearProjects) { ?>
 			<li>There were no projects requested in <?php echo $previousYear; ?></li>
@@ -106,6 +113,9 @@ Number of Revised Fillins: [<em><?php echo strtoupper($thisUser_first_name) ?>: 
 	</ul>
 </p>
 
+<p style="font-size: 10pt">
+&#42;&#42;&#42;&#42;&#42;&#42;&#42;
+</p>
 
 <p>&nbsp;</p>
 <p><?php echo $this->Html->link('Back', array('action' => 'view', $smartFormProject['SmartFormProject']['id'])); ?></p>

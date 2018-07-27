@@ -14,16 +14,16 @@ class SmartForm extends AppModel {
 	
 	public $validate = array(
 		'name' => array(
-			'rule' => 'notEmpty',
+			'rule' => 'notBlank',
 		),
 		'sf_domain' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'notBlank'
 		),
 		'status' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'notBlank'
 		),
 		'launch_date' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'notBlank'
 		)
 	);
 	

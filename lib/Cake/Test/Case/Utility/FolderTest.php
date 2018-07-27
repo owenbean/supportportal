@@ -41,7 +41,7 @@ class FolderTest extends CakeTestCase {
 
 		foreach (scandir(TMP) as $file) {
 			if (is_dir(TMP . $file) && !in_array($file, array('.', '..'))) {
-				self::$_tmp[] = $file;
+				static::$_tmp[] = $file;
 			}
 		}
 	}
@@ -62,7 +62,7 @@ class FolderTest extends CakeTestCase {
  * @return void
  */
 	public function tearDown() {
-		$exclude = array_merge(self::$_tmp, array('.', '..'));
+		$exclude = array_merge(static::$_tmp, array('.', '..'));
 		foreach (scandir(TMP) as $dir) {
 			if (is_dir(TMP . $dir) && !in_array($dir, $exclude)) {
 				$iterator = new RecursiveDirectoryIterator(TMP . $dir);
@@ -171,12 +171,28 @@ class FolderTest extends CakeTestCase {
 	}
 
 /**
+ * Test that relative paths to create() are added to cwd.
+ *
+ * @return void
+ */
+	public function testCreateRelative() {
+		$folder = new Folder(TMP);
+		$path = TMP . 'tests' . DS . 'relative-test';
+		$result = $folder->create('tests' . DS . 'relative-test');
+		$this->assertTrue($result, 'should create');
+
+		$this->assertTrue(is_dir($path), 'Folder was not made');
+		$folder = new Folder($path);
+		$folder->delete();
+	}
+
+/**
  * test recursive directory create failure.
  *
  * @return void
  */
 	public function testRecursiveCreateFailure() {
-		$this->skipIf(DIRECTORY_SEPARATOR === '\\', 'Cant perform operations using permissions on windows.');
+		$this->skipIf(DIRECTORY_SEPARATOR === '\\', 'Cant perform operations using permissions on Windows.');
 
 		$path = TMP . 'tests' . DS . 'one';
 		mkdir($path);
@@ -344,11 +360,24 @@ class FolderTest extends CakeTestCase {
  * @return void
  */
 	public function testAddPathElement() {
+		$expected = DS . 'some' . DS . 'dir' . DS . 'another_path';
+
 		$result = Folder::addPathElement(DS . 'some' . DS . 'dir', 'another_path');
-		$this->assertEquals(DS . 'some' . DS . 'dir' . DS . 'another_path', $result);
+		$this->assertEquals($expected, $result);
 
 		$result = Folder::addPathElement(DS . 'some' . DS . 'dir' . DS, 'another_path');
-		$this->assertEquals(DS . 'some' . DS . 'dir' . DS . 'another_path', $result);
+		$this->assertEquals($expected, $result);
+
+		$result = Folder::addPathElement(DS . 'some' . DS . 'dir', array('another_path'));
+		$this->assertEquals($expected, $result);
+
+		$result = Folder::addPathElement(DS . 'some' . DS . 'dir' . DS, array('another_path'));
+		$this->assertEquals($expected, $result);
+
+		$expected = DS . 'some' . DS . 'dir' . DS . 'another_path' . DS . 'and' . DS . 'another';
+
+		$result = Folder::addPathElement(DS . 'some' . DS . 'dir', array('another_path', 'and', 'another'));
+		$this->assertEquals($expected, $result);
 	}
 
 /**
@@ -535,6 +564,8 @@ class FolderTest extends CakeTestCase {
 		$this->assertFalse(Folder::isAbsolute('0:\\path\\to\\file'));
 		$this->assertFalse(Folder::isAbsolute('\\path/to/file'));
 		$this->assertFalse(Folder::isAbsolute('\\path\\to\\file'));
+		$this->assertFalse(Folder::isAbsolute('notRegisteredStreamWrapper://example'));
+		$this->assertFalse(Folder::isAbsolute('://example'));
 
 		$this->assertTrue(Folder::isAbsolute('/usr/local'));
 		$this->assertTrue(Folder::isAbsolute('//path/to/file'));
@@ -542,6 +573,7 @@ class FolderTest extends CakeTestCase {
 		$this->assertTrue(Folder::isAbsolute('C:\\path\\to\\file'));
 		$this->assertTrue(Folder::isAbsolute('d:\\path\\to\\file'));
 		$this->assertTrue(Folder::isAbsolute('\\\\vmware-host\\Shared Folders\\file'));
+		$this->assertTrue(Folder::isAbsolute('http://www.example.com'));
 	}
 
 /**
@@ -961,6 +993,28 @@ class FolderTest extends CakeTestCase {
 	}
 
 /**
+ * Test that SKIP mode skips files too.
+ *
+ * @return void
+ */
+	public function testCopyWithSkipFileSkipped() {
+		$path = TMP . 'folder_test';
+		$folderOne = $path . DS . 'folder1';
+		$folderTwo = $path . DS . 'folder2';
+
+		new Folder($path, true);
+		new Folder($folderOne, true);
+		new Folder($folderTwo, true);
+		file_put_contents($folderOne . DS . 'fileA.txt', 'Folder One File');
+		file_put_contents($folderTwo . DS . 'fileA.txt', 'Folder Two File');
+
+		$Folder = new Folder($folderOne);
+		$result = $Folder->copy(array('to' => $folderTwo, 'scheme' => Folder::SKIP));
+		$this->assertTrue($result);
+		$this->assertEquals('Folder Two File', file_get_contents($folderTwo . DS . 'fileA.txt'));
+	}
+
+/**
  * testCopyWithOverwrite
  *
  * Verify that subdirectories existing in both destination and source directory
@@ -972,7 +1026,7 @@ class FolderTest extends CakeTestCase {
 		extract($this->_setupFilesystem());
 
 		$Folder = new Folder($folderOne);
-		$result = $Folder->copy(array('to' => $folderThree, 'scheme' => Folder::OVERWRITE));
+		$Folder->copy(array('to' => $folderThree, 'scheme' => Folder::OVERWRITE));
 
 		$this->assertTrue(file_exists($folderThree . DS . 'file1.php'));
 		$this->assertTrue(file_exists($folderThree . DS . 'folderA' . DS . 'fileA.php'));
@@ -1170,6 +1224,87 @@ class FolderTest extends CakeTestCase {
 		$this->assertFalse(file_exists($fileOneA));
 
 		$Folder = new Folder($path);
+		$Folder->delete();
+	}
+
+/**
+ * testSortByTime method
+ *
+ * Verify that the order using modified time is correct.
+ *
+ * @return void
+ */
+	public function testSortByTime() {
+		$Folder = new Folder(TMP . 'test_sort_by_time', true);
+
+		$file2 = new File($Folder->pwd() . DS . 'file_2.tmp');
+		$file2->create();
+
+		sleep(1);
+
+		$file1 = new File($Folder->pwd() . DS . 'file_1.tmp');
+		$file1->create();
+
+		$expected = array('file_2.tmp', 'file_1.tmp');
+		$result = $Folder->find('.*', Folder::SORT_TIME);
+		$this->assertSame($expected, $result);
+
+		$Folder->delete();
+	}
+
+/**
+ * testSortByTime2 method
+ *
+ * Verify that the sort order using modified time is correct.
+ *
+ * @return void
+ */
+	public function testSortByTime2() {
+		$Folder = new Folder(TMP . 'test_sort_by_time2', true);
+
+		$fileC = new File($Folder->pwd() . DS . 'c.txt');
+		$fileC->create();
+
+		sleep(1);
+
+		$fileA = new File($Folder->pwd() . DS . 'a.txt');
+		$fileA->create();
+
+		sleep(1);
+
+		$fileB = new File($Folder->pwd() . DS . 'b.txt');
+		$fileB->create();
+
+		$expected = array('c.txt', 'a.txt', 'b.txt');
+		$result = $Folder->find('.*', Folder::SORT_TIME);
+		$this->assertSame($expected, $result);
+
+		$Folder->delete();
+	}
+
+/**
+ * Verify that the sort order using name is correct.
+ *
+ * @return void
+ */
+	public function testSortByName() {
+		$Folder = new Folder(TMP . 'test_sort_by_name', true);
+
+		$fileA = new File($Folder->pwd() . DS . 'a.txt');
+		$fileA->create();
+
+		$fileC = new File($Folder->pwd() . DS . 'c.txt');
+		$fileC->create();
+
+		sleep(1);
+
+		$fileB = new File($Folder->pwd() . DS . 'b.txt');
+		$fileB->create();
+
+		$expected = array('a.txt', 'b.txt', 'c.txt');
+		$result = $Folder->find('.*', Folder::SORT_NAME);
+		$this->assertSame($expected, $result);
+
 		$Folder->delete();
 	}
 

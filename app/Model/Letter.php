@@ -16,29 +16,29 @@ class Letter extends AppModel {
 	
 	public $validate = array(
 		'member_id' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'notBlank'
 		),
 		'submitter' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'notBlank'
 		),
 		'type' => array(
-    		'rule' => 'notEmpty'
+    		'rule' => 'notBlank'
 		),
 		'new_templates' => array(
 			'rule' => 'numeric',
-			'notEmpty' => true,
+			'notBlank' => true,
 			'message' => 'Please enter a valid number'
 		),
 		'revised_templates' => array(
 			'rule' => 'numeric',
-			'notEmpty' => true,
+			'notBlank' => true,
 			'message' => 'Please enter a valid number'
 		),
 		'date_received' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'notBlank'
 		),
 		'target_date' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'notBlank'
 		)
 	);
 	
