@@ -4,16 +4,16 @@ class Interaction extends AppModel {
 	
 	public $validate = array(
 		'admin_id' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'notBlank'
 		),
 		'interaction_type' => array(
-			'rule' => 'notEmpty',
+			'rule' => 'notBlank',
 		),
 		'date' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'notBlank'
 		),
 		'purpose' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'notBlank'
 		)
 	);
 	

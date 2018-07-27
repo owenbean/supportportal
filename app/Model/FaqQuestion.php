@@ -13,13 +13,13 @@ class FaqQuestion extends AppModel {
 			'message' => 'The reference name must be unique and not contain any spaces or symbols.'
 		),
 		'question' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'notBlank'
 		),
 		'answer' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'notBlank'
 		),
 		'faq_section_id' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'notBlank'
 		)
 	);
 

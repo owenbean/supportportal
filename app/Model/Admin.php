@@ -5,17 +5,17 @@ class Admin extends AppModel {
 	
 	public $validate = array(
 		'first_name' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'notBlank'
 		),
 		'last_name' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'notBlank'
 		),
 		'email_address' => array(
 			'rule' => 'email',
 			'message' => 'Please supply a valid email address.'
 		),
 		'member_id' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'notBlank'
 		)
 	);
 	

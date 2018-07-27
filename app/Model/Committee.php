@@ -14,22 +14,22 @@ class Committee extends AppModel {
 	
 	public $validate = array(
 		'name' => array(
-			'rule' => 'notEmpty',
+			'rule' => 'notBlank',
 		),
 		'board_type' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'notBlank'
 		),
 		'setup' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'notBlank'
 		),
 		'status' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'notBlank'
 		),
 		'go_live_date' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'notBlank'
 		),
 		'funding_model' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'notBlank'
 		)
 	);
 	

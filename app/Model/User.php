@@ -27,31 +27,31 @@ class User extends AppModel {
 	
 	public $validate = array(
 		'first_name' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'notBlank'
 		),
 		'last_name' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'notBlank'
 		),
 		'username' => array(
 			'required' => array(
 				'rule' => 'isUnique',
-				'notEmpty' => true,
+				'notBlank' => true,
 				'message' => 'Your username must be unique'
 			)
 		),
 		'email_address' => array(
 			'rule' => 'isUnique',
-			'notEmpty' => true,
+			'notBlank' => true,
 			'message' => 'Your email address must be unique'
 		),
 		'password' => array(
 			'required' => array(
-				'rule' => array('notEmpty'),
+				'rule' => array('notBlank'),
 				'message' => 'A password is required.'
 			)
 		),
 		'role' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'notBlank'
 		),
 		'password_confirm' => array(
 			'identical' => array(

@@ -30,25 +30,25 @@ class Member extends AppModel {
 	public $validate = array(
 		'op_num' => array(
 			'rule' => 'isUnique',
-			'notEmpty' => true,
+			'notBlank' => true,
 			'message' => 'Please choose a unique ID.'
 		),
 		'short_name' => array(
 			'rule' => 'isUnique',
-			'notEmpty' => true,
+			'notBlank' => true,
 			'message' => 'Please choose a unique Short Name.'
 		),
 		'full_name' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'notBlank'
 		),
 		'city' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'notBlank'
 		),
 		'state' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'notBlank'
 		),
 		'class' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'notBlank'
 		)
 	);
 	

@@ -9,7 +9,7 @@ class FaqSection extends AppModel {
 
 	public $validate = array(
 		'name' => array(
-			'rule' => 'notEmpty'
+			'rule' => 'notBlank'
 		)
 	);
 

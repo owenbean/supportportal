@@ -3,14 +3,14 @@
 <div class="col-sm-4 col-sm-offset-4 text-center">
 	<h4>Smart Form Projects by Member:</h4>
 	<div>
-		<?php echo $this->Form->create('SmartFormProject', array('type' => 'get', 'action' => 'history')); ?>
+		<?php echo $this->Form->create('SmartFormProject', array('type' => 'get', 'url' => 'history')); ?>
 		<div class="form-group">
 			<?php echo $this->Form->input('member_id', array('label' => false, 'empty' => 'All', 'default' => isset($member) ? $_GET['member_id'] : 'All', 'class' => 'form-control')); ?>
 		</div>
 	</div>
 	<h4>Smart Form Projects by Owner:</h4>
 	<div>
-		<?php echo $this->Form->create('SmartFormProject', array('type' => 'get', 'action' => 'history')); ?>
+		<?php echo $this->Form->create('SmartFormProject', array('type' => 'get', 'url' => 'history')); ?>
 		<div class="form-group">
 			<?php echo $this->Form->input('user_id', array('label' => false, 'empty' => 'All', 'default' => isset($user) ? $_GET['user_id'] : 'All', 'class' => 'form-control')); ?>
 		</div>
