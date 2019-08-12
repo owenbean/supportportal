@@ -83,7 +83,7 @@ Number of Revised Fillins: [<em><?php echo strtoupper($thisUser_first_name) ?>: 
 			<li>There were no previous projects requested in <?php echo $currentYear; ?></li>
 		<?php } ?>
 		<?php foreach($currentYearProjects as $currentYearProject): ?>
-						<li><?php echo $currentYearProject['SmartFormProject']['scope'] . ' request submitted by ' . $currentYearProject['Admin']['first_name'] . ' ' . $currentYearProject['Admin']['last_name'] . ' on ' . $currentYearProject['SmartFormProject']['date_received'] ?></li>
+						<li><?php echo $currentYearProject['SmartForm']['name'] . ': ' . $currentYearProject['SmartFormProject']['scope'] . ' request submitted by ' . $currentYearProject['Admin']['first_name'] . ' ' . $currentYearProject['Admin']['last_name'] . ' on ' . $currentYearProject['SmartFormProject']['date_received'] ?></li>
 		<?php
 			endforeach;
 			unset($currentYearProject);
@@ -98,7 +98,7 @@ Number of Revised Fillins: [<em><?php echo strtoupper($thisUser_first_name) ?>: 
 			<li>There were no projects requested in <?php echo $previousYear; ?></li>
 		<?php } ?>
 		<?php foreach($previousYearProjects as $previousYearProject): ?>
-						<li><?php echo $previousYearProject['SmartFormProject']['scope'] . ' request submitted by ' . $previousYearProject['Admin']['first_name'] . ' ' . $previousYearProject['Admin']['last_name'] . ' on ' . $previousYearProject['SmartFormProject']['date_received'] ?></li>
+						<li><?php echo $previousYearProject['SmartForm']['name'] . ': ' . $previousYearProject['SmartFormProject']['scope'] . ' request submitted by ' . $previousYearProject['Admin']['first_name'] . ' ' . $previousYearProject['Admin']['last_name'] . ' on ' . $previousYearProject['SmartFormProject']['date_received'] ?></li>
 		<?php
 			endforeach;
 			unset($previousYearProject);
