@@ -4,14 +4,19 @@ class AdminsController extends AppController {
 
 /**
  * ALL ADMINISTRATORS LIST
- * This creates a list of all NRN admins to be listed in /admins
+ * This creates a list of all NRN or GovCloud admins to be listed in /admins
  */ 
 	public function all($options = null) {
 		if (!$options) {
 			$this->set('admins', $this->Admin->find('all', array('conditions' => array('Admin.active' => true), 'order' => array('Member.full_name'))));
 			$this->set('filter_added', false);
 		} else {
-			$this->set('admins', $this->Admin->find('all', array('conditions' => array('Admin.active' => true, "Admin.$options" => true), 'order' => array('Member.full_name'))));
+			if (isset($this->request->query['member_class'])) {
+				$member_class = $this->request->query['member_class'];
+				$this->set('admins', $this->Admin->find('all', array('conditions' => array('Admin.active' => true, "Admin.$options" => true, "Member.class" => $member_class), 'order' => array('Member.full_name'))));
+			} else {
+				$this->set('admins', $this->Admin->find('all', array('conditions' => array('Admin.active' => true, "Admin.$options" => true), 'order' => array('Member.full_name'))));
+			}
 			$this->set('filter_added', true);
 			$this->set('filter', $options);
 		}
