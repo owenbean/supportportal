@@ -17,7 +17,8 @@
 		$feature = ($admin['Admin']['feature_announcement_list'] == 1 ? 'Feature Announcement List' : null);
 		$support = ($admin['Admin']['support_outreach_list'] == 1 ? 'Support Outreach List' : null);
 		$billing = ($admin['Admin']['billing_coord'] == 1 ? 'Billing Coordinator' : null);
-		$lists = array($contract, $feature, $support, $billing);
+		$wirb_liaison = ($admin['Admin']['wirb_liaison'] == 1 ? 'WIRB Liaison' : null);
+		$lists = array($contract, $feature, $support, $billing, $wirb_liaison);
 		$lists_display = '';
 		for ($i = 0; $i < count($lists); $i++) {
 			if ($lists[$i]) {

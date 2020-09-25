@@ -1,7 +1,20 @@
-<h2 class="title">National Research Network Administrators</h2>
+<h2 class="title">
+	<?php
+		$member_class = null;
+		if (isset($this->request->query['member_class'])) {
+			$member_class = $this->request->query['member_class'];
+		}
+		if ($member_class == 'VA') {
+			echo 'GovCloud Administrators';
+		} else {
+			echo 'National Research Network Administrators';
+		}
+	?>
+</h2>
 <h4 class='sub-title'>
 	<?php
 		if($filter_added) {
+			echo $member_class.' ';
 			switch($filter) {
 				case 'contract_lead':
 					echo 'Contract Leads';
@@ -11,6 +24,9 @@
 					break;
 				case 'support_outreach_list':
 					echo 'Support Outreach List';
+					break;
+				case 'wirb_liaison':
+					echo 'WIRB Liaisons';
 					break;
 				default:
 					echo 'All Administrators';

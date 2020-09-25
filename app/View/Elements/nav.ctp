@@ -30,7 +30,7 @@
   <?php
     //checks if view is displaying sub-lists of members or admins (or smart form) - used mainly to set Lists tab 'active'
     $make_active = false;
-    $list_params = array('citi_integration', 'wirb_integration', 'sso', 'file_access', 'contract_lead', 'feature_announcement_list', 'support_outreach_list');
+    $list_params = array('citi_integration', 'wirb_integration', 'sso', 'file_access', 'contract_lead', 'feature_announcement_list', 'support_outreach_list', 'wirb_liaisons_list');
     $list_view = false;
     if (isset($this->params['pass'][0])) {
       for ($i = 0; $i < count($list_params); $i++) {
@@ -83,6 +83,7 @@
 			<li><?php echo $this->Html->link('Contract Leads', array('controller' => 'admins', 'action' => 'all', 'contract_lead')); ?></li>
 			<li><?php echo $this->Html->link('Feature Announcements', array('controller' => 'admins', 'action' => 'all', 'feature_announcement_list')); ?></li>
 			<li><?php echo $this->Html->link('Support Outreach', array('controller' => 'admins', 'action' => 'all', 'support_outreach_list')); ?></li>
+      <li><?php echo $this->Html->link('VA WIRB Liaisons', array('controller' => 'admins', 'action' => 'all', 'wirb_liaison', '?' => array('member_class' => 'VA'))); ?></li>
     </ul>
   </li>
 
