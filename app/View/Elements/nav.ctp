@@ -84,6 +84,7 @@
 			<li><?php echo $this->Html->link('Feature Announcements', array('controller' => 'admins', 'action' => 'all', 'feature_announcement_list')); ?></li>
 			<li><?php echo $this->Html->link('Support Outreach', array('controller' => 'admins', 'action' => 'all', 'support_outreach_list')); ?></li>
       <li><?php echo $this->Html->link('VA WIRB Liaisons', array('controller' => 'admins', 'action' => 'all', 'wirb_liaison', '?' => array('member_class' => 'VA'))); ?></li>
+      <li><?php echo $this->Html->link('VA RCOs', array('controller' => 'admins', 'action' => 'all', 'auditor', '?' => array('member_class' => 'VA'))); ?></li>
     </ul>
   </li>
 

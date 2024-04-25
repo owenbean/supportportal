@@ -25,6 +25,9 @@
 				case 'support_outreach_list':
 					echo 'Support Outreach List';
 					break;
+				case 'auditor':
+					echo 'Auditors/RCOs';
+					break;	
 				case 'wirb_liaison':
 					echo 'WIRB Liaisons';
 					break;

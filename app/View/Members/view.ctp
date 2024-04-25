@@ -19,15 +19,23 @@ if($smartForms) {
 $add_ons_array = array($citi, $wirb, $sso, $file_access, $board_rosters);
 
 
-//check if any active administrators
+//check if any active administrators or if any auditors are associated with the member
 $active_admins = null;
 $retired_admins = 0;
+$auditors = '';
 if($admins) {
 	foreach($admins as $admin) {
 		if($admin['Admin']['active']) {
 			$active_admins++;
 		} else {
 			$retired_admins++;
+		}
+
+		if($admin['Admin']['auditor']) {
+			if (strlen($auditors) > 1) {
+				$auditors .= ', ';
+			}
+			$auditors .= ($admin['Admin']['first_name'] . ' ' . $admin['Admin']['last_name']);
 		}
 	}
 }
@@ -58,6 +66,7 @@ if($admins) {
 		<p>Location: <strong><?php echo h($member['Member']['city']) . ', ' . h($member['Member']['state']); ?></strong></p>
 		<p>Pings Email: <?php echo (!strlen($member['Member']['pings_email']) ? 'N/A' : $this->Text->autoLinkEmails($member['Member']['pings_email'])); ?></p>
 		<p>IRBNet Resources: <?php echo (!strlen($member['Member']['resources_username']) ? 'N/A' : '<strong>' . h($member['Member']['resources_username']) . ' / ' . h($member['Member']['resources_password']) . '</strong>'); ?></p>
+		<p>Auditors/RCOs: <?php echo (!strlen($auditors) ? 'N/A' : $auditors); ?></p>
 	</div>
 
 	<!-- extras section -->
